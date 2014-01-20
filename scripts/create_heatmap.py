@@ -15,7 +15,7 @@ if len(sys.argv) != 2:
 
 def main():
     dvis = DataVisualizing.TrackingVisualizer(infile=sys.argv[1])
-    print (dvis.as_heatmap_json(domain='month', agg_function='max'))
-    print (dvis.as_heatmap_json(domain='month', subdomain='hour', agg_function='max'))
+    print ('var day_month_heatdata = {0};'.format(dvis.as_heatmap_json(domain='month', agg_function='max')))
+    print ('var hour_month_heatdata = {0};'.format(dvis.as_heatmap_json(domain='month', subdomain='hour', agg_function='max')))
 
 main()
