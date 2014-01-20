@@ -85,7 +85,7 @@ class TestDataReducer(unittest.TestCase):
 
 class TestDataReader(unittest.TestCase):
     def setUp(self):
-        self.dr = DataReducing.DataReader(infile='./data/tracking_eric_from_nest.csv')
+        self.dr = DataReducing.DataReader(infile='./test/test_tracking_data.csv')
 
     def test_read_data(self):
         self.assertEqual(self.dr.read_data(), None)
@@ -93,7 +93,7 @@ class TestDataReader(unittest.TestCase):
     def test_get_data(self):
         self.dr.read_data()
         data = self.dr.get_data()
-        self.assertEqual(len(data), 25483)
+        self.assertEqual(len(data), 9)
 
     def test_parse_datetime(self):
         self.dr.read_data()
