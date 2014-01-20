@@ -126,7 +126,7 @@ class TestTrackingVisualizer(unittest.TestCase):
             {'hour': 0, 'mean_distance': 37500, 'median_distance': 37500, 'max_distance': 50000},
             {'hour': 4, 'mean_distance': 102000, 'median_distance': 102000, 'max_distance': 102000},
         ]
-        expected_result = json.dumps({'data': {0: 50.0, 4: 102.0}})
+        expected_result = json.dumps({0: 50.0, 4: 102.0})
         result = self.vis.data_to_json(indata=test_data, key='hour', value_key='max_distance')
         self.assertEqual(expected_result, result)
 
@@ -143,20 +143,20 @@ class TestTrackingVisualizer(unittest.TestCase):
         self.assertEqual(expected_result, result)
 
     def test_as_heatmap_json_subd_day(self):
-        data_obj = {'data': {
+        data_obj = {
             1370044800: 0.05,
             1370131200: 0.300
-        }}
+        }
         expected_result = json.dumps(data_obj)
         result = self.vis.as_heatmap_json(domain='month', subdomain='day', agg_function='max')
         self.assertEqual(result, expected_result)
 
     def test_as_heatmap_json_subd_hour(self):
-        data_obj = {'data': {
+        data_obj = {
             1370044800: 0.05,
             1370131200: 0.3,
             1370134800: 0.14,
-        }}
+        }
         expected_result = json.dumps(data_obj)
         result = self.vis.as_heatmap_json(domain='month', subdomain='hour', agg_function='max')
         self.assertEqual(result, expected_result)
