@@ -130,7 +130,7 @@ class TestTrackingVisualizer(unittest.TestCase):
         result = self.vis.data_to_json(indata=test_data, key='hour', value_key='max_distance')
         self.assertEqual(expected_result, result)
 
-    def test_convert_dates_to_timestamps(self):
+    def test_convert_dates_to_unix_timestamps(self):
         test_data = [
             {'date': dt(2013, 1, 1), 'mean_distance': 47, 'median_distance': 37.5, 'max_distance': 102},
             {'date': dt(2013, 1, 5), 'mean_distance': 45, 'median_distance': 45, 'max_distance': 45},
@@ -139,7 +139,19 @@ class TestTrackingVisualizer(unittest.TestCase):
             {'date': 1356998400, 'mean_distance': 47, 'median_distance': 37.5, 'max_distance': 102},
             {'date': 1357344000, 'mean_distance': 45, 'median_distance': 45, 'max_distance': 45},
         ]
-        result = self.vis.convert_dates_to_timestamps(indata=test_data, key='date')
+        result = self.vis.convert_dates_to_unix_timestamps(indata=test_data, key='date')
+        self.assertEqual(expected_result, result)
+
+    def test_convert_dates_to_nvd3_timestamps(self):
+        test_data = [
+            {'date': dt(2013, 1, 1), 'mean_distance': 47, 'median_distance': 37.5, 'max_distance': 102},
+            {'date': dt(2013, 1, 5), 'mean_distance': 45, 'median_distance': 45, 'max_distance': 45},
+        ]
+        expected_result = [
+            {'date': 1356998400000, 'mean_distance': 47, 'median_distance': 37.5, 'max_distance': 102},
+            {'date': 1357344000000, 'mean_distance': 45, 'median_distance': 45, 'max_distance': 45},
+        ]
+        result = self.vis.convert_dates_to_nvd3_timestamps(indata=test_data, key='date')
         self.assertEqual(expected_result, result)
 
     def test_as_heatmap_json_subd_day(self):
