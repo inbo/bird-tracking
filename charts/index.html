@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
-    <link rel="stylesheet" href="css/cal-heatmap.css" />
+    <script src="js/nv.d3.min.js"></script>
     <script type="text/javascript" src="js/cal-heatmap.min.js"></script>
+    <link rel="stylesheet" href="css/cal-heatmap.css" />
+    <link href="css/nv.d3.min.css" rel="stylesheet" type="text/css">
     <title>Distance from nest visualization</title>
 </head>
 <body>
+    <h2>Distance from nest line chart</h2>
+    <div id="linechart"><svg style="height: 250px;"></svg></div>
     <h2>Distance from nest per day</h2>
     <div id="day-month-heatmap"></div>
     <h2>Distance from nest per hour</h2>

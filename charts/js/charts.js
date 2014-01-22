@@ -1,5 +1,7 @@
+drawHourLineChart(hour_month_linedata);
 drawDayCalHeatmap("#day-month-heatmap", day_month_heatdata);
 drawHourCalHeatmap("#hour-month-heatmap", hour_month_heatdata);
+
 console.log("Heatmap drawn.")
 function drawDayCalHeatmap(element, data) {
     var cal = new CalHeatMap();
@@ -51,5 +53,29 @@ function drawHourCalHeatmap(element, data) {
 	legendCellSize: 20,
 	legendCellPadding: 4,
 	data: data
+    });
+}
+
+function drawHourLineChart(data) {
+    nv.addGraph(function() {
+	var chart = nv.models.lineChart();
+
+	chart.xAxis
+	    .axisLabel('Time')
+	    .ticks(20)
+	    .tickFormat(function(d) {   return d3.time.format('%Y %B %d %Hh')(new Date(d)); });
+
+        chart.yAxis
+	    .axisLabel('Distance from nest (km)')
+	    .tickFormat(d3.format('.02f'))
+
+	d3.select('#linechart svg')
+	    .datum(data)
+	    .transition().duration(500)
+	    .call(chart);
+        
+        nv.utils.windowResize(function() { d3.select('#linechart svg').call(chart) });
+
+	return chart;
     });
 }
