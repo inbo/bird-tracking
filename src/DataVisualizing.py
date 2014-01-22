@@ -78,3 +78,14 @@ class TrackingVisualizer():
             data = self.data_to_json(indata=data_with_regular_floats, key='day_hour', value_key=value_key)
         return data
 
+    def as_raw_line_json(self, agg_function='max'):
+        in_data = self.read_data()
+        json_data = {}
+        if agg_function == 'max':
+            value_key = 'max_distance'
+        reduced_data = self.reduce_data_by_day_hour(in_data)
+        reduced_data_timestamps = self.convert_dates_to_nvd3_timestamps(reduced_data, key='day_hour')
+        data_with_regular_floats = self.convert_numpydtypes_to_floats(reduced_data_timestamps, key=value_key)
+        data = self.data_to_json_array(indata=data_with_regular_floats, key='day_hour', value_key=value_key)
+        return data
+

@@ -181,3 +181,9 @@ class TestTrackingVisualizer(unittest.TestCase):
         expected_result = json.dumps(data_obj)
         result = self.vis.as_heatmap_json(domain='month', subdomain='hour', agg_function='max')
         self.assertEqual(result, expected_result)
+
+    def test_as_raw_line_max(self):
+        data_obj = [{'x': 1370044800000, 'y': 0.05}, {'x': 1370131200000, 'y': 0.3}, {'x': 1370134800000, 'y': 0.14}]
+        expected_result = json.dumps(data_obj)
+        result = self.vis.as_raw_line_json(agg_function='max')
+        self.assertEqual(result, expected_result)
