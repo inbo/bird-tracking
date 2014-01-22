@@ -32,6 +32,12 @@ class TrackingVisualizer():
             data[int(data_point[key])] = data_point[value_key] / 1000 ;# meters to kilometers
         return json.dumps(data)
 
+    def data_to_json_array(self, indata=None, key=None, value_key=None):
+        data = []
+        for data_point in indata:
+            data.append({'x': int(data_point[key]), 'y': data_point[value_key] / 1000}) ;# meters to kilometers
+        return json.dumps(data)
+
     def convert_dates_to_timestamps(self, indata=None, key=None, multiply=1):
         data = []
         for data_point in indata:
