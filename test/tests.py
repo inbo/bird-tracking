@@ -187,3 +187,72 @@ class TestTrackingVisualizer(unittest.TestCase):
         expected_result = json.dumps(data_obj)
         result = self.vis.as_raw_line_json(agg_function='max')
         self.assertEqual(result, expected_result)
+
+    def test_as_nvd3_stacked_area_data(self):
+        data_obj = {
+            '2013-06-01': [
+                {'x': 0, 'y': 14.25},
+                {'x': 1, 'y': 0},
+                {'x': 2, 'y': 0},
+                {'x': 3, 'y': 0},
+                {'x': 4, 'y': 0},
+                {'x': 5, 'y': 0},
+                {'x': 6, 'y': 0},
+                {'x': 7, 'y': 0},
+                {'x': 8, 'y': 0},
+                {'x': 9, 'y': 0},
+                {'x': 10, 'y': 0},
+                {'x': 11, 'y': 0},
+                {'x': 12, 'y': 0},
+                {'x': 13, 'y': 0},
+                {'x': 14, 'y': 0},
+                {'x': 15, 'y': 0},
+                {'x': 16, 'y': 0},
+                {'x': 17, 'y': 0},
+                {'x': 18, 'y': 0},
+                {'x': 19, 'y': 0},
+                {'x': 20, 'y': 0},
+                {'x': 21, 'y': 0},
+                {'x': 22, 'y': 0},
+                {'x': 23, 'y': 0}
+            ],
+            '2013-06-02': [
+                {'x': 0, 'y': 89.0},
+                {'x': 1, 'y': 140.0},
+                {'x': 2, 'y': 0},
+                {'x': 3, 'y': 0},
+                {'x': 4, 'y': 0},
+                {'x': 5, 'y': 0},
+                {'x': 6, 'y': 0},
+                {'x': 7, 'y': 0},
+                {'x': 8, 'y': 0},
+                {'x': 9, 'y': 0},
+                {'x': 10, 'y': 0},
+                {'x': 11, 'y': 0},
+                {'x': 12, 'y': 0},
+                {'x': 13, 'y': 0},
+                {'x': 14, 'y': 0},
+                {'x': 15, 'y': 0},
+                {'x': 16, 'y': 0},
+                {'x': 17, 'y': 0},
+                {'x': 18, 'y': 0},
+                {'x': 19, 'y': 0},
+                {'x': 20, 'y': 0},
+                {'x': 21, 'y': 0},
+                {'x': 22, 'y': 0},
+                {'x': 23, 'y': 0}
+            ]
+        }
+        expected_result = data_obj
+        result = self.vis.as_nvd3_stacked_area_data(agg_function='mean')
+        self.assertEqual(result, expected_result)
+
+    def test_create_empty_hour_dict(self):
+        expected_result = [ {'x': 0, 'y': 0}, {'x': 1, 'y': 0}, {'x': 2, 'y': 0}, {'x': 3, 'y': 0},
+                {'x': 4, 'y': 0}, {'x': 5, 'y': 0}, {'x': 6, 'y': 0}, {'x': 7, 'y': 0},
+                {'x': 8, 'y': 0}, {'x': 9, 'y': 0}, {'x': 10, 'y': 0}, {'x': 11, 'y': 0},
+                {'x': 12, 'y': 0}, {'x': 13, 'y': 0}, {'x': 14, 'y': 0}, {'x': 15, 'y': 0},
+                {'x': 16, 'y': 0}, {'x': 17, 'y': 0}, {'x': 18, 'y': 0}, {'x': 19, 'y': 0},
+                {'x': 20, 'y': 0}, {'x': 21, 'y': 0}, {'x': 22, 'y': 0}, {'x': 23, 'y': 0}
+        ]
+        self.assertEqual(expected_result, self.vis.create_empty_hour_dict())

@@ -18,5 +18,10 @@ def main():
     print ('var day_month_heatdata = {0};'.format(dvis.as_heatmap_json(domain='month', agg_function='max')))
     print ('var hour_month_heatdata = {0};'.format(dvis.as_heatmap_json(domain='month', subdomain='hour', agg_function='max')))
     print ('var hour_month_linedata = [ {{ \'key\': \'Maximum distance\', \'color\': \'green\', \'values\': {0} }} ];'.format(dvis.as_raw_line_json(agg_function='max')))
+    stacked_area_data = dvis.as_nvd3_stacked_area_data(agg_function='mean')
+    stacked_area_data_out = []
+    for key in stacked_area_data.keys():
+        stacked_area_data_out.append({'key': key, 'values': stacked_area_data[key]})
+    print ('var hour_stacked_area_data = {0};'.format(str(stacked_area_data_out)))
 
 main()

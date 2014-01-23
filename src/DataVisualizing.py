@@ -18,6 +18,10 @@ class TrackingVisualizer():
         data = dr.get_data()
         return data
 
+    def get_days(self, data):
+        dr = DataReducing.DataReducer()
+        return dr.get_days_from_data(data)
+
     def reduce_data_by_day(self, data):
         dr = DataReducing.DataReducer()
         return dr.aggregate_per_day(data)
@@ -89,3 +93,34 @@ class TrackingVisualizer():
         data = self.data_to_json_array(indata=data_with_regular_floats, key='day_hour', value_key=value_key)
         return data
 
+    def create_empty_hour_dict(self):
+        hours = range(24)
+        initial_list = []
+        for hour in hours:
+            initial_list.append({'x': hour, 'y': 0})
+        return initial_list
+
+    def as_nvd3_stacked_area_data(self, agg_function='mean'):
+        in_data = self.read_data()
+        days = self.get_days(in_data)
+        days.sort()
+        json_data = {}
+        for day in days:
+            json_data[day.date().isoformat()] = self.create_empty_hour_dict()
+        if agg_function == 'mean':
+            value_key = 'mean_distance'
+        data = self.reduce_data_by_day_hour(in_data)
+        for point in data:
+            date_time = point['day_hour']
+            date = date_time.date().isoformat()
+            hour = date_time.hour
+            dist = point[value_key]
+            values = json_data[date]
+            new_values = []
+            for value in values:
+                if value['x'] == hour:
+                    new_values.append({'x': hour, 'y': dist})
+                else:
+                    new_values.append(value)
+            json_data[date] = new_values
+        return json_data
