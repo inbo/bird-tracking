@@ -62,14 +62,23 @@ function drawHourCalHeatmap(element, data) {
 
 function drawHourLineChart(data) {
     nv.addGraph(function() {
-	var chart = nv.models.lineChart();
+	var chart = nv.models.lineWithFocusChart();
 
 	chart.xAxis
 	    .axisLabel('Time')
 	    .ticks(20)
 	    .tickFormat(function(d) {   return d3.time.format('%Y %B %d %Hh')(new Date(d)); });
 
+	chart.x2Axis
+	    .axisLabel('Time')
+	    .ticks(20)
+	    .tickFormat(function(d) {   return d3.time.format('%Y %B %d %Hh')(new Date(d)); });
+
         chart.yAxis
+	    .axisLabel('Distance from nest (km)')
+	    .tickFormat(d3.format('.02f'))
+
+        chart.y2Axis
 	    .axisLabel('Distance from nest (km)')
 	    .tickFormat(d3.format('.02f'))
 
