@@ -6,7 +6,6 @@ drawHourAreaChart(subsetAreaData);
 drawDayCalHeatmap("#day-month-heatmap", day_month_heatdata);
 drawHourCalHeatmap("#hour-month-heatmap", hour_month_heatdata);
 
-console.log("Heatmap drawn.")
 function drawDayCalHeatmap(element, data) {
     var cal = new CalHeatMap();
     cal.init({
@@ -62,12 +61,22 @@ function drawHourCalHeatmap(element, data) {
 
 function drawHourLineChart(data) {
     nv.addGraph(function() {
-	var chart = nv.models.lineChart();
+	var chart = lineChart();
+
+	var startDate = new Date(2013, 5, 1);
+	var endDate = new Date(2013, 7, 31);
+
+	var everyOtherIncorrect = d3.time.day.range(startDate, endDate, 1);
+
+	var everyDate = d3.time.day.range(startDate, endDate);
+	var everyOtherCorrect = everyDate.filter(function (d, i) {
+	        return i % 1 == 0;
+	});
 
 	chart.xAxis
 	    .axisLabel('Time')
-	    .ticks(20)
-	    .tickFormat(function(d) {   return d3.time.format('%Y %B %d %Hh')(new Date(d)); });
+	    .tickValues(everyOtherCorrect)
+	    .tickFormat(function(d) {return d3.time.format('%d/%m')(new Date(d)); });
 
         chart.yAxis
 	    .axisLabel('Distance from nest (km)')
@@ -119,7 +128,6 @@ function subset (array, subsKeys) {
     outArr = new Array();
     for (var i = 0; i < subsKeys.length ; i++) {
 	key = subsKeys[i];
-	console.log("key: " + key);
 	for (var k = 0; k < array.length; k++) {
 	    obj = array[k];
 	    objKey = obj["key"];
@@ -128,7 +136,6 @@ function subset (array, subsKeys) {
 	    }
 	}
     }
-    console.log("out array: " + outArr);
     return outArr;
 }
 
