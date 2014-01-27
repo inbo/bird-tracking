@@ -61,24 +61,16 @@ function drawHourCalHeatmap(element, data) {
 
 function drawHourLineChart(data) {
     nv.addGraph(function() {
-	var startDate = new Date(2013, 5, 1);
-	var endDate = new Date(2013, 7, 31);
-	var everyOtherIncorrect = d3.time.day.range(startDate, endDate, 1);
-	var everyDate = d3.time.day.range(startDate, endDate);
-	var everyOtherCorrect = everyDate.filter(function (d, i) {
-	        return i % 1 == 0;
-	});
 	var chart = nv.models.lineWithFocusChart();
 
 	chart.xAxis
 	    .axisLabel('Time')
-	    .tickValues(everyOtherCorrect)
-	    .tickFormat(function(d) {return d3.time.format('%d/%m')(new Date(d)); });
+	    .tickFormat(function(d) {return d3.time.format('%d/%m %Hh')(new Date(d)); });
 
 	chart.x2Axis
 	    .axisLabel('Time')
 	    .ticks(20)
-	    .tickFormat(function(d) {   return d3.time.format('%Y %B %d %Hh')(new Date(d)); });
+	    .tickFormat(function(d) {   return d3.time.format('%d/%m')(new Date(d)); });
 
         chart.yAxis
 	    .axisLabel('Distance from nest (km)')
