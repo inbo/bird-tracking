@@ -24,8 +24,8 @@ def main():
     days = stacked_area_data.keys()
     days.sort()
     weeks_array = [days[x:x+7] for x in xrange(0, len(days), 7)]
-    for key in stacked_area_data.keys():
-        stacked_area_data_out.append({'key': key, 'values': stacked_area_data[key]})
+    for day in days:
+        stacked_area_data_out.append({'key': day, 'values': stacked_area_data[day]})
     print ('var hour_stacked_area_data = {0};'.format(str(stacked_area_data_out)))
     print ('var weeks = {0};'.format(weeks_array))
     print ('var firstWeekLabels = weeks[0];')
