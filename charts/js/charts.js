@@ -2,6 +2,7 @@ var weekIndex = 0;
 firstWeek = weeks[weekIndex];
 subsetAreaData = subset(hour_stacked_area_data, firstWeek)
 drawHourLineChart(hour_month_linedata);
+drawBarChart(day_month_bardata);
 drawHourAreaChart(subsetAreaData);
 drawDayCalHeatmap("#day-month-heatmap", day_month_heatdata);
 drawHourCalHeatmap("#hour-month-heatmap", hour_month_heatdata);
@@ -56,6 +57,25 @@ function drawHourCalHeatmap(element, data) {
 	legendCellSize: 20,
 	legendCellPadding: 4,
 	data: data
+    });
+}
+
+function drawBarChart(data) {
+    nv.addGraph(function () {
+	var chart = nv.models.discreteBarChart()
+	    .x(function(d) { return d3.time.format('%d/%m')(new Date(d.x))})
+	    .y(function(d) { return d.y})
+	    .staggerLabels(true)
+	    .color(['#A0E9AF', '#87CD95', '#6FB17B', '#579661', '#3E7A47', '#265E2D', '#0E4313']);
+
+	d3.select('#barchart svg')
+	    .datum(data)
+	    .transition().duration(500)
+	    .call(chart);
+
+	nv.utils.windowResize(chart.update);
+
+	return chart;
     });
 }
 

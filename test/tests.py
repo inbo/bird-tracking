@@ -188,6 +188,13 @@ class TestTrackingVisualizer(unittest.TestCase):
         result = self.vis.as_raw_line_json(agg_function='max')
         self.assertEqual(result, expected_result)
 
+    def test_as_bar_chart_max(self):
+        unix_timestamps = {'2013-06-01': 1370044800, '2013-06-02': 1370131200}
+        data_obj = [{'x': unix_timestamps['2013-06-01'] * 1000, 'y': 0.05}, {'x': unix_timestamps['2013-06-02'] * 1000, 'y': 0.3}]
+        expected_result = json.dumps(data_obj)
+        result = self.vis.as_bar_chart_json(agg_function='max')
+        self.assertEqual(result, expected_result)
+
     def test_as_nvd3_stacked_area_data(self):
         data_obj = {
             '2013-06-01': [
