@@ -1,7 +1,7 @@
 var weekIndex = 0;
 firstWeek = weeks[weekIndex];
 subsetAreaData = subset(hour_stacked_area_data, firstWeek)
-drawHourLineChart(hour_month_linedata, 1370044800000, 1370563200000);
+drawHourLineChart(hour_month_linedata, min_timestamp, max_timestamp);
 drawBarChart(day_month_bardata);
 drawHourAreaChart(subsetAreaData);
 drawDayCalHeatmap("#day-month-heatmap", day_month_heatdata);
