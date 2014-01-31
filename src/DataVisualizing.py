@@ -33,13 +33,13 @@ class TrackingVisualizer():
     def data_to_json(self, indata=None, key=None, value_key=None):
         data = {}
         for data_point in indata:
-            data[int(data_point[key])] = data_point[value_key] / 1000 ;# meters to kilometers
+            data[int(data_point[key])] = data_point[value_key] / 1000 ;# meters to kilometers, rounded: better for heatmaps
         return json.dumps(data)
 
     def data_to_json_array(self, indata=None, key=None, value_key=None):
         data = []
         for data_point in indata:
-            data.append({'x': int(data_point[key]), 'y': data_point[value_key] / 1000}) ;# meters to kilometers
+            data.append({'x': int(data_point[key]), 'y': data_point[value_key] / 1000.0}) ;# meters to kilometers, unrounded: better for linechart
         return json.dumps(data)
 
     def convert_dates_to_timestamps(self, indata=None, key=None, multiply=1):
