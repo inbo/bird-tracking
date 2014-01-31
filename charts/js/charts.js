@@ -1,7 +1,7 @@
 var weekIndex = 0;
 firstWeek = weeks[weekIndex];
 subsetAreaData = subset(hour_stacked_area_data, firstWeek)
-drawHourLineChart(hour_month_linedata);
+drawHourLineChart(hour_month_linedata, min_timestamp, max_timestamp);
 drawBarChart(day_month_bardata);
 //drawHourAreaChart(subsetAreaData);
 drawHourAreaChart(hour_stacked_area_data);
@@ -29,7 +29,12 @@ function drawDayCalHeatmap(element, data) {
 	},
 	legendCellSize: 20,
 	legendCellPadding: 4,
-	data: data
+	data: data,
+	onClick: function(date, distance) {
+	    clicked_date_timestamp = date.getTime();
+	    next_date_timestamp = clicked_date_timestamp + (24 * 60 * 60 * 1000);
+	    drawHourLineChart(hour_month_linedata, clicked_date_timestamp, next_date_timestamp);
+	}
     });
 }
 function drawHourCalHeatmap(element, data) {
@@ -80,9 +85,9 @@ function drawBarChart(data) {
     });
 }
 
-function drawHourLineChart(data) {
+function drawHourLineChart(data, focus_min, focus_max) {
     nv.addGraph(function() {
-	var chart = nv.models.lineWithFocusChart();
+	chart = nv.models.lineWithFocusChart();
 
 	chart.xAxis
 	    .axisLabel('Time')
@@ -102,6 +107,7 @@ function drawHourLineChart(data) {
 	    .tickFormat(d3.format('.02f'))
 
 	chart.showLegend(false);
+	chart.brushExtent([focus_min, focus_max]);
 
 	d3.select('#linechart svg')
 	    .datum(data)

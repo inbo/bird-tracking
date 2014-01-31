@@ -3,6 +3,7 @@
 
 import sys
 import os
+import time
 sys.path.append(os.path.dirname(os.path.dirname(__file__)) + '/src')
 import DataVisualizing
 
@@ -23,12 +24,17 @@ def main():
     stacked_area_data_out = []
     days = stacked_area_data.keys()
     days.sort()
+    first_day = days[0]
+    first_day_timestamp = int(time.mktime(time.strptime(first_day, '%Y-%m-%d'))) * 1000
+    last_day = days[-1]
+    last_day_timestamp = (int(time.mktime(time.strptime(last_day, '%Y-%m-%d'))) * 1000) + (24 * 60 * 60 * 1000)
     weeks_array = [days[x:x+7] for x in xrange(0, len(days), 7)]
     for day in days:
         stacked_area_data_out.append({'key': day, 'values': stacked_area_data[day]})
     print ('var hour_stacked_area_data = {0};'.format(str(stacked_area_data_out)))
     print ('var weeks = {0};'.format(weeks_array))
     print ('var firstWeekLabels = weeks[0];')
-
+    print ('var min_timestamp = {0};'.format(first_day_timestamp))
+    print ('var max_timestamp = {0};'.format(last_day_timestamp))
 
 main()
