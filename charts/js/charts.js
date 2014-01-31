@@ -3,7 +3,8 @@ firstWeek = weeks[weekIndex];
 subsetAreaData = subset(hour_stacked_area_data, firstWeek)
 drawHourLineChart(hour_month_linedata);
 drawBarChart(day_month_bardata);
-drawHourAreaChart(subsetAreaData);
+//drawHourAreaChart(subsetAreaData);
+drawHourAreaChart(hour_stacked_area_data);
 drawDayCalHeatmap("#day-month-heatmap", day_month_heatdata);
 drawHourCalHeatmap("#hour-month-heatmap", hour_month_heatdata);
 
@@ -100,6 +101,8 @@ function drawHourLineChart(data) {
 	    .axisLabel('Distance from nest (km)')
 	    .tickFormat(d3.format('.02f'))
 
+	chart.showLegend(false);
+
 	d3.select('#linechart svg')
 	    .datum(data)
 	    .transition().duration(500)
@@ -175,4 +178,8 @@ function previousWeek() {
     }
     var newData = subset(hour_stacked_area_data, weeks[weekIndex]);
     drawHourAreaChart(newData);
+}
+
+function allData() {
+    drawHourAreaChart(hour_stacked_area_data);
 }
