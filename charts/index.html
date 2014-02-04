@@ -9,8 +9,16 @@
     <title>Distance from nest visualization</title>
 </head>
 <body>
+    <h2>Select bird</h2>
+    <select id="birdname-select" onchange="if (this.selectedIndex > -1) drawCharts(this.value);">
+	<option value="Eric">Eric</option>
+	<option value="Anne">Anne</option>
+	<option value="Jurgen">Jurgen</option>
+    </select>
     <h2>Distance from nest per day</h2>
-    <div id="day-month-heatmap" style="width: 800px;"></div>
+    <button id="day-cal-previous">previous</button>
+    <button id="day-cal-next">next</button>
+    <div id="day-month-heatmap"></div>
     <h2>Distance from nest line chart</h2>
     <div id="linechart"><svg style="height: 400px;"></svg></div>
     <h2>Distance from nest bar chart</h2>
@@ -23,8 +31,10 @@
 	<svg style="height: 400px;"></svg>
     </div>
     <h2>Distance from nest per hour</h2>
+    <button id="hour-cal-previous">previous</button>
+    <button id="hour-cal-next">next</button>
     <div id="hour-month-heatmap"></div>
     <script type="text/javascript" src="js/data.js"></script>
-    <script type="text/javascript" src="js/lineChart.js"></script>
+    <script type="text/javascript" src="../src/functions.js"></script>
     <script type="text/javascript" src="js/charts.js"></script>
 </body>

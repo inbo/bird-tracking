@@ -45,30 +45,41 @@ asyncTest( "fetch all data", 1, function() {
     });
 });
 
-// Convert to expected object type
-test("convert object from cartodb to nvd3 input", function() {
-    var cartoDbOutput = {
-        "time":0.05,
-        "fields":{
-            "timestamp":{"type":"number"},
-            "max_distance_from_nest":{"type":"number"}
-        },
-        "total_rows":1,
-        "rows":[
-            {
-		"timestamp": 1370044800,
-                "distance_from_nest_in_meters":5881
-            }
-        ]
-    };
-    var nvd3HeatmapInput = {"1370044800": 5881};
-    deepEqual(toNvd3Heatmap(cartoDbOutput), nvd3HeatmapInput);
+var testCartoDbOutput = {
+    "time":0.05,
+    "fields":{
+	"timestamp":{"type":"number"},
+	"max_distance_from_nest":{"type":"number"}
+    },
+    "total_rows":1,
+    "rows":[
+	{
+	    "timestamp": 1370044800,
+	    "max_distance_from_nest":5881.3
+	},
+	{
+	    "timestamp": 4,
+	    "max_distance_from_nest": 9
+	}
+    ]
+};
+// Convert to expected object type for calendar heatmap
+test("convert object from cartodb to cal-heatmap input", function() {
+    var calHeatmapInput = {"1370044800": 5881.3, "4": 9};
+    deepEqual(toCalHeatmap(testCartoDbOutput), calHeatmapInput);
+});
+
+// Convert to expected object type for nvd3 line chart
+test("convert object from cartodb to nvd3 linechart input", function() {
+    var lineChartInput = [ {"key": "Maximum distance", "color": "green", "values": [ {"x": 1370044800000, "y": 5881.3}, {"x": 4000, "y": 9} ] } ];
+    result = toNvd3Linedata(testCartoDbOutput);
+    deepEqual(result[0].values, lineChartInput[0].values);
 });
 
 asyncTest( "fetch data aggregated by day-hour", 2, function() {
-    var result = fetchTrackingData_byDayHour(" LIMIT 1");
+    var result = fetchTrackingData_byDayHour("Eric", "point(3.182875%2051.340768)", " LIMIT 1");
     var expectedNrOfRows = 1;
-    var expectedRow = {timestamp: 1370044800, max_distance_from_nest: 5.899};
+    var expectedRow = {timestamp: 1369738800, max_distance_from_nest: 0.325};
     result.done(function(data) {
 	equal(data.rows.length, expectedNrOfRows);
 	deepEqual(data.rows[0], expectedRow);
