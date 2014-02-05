@@ -7,19 +7,17 @@ function fetchTrackingData(url, limit) {
 }
 
 function fetchTrackingData_byDayHour(birdname, nestposition, limit) {
-    /*var birdname = "Anne";
-    var nestposition = "point(2.930353%2051.233452)";*/
-    var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=SELECT%20extract(epoch%20from%20date_trunc(%27hour%27,date_time))%20as%20timestamp,%20round(cast(max(%20ST_Distance_Sphere(the_geom,ST_GeomFromText(%27" + nestposition + "%27,4326)%20)/1000)%20as%20numeric),%203)%20as%20max_distance_from_nest%20FROM%20three_gulls%20WHERE%20bird_name=%27" + birdname + "%27%20AND%20outlier%20IS%20NULL%20GROUP%20BY%20timestamp%20ORDER%20BY%20timestamp%20" + limit;
+    var sql = vsprintf("WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,ST_GeomFromText('%s',4326) ) AS distance_in_meters FROM three_gulls WHERE bird_name='%s' AND outlier IS NULL) SELECT extract(epoch FROM date_trunc('hour',date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp", [nestposition, birdname]);
+	 
+    var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql + limit;
     var result = fetchTrackingData(url, "");
     return result;
 }
 
 function fetchTrackingData_byDay(birdname, nestposition, limit) {
-    /*var birdname = "Eric";
-    var nestposition = "point(3.182875%2051.340768)";
-    var birdname = "Anne";
-    var nestposition = "point(2.930353%2051.233452)";*/
-    var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=SELECT%20extract(epoch%20from%20date_trunc(%27day%27,date_time))%20as%20timestamp,%20round(cast(max(%20ST_Distance_Sphere(the_geom,ST_GeomFromText(%27" + nestposition + "%27,4326)%20)/1000)%20as%20numeric),%203)%20as%20max_distance_from_nest%20FROM%20three_gulls%20WHERE%20bird_name=%27" + birdname + "%27%20AND%20outlier%20IS%20NULL%20GROUP%20BY%20timestamp%20ORDER%20BY%20timestamp%20" + limit;
+    var sql = vsprintf("WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,ST_GeomFromText('%s',4326) ) AS distance_in_meters FROM three_gulls WHERE bird_name='%s' AND outlier IS NULL) SELECT extract(epoch FROM date_trunc('day',date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp", [nestposition, birdname]);
+    var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql + limit;
+    console.log(url);
     var result = fetchTrackingData(url, "");
     return result;
 }
@@ -30,7 +28,7 @@ function toCalHeatmap(indata) {
     for (i=0;i<nrOfRows;i++) {
 	var line = indata.rows[i];
 	var t = line.timestamp;
-	var d = line.max_distance_from_nest;
+	var d = line.distance;
 	outdata[t] = d;
     }
     return outdata;
@@ -43,7 +41,7 @@ function toNvd3Linedata(indata) {
     for (i=0;i<nrOfRows;i++) {
 	var line = indata.rows[i];
 	var t = line.timestamp;
-	var d = line.max_distance_from_nest;
+	var d = line.distance;
 	var outline = {"x": t*1000, "y": d}; // Convert unix timestamp to nvd3 timestamp
 	values.push(outline);
     }
