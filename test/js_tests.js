@@ -101,3 +101,33 @@ asyncTest( "fetch data aggregated by day", 2, function() {
         start();
     });
 });
+
+asyncTest( "fetch travelled distance per hour", 2, function() {
+    var result = fetchTravelledDist_byHour("Eric", " LIMIT 1");
+    var expectedNrOfRows = 1;
+    var expectedRow = {timestamp: 1369738800, distance: null};
+    result.done(function(data) {
+	equal(data.rows.length, expectedNrOfRows);
+	deepEqual(data.rows[0], expectedRow);
+        start();
+    })
+    .fail(function () {
+        ok('', 'fetch aggregated tracking data failed');
+        start();
+    });
+});
+
+asyncTest( "fetch travelled distance per day", 2, function() {
+    var result = fetchTravelledDist_byDay("Eric", " LIMIT 1");
+    var expectedNrOfRows = 1;
+    var expectedRow = {timestamp: 1369699200, distance: 1.668};
+    result.done(function(data) {
+	equal(data.rows.length, expectedNrOfRows);
+	deepEqual(data.rows[0], expectedRow);
+        start();
+    })
+    .fail(function () {
+        ok('', 'fetch aggregated tracking data failed');
+        start();
+    });
+});

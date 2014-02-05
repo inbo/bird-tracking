@@ -17,6 +17,21 @@ function fetchTrackingData_byDayHour(birdname, nestposition, limit) {
 function fetchTrackingData_byDay(birdname, nestposition, limit) {
     var sql = vsprintf("WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,ST_GeomFromText('%s',4326) ) AS distance_in_meters FROM three_gulls WHERE bird_name='%s' AND outlier IS NULL) SELECT extract(epoch FROM date_trunc('day',date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp", [nestposition, birdname]);
     var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql + limit;
+    var result = fetchTrackingData(url, "");
+    return result;
+}
+
+function fetchTravelledDist_byHour(birdname, limit) {
+    var sql = sprintf("WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom,1) OVER(ORDER BY date_time)) AS distance_in_meters FROM three_gulls WHERE bird_name='%s' AND outlier IS NULL) SELECT extract(epoch FROM date_trunc('hour',date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp", birdname);
+    var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql + limit;
+    console.log(url);
+    var result = fetchTrackingData(url, "");
+    return result;
+}
+
+function fetchTravelledDist_byDay (birdname, limit) {
+    var sql = sprintf("WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom,1) OVER(ORDER BY date_time)) AS distance_in_meters FROM three_gulls WHERE bird_name='%s' AND outlier IS NULL) SELECT extract(epoch FROM date_trunc('day',date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp", birdname);
+    var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql + limit;
     console.log(url);
     var result = fetchTrackingData(url, "");
     return result;
