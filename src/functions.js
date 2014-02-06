@@ -88,7 +88,7 @@ function toNvd3TotalLinedata(indata) {
     values = [];
     hours = Object.keys(data);
     for (i = 0; i < hours.length; i++) {
-	var outline = {"x": hours[i], "y": data[hours[i]]}; // Convert unix timestamp to nvd3 timestamp
+	var outline = {"x": parseInt(hours[i]), "y": data[hours[i]]}; // Convert unix timestamp to nvd3 timestamp
 	values.push(outline);
     }
     outdata_element["values"] = values;

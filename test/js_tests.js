@@ -74,7 +74,7 @@ test("convert object from cartodb to nvd3 linechart input", function() {
 
 // Convert to total hour chart
 test("convert object from cartodb to nvd3 total time linechart input", function () {
-    var lineChartInput = [{"key": "Total distance from nest", "color": "green", "values": [{"x": "0", "y": 5890.3}]}];
+    var lineChartInput = [{"key": "Total distance from nest", "color": "green", "values": [{"x": 0, "y": 5890.3}]}];
     result = toNvd3TotalLinedata(testCartoDbOutput);
     deepEqual(result[0].values, lineChartInput[0].values);
 });
