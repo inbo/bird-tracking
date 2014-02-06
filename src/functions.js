@@ -75,8 +75,6 @@ function toNvd3TotalLinedata(indata) {
 	var line = indata.rows[i];
 	var t = new Date(parseInt(line.timestamp) * 1000);
 	t.toUTCString();
-	console.log("input timestamp: " + line.timestamp);
-	console.log("date time: day: " + t.getUTCDate() + ", month: " + t.getUTCMonth() + ", year: " + t.getUTCFullYear() + ", hours: " + t.getUTCHours() + ", minutes: " + t.getUTCMinutes());
 	hour = t.getUTCHours();
 	var d = line.distance;
 	if (hour in data) {
