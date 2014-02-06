@@ -65,3 +65,36 @@ function toNvd3Linedata(indata) {
     outdata.push(outdata_element);
     return outdata;
 }
+
+function toNvd3TotalLinedata(indata) {
+    var outdata_element =  {"key": "Maximum distance", "color": "green"}; 
+    var hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+    var data = {};
+    nrOfRows = indata.rows.length;
+    for (i=0;i<nrOfRows;i++) {
+	var line = indata.rows[i];
+	var t = new Date(parseInt(line.timestamp) * 1000);
+	t.toUTCString();
+	console.log("input timestamp: " + line.timestamp);
+	console.log("date time: day: " + t.getUTCDate() + ", month: " + t.getUTCMonth() + ", year: " + t.getUTCFullYear() + ", hours: " + t.getUTCHours() + ", minutes: " + t.getUTCMinutes());
+	hour = t.getUTCHours();
+	var d = line.distance;
+	if (hour in data) {
+	    data_dist = data[hour];
+	    data_dist += parseFloat(d);
+	} else {
+	    data_dist = parseFloat(d);
+	}
+	data[hour] = data_dist;
+    }
+    values = [];
+    hours = Object.keys(data);
+    for (i = 0; i < hours.length; i++) {
+	var outline = {"x": hours[i], "y": data[hours[i]]}; // Convert unix timestamp to nvd3 timestamp
+	values.push(outline);
+    }
+    outdata_element["values"] = values;
+    outdata = new Array();
+    outdata.push(outdata_element);
+    return outdata;
+}

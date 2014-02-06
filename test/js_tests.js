@@ -72,6 +72,13 @@ test("convert object from cartodb to nvd3 linechart input", function() {
     deepEqual(result[0].values, lineChartInput[0].values);
 });
 
+// Convert to total hour chart
+test("convert object from cartodb to nvd3 total time linechart input", function () {
+    var lineChartInput = [{"key": "Total distance from nest", "color": "green", "values": [{"x": "0", "y": 5890.3}]}];
+    result = toNvd3TotalLinedata(testCartoDbOutput);
+    deepEqual(result[0].values, lineChartInput[0].values);
+});
+
 asyncTest( "fetch data aggregated by day-hour", 2, function() {
     var result = fetchTrackingData_byDayHour("Eric", "point(3.182875%2051.340768)", " LIMIT 1");
     var expectedNrOfRows = 1;
