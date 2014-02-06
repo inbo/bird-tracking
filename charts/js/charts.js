@@ -24,6 +24,7 @@ function drawCharts (birdname) {
     hour_month_cartodbdata.done(function (data) {
 	globalData.hour_month_heatdata = toCalHeatmap(data);
 	globalData.hour_month_linedata = toNvd3Linedata(data);
+	globalData.total_hour_linedata = toNvd3TotalLinedata(data);
 	var values = globalData.hour_month_linedata[0].values;
 	var min_timestamp = values[0].x;
 	var max_timestamp = values[values.length - 1].x;
@@ -32,6 +33,7 @@ function drawCharts (birdname) {
 	var nrOfMonths = enddate.getMonth() - startdate.getMonth() + 1;
 	drawHourCalHeatmap("#hour-month-heatmap", startdate, nrOfMonths, globalData.hour_month_heatdata);
 	drawHourLineChart(globalData.hour_month_linedata, min_timestamp, max_timestamp);
+	drawTotalHourLineChart(globalData.total_hour_linedata);
     });
 
     var day_month_cartodbdata = fetchTrackingData_byDay(birdname, point, "");
@@ -49,9 +51,6 @@ function drawCharts (birdname) {
 	drawBarChart(globalData.day_month_linedata);
     });
 
-    firstWeek = weeks[weekIndex];
-    subsetAreaData = subset(hour_stacked_area_data, firstWeek)
-    drawHourAreaChart(hour_stacked_area_data);
 }
 
 function drawDayCalHeatmap(element, startdate, nrOfMonths, data) {
@@ -174,74 +173,27 @@ function drawHourLineChart(data, focus_min, focus_max) {
     });
 }
 
-function drawHourAreaChart(data) {
-    nv.addGraph(function() {
-	var chart = nv.models.stackedAreaChart()
-	  .x(function(d) {return d["x"]})
-	  .y(function(d) {return d["y"]})
-	  .clipEdge(true);
+function drawTotalHourLineChart(data) {
+    nv.addGraph(function () {
+	var chart = nv.models.lineChart();
 
-        chart.xAxis
-	    .axisLabel("Hour")
-	    .tickFormat(d3.format(',r'));
+	chart.xAxis
+	  .axisLabel('Hours');
 
         chart.yAxis
-	    .axisLabel('distance (km)')
-	    .tickFormat(d3.format(',f'))
-	    ;
+	  .axisLabel('Total distance')
+	  .tickFormat(d3.format('.02f'));
 
-      d3.select('#stackedareachart svg')
-	    .datum(data)
-	    .transition().duration(500)
-	    .call(chart);
+        d3.select('#totalhourchart svg')
+	  .datum(data)
+	  .transition().duration(500)
+	  .call(chart);
 
-      nv.utils.windowResize(chart.update);
-      return chart;
+        nv.utils.windowResize(function () {d3.select('#totalhourchart svg').call(chart)});
+
+	return chart;
     });
-}
 
-// This function will fetch a subset of values from an array.
-// The array is the one that is expected for the stacked area chart.
-// The subsKeys should contain an array of dates (in string format)
-// so that this function will only return the data points from the
-// given dates.
-function subset (array, subsKeys) {
-    outArr = new Array();
-    for (var i = 0; i < subsKeys.length ; i++) {
-	key = subsKeys[i];
-	for (var k = 0; k < array.length; k++) {
-	    obj = array[k];
-	    objKey = obj["key"];
-	    if (objKey === key) {
-		outArr.push(obj);
-	    }
-	}
-    }
-    return outArr;
-}
-
-function getWeek(weekIndex, weeks) {
-    return weeks[weekIndex];
-}
-
-function nextWeek() {
-    if (weekIndex < weeks.length - 1) {
-	weekIndex++;
-    }
-    var newData = subset(hour_stacked_area_data, weeks[weekIndex]);
-    drawHourAreaChart(newData);
-}
-
-function previousWeek() {
-    if (weekIndex > 0) {
-	weekIndex = weekIndex - 1;
-    }
-    var newData = subset(hour_stacked_area_data, weeks[weekIndex]);
-    drawHourAreaChart(newData);
-}
-
-function allData() {
-    drawHourAreaChart(hour_stacked_area_data);
 }
 
 $("#day-cal-next").on("click", function(event) {

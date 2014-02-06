@@ -4,6 +4,7 @@
     <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
     <script src="js/nv.d3.min.js"></script>
     <script type="text/javascript" src="js/cal-heatmap.min.js"></script>
+    <script src="../lib/sprintf.min.js"></script>
     <link rel="stylesheet" href="css/cal-heatmap.css" />
     <link href="css/nv.d3.min.css" rel="stylesheet" type="text/css">
     <title>Distance from nest visualization</title>
@@ -24,12 +25,7 @@
     <h2>Distance from nest bar chart</h2>
     <div id="barchart"><svg style="height: 400px;"></svg></div>
     <h2>Distance from nest line chart per hour</h2>
-    <div id="stackedareachart">
-	<button onclick="JavaScript:previousWeek()">previous week</button>
-	<button onclick="JavaScript:nextWeek()">next week</button>
-	<button onclick="JavaScript:allData()">all data</button>
-	<svg style="height: 400px;"></svg>
-    </div>
+    <div id="totalhourchart"><svg style="height: 400px;"></svg></div>
     <h2>Distance from nest per hour</h2>
     <button id="hour-cal-previous">previous</button>
     <button id="hour-cal-next">next</button>
