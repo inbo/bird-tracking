@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="js/nv.d3.min.js"></script>
+    <script type="text/javascript" src="js/cal-heatmap.min.js"></script>
+    <script src="lib/sprintf.min.js"></script>
+    <link rel="stylesheet" href="css/cal-heatmap.css" />
+    <link href="css/nv.d3.min.css" rel="stylesheet" type="text/css">
+    <title>Distance from nest visualization</title>
+</head>
+<body>
+    <h2>Select bird</h2>
+    <select id="birdname-select">
+	<option value="Eric">Eric</option>
+	<option value="Anne">Anne</option>
+	<option value="Jurgen">Jurgen</option>
+    </select>
+    <select id="datatype-select">
+	<option value="max_dist">Maximum distance</option>
+	<option value="total_dist">Total distance</option>
+    </select>
+    <button id="update-charts">Update charts</button>
+    <h2>Distance from nest per day</h2>
+    <button id="day-cal-previous">previous</button>
+    <button id="day-cal-next">next</button>
+    <div id="day-month-heatmap"></div>
+    <h2>Distance from nest line chart</h2>
+    <div id="linechart"><svg style="height: 400px;"></svg></div>
+    <h2>Distance from nest bar chart</h2>
+    <div id="barchart"><svg style="height: 400px;"></svg></div>
+    <h2>Distance from nest line chart per hour</h2>
+    <div id="totalhourchart"><svg style="height: 400px;"></svg></div>
+    <h2>Distance from nest per hour</h2>
+    <button id="hour-cal-previous">previous</button>
+    <button id="hour-cal-next">next</button>
+    <div id="hour-month-heatmap"></div>
+    <script type="text/javascript" src="js/data.js"></script>
+    <script type="text/javascript" src="src/functions.js"></script>
+    <script type="text/javascript" src="js/charts.js"></script>
+</body>
