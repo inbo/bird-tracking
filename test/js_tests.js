@@ -97,7 +97,7 @@ asyncTest( "fetch data aggregated by day-hour", 2, function() {
 asyncTest( "fetch data aggregated by day", 2, function() {
     var result = fetchTrackingData_byDay("Eric", "point(3.182875%2051.340768)", " LIMIT 1");
     var expectedNrOfRows = 1;
-    var expectedRow = {timestamp: 1369699200, distance: 1.48};
+    var expectedRow = {timestamp: 1369699200, distance: 0.325};
     result.done(function(data) {
 	equal(data.rows.length, expectedNrOfRows);
 	deepEqual(data.rows[0], expectedRow);
