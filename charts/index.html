@@ -11,11 +11,16 @@
 </head>
 <body>
     <h2>Select bird</h2>
-    <select id="birdname-select" onchange="if (this.selectedIndex > -1) drawCharts(this.value);">
+    <select id="birdname-select">
 	<option value="Eric">Eric</option>
 	<option value="Anne">Anne</option>
 	<option value="Jurgen">Jurgen</option>
     </select>
+    <select id="datatype-select">
+	<option value="max_dist">Maximum distance</option>
+	<option value="total_dist">Total distance</option>
+    </select>
+    <button id="update-charts">Update charts</button>
     <h2>Distance from nest per day</h2>
     <button id="day-cal-previous">previous</button>
     <button id="day-cal-next">next</button>

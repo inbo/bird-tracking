@@ -5,7 +5,7 @@ var birds = {
     "Anne": "point(2.930688%2051.233267)",
     "Jurgen": "point(2.930131%2051.233474)"
 }
-drawCharts("Eric");
+drawCharts("Eric", "max_dist");
 
 // set some globals
 // These calendars need to be initialized before running the create functions.
@@ -17,10 +17,14 @@ daycal.init({itemSelector: "#day-month-heatmap"});
 var hourcal = new CalHeatMap();
 hourcal.init({itemSelector: "#hour-month-heatmap"});
 
-function drawCharts (birdname) {
+function drawCharts (birdname, datatype) {
     point = birds[birdname];
 
-    var hour_month_cartodbdata = fetchTrackingData_byDayHour(birdname, point, "");
+    if (datatype === "max_dist") {
+	var hour_month_cartodbdata = fetchTrackingData_byDayHour(birdname, point, "");
+    } else if (datatype === "total_dist") {
+	var hour_month_cartodbdata = fetchTravelledDist_byHour(birdname, "");
+    }
     hour_month_cartodbdata.done(function (data) {
 	globalData.hour_month_heatdata = toCalHeatmap(data);
 	globalData.hour_month_linedata = toNvd3Linedata(data);
@@ -36,7 +40,11 @@ function drawCharts (birdname) {
 	drawTotalHourLineChart(globalData.total_hour_linedata);
     });
 
-    var day_month_cartodbdata = fetchTrackingData_byDay(birdname, point, "");
+    if (datatype === "max_dist") {
+	var day_month_cartodbdata = fetchTrackingData_byDay(birdname, point, "");
+    } else if (datatype === "total_dist") {
+	var day_month_cartodbdata = fetchTravelledDist_byDay(birdname, "");
+    }
     day_month_cartodbdata.done(function (data) {
 	globalData.day_month_heatdata = toCalHeatmap(data);
 	globalData.day_month_linedata = toNvd3Linedata(data);
@@ -210,4 +218,11 @@ $("#hour-cal-next").on("click", function(event) {
 
 $("#hour-cal-previous").on("click", function(event) {
     hourcal.previous();
+});
+
+$("#update-charts").on("click", function(event) {
+    var birdname = $("#birdname-select").val();
+    var datatype = $("#datatype-select").val();
+    console.log("Fetching data for bird: " + birdname + " and data type: " + datatype);
+    drawCharts(birdname, datatype);
 });
