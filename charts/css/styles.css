@@ -1,0 +1,54 @@
+body {
+    font-family: "Lucida grande", sans-serif;
+    font-size: 1.2em;
+    line-height: 1.4;
+    margin: 2em;
+}
+
+h4 {
+    display: block;
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0.33em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+#bird-controls {
+    display: inline-block;
+}
+
+#data-controls {
+    display: inline-block;
+    margin-left: 5em;
+}
+
+#main {
+    display: inline-block;
+}
+
+#day-month-heatmap {
+    height: 350px;
+    width: 900px;
+    display: block;
+}
+#hour-month-heatmap {
+    height: 350px;
+    width: 900px;
+    display: none;
+}
+
+#totalhourchart svg {
+    height: 300px;
+    width: 400px;
+}
+
+#calendars {
+    width: 900px;
+    display: inline-block;
+}
+
+#totalhour {
+    width: 400px;
+    display: inline-block;
+}
