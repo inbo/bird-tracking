@@ -1,11 +1,15 @@
 var weekIndex = 0;
-var globalData = new Object();
+var globalData = {
+    "birdname": "Eric",
+    "datatype": "max_dist"
+}
+
 var birds = {
     "Eric": "point(3.182875%2051.340768)",
     "Anne": "point(2.930688%2051.233267)",
     "Jurgen": "point(2.930131%2051.233474)"
 }
-drawCharts("Eric", "max_dist");
+drawCharts();
 
 // set some globals
 // These calendars need to be initialized before running the create functions.
@@ -17,13 +21,13 @@ daycal.init({itemSelector: "#day-month-heatmap"});
 var hourcal = new CalHeatMap();
 hourcal.init({itemSelector: "#hour-month-heatmap"});
 
-function drawCharts (birdname, datatype) {
-    point = birds[birdname];
+function drawCharts () {
+    point = birds[globalData.birdname];
 
-    if (datatype === "max_dist") {
-	var hour_month_cartodbdata = fetchTrackingData_byDayHour(birdname, point, "");
-    } else if (datatype === "total_dist") {
-	var hour_month_cartodbdata = fetchTravelledDist_byHour(birdname, "");
+    if (globalData.datatype === "max_dist") {
+	var hour_month_cartodbdata = fetchTrackingData_byDayHour(globalData.birdname, point, "");
+    } else if (globalData.datatype === "total_dist") {
+	var hour_month_cartodbdata = fetchTravelledDist_byHour(globalData.birdname, "");
     }
     hour_month_cartodbdata.done(function (data) {
 	globalData.hour_month_heatdata = toCalHeatmap(data);
@@ -40,10 +44,10 @@ function drawCharts (birdname, datatype) {
 	drawTotalHourLineChart(globalData.total_hour_linedata);
     });
 
-    if (datatype === "max_dist") {
-	var day_month_cartodbdata = fetchTrackingData_byDay(birdname, point, "");
-    } else if (datatype === "total_dist") {
-	var day_month_cartodbdata = fetchTravelledDist_byDay(birdname, "");
+    if (globalData.datatype === "max_dist") {
+	var day_month_cartodbdata = fetchTrackingData_byDay(globalData.birdname, point, "");
+    } else if (globalData.datatype === "total_dist") {
+	var day_month_cartodbdata = fetchTravelledDist_byDay(globalData.birdname, "");
     }
     day_month_cartodbdata.done(function (data) {
 	globalData.day_month_heatdata = toCalHeatmap(data);
@@ -72,7 +76,7 @@ function drawDayCalHeatmap(element, startdate, nrOfMonths, data) {
 	    domain: "month",
 	    subDomain: "x_day",
 	    start: startdate,
-	    cellSize: 20,
+	    cellSize: 26,
 	    subDomainTextFormat: "%d",
 	    range: nrOfMonths,
 	    domainMargin: 10,
@@ -106,7 +110,7 @@ function drawHourCalHeatmap(element, startdate, nrOfMonths, data) {
 	    subDomain: "x_hour",
 	    start: startdate,
 	    minDate: startdate,
-	    cellSize: 10,
+	    cellSize: 6.5,
 	    rowLimit: 24,
 	    subDomainTextFormat: "%H",
 	    range: nrOfMonths,
@@ -122,7 +126,13 @@ function drawHourCalHeatmap(element, startdate, nrOfMonths, data) {
 	    },
 	    legendCellSize: 20,
 	    legendCellPadding: 4,
-	    data: data
+	    data: data,
+	    onClick: function(date, distance) {
+		start_of_that_day = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+		clicked_date_timestamp = start_of_that_day.getTime();
+		next_date_timestamp = clicked_date_timestamp + (24 * 60 * 60 * 1000);
+		drawHourLineChart(globalData.hour_month_linedata, clicked_date_timestamp, next_date_timestamp);
+	    }
 	});
     });
 }
@@ -190,7 +200,9 @@ function drawTotalHourLineChart(data) {
 
         chart.yAxis
 	  .axisLabel('Total distance')
-	  .tickFormat(d3.format('.02f'));
+	  .tickFormat(d3.format('.0f'));
+
+        chart.showLegend(false);
 
         d3.select('#totalhourchart svg')
 	  .datum(data)
@@ -204,25 +216,64 @@ function drawTotalHourLineChart(data) {
 
 }
 
-$("#day-cal-next").on("click", function(event) {
+$("#cal-next").on("click", function(event) {
     daycal.next();
-});
-
-$("#day-cal-previous").on("click", function(event) {
-    daycal.previous();
-});
-
-$("#hour-cal-next").on("click", function(event) {
     hourcal.next();
 });
 
-$("#hour-cal-previous").on("click", function(event) {
+$("#cal-previous").on("click", function(event) {
+    daycal.previous();
     hourcal.previous();
 });
 
-$("#update-charts").on("click", function(event) {
-    var birdname = $("#birdname-select").val();
-    var datatype = $("#datatype-select").val();
-    console.log("Fetching data for bird: " + birdname + " and data type: " + datatype);
-    drawCharts(birdname, datatype);
+$("#birdname-eric").on("click", function(event) {
+    $(this).attr("class", "active");
+    globalData.birdname = "Eric";
+    drawCharts();
+    $("#birdname-anne").attr("class", "inactive");
+    $("#birdname-jurgen").attr("class", "inactive");
+});
+
+$("#birdname-anne").on("click", function(event) {
+    $(this).attr("class", "active");
+    globalData.birdname = "Anne";
+    drawCharts();
+    $("#birdname-eric").attr("class", "inactive");
+    $("#birdname-jurgen").attr("class", "inactive");
+});
+
+$("#birdname-jurgen").on("click", function(event) {
+    $(this).attr("class", "active");
+    globalData.birdname = "Jurgen";
+    drawCharts();
+    $("#birdname-eric").attr("class", "inactive");
+    $("#birdname-anne").attr("class", "inactive");
+});
+
+$("#data-type-max").on("click", function(event) {
+    $(this).attr("class", "active");
+    globalData.datatype = "max_dist";
+    drawCharts();
+    $("#data-type-total").attr("class", "inactive");
+});
+
+$("#data-type-total").on("click", function(event) {
+    $(this).attr("class", "active");
+    globalData.datatype = "total_dist";
+    drawCharts();
+    $("#data-type-max").attr("class", "inactive");
+});
+
+$("#show-day-cal").on("click", function(event) {
+    $(this).attr("class", "active");
+    $("#show-hour-cal").attr("class", "inactive");
+    $("#day-month-heatmap").toggle(true);
+    $("#hour-month-heatmap").toggle(false);
+});
+
+$("#show-hour-cal").on("click", function(event) {
+    $(this).attr("class", "active");
+    $("#show-day-cal").attr("class", "inactive");
+    $("#hour-month-heatmap").toggle(true);
+    $("#day-month-heatmap").toggle(false);
 });

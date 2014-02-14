@@ -7,34 +7,54 @@
     <script src="lib/sprintf.min.js"></script>
     <link rel="stylesheet" href="css/cal-heatmap.css" />
     <link href="css/nv.d3.min.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
     <title>Distance from nest visualization</title>
 </head>
 <body>
-    <h2>Select bird</h2>
-    <select id="birdname-select">
-	<option value="Eric">Eric</option>
-	<option value="Anne">Anne</option>
-	<option value="Jurgen">Jurgen</option>
-    </select>
-    <select id="datatype-select">
-	<option value="max_dist">Maximum distance</option>
-	<option value="total_dist">Total distance</option>
-    </select>
-    <button id="update-charts">Update charts</button>
-    <h2>Distance from nest per day</h2>
-    <button id="day-cal-previous">previous</button>
-    <button id="day-cal-next">next</button>
-    <div id="day-month-heatmap"></div>
+    <div id="main">
+	<div id="intro">
+	    <h1>Visualizations for three tracked gulls</h1>
+	    <p>Three gulls were tracked with the <a href="http://www.uva-bits.nl/">UvA-BITS tracking system</a>. Here, we visualized the maximum distance between the birds and their nests over time and the total distance they travelled during certain time intervals. All code is in Javascript so it runs directly in your browser. The data is available as open data on <a href="http://lifewatch-inbo.cartodb.com/tables/three_gulls/public">cartoDB</a> and the visualizations here directly interact with the cartoDB API. If you want to use these visulizations too, checkout the <a href="https://github.com/LifeWatchINBO/tracking-eric-analysis">github repository</a>.
+	</div>
+	<hr>
+    <div id="controls">
+	<div id="bird-controls">
+	    <h4>Bird</h4>
+	    <button id="birdname-eric" class="active">Eric<br></button>
+	    <button id="birdname-anne" class="inactive">Anne<br></button>
+	    <button id="birdname-jurgen" class="inactive">Jurgen<br></button>
+	</div>
+	<div id="data-controls">
+	    <h4>Data type</h4>
+	    <button id="data-type-max" class="active">Distance from nest</button>
+	    <button id="data-type-total" class="inactive">Distance travelled</button>
+	</div>
+    </div>
+
+    <div id="calendars">
+	<h2>Distance from nest per day</h2>
+
+	<button id="cal-previous">previous</button>
+	<button id="cal-next">next</button>
+		<button id="show-day-cal" class="active">Aggregated by day</button>
+		<button id="show-hour-cal" class="inactive">Aggregated by hour</button>
+	<div id="day-month-heatmap"></div>
+	<div id="hour-month-heatmap"></div>
+    </div>
+
+    <div id="totalhour">
+	<h2>Distance per hour</h2>
+	<div id="totalhourchart"><svg></svg></div>
+    </div>
+
     <h2>Distance from nest line chart</h2>
     <div id="linechart"><svg style="height: 400px;"></svg></div>
+
     <h2>Distance from nest bar chart</h2>
     <div id="barchart"><svg style="height: 400px;"></svg></div>
-    <h2>Distance from nest line chart per hour</h2>
-    <div id="totalhourchart"><svg style="height: 400px;"></svg></div>
-    <h2>Distance from nest per hour</h2>
-    <button id="hour-cal-previous">previous</button>
-    <button id="hour-cal-next">next</button>
-    <div id="hour-month-heatmap"></div>
+
+
+</div>
     <script type="text/javascript" src="js/data.js"></script>
     <script type="text/javascript" src="src/functions.js"></script>
     <script type="text/javascript" src="js/charts.js"></script>
