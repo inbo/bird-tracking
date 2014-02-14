@@ -27,7 +27,7 @@ h4 {
     display: inline-block;
 }
 
-buttona {
+button {
     font-family: "Lucida grande", sans-serif;
     font-size: 0.6em;
     font-weight: bold;
@@ -40,12 +40,12 @@ buttona {
     margin-right: 0;
 }
 
-buttona:hover {
+button:hover {
     color: #a0a0a0;
     box-shadow: inset 1px 0px 10px rgba(0,0,0,0.20);
 }
 
-buttona.active {
+button.active {
     color: #000;
     background: #fbfbfb;
     box-shadow: inset 1px 0px 10px rgba(0,0,0,0.20);
