@@ -27,6 +27,30 @@ h4 {
     display: inline-block;
 }
 
+button {
+    font-family: "Lucida grande", sans-serif;
+    font-size: 0.6em;
+    font-weight: bold;
+    color: #b0b0b0;
+    background: #fff;
+    border-radius: 5px 5px 5px 5px;
+    height: 2.5em;
+    width: 140px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+button:hover {
+    color: #a0a0a0;
+    box-shadow: inset 1px 0px 10px rgba(0,0,0,0.20);
+}
+
+button.active {
+    color: #000;
+    background: #fbfbfb;
+    box-shadow: inset 1px 0px 10px rgba(0,0,0,0.20);
+}
+
 #day-month-heatmap {
     height: 350px;
     width: 900px;
