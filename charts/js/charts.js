@@ -112,7 +112,6 @@ function drawHourCalHeatmap(element, startdate, nrOfMonths, data) {
 	    minDate: startdate,
 	    cellSize: 6.5,
 	    rowLimit: 24,
-	    subDomainTextFormat: "%H",
 	    range: nrOfMonths,
 	    verticalOrientation: false,
 	    itemSelector: element,
