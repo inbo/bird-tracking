@@ -1,6 +1,6 @@
 # tracking-eric-analysis
 
-Analysis and visualization of the tracking data from lesser black-backed gull Eric.
+Analysis and visualization of the tracking data from Lesser Black-backed Gull Eric and the Herring Gulls Anne and Jurgen.
 
 ## Requirements
 
