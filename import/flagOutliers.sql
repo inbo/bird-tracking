@@ -1,5 +1,5 @@
 -- SQL to flag outliers in the tracking data
--- * Records later than 2014
+-- * Records in the future
 -- * Records with an altitude above 10km
 -- * Records with a speed above 120km/h
 
@@ -26,7 +26,7 @@ from (
   select *
   from select_fields
   where
-    date_time > '2015-01-01'
+    date_time > current_date
     -- or date_time < tracking_start_date_time
     or altitude > 10000
     or km_per_hour > 120
