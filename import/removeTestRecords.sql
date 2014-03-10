@@ -1,4 +1,4 @@
--- SQL to remove test records, when tag was not mounted on bird
+-- SQL to remove test tracking records, when tag was not mounted on bird
 
 delete from bird_tracking
 using bird_tracking_devices as d
