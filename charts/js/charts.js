@@ -106,7 +106,6 @@ function drawHourCalHeatmap(element, startdate, nrOfMonths, data) {
 	    domain: "month",
 	    subDomain: "x_hour",
 	    start: startdate,
-	    minDate: startdate,
 	    cellSize: 6.5,
 	    rowLimit: 24,
 	    range: nrOfMonths,
@@ -217,15 +216,15 @@ $("#data-type-total").on("click", function(event) {
 });
 
 $("#show-day-cal").on("click", function(event) {
-    $(this).attr("class", "active");
-    $("#show-hour-cal").attr("class", "inactive");
+    $(this).attr("class", "tab active");
+    $("#show-hour-cal").attr("class", "tab inactive");
     $("#day-month-heatmap").toggle(true);
     $("#hour-month-heatmap").toggle(false);
 });
 
 $("#show-hour-cal").on("click", function(event) {
-    $(this).attr("class", "active");
-    $("#show-day-cal").attr("class", "inactive");
+    $(this).attr("class", "tab active");
+    $("#show-day-cal").attr("class", "tab inactive");
     $("#hour-month-heatmap").toggle(true);
     $("#day-month-heatmap").toggle(false);
 });

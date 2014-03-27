@@ -14,6 +14,11 @@ h4 {
     font-weight: bold;
 }
 
+/* override some settings from main.css */
+.content {
+    max-width: 60em;
+}
+
 #bird-controls {
     display: inline-block;
 }
@@ -27,43 +32,76 @@ h4 {
     display: inline-block;
 }
 
-button {
+.tabspacer {
+    width: 2em;
+    height: 2em;
+    float: left;
+}
+.tab {
     font-family: "Lucida grande", sans-serif;
     font-size: 0.6em;
     font-weight: bold;
+    float: left;
     color: #b0b0b0;
-    background: #fff;
     border-radius: 5px 5px 5px 5px;
-    height: 2.5em;
-    width: 140px;
-    margin-left: 0;
-    margin-right: 0;
-}
+    border-style: solid;
+    border-width: 1px;
+    border-color: #fff;
+    background: #fff;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-bottom: 1em;
+    }
+    .tab:hover {
+	color: #909090;
+	cursor: pointer;
+	cursor: hand;
+    }
+    .tab.active {
+	color: #000;
+	background: #fbfbfb;
+	border-color: #fff;
+	border-color: #DDD;
+    }
 
-button:hover {
-    color: #a0a0a0;
-    box-shadow: inset 1px 0px 10px rgba(0,0,0,0.20);
-}
+.cal-nav {
+    width: 2em;
+    height: 350px;
+    float: left;
+    color: #666;
+    border-radius: 5px 5px 5px 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #fff;
+    }
+    .cal-nav span {
+	display: block;
+	margin-top: 160px;
+	margin-left: 0.3em;
+	}
+    .cal-nav:hover {
+	background-color: #f2f2f2;
+	border-color: #DDD;
+        color: #000;
+	cursor: pointer;
+	cursor: hand;
+    }
 
-button.active {
-    color: #000;
-    background: #fbfbfb;
-    box-shadow: inset 1px 0px 10px rgba(0,0,0,0.20);
+.cal-chart {
+    height: 350px;
+    width: calc(100% - 4em - 4px);
+    float: left;
 }
 
 #day-month-heatmap {
-    height: 350px;
-    width: 900px;
-    display: block;
-}
-
-#hour-month-heatmap {
-    height: 350px;
-    width: 900px;
     display: none;
 }
 
+#hour-month-heatmap {
+    display: block;
+}
+
 #calendars {
-    width: 900px;
+    width: 60em;
     display: inline-block;
 }

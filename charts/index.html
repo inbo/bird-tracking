@@ -2,7 +2,7 @@
 <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="js/nv.d3.min.js"></script>
+    <script src="js/nv.d3.js"></script>
     <script type="text/javascript" src="js/cal-heatmap.min.js"></script>
     <script src="lib/sprintf.min.js"></script>
     <link rel="stylesheet" href="css/cal-heatmap.css" />
@@ -45,18 +45,31 @@
 	</div>
 
 	<div id="calendars">
+
 	    <h2>Distance from nest per day</h2>
 
-	    <button id="cal-previous">previous</button>
-	    <button id="cal-next">next</button>
-		    <button id="show-day-cal" class="active">Aggregated by day</button>
-		    <button id="show-hour-cal" class="inactive">Aggregated by hour</button>
-	    <div id="day-month-heatmap"></div>
-	    <div id="hour-month-heatmap"></div>
+	    <div class="clearfix">
+		<div class="tabspacer"></div>
+		<div class="tab active" id="show-hour-cal" >Aggregated by hour</div>
+		<div class="tab inactive" id="show-day-cal">Aggregated by day</div>
+	    </div>
+
+	    <div class="clearfix">
+		<div class="cal-nav" id="cal-previous">
+		    <span class="icon-chevron-left icon-large"></span>
+		</div>
+
+		<div class="cal-chart" id="day-month-heatmap"></div>
+		<div class="cal-chart" id="hour-month-heatmap"></div>
+
+		<div class="cal-nav" id="cal-next">
+		    <span class="icon-chevron-right icon-large"></span>
+		</div>
+	    </div>
 	</div>
 
 	<h2>Distance from nest line chart</h2>
-	<div id="linechart"><svg style="height: 400px;"></svg></div>
+	<div id="linechart"><svg style="height: 300px;"></svg></div>
 
     </div>
 
