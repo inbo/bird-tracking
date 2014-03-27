@@ -1,0 +1,696 @@
+/* This CSS is based on HTML5 Boilerplate: https://github.com/h5bp/html5-boilerplate */
+
+/* ========== h5bp: Opinionated defaults ========== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222222;
+}
+
+body {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/* Remove text-shadow in selection highlight: h5bp.com/i */
+::-moz-selection {
+    background-color: #B3D4FC;
+    text-shadow: none;
+}
+::selection {
+    background-color: #B3D4FC;
+    text-shadow: none;
+}
+
+/* A better looking default horizontal rule */
+hr {
+    border: 0;
+    border-top: 1px solid #CCCCCC;
+    display: block;
+    height: 1px;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/* Remove the gap between images and the bottom of their containers: h5bp.com/i/440 */
+img {
+    vertical-align: middle;
+}
+
+/* Remove default fieldset styles. */
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Allow only vertical resizing of textareas. */
+textarea {
+    resize: vertical;
+}
+
+
+/* ========== h5bp: My custom styles ========== */
+
+/* Colourco.de
+    a-blue: #0182C3;
+    background/hover-blue: #086A9B;
+    text-black: #313131;
+    text-gray: #767676;
+    hover-gray: #4E4E4E;
+    border-gray: #CCCCCC;
+*/
+
+html {
+    height: 100%;
+}
+body {
+    color: #313131;
+    font-family: Arial, sans-serif;
+    font-size: 1.2em;
+    height: 100%;
+}
+
+a {
+    color: #0182C3;
+    text-decoration: none;
+    }
+    a:hover {
+        border-bottom: 1px dotted currentcolor;
+        color: #086A9B;
+    }
+    a[href^="https://github.com"],
+    a[href^="https://twitter.com"],
+    a[href$="/rss.xml"] {
+    /* Bug: http://stackoverflow.com/questions/8951822
+       The attribute-selector doesn't work when style is applied with :before only, 
+       causing all <a>s to be targetted. Adding any style for the element without 
+       the pseudo-element seems to fix this. */
+        font-family: inherit;
+    }
+    a[href^="https://github.com"]:before {
+        content: "\f09b"; /* FontAwesome icon-github */
+        font-family: "FontAwesome";
+        padding-right: 0.3em;
+    }
+    a[href^="https://twitter.com"]:before {
+        content: "\f099"; /* FontAwesome icon-twitter */
+        font-family: "FontAwesome";
+        padding-right: 0.3em;
+    }
+    a[href$="/rss.xml"]:before {
+        content: "\f09e"; /* FontAwesome icon-rss */
+        font-family: "FontAwesome";
+        padding-right: 0.3em;
+    }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Noto Sans", sans-serif;
+    font-weight: normal;
+}
+
+.container /* On body */ {
+    min-height: 100%;
+    position: relative;
+}
+
+.header { /* On body > .container > div */
+    background-color: #D2CB00;
+    background-color: rgba(207, 199, 0, 0.9); /* Equivalent of the #D2CB00; */
+    height: 2.5em;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    }
+    .header a {
+        color: #313131;
+    }
+    .header header {
+        font-family: "Noto Sans", sans-serif;
+        height: 100%;
+        letter-spacing: 0.2em;
+        line-height: 1em;
+        margin: 0 auto;
+        max-width: 40em;
+        min-width: 20em;
+        padding: 0 2em;
+        position: relative;
+        text-transform: uppercase;
+        z-index: 1; /* For lte IE8 */
+        }
+        .header h2,
+        .header nav {
+            float: left;
+            font-size: 0.8em;
+            margin: 0;
+            padding: 1em 0em;
+        }
+        .header h2 {
+            width: 60%;
+        }
+        .header nav {
+            text-align: right;
+            width: 40%;
+            }
+            .header nav ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                }
+                .header nav li {
+                    display: inline;
+                    margin-left: 0.5em;
+                    }
+                    .header nav li.active a {
+                        border-bottom: 1px dotted currentcolor;
+                    }
+    .header div { /* Header logo */
+        background: #A39E5D url("../img/inbo-colors.png") repeat-y left;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: calc((100% - 40em - 4em)/2); /* Full size - width header - padding header, devided by two */ 
+        }
+        .header div img {
+            margin-left: 60px; /* For background-image */ 
+        }
+
+.content { /* On body > .container > div */
+    line-height: 1.6em;
+    margin: 0 auto;
+    max-width: 40em;
+    min-width: 20em;
+    padding: 2em;
+    padding-top: 3.5em; /* Height of header + 1em */
+    padding-bottom: 15em; /* Height of footer + 2em */
+    }
+    .content h1 {
+        line-height: 1.2em;
+        margin-top: 0.5em;  
+    }
+    .content .subtitle { /* On body > .container > .content > p */
+        color: #767676;
+        font-family: "Noto Sans", sans-serif;
+        font-size: 0.8em;
+        letter-spacing: 0.2em;
+        padding: 0 1em 1em;
+        text-transform: uppercase;
+    }
+    .content .index { /* On body > .container > .content > ol */
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        }
+        .index article {
+            border-top: 1px dashed #CCCCCC;
+            margin: 0 -0.5em; /* Extend border left/right */
+            padding: 0.5em;
+            }
+            .index h2 {
+                font-size: 1.4em;
+                line-height: 1.2em;
+                margin: 0;
+            }
+            .index p {
+                margin: 0.5em 0 0;
+            }
+            .index time {
+                color: #767676;
+                display: block;
+                float: right;
+                font-family: "Noto Sans", sans-serif;
+                font-size: 0.8em;
+                letter-spacing: 0.2em;
+                padding: 0 1em;
+                text-transform: uppercase;
+            }
+
+    .single { /* On body > .container > .content > article > section */
+        }
+        .single footer { /* Post metadata */
+            color: #767676;
+            font-family: "Noto Sans", sans-serif;
+            font-size: 0.8em;
+            letter-spacing: 0.2em;
+            margin: -1.5em 0 2em; /* Closer to h1 */
+            padding: 1em;
+            text-transform: uppercase;
+            }
+            .single footer a {
+                color: currentcolor;
+            }
+            .single time,
+            .single address {
+                display: inline;
+                font-style: normal;
+            }
+            .tags { /* On body > .container > .content > article > section > footer > ul */
+                margin: 0.5em 0 0;
+                padding: 0;
+                }
+                .tags li {
+                    display: inline;
+                    list-style: none;
+                    }
+                    .tags li:after {
+                        content: ", ";
+                    }
+                    .tags li:last-child:after {
+                        content: ".";
+                    }
+        .single h2 {
+            font-size: 1.6em;
+            line-height: 1.2em;
+        }
+        .single h3 {
+            border-bottom: 0.1em solid currentcolor;
+            color: #767676;
+            font-size: 1.4em;
+            line-height: 1.2em;
+            padding-bottom: 0.2em;
+        }
+        .single h4 {
+            font-size: 1.2em;
+            font-style: italic;
+            line-height: 1.2em;
+        }
+        .single img {
+            clear: both;
+            max-width: 100%;
+        }
+        .single blockquote {
+            color: #767676;
+            padding: 0 1em;
+        }
+        .single code {
+            background-color: #272821;
+            border-radius: 0.3em;
+            color: #D0D0D0;
+            font-size: 0.8em;
+            overflow: auto;
+            padding: 0.2em 0.5em;
+            white-space: nowrap;
+        }
+        .single pre {
+            background-color: #272821;
+            border-radius: 0.3em;
+            color: #D0D0D0;
+            font-size: 0.8em;
+            overflow: auto;
+            padding: 1em;
+            }
+            .single pre code {
+                border: none;
+                background: transparent;
+                font-size: 1em;
+                padding: 0;
+                white-space: pre;
+            }
+        .single table {
+            border-collapse: collapse;
+            padding: 0;
+            }
+            .single table tr {
+                margin: 0;
+                padding: 0;
+            }
+            .single table tr:nth-child(2n) {
+                background-color: #F0F0F0;
+            }
+            .single table tr th {
+                border: 1px solid #CCCCCC;
+                font-weight: bold;
+                margin: 0;
+                padding: 0.3em 1em;
+            }
+            .single table tr td {
+                border: 1px solid #CCCCCC;
+                margin: 0;
+                padding: 0.3em 1em;
+            }
+        .single .footnote hr {
+            border: none;
+            border-top: 1px dashed #CCCCCC;
+            margin: 0 -0.5em; /* Extend border left/right */
+        }
+
+    .paginator { /* On body > .container > .content */
+        color: #767676;
+        font-family: "Noto Sans", sans-serif;
+        line-height: 1.2em;
+        margin-bottom: 1em;
+        text-align: center;
+        }
+        .paginator a {
+            color: #767676;
+            display: inline-block;
+            font-size: 1em;
+            padding: 0 1em;
+            }
+            .paginator a:hover {
+                border: none;
+                color: #4E4E4E;
+            }
+            .paginator a span {
+                display: none;
+            }
+        .paginator > span {
+            font-size: 0.8em;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+    .comments { /* On body > .container > .content > article > section */
+        border-top: 1px dashed #CCCCCC;
+        margin: 0 -0.5em; /* Extend border left/right */
+        padding: 0.5em;
+    }
+
+.footer { /* On body > .container > div */
+    background-color: #086A9B;
+    border-top: solid 0.5em #0182C3;
+    bottom: 0;
+    height: 13em;
+    position: absolute;
+    width: 100%;
+    }
+    .footer a {
+        color: #81D5FF;
+        }
+        .footer a:hover {
+            border: none;
+            color: white;
+        }
+    .footer footer {
+        color: white;
+        font-family: "Noto Sans", sans-serif;
+        line-height: 1em;
+        margin: 0 auto;
+        max-width: 40em;
+        min-width: 20em;
+        padding: 2em 2em 0.5em;
+        }
+        .footer div {
+            float: left;
+            width: 33%;
+            }
+            .footer div img {
+                margin-top: 1em;
+                width: 100%;
+            }
+            .footer div h2 {
+                font-size: 0.8em;
+                letter-spacing: 0.2em;
+                line-height: 1.2em;
+                margin: 0;
+                padding: 0 0 1em;
+                text-transform: uppercase;
+            }
+            .footer div ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                padding-left: 1em;
+            }
+            .footer div li {
+                font-size: 0.8em;
+                padding: 0.3em 0;
+            }
+        .footer p.disclaimer {
+            clear: both;
+            font-family: Arial, sans-serif;
+            font-size: 0.6em;
+            margin: 0;
+            padding-top: 2em;
+        }
+
+
+/* ========== My media queries ========== */
+
+@media only screen and (min-width: 48em) {
+/* Default size */
+    .single .team-member { /* About page: column view */
+        float: left;
+        margin-right: 1.2em;
+        width: 30%;
+        }
+        .team-member h3 {
+            border: none;
+            margin-top: 0;
+        }
+}
+
+@media only screen and (max-width: 48em) {
+/* Medium size */
+
+    .subtitle, /* Index subtitle */
+    .header div, /* Header logo */
+    .index p, /* Article description */
+    .footer img, /* Footer logo */
+    .footer p.disclaimer { /* Footer disclaimer */
+        display: none;
+    }
+    .content {
+        padding-bottom: 13em; /* -2 em */ 
+    }
+    .footer {
+        height: 11em; /* -2 em */
+        }
+        .footer div {
+            width: 50%;
+        }
+}
+
+@media only screen and (max-width: 36em) {
+/* Small size */
+
+    .header {
+        min-width: 24em; /* Necessary for relative position: 20em + padding */
+        position: relative;
+    }
+    .content {
+        margin-top: 0;
+    }
+    .content h1.title, /* Index title */
+    .index time, /* Article date */
+    .footer div h2 { /* Footer titles */
+        display: none;
+    }
+}
+
+
+/* ========== Pygments: Syntax highlighting based on native.css ========== */
+
+.highlight .hll { background-color: #404040; }
+.highlight .c { color: #7C7C70; font-style: italic; } /* Comment */
+.highlight .err { color: #A61717; background-color: #E3D2D2; } /* Error */
+.highlight .g { color: #D0D0D0; } /* Generic */
+.highlight .k { color: #C0C0C0; font-weight: bold; } /* Keyword */
+.highlight .l { color: #D0D0D0; } /* Literal */
+.highlight .n { color: #D0D0D0; } /* Name */
+.highlight .o { color: #D0D0D0; } /* Operator */
+.highlight .x { color: #D0D0D0; } /* Other */
+.highlight .p { color: #D0D0D0; } /* Punctuation */
+.highlight .cm { color: #7C7C70; font-style: italic; } /* Comment.Multiline */
+.highlight .cp { color: #CD2828; font-weight: bold; } /* Comment.Preproc */
+.highlight .c1 { color: #7C7C70; font-style: italic; } /* Comment.Single */
+.highlight .cs { color: #E50808; font-weight: bold; background-color: #520000; } /* Comment.Special */
+.highlight .gd { color: #D22323; } /* Generic.Deleted */
+.highlight .ge { color: #D0D0D0; font-style: italic; } /* Generic.Emph */
+.highlight .gr { color: #D22323; } /* Generic.Error */
+.highlight .gh { color: #FFFFFF; font-weight: bold; } /* Generic.Heading */
+.highlight .gi { color: #589819; } /* Generic.Inserted */
+.highlight .go { color: #CCCCCC; } /* Generic.Output */
+.highlight .gp { color: #7C7C70; } /* Generic.Prompt */
+.highlight .gs { color: #D0D0D0; font-weight: bold; } /* Generic.Strong */
+.highlight .gu { color: #FFFFFF; text-decoration: underline; } /* Generic.Subheading */
+.highlight .gt { color: #D22323; } /* Generic.Traceback */
+.highlight .kc { color: #C0C0C0; font-weight: bold; } /* Keyword.Constant */
+.highlight .kd { color: #C0C0C0; font-weight: bold; } /* Keyword.Declaration */
+.highlight .kn { color: #C0C0C0; font-weight: bold; } /* Keyword.Namespace */
+.highlight .kp { color: #C0C0C0; } /* Keyword.Pseudo */
+.highlight .kr { color: #C0C0C0; font-weight: bold; } /* Keyword.Reserved */
+.highlight .kt { color: #C0C0C0; font-weight: bold; } /* Keyword.Type */
+.highlight .ld { color: #D0D0D0;} /* Literal.Date */
+.highlight .m { color: #3EBEC4; } /* Literal.Number */
+.highlight .s { color: #D39B3C; } /* Literal.String */
+.highlight .na { color: #CCCCCC; } /* Name.Attribute */
+.highlight .nb { color: #A780FF; } /* Name.Builtin */
+.highlight .nc { color: #5DA214; } /* Name.Class */
+.highlight .no { color: #40FFFF; } /* Name.Constant */
+.highlight .nd { color: #FFA500; } /* Name.Decorator */
+.highlight .ni { color: #D0D0D0; } /* Name.Entity */
+.highlight .ne { color: #CCCCCC; } /* Name.Exception */
+.highlight .nf { color: #5DA214; } /* Name.Function */
+.highlight .nl { color: #D0D0D0; } /* Name.Label */
+.highlight .nn { color: #5DA214; } /* Name.Namespace */
+.highlight .nx { color: #D0D0D0; } /* Name.Other */
+.highlight .py { color: #D0D0D0; } /* Name.Property */
+.highlight .nt { color: #639DC4; font-weight: bold; } /* Name.Tag */
+.highlight .nv { color: #40FFFF; } /* Name.Variable */
+.highlight .ow { color: #C0C0C0; font-weight: bold; } /* Operator.Word */
+.highlight .w { color: #666666; } /* Text.Whitespace */
+.highlight .mf { color: #3EBEC4; } /* Literal.Number.Float */
+.highlight .mh { color: #3EBEC4; } /* Literal.Number.Hex */
+.highlight .mi { color: #3EBEC4; } /* Literal.Number.Integer */
+.highlight .mo { color: #3EBEC4; } /* Literal.Number.Oct */
+.highlight .sb { color: #D39B3C; } /* Literal.String.Backtick */
+.highlight .sc { color: #D39B3C; } /* Literal.String.Char */
+.highlight .sd { color: #D39B3C; } /* Literal.String.Doc */
+.highlight .s2 { color: #D39B3C; } /* Literal.String.Double */
+.highlight .se { color: #D39B3C; } /* Literal.String.Escape */
+.highlight .sh { color: #D39B3C; } /* Literal.String.Heredoc */
+.highlight .si { color: #5DA214; } /* Literal.String.Interpol */
+.highlight .sx { color: #FFA500; } /* Literal.String.Other */
+.highlight .sr { color: #D39B3C; } /* Literal.String.Regex */
+.highlight .s1 { color: #D39B3C; } /* Literal.String.Single */
+.highlight .ss { color: #D39B3C; } /* Literal.String.Symbol */
+.highlight .bp { color: #A780FF; } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #40FFFF; } /* Name.Variable.Class */
+.highlight .vg { color: #40FFFF; } /* Name.Variable.Global */
+.highlight .vi { color: #40FFFF; } /* Name.Variable.Instance */
+.highlight .il { color: #3EBEC4; } /* Literal.Number.Integer.Long */
+
+
+/* ========== h5bp: Helper classes ========== */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+    }
+    .ir:before {
+        content: "";
+        display: block;
+        height: 150%;
+        width: 0;
+    }
+
+/* Hide from both screenreaders and browsers: h5bp.com/u */
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/* Hide only visually, but have it available for screenreaders: h5bp.com/v */
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    }
+    /* Extends the .visuallyhidden class to allow the element to be focusable 
+       when navigated to via the keyboard: h5bp.com/p */
+    .visuallyhidden.focusable:active,
+    .visuallyhidden.focusable:focus {
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        width: auto;
+    }
+
+/* Hide visually and from screenreaders, but maintain layout */
+.invisible {
+    visibility: hidden;
+}
+
+/* Clearfix: contain floats
+   For modern browsers
+   1. The space content is one way to avoid an Opera bug when the
+      `contenteditable` attribute is included anywhere else in the document.
+      Otherwise it causes space to appear at the top and bottom of elements
+      that receive the `clearfix` class.
+   2. The use of `table` rather than `block` is only necessary if using
+      `:before` to contain the top-margins of child elements. */
+.clearfix {
+    *zoom: 1; /* For IE 6/7 only: include this rule to trigger hasLayout and contain floats. */
+    }
+    .clearfix:before,
+    .clearfix:after {
+        content: " "; /* 1 */
+        display: table; /* 2 */
+    }
+    .clearfix:after {
+        clear: both;
+    }
+
+
+/* ========== h5bp: Print styles ========== */
+
+@media print {
+/* Inlined to avoid required HTTP connection: h5bp.com/r */
+    * {
+        background: transparent !important;
+        box-shadow: none !important;
+        color: #000000 !important; /* Black prints faster: h5bp.com/s */
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /* Don't show links for images, or javascript/internal links */
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
