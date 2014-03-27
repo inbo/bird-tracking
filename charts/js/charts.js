@@ -32,7 +32,6 @@ function drawCharts () {
     hour_month_cartodbdata.done(function (data) {
 	globalData.hour_month_heatdata = toCalHeatmap(data);
 	globalData.hour_month_linedata = toNvd3Linedata(data);
-	globalData.total_hour_linedata = toNvd3TotalLinedata(data);
 	var values = globalData.hour_month_linedata[0].values;
 	var min_timestamp = values[0].x;
 	var max_timestamp = values[values.length - 1].x;
@@ -41,7 +40,6 @@ function drawCharts () {
 	var nrOfMonths = enddate.getMonth() - startdate.getMonth() + 1;
 	drawHourCalHeatmap("#hour-month-heatmap", startdate, nrOfMonths, globalData.hour_month_heatdata);
 	drawHourLineChart(globalData.hour_month_linedata, min_timestamp, max_timestamp);
-	drawTotalHourLineChart(globalData.total_hour_linedata);
     });
 
     if (globalData.datatype === "max_dist") {
@@ -60,7 +58,6 @@ function drawCharts () {
 	console.log("enddate: " + enddate);
 	console.log("domain range: " + nrOfMonths);
 	drawDayCalHeatmap("#day-month-heatmap", startdate, nrOfMonths, globalData.day_month_heatdata);
-	drawBarChart(globalData.day_month_linedata);
     });
 
 }
@@ -136,25 +133,6 @@ function drawHourCalHeatmap(element, startdate, nrOfMonths, data) {
     });
 }
 
-function drawBarChart(data) {
-    nv.addGraph(function () {
-	var chart = nv.models.discreteBarChart()
-	    .x(function(d) { return d3.time.format('%d/%m')(new Date(d.x))})
-	    .y(function(d) { return d.y})
-	    .staggerLabels(true)
-	    .color(['#A0E9AF', '#87CD95', '#6FB17B', '#579661', '#3E7A47', '#265E2D', '#0E4313']);
-
-	d3.select('#barchart svg')
-	    .datum(data)
-	    .transition().duration(500)
-	    .call(chart);
-
-	nv.utils.windowResize(chart.update);
-
-	return chart;
-    });
-}
-
 function drawHourLineChart(data, focus_min, focus_max) {
     nv.addGraph(function() {
 	chart = nv.models.lineWithFocusChart();
@@ -188,31 +166,6 @@ function drawHourLineChart(data, focus_min, focus_max) {
 
 	return chart;
     });
-}
-
-function drawTotalHourLineChart(data) {
-    nv.addGraph(function () {
-	var chart = nv.models.lineChart();
-
-	chart.xAxis
-	  .axisLabel('Hours');
-
-        chart.yAxis
-	  .axisLabel('Total distance')
-	  .tickFormat(d3.format('.0f'));
-
-        chart.showLegend(false);
-
-        d3.select('#totalhourchart svg')
-	  .datum(data)
-	  .transition().duration(500)
-	  .call(chart);
-
-        nv.utils.windowResize(function () {d3.select('#totalhourchart svg').call(chart)});
-
-	return chart;
-    });
-
 }
 
 $("#cal-next").on("click", function(event) {
