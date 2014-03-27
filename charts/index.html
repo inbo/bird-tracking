@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="/Users/bart_aelterman/test/highcharts/jquery.min.js"></script>
+
     <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
     <script src="js/nv.d3.js"></script>
     <script type="text/javascript" src="js/cal-heatmap.min.js"></script>
@@ -31,17 +33,21 @@
 	</div>
 	<hr>
 	<div id="controls">
-	    <div id="bird-controls">
-		<h4>Bird</h4>
-		<button id="birdname-eric" class="active">Eric<br></button>
-		<button id="birdname-anne" class="inactive">Anne<br></button>
-		<button id="birdname-jurgen" class="inactive">Jurgen<br></button>
+	    <div class="clearfix">
+		<div id="bird-controls">
+		    <h4>Select a bird</h4>
+			<select id="birdselector">
+			</select>
+		</div>
+		<div id="data-controls">
+		    <h4>Choose type of data</h4>
+		    <select id="dataselector">
+			<option value="colony_dist">Distance from nest</option>
+			<option value="dist_trav">Distance travelled</option>
+		    </select>
+		</div>
 	    </div>
-	    <div id="data-controls">
-		<h4>Data type</h4>
-		<button id="data-type-max" class="active">Distance from nest</button>
-		<button id="data-type-total" class="inactive">Distance travelled</button>
-	    </div>
+	    <button id="gobutton">Go</button>
 	</div>
 
 	<div id="calendars">
