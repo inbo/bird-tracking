@@ -56,23 +56,14 @@ button.active {
     width: 900px;
     display: block;
 }
+
 #hour-month-heatmap {
     height: 350px;
     width: 900px;
     display: none;
 }
 
-#totalhourchart svg {
-    height: 300px;
-    width: 400px;
-}
-
 #calendars {
     width: 900px;
-    display: inline-block;
-}
-
-#totalhour {
-    width: 400px;
     display: inline-block;
 }
