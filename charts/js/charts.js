@@ -1,5 +1,5 @@
 /* ------------
- * Fill select element with birdnames
+ * Fill select element with birdnames + draw charts for first bird
  * ------------
 */
 
@@ -15,6 +15,7 @@ $(document).ready(
 		bird = birds[i];
 		$("#birdselector").append("<option value=\"" + i + "\">" + bird.bird_name + "</option>");
 	    }
+	    drawCharts("colony_dist", birds[0]);
 	});
     }
 );
@@ -25,18 +26,7 @@ $(document).ready(
  * ------------
 */
 
-var weekIndex = 0;
-var globalData = {
-    "birdname": "Eric",
-    "datatype": "colony_dist"
-}
-
-var birds = {
-    "Eric": "point(3.182875%2051.340768)",
-    "Anne": "point(2.930688%2051.233267)",
-    "Jurgen": "point(2.930131%2051.233474)"
-}
-
+var globalData = {}
 
 /* ------------
  * set some globals
@@ -51,7 +41,7 @@ var daycal = new CalHeatMap();
 daycal.init({itemSelector: "#day-month-heatmap"});
 var hourcal = new CalHeatMap();
 hourcal.init({itemSelector: "#hour-month-heatmap"});
-drawCharts("colony_dist", {"bird_name": "Eric", "colony_longitude": 3.182875, "colony_latitude": 51.340768, "device_info_serial": 703});
+//drawCharts("colony_dist", {"bird_name": "Eric", "colony_longitude": 3.182875, "colony_latitude": 51.340768, "device_info_serial": 703});
 
 
 /* ------------
