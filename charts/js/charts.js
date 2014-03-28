@@ -76,9 +76,7 @@ function drawCharts (data_type, bird_data) {
 	var min_timestamp = values[0].x;
 	var max_timestamp = values[values.length - 1].x;
 	var startdate = new Date(min_timestamp);
-	var enddate = new Date(max_timestamp);
-	var nrOfMonths = enddate.getMonth() - startdate.getMonth() + 1;
-	drawHourCalHeatmap("#hour-month-heatmap", startdate, nrOfMonths, globalData.hour_month_heatdata);
+	drawHourCalHeatmap("#hour-month-heatmap", startdate, globalData.hour_month_heatdata);
 	drawHourLineChart(globalData.hour_month_linedata, min_timestamp, max_timestamp);
     });
 
@@ -92,22 +90,15 @@ function drawCharts (data_type, bird_data) {
 	globalData.day_month_linedata = toNvd3Linedata(data);
 	var values = globalData.day_month_linedata[0].values;
 	var startdate = new Date(values[0].x);
-	var enddate = new Date(values[values.length - 1].x);
-	var nrOfMonths = enddate.getMonth() - startdate.getMonth() + 1;
 	console.log("startdate: " + startdate);
-	console.log("enddate: " + enddate);
-	console.log("domain range: " + nrOfMonths);
-	drawDayCalHeatmap("#day-month-heatmap", startdate, nrOfMonths, globalData.day_month_heatdata);
+	drawDayCalHeatmap("#day-month-heatmap", startdate, globalData.day_month_heatdata);
     });
 
 }
 
-function drawDayCalHeatmap(element, startdate, nrOfMonths, data) {
+function drawDayCalHeatmap(element, startdate, data) {
     daycal = daycal.destroy(function () {
 	daycal = new CalHeatMap();
-	if (nrOfMonths > 6) {
-	    nrOfMonths = 6;
-	}
 	daycal.init({
 	    itemSelector: element,
 	    domain: "month",
@@ -115,7 +106,6 @@ function drawDayCalHeatmap(element, startdate, nrOfMonths, data) {
 	    start: startdate,
 	    cellSize: 26,
 	    subDomainTextFormat: "%d",
-	    range: nrOfMonths,
 	    domainMargin: 10,
 	    itemName: ['kilometer', 'kilometers'],
 	    displayLegend: true,
@@ -136,19 +126,15 @@ function drawDayCalHeatmap(element, startdate, nrOfMonths, data) {
     });
 }
 
-function drawHourCalHeatmap(element, startdate, nrOfMonths, data) {
+function drawHourCalHeatmap(element, startdate, data) {
     hourcal = hourcal.destroy(function () {
 	hourcal = new CalHeatMap();
-	if (nrOfMonths > 4) {
-	    nrOfMonths = 4;
-	}
 	hourcal.init({
 	    domain: "month",
 	    subDomain: "x_hour",
 	    start: startdate,
 	    cellSize: 6.5,
 	    rowLimit: 24,
-	    range: nrOfMonths,
 	    verticalOrientation: false,
 	    itemSelector: element,
 	    domainMargin: 10,
