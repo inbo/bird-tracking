@@ -24,7 +24,6 @@ function fetchTrackingData_byDay(device_id, colony_position, limit) {
 function fetchTravelledDist_byHour(device_id, limit) {
     var sql = sprintf("WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom,1) OVER(ORDER BY date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='%s' AND userflag IS FALSE) SELECT extract(epoch FROM date_trunc('hour',date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp", device_id);
     var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql + limit;
-    console.log(url);
     var result = fetchTrackingData(url, "");
     return result;
 }
@@ -32,7 +31,6 @@ function fetchTravelledDist_byHour(device_id, limit) {
 function fetchTravelledDist_byDay (device_id, limit) {
     var sql = sprintf("WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom,1) OVER(ORDER BY date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='%s' AND userflag IS FALSE) SELECT extract(epoch FROM date_trunc('day',date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp", device_id);
     var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql + limit;
-    console.log(url);
     var result = fetchTrackingData(url, "");
     return result;
 }
@@ -70,24 +68,5 @@ function getAllBirdInfo(limit) {
     var sql = "select bird_name, device_info_serial, sex, scientific_name, colony_longitude, colony_latitude from bird_tracking_devices order by bird_name";
     var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql + limit;
     var result = fetchTrackingData(url, "");
-    console.log("result: ", result);
     return result;
-    /*
-    var data = [
-	{
-	    "device_id": 1066,
-	    "data": {"name": "Eric", "species": "gull", "sex": "male", "colony_lat": 3.2939, "colony_lon": 52.492}
-	},
-	{
-	    "device_id": 4929,
-	    "data": {"name": "Anne", "species": "big gull", "sex": "male", "colony_lat": 3.2914, "colony_lon": 51.392}
-	},
-	{
-	    "device_id": 8392,
-	    "data": {"name": "Jurgen", "species": "big gull", "sex": "male", "colony_lat": 2.9287, "colony_lon": 52.0392}
-	}
-
-    ];
-    return data;
-    */
 }
