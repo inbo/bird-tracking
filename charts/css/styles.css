@@ -19,6 +19,15 @@ h4 {
     max-width: 60em;
 }
 
+#controls {
+    background-color: #fbfbfb;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #fff;
+    border-color: #DDD;
+    padding: 2em;
+}
+
 #bird-controls {
     display: inline-block;
 }
