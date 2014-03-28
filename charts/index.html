@@ -14,7 +14,7 @@
     <link href="http://lifewatch.inbo.be/blog/theme/css/font-awesome-ie7.min.css" rel="stylesheet" type="text/css">
     <link href="http://lifewatch.inbo.be/blog/theme/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/styles.css" rel="stylesheet" type="text/css">
-    <title>Distance from nest visualization</title>
+    <title>Distance travelled visualization</title>
 </head>
 <body>
     <div class="container">
@@ -29,7 +29,7 @@
     <div class="content">
 	<div id="intro">
 	    <h1>Visualizations for three tracked gulls</h1>
-	    <p>Three gulls were tracked with the <a href="http://www.uva-bits.nl/">UvA-BITS tracking system</a>. Here, we visualized the maximum distance between the birds and their nests over time and the total distance they travelled during certain time intervals. All code is in Javascript so it runs directly in your browser. The data is available as open data on <a href="http://lifewatch-inbo.cartodb.com/tables/three_gulls/public">cartoDB</a> and the visualizations here directly interact with the cartoDB API. If you want to use these visulizations too, checkout the <a href="https://github.com/LifeWatchINBO/tracking-eric-analysis">github repository</a>.
+	    <p>Three gulls were tracked with the <a href="http://www.uva-bits.nl/">UvA-BITS tracking system</a>. Here, we visualized the maximum distance between the birds and their colony over time and the total distance they travelled during certain time intervals. All code is in Javascript so it runs directly in your browser. The data is available as open data on <a href="http://lifewatch-inbo.cartodb.com/tables/three_gulls/public">cartoDB</a> and the visualizations here directly interact with the cartoDB API. If you want to use these visulizations too, checkout the <a href="https://github.com/LifeWatchINBO/tracking-eric-analysis">github repository</a>.
 	</div>
 	<hr>
 	<div id="controls">
@@ -42,7 +42,7 @@
 		<div id="data-controls">
 		    <h4>Choose type of data</h4>
 		    <select id="dataselector">
-			<option value="colony_dist">Distance from nest</option>
+			<option value="colony_dist">Distance from colony</option>
 			<option value="dist_trav">Distance travelled</option>
 		    </select>
 		</div>
