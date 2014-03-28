@@ -50,7 +50,7 @@ hourcal.init({itemSelector: "#hour-month-heatmap"});
 */
 
 function drawCharts (data_type, bird_data) {
-
+    insertBirdData(bird_data);
     if (data_type === "colony_dist") {
 	var hour_month_cartodbdata = fetchTrackingData_byDayHour(bird_data.device_info_serial, "point("+ bird_data.colony_longitude + "%20" + bird_data.colony_latitude + ")", "");
     } else if (data_type === "dist_trav") {
@@ -250,4 +250,20 @@ var addEvents = function addCalendarEvents() {
 	var enddate = new Date(next_year, next_month_index, 1);
 	drawHourLineChart(globalData.hour_month_linedata, startdate.getTime(), enddate.getTime());
     });
+}
+
+
+/* ------------
+ * Insert bird data in web page
+ * ------------
+*/
+function insertBirdData(bird_data) {
+    $("#name-text").text(" " + bird_data.bird_name);
+    $("#species-text").text(" " + bird_data.scientific_name);
+    $("#sex-text").text(" " + bird_data.sex);
+    var dist_result = getMaxDistance(bird_data.device_info_serial, bird_data.colony_longitude, bird_data.colony_latitude);
+    dist_result.done(function (data) {
+	$("#max-dist-col").text(" " + Math.round(data.rows[0].max / 10) / 100 + " km");
+    });
+    //var speed_result = getMaxSpeed(bird_data.device_info_serial);
 }
