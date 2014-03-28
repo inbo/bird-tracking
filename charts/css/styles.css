@@ -89,7 +89,7 @@ h4 {
 	margin-left: 0.3em;
 	}
     .cal-nav:hover {
-	background-color: #f2f2f2;
+	background-color: #fbfbfb;
 	border-color: #DDD;
         color: #000;
 	cursor: pointer;
@@ -113,4 +113,9 @@ h4 {
 #calendars {
     width: 60em;
     display: inline-block;
+}
+
+.graph-label:hover {
+    cursor: pointer;
+    cursor: hand;
 }

@@ -9,14 +9,11 @@ $(document).ready(
 	bird_results.done(function(data) {
 	    var birds = data.rows;
 	    var len = birds.length;
-	    console.log("len = ", len);
-	    console.log("birds = ", birds);
 	    globalData.bird_data = birds;
 	    len = birds.length;
 	    for (var i=0; i<len; i++) {
 		bird = birds[i];
 		$("#birdselector").append("<option value=\"" + i + "\">" + bird.bird_name + "</option>");
-		console.log("added ", bird);
 	    }
 	});
     }
@@ -90,7 +87,6 @@ function drawCharts (data_type, bird_data) {
 	globalData.day_month_linedata = toNvd3Linedata(data);
 	var values = globalData.day_month_linedata[0].values;
 	var startdate = new Date(values[0].x);
-	console.log("startdate: " + startdate);
 	drawDayCalHeatmap("#day-month-heatmap", startdate, globalData.day_month_heatdata);
     });
 
@@ -100,6 +96,7 @@ function drawDayCalHeatmap(element, startdate, data) {
     daycal = daycal.destroy(function () {
 	daycal = new CalHeatMap();
 	daycal.init({
+	    onComplete: addEvents,
 	    itemSelector: element,
 	    domain: "month",
 	    subDomain: "x_day",
@@ -130,6 +127,7 @@ function drawHourCalHeatmap(element, startdate, data) {
     hourcal = hourcal.destroy(function () {
 	hourcal = new CalHeatMap();
 	hourcal.init({
+	    onComplete: addEvents,
 	    domain: "month",
 	    subDomain: "x_hour",
 	    start: startdate,
@@ -234,3 +232,32 @@ $("#show-hour-cal").on("click", function(event) {
     $("#hour-month-heatmap").toggle(true);
     $("#day-month-heatmap").toggle(false);
 });
+
+
+/* ------------
+ * Add events to cal-heatmap graph-label
+ * This function is called as call-back function
+ * after the calendar data is loaded.
+ * ------------
+*/
+var addEvents = function addCalendarEvents() {
+    $(".graph-label").on("click", function(event) {
+	// get class of parent DOM object. This should be "graph-domain m_A y_B"
+	// Where A and B are month and year respectively.
+	var pclasses = $(this).parent().attr("class").split(" ");
+	var month_nr = parseInt(pclasses[1].split("_")[1]);
+	var year_nr = parseInt(pclasses[2].split("_")[1]);
+	var month_index = month_nr - 1;
+	if (month_nr == 12) {
+	    var next_month_index = 0;
+	    var next_year = year_nr + 1;
+	}
+        else {
+	    var next_month_index = month_index + 1;
+	    var next_year = year_nr;
+	}
+	var startdate = new Date(year_nr, month_index, 1);
+	var enddate = new Date(next_year, next_month_index, 1);
+	drawHourLineChart(globalData.hour_month_linedata, startdate.getTime(), enddate.getTime());
+    });
+}
