@@ -34,6 +34,13 @@ function fetchTravelledDist_byDay (device_id, limit) {
     return result;
 }
 
+function fetchMaximumSpeed(device_id, limit) {
+    var sql = sprintf("WITH speed_view AS (SELECT (ST_Distance_Sphere(the_geom,lag(the_geom,1) OVER(ORDER BY device_info_serial, date_time))/1000)/(extract(epoch FROM (date_time - lag(date_time,1) OVER(ORDER BY device_info_serial, date_time)))/3600) AS km_per_hour FROM bird_tracking WHERE device_info_serial='%s' AND userflag IS FALSE) SELECT round(max(km_per_hour)::numeric, 3) FROM speed_view", device_id);
+    var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql + limit;
+    var result = fetchTrackingData(url, "");
+    return result;
+}
+
 function toCalHeatmap(indata) {
     var outdata = new Object();
     nrOfRows = indata.rows.length;
