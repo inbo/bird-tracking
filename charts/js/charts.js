@@ -261,9 +261,14 @@ function insertBirdData(bird_data) {
     $("#name-text").text(" " + bird_data.bird_name);
     $("#species-text").text(" " + bird_data.scientific_name);
     $("#sex-text").text(" " + bird_data.sex);
+    $("#max-speed-text").text("");
+    $("#max-dist-col").text("");
+    var speed_result = fetchMaximumSpeed(bird_data.device_info_serial)
+    speed_result.done(function (data) {
+	$("#max-speed-text").text(" " + data.rows[0].round + " km/h");
+    });
     var dist_result = getMaxDistance(bird_data.device_info_serial, bird_data.colony_longitude, bird_data.colony_latitude);
     dist_result.done(function (data) {
 	$("#max-dist-col").text(" " + Math.round(data.rows[0].max / 10) / 100 + " km");
     });
-    //var speed_result = getMaxSpeed(bird_data.device_info_serial);
 }
