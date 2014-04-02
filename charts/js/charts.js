@@ -1,84 +1,98 @@
-var weekIndex = 0;
-var globalData = {
-    "birdname": "Eric",
-    "datatype": "max_dist"
-}
+/* ------------
+ * Fill select element with birdnames + draw charts for first bird
+ * ------------
+*/
 
-var birds = {
-    "Eric": "point(3.182875%2051.340768)",
-    "Anne": "point(2.930688%2051.233267)",
-    "Jurgen": "point(2.930131%2051.233474)"
-}
-drawCharts();
+$(document).ready(
+    function() {
+	bird_results = getAllBirdInfo("");
+	bird_results.done(function(data) {
+	    var birds = data.rows;
+	    var len = birds.length;
+	    globalData.bird_data = birds;
+	    len = birds.length;
+	    for (var i=0; i<len; i++) {
+		bird = birds[i];
+		$("#birdselector").append("<option value=\"" + i + "\">" + bird.bird_name + "</option>");
+	    }
+	    drawCharts("colony_dist", birds[0]);
+	});
+    }
+);
 
-// set some globals
-// These calendars need to be initialized before running the create functions.
-// That's because the create functions are also used for updating the calendars
-// so they start with cal.destroy(), but therefore, cal should already be
-// a calendar.
+
+/* ------------
+ * Inititate global stuff
+ * ------------
+*/
+
+var globalData = {}
+
+/* ------------
+ * set some globals
+ * These calendars need to be initialized before running the create functions.
+ * That's because the create functions are also used for updating the calendars
+ * so they start with cal.destroy(), but therefore, cal should already be
+ * a calendar.
+ * ------------
+*/
+
 var daycal = new CalHeatMap();
 daycal.init({itemSelector: "#day-month-heatmap"});
 var hourcal = new CalHeatMap();
 hourcal.init({itemSelector: "#hour-month-heatmap"});
+//drawCharts("colony_dist", {"bird_name": "Eric", "colony_longitude": 3.182875, "colony_latitude": 51.340768, "device_info_serial": 703});
 
-function drawCharts () {
-    point = birds[globalData.birdname];
 
-    if (globalData.datatype === "max_dist") {
-	var hour_month_cartodbdata = fetchTrackingData_byDayHour(globalData.birdname, point, "");
-    } else if (globalData.datatype === "total_dist") {
-	var hour_month_cartodbdata = fetchTravelledDist_byHour(globalData.birdname, "");
+/* ------------
+ * Charting functions
+ * ------------
+*/
+
+function drawCharts (data_type, bird_data) {
+    insertBirdData(bird_data);
+    if (data_type === "colony_dist") {
+	var hour_month_cartodbdata = fetchTrackingData_byDayHour(bird_data.device_info_serial, "point("+ bird_data.colony_longitude + "%20" + bird_data.colony_latitude + ")", "");
+    } else if (data_type === "dist_trav") {
+	var hour_month_cartodbdata = fetchTravelledDist_byHour(bird_data.device_info_serial, "");
     }
     hour_month_cartodbdata.done(function (data) {
 	globalData.hour_month_heatdata = toCalHeatmap(data);
 	globalData.hour_month_linedata = toNvd3Linedata(data);
-	globalData.total_hour_linedata = toNvd3TotalLinedata(data);
 	var values = globalData.hour_month_linedata[0].values;
 	var min_timestamp = values[0].x;
 	var max_timestamp = values[values.length - 1].x;
 	var startdate = new Date(min_timestamp);
-	var enddate = new Date(max_timestamp);
-	var nrOfMonths = enddate.getMonth() - startdate.getMonth() + 1;
-	drawHourCalHeatmap("#hour-month-heatmap", startdate, nrOfMonths, globalData.hour_month_heatdata);
+	drawHourCalHeatmap("#hour-month-heatmap", startdate, globalData.hour_month_heatdata);
 	drawHourLineChart(globalData.hour_month_linedata, min_timestamp, max_timestamp);
-	drawTotalHourLineChart(globalData.total_hour_linedata);
     });
 
-    if (globalData.datatype === "max_dist") {
-	var day_month_cartodbdata = fetchTrackingData_byDay(globalData.birdname, point, "");
-    } else if (globalData.datatype === "total_dist") {
-	var day_month_cartodbdata = fetchTravelledDist_byDay(globalData.birdname, "");
+    if (data_type === "colony_dist") {
+	var day_month_cartodbdata = fetchTrackingData_byDay(bird_data.device_info_serial, "point("+ bird_data.colony_longitude + "%20" + bird_data.colony_latitude + ")", "");
+    } else if (data_type === "dist_trav") {
+	var day_month_cartodbdata = fetchTravelledDist_byDay(bird_data.device_info_serial, "");
     }
     day_month_cartodbdata.done(function (data) {
 	globalData.day_month_heatdata = toCalHeatmap(data);
 	globalData.day_month_linedata = toNvd3Linedata(data);
 	var values = globalData.day_month_linedata[0].values;
 	var startdate = new Date(values[0].x);
-	var enddate = new Date(values[values.length - 1].x);
-	var nrOfMonths = enddate.getMonth() - startdate.getMonth() + 1;
-	console.log("startdate: " + startdate);
-	console.log("enddate: " + enddate);
-	console.log("domain range: " + nrOfMonths);
-	drawDayCalHeatmap("#day-month-heatmap", startdate, nrOfMonths, globalData.day_month_heatdata);
-	drawBarChart(globalData.day_month_linedata);
+	drawDayCalHeatmap("#day-month-heatmap", startdate, globalData.day_month_heatdata);
     });
 
 }
 
-function drawDayCalHeatmap(element, startdate, nrOfMonths, data) {
+function drawDayCalHeatmap(element, startdate, data) {
     daycal = daycal.destroy(function () {
 	daycal = new CalHeatMap();
-	if (nrOfMonths > 6) {
-	    nrOfMonths = 6;
-	}
 	daycal.init({
+	    onComplete: addEvents,
 	    itemSelector: element,
 	    domain: "month",
 	    subDomain: "x_day",
 	    start: startdate,
 	    cellSize: 26,
 	    subDomainTextFormat: "%d",
-	    range: nrOfMonths,
 	    domainMargin: 10,
 	    itemName: ['kilometer', 'kilometers'],
 	    displayLegend: true,
@@ -99,20 +113,16 @@ function drawDayCalHeatmap(element, startdate, nrOfMonths, data) {
     });
 }
 
-function drawHourCalHeatmap(element, startdate, nrOfMonths, data) {
+function drawHourCalHeatmap(element, startdate, data) {
     hourcal = hourcal.destroy(function () {
 	hourcal = new CalHeatMap();
-	if (nrOfMonths > 4) {
-	    nrOfMonths = 4;
-	}
 	hourcal.init({
+	    onComplete: addEvents,
 	    domain: "month",
 	    subDomain: "x_hour",
 	    start: startdate,
-	    minDate: startdate,
 	    cellSize: 6.5,
 	    rowLimit: 24,
-	    range: nrOfMonths,
 	    verticalOrientation: false,
 	    itemSelector: element,
 	    domainMargin: 10,
@@ -133,25 +143,6 @@ function drawHourCalHeatmap(element, startdate, nrOfMonths, data) {
 		drawHourLineChart(globalData.hour_month_linedata, clicked_date_timestamp, next_date_timestamp);
 	    }
 	});
-    });
-}
-
-function drawBarChart(data) {
-    nv.addGraph(function () {
-	var chart = nv.models.discreteBarChart()
-	    .x(function(d) { return d3.time.format('%d/%m')(new Date(d.x))})
-	    .y(function(d) { return d.y})
-	    .staggerLabels(true)
-	    .color(['#A0E9AF', '#87CD95', '#6FB17B', '#579661', '#3E7A47', '#265E2D', '#0E4313']);
-
-	d3.select('#barchart svg')
-	    .datum(data)
-	    .transition().duration(500)
-	    .call(chart);
-
-	nv.utils.windowResize(chart.update);
-
-	return chart;
     });
 }
 
@@ -190,31 +181,23 @@ function drawHourLineChart(data, focus_min, focus_max) {
     });
 }
 
-function drawTotalHourLineChart(data) {
-    nv.addGraph(function () {
-	var chart = nv.models.lineChart();
+// ----- End of Charting functions ----- //
 
-	chart.xAxis
-	  .axisLabel('Hours');
+/* ------------
+ * Add events to buttons
+ * ------------
+*/
 
-        chart.yAxis
-	  .axisLabel('Total distance')
-	  .tickFormat(d3.format('.0f'));
+// Go button
+$("#gobutton").on("click", function(event) {
+    globalData.datatype = "total_dist";
+    var bird_index = $("#birdselector").val();
+    var bird = globalData.bird_data[bird_index];
+    var data_type = $("#dataselector").val();
+    drawCharts(data_type, bird);
+});
 
-        chart.showLegend(false);
-
-        d3.select('#totalhourchart svg')
-	  .datum(data)
-	  .transition().duration(500)
-	  .call(chart);
-
-        nv.utils.windowResize(function () {d3.select('#totalhourchart svg').call(chart)});
-
-	return chart;
-    });
-
-}
-
+// Calendar navigation
 $("#cal-next").on("click", function(event) {
     daycal.next();
     hourcal.next();
@@ -225,54 +208,62 @@ $("#cal-previous").on("click", function(event) {
     hourcal.previous();
 });
 
-$("#birdname-eric").on("click", function(event) {
-    $(this).attr("class", "active");
-    globalData.birdname = "Eric";
-    drawCharts();
-    $("#birdname-anne").attr("class", "inactive");
-    $("#birdname-jurgen").attr("class", "inactive");
-});
-
-$("#birdname-anne").on("click", function(event) {
-    $(this).attr("class", "active");
-    globalData.birdname = "Anne";
-    drawCharts();
-    $("#birdname-eric").attr("class", "inactive");
-    $("#birdname-jurgen").attr("class", "inactive");
-});
-
-$("#birdname-jurgen").on("click", function(event) {
-    $(this).attr("class", "active");
-    globalData.birdname = "Jurgen";
-    drawCharts();
-    $("#birdname-eric").attr("class", "inactive");
-    $("#birdname-anne").attr("class", "inactive");
-});
-
-$("#data-type-max").on("click", function(event) {
-    $(this).attr("class", "active");
-    globalData.datatype = "max_dist";
-    drawCharts();
-    $("#data-type-total").attr("class", "inactive");
-});
-
-$("#data-type-total").on("click", function(event) {
-    $(this).attr("class", "active");
-    globalData.datatype = "total_dist";
-    drawCharts();
-    $("#data-type-max").attr("class", "inactive");
-});
-
+// Calendar tabs
 $("#show-day-cal").on("click", function(event) {
-    $(this).attr("class", "active");
-    $("#show-hour-cal").attr("class", "inactive");
+    $(this).attr("class", "tab active");
+    $("#show-hour-cal").attr("class", "tab inactive");
     $("#day-month-heatmap").toggle(true);
     $("#hour-month-heatmap").toggle(false);
 });
 
 $("#show-hour-cal").on("click", function(event) {
-    $(this).attr("class", "active");
-    $("#show-day-cal").attr("class", "inactive");
+    $(this).attr("class", "tab active");
+    $("#show-day-cal").attr("class", "tab inactive");
     $("#hour-month-heatmap").toggle(true);
     $("#day-month-heatmap").toggle(false);
 });
+
+
+/* ------------
+ * Add events to cal-heatmap graph-label
+ * This function is called as call-back function
+ * after the calendar data is loaded.
+ * ------------
+*/
+var addEvents = function addCalendarEvents() {
+    $(".graph-label").on("click", function(event) {
+	// get class of parent DOM object. This should be "graph-domain m_A y_B"
+	// Where A and B are month and year respectively.
+	var pclasses = $(this).parent().attr("class").split(" ");
+	var month_nr = parseInt(pclasses[1].split("_")[1]);
+	var year_nr = parseInt(pclasses[2].split("_")[1]);
+	var month_index = month_nr - 1;
+	if (month_nr == 12) {
+	    var next_month_index = 0;
+	    var next_year = year_nr + 1;
+	}
+        else {
+	    var next_month_index = month_index + 1;
+	    var next_year = year_nr;
+	}
+	var startdate = new Date(year_nr, month_index, 1);
+	var enddate = new Date(next_year, next_month_index, 1);
+	drawHourLineChart(globalData.hour_month_linedata, startdate.getTime(), enddate.getTime());
+    });
+}
+
+
+/* ------------
+ * Insert bird data in web page
+ * ------------
+*/
+function insertBirdData(bird_data) {
+    $("#name-text").text(" " + bird_data.bird_name);
+    $("#species-text").text(" " + bird_data.scientific_name);
+    $("#sex-text").text(" " + bird_data.sex);
+    var dist_result = getMaxDistance(bird_data.device_info_serial, bird_data.colony_longitude, bird_data.colony_latitude);
+    dist_result.done(function (data) {
+	$("#max-dist-col").text(" " + Math.round(data.rows[0].max / 10) / 100 + " km");
+    });
+    //var speed_result = getMaxSpeed(bird_data.device_info_serial);
+}
