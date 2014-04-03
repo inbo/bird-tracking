@@ -34,19 +34,28 @@ function drawMap() {
  * Add layer with birds data
  * ---------------
  */
-function setBirdsLayer(map, device_id) {
-    console.log('setBirdsLayer fired');
+function setBirdsLayer(map, device_id, start_time, stop_time) {
+    var sql;
+    if (start_time != "" && stop_time != "") {
+	var start_month = start_time.getMonth() + 1;
+	var stop_month = stop_time.getMonth() + 1;
+	var start_date = '' + start_time.getFullYear() + '/' + start_month + '/' + start_time.getDate();
+	var stop_date = '' + stop_time.getFullYear() + '/' + stop_month + '/' + stop_time.getDate();
+	sql = vsprintf("select * from bird_tracking where userflag is false and date_time > '%s' and date_time < '%s' and device_info_serial='%s'", [start_date, stop_date, device_id]);
+    } else {
+	sql = sprintf("select * from bird_tracking where userflag is false and date_time < '2014-01-01' and device_info_serial='%s'", device_id);
+    };
+
     cartodb.createLayer(map, {
 	user_name: 'lifewatch-inbo',
 	type: 'cartodb',
 	sublayers: [{
-	    sql: sprintf("select * from bird_tracking where userflag is false and date_time < '2014-01-01' and device_info_serial='%s'", device_id),
+	    sql: sql,
 	    cartocss: "#bird_tracking{ marker-fill: #ffcc00; marker-width: 2.5; marker-line-color: #FFF; marker-line-width: 0; marker-line-opacity: 0.5; marker-opacity: 0.9; marker-comp-op: multiply; marker-type: ellipse; marker-placement: point; marker-allow-overlap: true; marker-clip: false; marker-multi-policy: largest; }"
 	}]
     })
     .addTo(map)
     .done(function(layer) {
-	console.log('done');
     });
 };
 
