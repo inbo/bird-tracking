@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/cal-heatmap.css" />
     <link href="css/nv.d3.min.css" rel="stylesheet" type="text/css">
     <!--    <link href="http://lifewatch.inbo.be/blog/theme/css/normalize.css" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
     <link href="http://lifewatch.inbo.be/blog/theme/css/main.css" rel="stylesheet" type="text/css">
     <link href="http://lifewatch.inbo.be/blog/theme/css/font-awesome-ie7.min.css" rel="stylesheet" type="text/css">
     <link href="http://lifewatch.inbo.be/blog/theme/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -92,6 +93,37 @@
 
 	<h2>Line chart</h2>
 	<div id="linechart"><svg style="height: 300px;"></svg></div>
+
+	<h2>Map</h2>
+	<div id="map" style="height: 600px;"></div>
+
+	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
+
+	<script>
+	    window.onload = function() {
+		cartodb.createVis('map', 'http://lifewatch-inbo.cartodb.com/api/v2/viz/8ea629de-9d72-11e3-a723-0ed66c7bc7f3/viz.json', {
+		    shareable: true,
+		    title: true,
+		    description: true,
+		    search: true,
+		    tiles_loader: true,
+		    center_lat: 51.2,
+		    center_lon: 3,
+		    zoom: 9
+		})
+		.done(function(vis, layers) {
+		    layers[1].setInteraction(true);
+		    layers[1].on('featureOver', function(e, pos, latlng, data) {
+			cartodb.log.log(e, pos, latlng, data);
+		    });
+		    map = vis.getNativeMap();
+		})
+		.error(function(err) {
+		    console.log(err);
+		});
+	    };
+	</script>
 
     </div>
 
