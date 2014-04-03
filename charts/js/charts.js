@@ -79,6 +79,7 @@ function drawCharts (data_type, bird_data) {
 	var startdate = new Date(values[0].x);
 	drawDayCalHeatmap("#day-month-heatmap", startdate, globalData.day_month_heatdata);
     });
+    setBirdsLayer(window.map, bird_data.device_info_serial);
 
 }
 
