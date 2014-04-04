@@ -63,7 +63,7 @@ function drawCharts (data_type, bird_data) {
 	var min_timestamp = values[0].x;
 	var max_timestamp = values[values.length - 1].x;
 	var startdate = new Date(min_timestamp);
-	drawHourCalHeatmap("#hour-month-heatmap", startdate, globalData.hour_month_heatdata);
+	drawHourCalHeatmap("#hour-month-heatmap", startdate, globalData.hour_month_heatdata, bird_data);
 	drawHourLineChart(globalData.hour_month_linedata, min_timestamp, max_timestamp);
     });
 
@@ -77,12 +77,13 @@ function drawCharts (data_type, bird_data) {
 	globalData.day_month_linedata = toNvd3Linedata(data);
 	var values = globalData.day_month_linedata[0].values;
 	var startdate = new Date(values[0].x);
-	drawDayCalHeatmap("#day-month-heatmap", startdate, globalData.day_month_heatdata);
+	drawDayCalHeatmap("#day-month-heatmap", startdate, globalData.day_month_heatdata, bird_data);
     });
+    setBirdsLayer(window.map, bird_data.device_info_serial, "", "");
 
 }
 
-function drawDayCalHeatmap(element, startdate, data) {
+function drawDayCalHeatmap(element, startdate, data, bird_data) {
     daycal = daycal.destroy(function () {
 	daycal = new CalHeatMap();
 	daycal.init({
@@ -107,13 +108,15 @@ function drawDayCalHeatmap(element, startdate, data) {
 	    onClick: function(date, distance) {
 		clicked_date_timestamp = date.getTime();
 		next_date_timestamp = clicked_date_timestamp + (24 * 60 * 60 * 1000);
+		next_date = new Date(next_date_timestamp);
 		drawHourLineChart(globalData.hour_month_linedata, clicked_date_timestamp, next_date_timestamp);
+		setBirdsLayer(window.map, bird_data.device_info_serial, date, next_date);
 	    }
 	});
     });
 }
 
-function drawHourCalHeatmap(element, startdate, data) {
+function drawHourCalHeatmap(element, startdate, data, bird_data) {
     hourcal = hourcal.destroy(function () {
 	hourcal = new CalHeatMap();
 	hourcal.init({
@@ -140,7 +143,9 @@ function drawHourCalHeatmap(element, startdate, data) {
 		start_of_that_day = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 		clicked_date_timestamp = start_of_that_day.getTime();
 		next_date_timestamp = clicked_date_timestamp + (24 * 60 * 60 * 1000);
+		next_date = new Date(next_date_timestamp);
 		drawHourLineChart(globalData.hour_month_linedata, clicked_date_timestamp, next_date_timestamp);
+		setBirdsLayer(window.map, bird_data.device_info_serial, start_of_that_day, next_date);
 	    }
 	});
     });
@@ -230,7 +235,9 @@ $("#show-hour-cal").on("click", function(event) {
  * after the calendar data is loaded.
  * ------------
 */
-var addEvents = function addCalendarEvents() {
+function addEvents() {
+    var bird_index = $("#birdselector").val();
+    var bird = globalData.bird_data[bird_index];
     $(".graph-label").on("click", function(event) {
 	// get class of parent DOM object. This should be "graph-domain m_A y_B"
 	// Where A and B are month and year respectively.
@@ -249,6 +256,7 @@ var addEvents = function addCalendarEvents() {
 	var startdate = new Date(year_nr, month_index, 1);
 	var enddate = new Date(next_year, next_month_index, 1);
 	drawHourLineChart(globalData.hour_month_linedata, startdate.getTime(), enddate.getTime());
+	setBirdsLayer(window.map, bird.device_info_serial, startdate, enddate);
     });
 }
 
@@ -261,9 +269,14 @@ function insertBirdData(bird_data) {
     $("#name-text").text(" " + bird_data.bird_name);
     $("#species-text").text(" " + bird_data.scientific_name);
     $("#sex-text").text(" " + bird_data.sex);
+    $("#max-speed-text").text("");
+    $("#max-dist-col").text("");
+    var speed_result = fetchMaximumSpeed(bird_data.device_info_serial)
+    speed_result.done(function (data) {
+	$("#max-speed-text").text(" " + data.rows[0].round + " km/h");
+    });
     var dist_result = getMaxDistance(bird_data.device_info_serial, bird_data.colony_longitude, bird_data.colony_latitude);
     dist_result.done(function (data) {
 	$("#max-dist-col").text(" " + Math.round(data.rows[0].max / 10) / 100 + " km");
     });
-    //var speed_result = getMaxSpeed(bird_data.device_info_serial);
 }

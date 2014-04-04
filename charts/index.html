@@ -15,6 +15,7 @@
     <!--<script src="http://lifewatch.inbo.be/blog//theme/js/vendor/modernizr-2.6.2.min.js"></script>-->
     <link rel="stylesheet" href="css/cal-heatmap.css">    
     <link rel="stylesheet" href="css/nv.d3.min.css">
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
 </head>
 <body>
     <div class="container">
@@ -93,6 +94,9 @@
 	<h2>Line chart</h2>
 	<div id="linechart"><svg style="height: 300px;"></svg></div>
 
+	<h2>Map</h2>
+	<div id="map" style="height: 600px;"></div>
+
     </div>
 
     <div class="footer">
@@ -110,7 +114,10 @@
     <script type="text/javascript" src="js/nv.d3.js"></script>
     <script type="text/javascript" src="js/cal-heatmap.min.js"></script>
     <script type="text/javascript" src="js/sprintf.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
     <script type="text/javascript" src="js/data.js"></script>
     <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
     <script type="text/javascript" src="js/charts.js"></script>
 </body>
