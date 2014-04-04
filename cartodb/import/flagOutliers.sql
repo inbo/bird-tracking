@@ -15,12 +15,12 @@ with select_fields as (
     t.the_geom_webmercator,
     (st_distance_sphere(t.the_geom,lag(t.the_geom,1) over(order by t.device_info_serial, t.date_time))/1000)/(extract(epoch from (t.date_time - lag(t.date_time,1) over(order by t.device_info_serial, t.date_time)))/3600) as km_per_hour
   from
-    bird_tracking as t
+    bird_tracking_new_data as t
     left join bird_tracking_devices as d
     on t.device_info_serial = d.device_info_serial
 )
 
-update bird_tracking as to_flag
+update bird_tracking_new_data as to_flag
 set userflag = true
 from (
   select *
