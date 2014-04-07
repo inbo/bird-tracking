@@ -37,8 +37,6 @@ var globalData = {}
  * ------------
 */
 
-var daycal = new CalHeatMap();
-daycal.init({itemSelector: "#day-month-heatmap"});
 var hourcal = new CalHeatMap();
 hourcal.init({itemSelector: "#hour-month-heatmap"});
 //drawCharts("colony_dist", {"bird_name": "Eric", "colony_longitude": 3.182875, "colony_latitude": 51.340768, "device_info_serial": 703});
@@ -72,48 +70,8 @@ function drawCharts (data_type, bird_data) {
     } else if (data_type === "dist_trav") {
 	var day_month_cartodbdata = fetchTravelledDist_byDay(bird_data.device_info_serial, "");
     }
-    day_month_cartodbdata.done(function (data) {
-	globalData.day_month_heatdata = toCalHeatmap(data);
-	globalData.day_month_linedata = toNvd3Linedata(data);
-	var values = globalData.day_month_linedata[0].values;
-	var startdate = new Date(values[0].x);
-	drawDayCalHeatmap("#day-month-heatmap", startdate, globalData.day_month_heatdata, bird_data);
-    });
     setBirdsLayer(window.map, bird_data.device_info_serial, "", "");
 
-}
-
-function drawDayCalHeatmap(element, startdate, data, bird_data) {
-    daycal = daycal.destroy(function () {
-	daycal = new CalHeatMap();
-	daycal.init({
-	    onComplete: addEvents,
-	    itemSelector: element,
-	    domain: "month",
-	    subDomain: "x_day",
-	    start: startdate,
-	    cellSize: 26,
-	    subDomainTextFormat: "%d",
-	    domainMargin: 10,
-	    itemName: ['kilometer', 'kilometers'],
-	    displayLegend: true,
-	    legend: [1, 5, 10, 50, 100],
-	    legendColors: {
-		range: [ "#a1d99b", "#74c476", "#41ab5d", "#238b45", "#005a32", "#000000"],
-		empty: "#CFCFCF"
-	    },
-	    legendCellSize: 20,
-	    legendCellPadding: 4,
-	    data: data,
-	    onClick: function(date, distance) {
-		clicked_date_timestamp = date.getTime();
-		next_date_timestamp = clicked_date_timestamp + (24 * 60 * 60 * 1000);
-		next_date = new Date(next_date_timestamp);
-		drawHourLineChart(globalData.hour_month_linedata, clicked_date_timestamp, next_date_timestamp);
-		setBirdsLayer(window.map, bird_data.device_info_serial, date, next_date);
-	    }
-	});
-    });
 }
 
 function drawHourCalHeatmap(element, startdate, data, bird_data) {
@@ -204,30 +162,23 @@ $("#gobutton").on("click", function(event) {
 
 // Calendar navigation
 $("#cal-next").on("click", function(event) {
-    daycal.next();
     hourcal.next();
 });
 
 $("#cal-previous").on("click", function(event) {
-    daycal.previous();
     hourcal.previous();
 });
 
 // Calendar tabs
-$("#show-day-cal").on("click", function(event) {
+$("#show-dist-col").on("click", function(event) {
     $(this).attr("class", "tab active");
-    $("#show-hour-cal").attr("class", "tab inactive");
-    $("#day-month-heatmap").toggle(true);
-    $("#hour-month-heatmap").toggle(false);
+    $("#show-dist-trav").attr("class", "tab inactive");
 });
 
-$("#show-hour-cal").on("click", function(event) {
+$("#show-dist-trav").on("click", function(event) {
     $(this).attr("class", "tab active");
-    $("#show-day-cal").attr("class", "tab inactive");
-    $("#hour-month-heatmap").toggle(true);
-    $("#day-month-heatmap").toggle(false);
+    $("#show-dist-col").attr("class", "tab inactive");
 });
-
 
 /* ------------
  * Add events to cal-heatmap graph-label

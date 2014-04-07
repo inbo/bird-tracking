@@ -87,15 +87,7 @@
     float: left;
 }
 
-#day-month-heatmap {
-    display: none;
-}
-
-#hour-month-heatmap {
-    display: block;
-}
-
-#calendars {
+#calendar {
     width: 60em;
     display: inline-block;
 }
