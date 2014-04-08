@@ -65,12 +65,14 @@ function drawCharts (data_type, bird_data) {
 	var min_timestamp = values[0].x;
 	var max_timestamp = values[values.length - 1].x;
 	var startdate = new Date(min_timestamp);
-	drawHourCalHeatmap("#hour-month-heatmap", startdate, globalData.hour_month_heatdata, bird_data);
+	var nr_of_legend_categories = 6;
+	var legend_scale = calculateScale(globalData.hour_month_heatdata, nr_of_legend_categories);
+	drawHourCalHeatmap("#hour-month-heatmap", startdate, globalData.hour_month_heatdata, bird_data, legend_scale);
 	drawHourLineChart(globalData.hour_month_linedata, min_timestamp, max_timestamp);
     });
 }
 
-function drawHourCalHeatmap(element, startdate, data, bird_data) {
+function drawHourCalHeatmap(element, startdate, data, bird_data, legend_scale) {
     hourcal = hourcal.destroy(function () {
 	hourcal = new CalHeatMap();
 	hourcal.init({
@@ -85,7 +87,7 @@ function drawHourCalHeatmap(element, startdate, data, bird_data) {
 	    domainMargin: 10,
 	    itemName: ['kilometer', 'kilometers'],
 	    displayLegend: true,
-	    legend: [0.05, 1, 5, 10, 50, 100],
+	    legend: legend_scale,
 	    legendColors: {
 		range: ["#C2F2C3", "#a1d99b", "#74c476", "#41ab5d", "#238b45", "#005a32", "#000000"],
 		empty: "#CFCFCF"
@@ -103,6 +105,27 @@ function drawHourCalHeatmap(element, startdate, data, bird_data) {
 	    }
 	});
     });
+}
+
+function calculateScale(data, nr_of_categs) {
+    var values = [];
+    for (var key in data) {
+	values.push(data[key]);
+    }
+    min = values.sort(function(a,b) {return a-b})[0];
+    max = values.sort(function(a,b) {return b-a})[0];
+    range = [];
+    scale = [];
+    for (var i = 0; i <= nr_of_categs; i++) {
+	range.push(i);
+    }
+    // create quadratic scale, normalized to min-max interval
+    for (var range_e in range) {
+	el = (Math.pow(range_e, 2) / (Math.pow(nr_of_categs, 2))) * (max - min) + min;
+	scale.push(el);
+    }
+    scale.pop();
+    return scale
 }
 
 function drawHourLineChart(data, focus_min, focus_max) {
