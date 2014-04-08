@@ -15,7 +15,7 @@ $(document).ready(
 		bird = birds[i];
 		$("#birdselector").append("<option value=\"" + i + "\">" + bird.bird_name + "</option>");
 	    }
-	    drawCharts("colony_dist", birds[0]);
+	    drawMapAndCharts("colony_dist", birds[0]);
 	});
     }
 );
@@ -46,6 +46,11 @@ hourcal.init({itemSelector: "#hour-month-heatmap"});
  * ------------
 */
 
+function drawMapAndCharts(data_type, bird_data) {
+    drawCharts(data_type, bird_data);
+    setBirdsLayer(window.map, bird_data.device_info_serial, "", "");
+}
+
 function drawCharts (data_type, bird_data) {
     insertBirdData(bird_data);
     if (data_type === "colony_dist") {
@@ -63,14 +68,6 @@ function drawCharts (data_type, bird_data) {
 	drawHourCalHeatmap("#hour-month-heatmap", startdate, globalData.hour_month_heatdata, bird_data);
 	drawHourLineChart(globalData.hour_month_linedata, min_timestamp, max_timestamp);
     });
-
-    if (data_type === "colony_dist") {
-	var day_month_cartodbdata = fetchTrackingData_byDay(bird_data.device_info_serial, "point("+ bird_data.colony_longitude + "%20" + bird_data.colony_latitude + ")", "");
-    } else if (data_type === "dist_trav") {
-	var day_month_cartodbdata = fetchTravelledDist_byDay(bird_data.device_info_serial, "");
-    }
-    setBirdsLayer(window.map, bird_data.device_info_serial, "", "");
-
 }
 
 function drawHourCalHeatmap(element, startdate, data, bird_data) {
@@ -156,7 +153,7 @@ $("#gobutton").on("click", function(event) {
     var bird_index = $("#birdselector").val();
     var bird = globalData.bird_data[bird_index];
     var data_type = $("#dataselector").val();
-    drawCharts(data_type, bird);
+    drawMapAndCharts(data_type, bird);
 });
 
 // Calendar navigation
