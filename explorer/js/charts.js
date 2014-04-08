@@ -122,7 +122,8 @@ function calculateScale(data, nr_of_categs) {
     // create quadratic scale, normalized to min-max interval
     for (var range_e in range) {
 	el = (Math.pow(range_e, 2) / (Math.pow(nr_of_categs, 2))) * (max - min) + min;
-	scale.push(el);
+	out_el = Math.round(el*100) / 100.0;
+	scale.push(out_el);
     }
     scale.pop();
     return scale
