@@ -150,9 +150,11 @@ function drawHourLineChart(data, focus_min, focus_max) {
 // Go button
 $("#gobutton").on("click", function(event) {
     globalData.datatype = "total_dist";
+    $("#show-dist-col").attr("class", "tab active");
+    $("#show-dist-trav").attr("class", "tab inactive");
     var bird_index = $("#birdselector").val();
     var bird = globalData.bird_data[bird_index];
-    var data_type = $("#dataselector").val();
+    var data_type = "colony_dist";
     drawMapAndCharts(data_type, bird);
 });
 
