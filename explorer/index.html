@@ -19,71 +19,68 @@
 </head>
 <body>
     <div class="container">
-	<div class="header">
-	    <header class="clearfix">
-		<h2><a href="http://lifewatch.inbo.be/blog">Lifewatch INBO</a></h2>
-		<ul></ul>
-	    </header>
-	    <div><img src="http://lifewatch.inbo.be/blog/theme/img/inbo-logo.png" alt="inbo-logo"></div>
-	</div>
+        <div class="header">
+            <header class="clearfix">
+                <h2><a href="http://lifewatch.inbo.be/blog">Lifewatch INBO</a></h2>
+                <ul></ul>
+            </header>
+            <div><img src="http://lifewatch.inbo.be/blog/theme/img/inbo-logo.png" alt="inbo-logo"></div>
+        </div>
 
-    <div class="content">
-	<div id="intro">
-	    <h1>Visualizing gull tracking data</h1>
-	    <p>The INBO tracked gulls with the <a href="http://www.uva-bits.nl/">UvA-BITS tracking system</a>. Here, we visualized the maximum distance between the birds and their colony over time and the total distance they travelled during certain time intervals. All code is in Javascript so it runs directly in your browser. The data is available as open data on <a href="http://lifewatch-inbo.cartodb.com/tables/bird_tracking/public">cartoDB</a> and the visualizations here directly interact with the cartoDB API. If you want to use these visulizations too, checkout the <a href="https://github.com/LifeWatchINBO/bird-tracking-analysis">github repository</a>.
-	</div>
-	<hr>
-	<div class="clearfix">
-	    <div id="controls">
-		<h4>Select a bird</h4>
-		    <select id="birdselector">
-		    </select>
-		    <button id="gobutton">Go</button>
-		<ul>
-		    <li><strong>Species:</strong><span id="species-text"></span></li>
-		    <li><strong>Sex:</strong><span id="sex-text"></span></li>
-		    <li><strong>Maximum speed:</strong><span id="max-speed-text"></span></li>
-		    <li><strong>Maximum distance from colony:</strong><span id="max-dist-col"></span></li>
-		</ul>
-	    </div>
+        <div class="content">
+            <section>
+                <h1>Visualizing gull tracking data</h1>
+                <p>The INBO tracked gulls with the <a href="http://www.uva-bits.nl/">UvA-BITS tracking system</a>. Here, we visualized the maximum distance between the birds and their colony over time and the total distance they travelled during certain time intervals. All code is in Javascript so it runs directly in your browser. The data is available as open data on <a href="http://lifewatch-inbo.cartodb.com/tables/bird_tracking/public">cartoDB</a> and the visualizations here directly interact with the cartoDB API. If you want to use these visulizations too, checkout the <a href="https://github.com/LifeWatchINBO/bird-tracking-analysis">github repository</a>.
+            </section>
+            
+            <section class="clearfix">
+                <h2>Select a bird</h2>
+                <div id="controls">
+                <select id="birdselector"></select>
+                <button id="gobutton">Go</button>
+                <ul>
+                    <li><strong>Species:</strong><span id="species-text"></span></li>
+                    <li><strong>Sex:</strong><span id="sex-text"></span></li>
+                    <li><strong>Maximum speed:</strong><span id="max-speed-text"></span></li>
+                    <li><strong>Maximum distance from colony:</strong><span id="max-dist-col"></span></li>
+                </ul>
+                </div>
+                <div id="map"></div>
+            </section>
 
-	    <div id="map"></div>
-	</div>
+            <section>
+                <h2>Distance</h2>
+                <div id="calendar">
+                    <div class="clearfix">
+                        <div class="tabspacer"></div>
+                        <div class="tab active" id="show-dist-col" >Distance from colony</div>
+                        <div class="tab inactive" id="show-dist-trav">Distance travelled</div>
+                    </div>
 
-	<div id="calendar">
+                    <div class="clearfix">
+                        <div class="cal-nav" id="cal-previous">
+                            <span class="icon-chevron-left icon-large"></span>
+                        </div>
 
-	    <div class="clearfix">
-		<div class="tabspacer"></div>
-		<div class="tab active" id="show-dist-col" >Distance from colony</div>
-		<div class="tab inactive" id="show-dist-trav">Distance travelled</div>
-	    </div>
+                        <div class="cal-chart" id="hour-month-heatmap"></div>
 
-	    <div class="clearfix">
-		<div class="cal-nav" id="cal-previous">
-		    <span class="icon-chevron-left icon-large"></span>
-		</div>
+                        <div class="cal-nav" id="cal-next">
+                            <span class="icon-chevron-right icon-large"></span>
+                        </div>
+                    </div>
+                </div>
 
-		<div class="cal-chart" id="hour-month-heatmap"></div>
+                <div id="linechart"><svg style="height: 300px;"></svg></div>
+            </section>
+        </div>
 
-		<div class="cal-nav" id="cal-next">
-		    <span class="icon-chevron-right icon-large"></span>
-		</div>
-	    </div>
-	</div>
-
-	<div id="linechart"><svg style="height: 300px;"></svg></div>
-
+        <div class="footer">
+            <footer class="clearfix">
+                <div><img src="http://lifewatch.inbo.be/blog/theme/img/lifewatch-inbo-logo.png" alt="lifewatch-inbo-logo"/></div>
+            </footer>
+        </div>
     </div>
-
-    <div class="footer">
-	<footer class="clearfix">
-	    <div>
-		<img src="http://lifewatch.inbo.be/blog/theme/img/lifewatch-inbo-logo.png" alt="lifewatch-inbo-logo"/>
-	    </div>
-	</footer>
-    </div>
-
-</div>
+    
     <!-- Scripts -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>

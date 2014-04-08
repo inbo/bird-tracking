@@ -4,93 +4,81 @@
 }
 
 /* Custom css */
-#controls {
-    display: inline-block;
-    background-color: #fbfbfb;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #fff;
-    border-color: #DDD;
-    padding: 2em;
-    width: 26em;
+section {
+    margin-bottom: 1em;
 }
 
-#main {
-    display: inline-block;
+#controls {
+    display: block;
+    float: left;
+    margin-left: 1em;
+    width: calc(30% - 1em);
 }
 
 #map {
-    display: inline-block;
+    display: block;
+    float: right;
     height: 400px;
-    width: 29em;
+    width: 70%;
 }
 
 .tabspacer {
-    width: 2em;
-    height: 2em;
     float: left;
+    height: 2em;
+    width: 2em;
 }
 .tab {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #b0b0b0;
     font-family: "Lucida grande", sans-serif;
     font-size: 0.6em;
     font-weight: bold;
     float: left;
-    color: #b0b0b0;
-    border-radius: 5px 5px 5px 5px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #fff;
-    background: #fff;
     padding-left: 1em;
     padding-right: 1em;
     margin-bottom: 1em;
     }
     .tab:hover {
-	color: #909090;
-	cursor: pointer;
-	cursor: hand;
+        color: #909090;
+        cursor: pointer;
     }
     .tab.active {
-	color: #000;
-	background: #fbfbfb;
-	border-color: #fff;
-	border-color: #DDD;
+        background: #fbfbfb;
+        color: #000;
     }
 
 .cal-nav {
-    width: 2em;
-    height: 265px;
-    float: left;
+    border: 1px solid #fff;
+    border-radius: 5px;
     color: #666;
-    border-radius: 5px 5px 5px 5px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #fff;
+    float: left;
+    height: 265px;
+    width: 2em;
     }
     .cal-nav span {
-	display: block;
-	margin-top: 120px;
-	margin-left: 0.3em;
-	}
+        display: block;
+        margin-left: 0.3em;
+        margin-top: 120px;
+    }
     .cal-nav:hover {
-	background-color: #fbfbfb;
-	border-color: #DDD;
+        background-color: #fbfbfb;
+        border-color: #ddd;
         color: #000;
-	cursor: pointer;
-	cursor: hand;
+        cursor: pointer;
     }
 
 .cal-chart {
-    width: calc(100% - 4em - 4px);
     float: left;
+    width: calc(100% - 4em - 4px);
 }
 
 #calendar {
-    width: 60em;
     display: inline-block;
+    width: 60em;
 }
 
 .graph-label:hover {
     cursor: pointer;
-    cursor: hand;
 }
