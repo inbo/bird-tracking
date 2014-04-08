@@ -39,7 +39,6 @@ var globalData = {}
 
 var hourcal = new CalHeatMap();
 hourcal.init({itemSelector: "#hour-month-heatmap"});
-//drawCharts("colony_dist", {"bird_name": "Eric", "colony_longitude": 3.182875, "colony_latitude": 51.340768, "device_info_serial": 703});
 
 
 /* ------------
