@@ -5,20 +5,24 @@
 
 /* Custom css */
 #controls {
+    display: inline-block;
     background-color: #fbfbfb;
     border-style: solid;
     border-width: 1px;
     border-color: #fff;
     border-color: #DDD;
     padding: 2em;
-}
-
-#bird-controls {
-    display: inline-block;
+    width: 26em;
 }
 
 #main {
     display: inline-block;
+}
+
+#map {
+    display: inline-block;
+    height: 400px;
+    width: 29em;
 }
 
 .tabspacer {
@@ -55,7 +59,7 @@
 
 .cal-nav {
     width: 2em;
-    height: 350px;
+    height: 265px;
     float: left;
     color: #666;
     border-radius: 5px 5px 5px 5px;
@@ -65,7 +69,7 @@
     }
     .cal-nav span {
 	display: block;
-	margin-top: 160px;
+	margin-top: 120px;
 	margin-left: 0.3em;
 	}
     .cal-nav:hover {
@@ -77,7 +81,6 @@
     }
 
 .cal-chart {
-    height: 350px;
     width: calc(100% - 4em - 4px);
     float: left;
 }

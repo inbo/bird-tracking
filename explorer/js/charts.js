@@ -89,6 +89,9 @@ function drawHourCalHeatmap(element, startdate, data, bird_data, legend_scale) {
 	    itemName: ['kilometer', 'kilometers'],
 	    displayLegend: true,
 	    legend: legend_scale,
+	    legendOrientation: "vertical",
+	    legendVerticalPosition: "center",
+	    legendHorizontalPosition: "left",
 	    legendColors: {
 		range: ["#C2F2C3", "#a1d99b", "#74c476", "#41ab5d", "#238b45", "#005a32", "#000000"],
 		empty: "#CFCFCF"
@@ -248,7 +251,6 @@ function addEvents() {
  * ------------
 */
 function insertBirdData(bird_data) {
-    $("#name-text").text(" " + bird_data.bird_name);
     $("#species-text").text(" " + bird_data.scientific_name);
     $("#sex-text").text(" " + bird_data.sex);
     $("#max-speed-text").text("");
