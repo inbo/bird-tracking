@@ -11,9 +11,18 @@ section {
 #controls {
     display: block;
     float: left;
-    margin-left: 1em;
-    width: calc(30% - 1em);
-}
+    padding-right: 2em;
+    width: calc(30% - 2em);
+    }
+    select {
+        width: 80%;
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        margin-top: 2em;
+        padding: 0;
+    }
 
 #map {
     display: block;
