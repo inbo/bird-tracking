@@ -4,6 +4,7 @@
  */
 function drawMap() {
     window.map;
+    var MAPTYPE_ID = 'custom_style';
     var mapStyle = [
 	{ "featureType": "water", "elementType": "geometry", "stylers": [ { "color": "#000000" }, { "lightness": 17 } ] },
 	{ "featureType": "landscape", "elementType": "geometry", "stylers": [ { "color": "#000000" }, { "lightness": 20 } ] },
@@ -13,20 +14,28 @@ function drawMap() {
 	{ "featureType": "road.local", "elementType": "geometry", "stylers": [ { "color": "#000000" }, { "lightness": 16 } ] },
 	{ "featureType": "poi", "elementType": "geometry", "stylers": [ { "color": "#000000" }, { "lightness": 21 } ] },
 	{ "elementType": "labels.text.stroke", "stylers": [ { "visibility": "on" }, { "color": "#000000" }, { "lightness": 16 } ] },
-	{ "elementType": "labels.text.fill", "stylers": [ { "saturation": 36 }, { "color": "#000000" }, { "lightness": 40 } ] },
+	{ "mapType": "Map", "elementType": "labels.text.fill", "stylers": [ { "saturation": 36 }, { "color": "#000000" }, { "lightness": 40 } ] },
 	{ "elementType": "labels.icon", "stylers": [ { "visibility": "off" } ] },
 	{ "featureType": "transit", "elementType": "geometry", "stylers": [ { "color": "#000000" }, { "lightness": 19 } ] },
 	{ "featureType": "administrative", "elementType": "geometry.fill", "stylers": [ { "color": "#000000" }, { "lightness": 20 } ] },
 	{ "featureType": "administrative", "elementType": "geometry.stroke", "stylers": [ { "color": "#000000" }, { "lightness": 17 }, { "weight": 1.2 } ] }
     ];
+    var featureOpts = mapStyle;
     var mapOptions = {
 	zoom: 9,
 	center: new google.maps.LatLng(51.2, 3),
-	mapTypeId: google.maps.MapTypeId.ROADMAP,
-	styles: mapStyle
+	mapTypeControlOptions: {
+	    mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, MAPTYPE_ID]
+	},
+	mapTypeId: MAPTYPE_ID
     };
 
     window.map = new google.maps.Map(document.getElementById('map'),  mapOptions);
+    var styledMapOptions = {
+	name: 'Custom Style'
+    };
+    var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
+    window.map.mapTypes.set(MAPTYPE_ID, customMapType);
 };
 
 
