@@ -25,7 +25,7 @@ function drawMap() {
 	zoom: 9,
 	center: new google.maps.LatLng(51.2, 3),
 	mapTypeControlOptions: {
-	    mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, MAPTYPE_ID]
+	    mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.HYBRID, MAPTYPE_ID]
 	},
 	mapTypeId: MAPTYPE_ID
     };
