@@ -4,103 +4,90 @@
 }
 
 /* Custom css */
+section {
+    margin-bottom: 1em;
+}
+
 #controls {
-    background-color: #fbfbfb;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #fff;
-    border-color: #DDD;
-    padding: 2em;
-}
+    display: block;
+    float: left;
+    padding-right: 2em;
+    width: calc(30% - 2em);
+    }
+    select {
+        width: 80%;
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        margin-top: 2em;
+        padding: 0;
+    }
 
-#bird-controls {
-    display: inline-block;
-}
-
-#data-controls {
-    display: inline-block;
-    margin-left: 5em;
-}
-
-#main {
-    display: inline-block;
+#map {
+    display: block;
+    float: right;
+    height: 400px;
+    width: 70%;
 }
 
 .tabspacer {
-    width: 2em;
-    height: 2em;
     float: left;
+    height: 2em;
+    width: 2em;
 }
 .tab {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #b0b0b0;
     font-family: "Lucida grande", sans-serif;
     font-size: 0.6em;
     font-weight: bold;
     float: left;
-    color: #b0b0b0;
-    border-radius: 5px 5px 5px 5px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #fff;
-    background: #fff;
     padding-left: 1em;
     padding-right: 1em;
     margin-bottom: 1em;
     }
     .tab:hover {
-	color: #909090;
-	cursor: pointer;
-	cursor: hand;
+        color: #909090;
+        cursor: pointer;
     }
     .tab.active {
-	color: #000;
-	background: #fbfbfb;
-	border-color: #fff;
-	border-color: #DDD;
+        background: #fbfbfb;
+        color: #000;
     }
 
 .cal-nav {
-    width: 2em;
-    height: 350px;
-    float: left;
+    border: 1px solid #fff;
+    border-radius: 5px;
     color: #666;
-    border-radius: 5px 5px 5px 5px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #fff;
+    float: left;
+    height: 265px;
+    width: 2em;
     }
     .cal-nav span {
-	display: block;
-	margin-top: 160px;
-	margin-left: 0.3em;
-	}
+        display: block;
+        margin-left: 0.3em;
+        margin-top: 120px;
+    }
     .cal-nav:hover {
-	background-color: #fbfbfb;
-	border-color: #DDD;
+        background-color: #fbfbfb;
+        border-color: #ddd;
         color: #000;
-	cursor: pointer;
-	cursor: hand;
+        cursor: pointer;
     }
 
 .cal-chart {
-    height: 350px;
-    width: calc(100% - 4em - 4px);
     float: left;
+    width: calc(100% - 4em - 4px);
 }
 
-#day-month-heatmap {
-    display: none;
-}
-
-#hour-month-heatmap {
-    display: block;
-}
-
-#calendars {
-    width: 60em;
+#calendar {
     display: inline-block;
+    width: 60em;
 }
 
 .graph-label:hover {
     cursor: pointer;
-    cursor: hand;
 }

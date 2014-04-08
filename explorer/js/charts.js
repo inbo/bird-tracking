@@ -15,7 +15,7 @@ $(document).ready(
 		bird = birds[i];
 		$("#birdselector").append("<option value=\"" + i + "\">" + bird.bird_name + "</option>");
 	    }
-	    drawCharts("colony_dist", birds[0]);
+	    drawMapAndCharts("colony_dist", birds[0]);
 	});
     }
 );
@@ -37,17 +37,19 @@ var globalData = {}
  * ------------
 */
 
-var daycal = new CalHeatMap();
-daycal.init({itemSelector: "#day-month-heatmap"});
 var hourcal = new CalHeatMap();
 hourcal.init({itemSelector: "#hour-month-heatmap"});
-//drawCharts("colony_dist", {"bird_name": "Eric", "colony_longitude": 3.182875, "colony_latitude": 51.340768, "device_info_serial": 703});
 
 
 /* ------------
  * Charting functions
  * ------------
 */
+
+function drawMapAndCharts(data_type, bird_data) {
+    drawCharts(data_type, bird_data);
+    setBirdsLayer(window.map, bird_data.device_info_serial, "", "");
+}
 
 function drawCharts (data_type, bird_data) {
     insertBirdData(bird_data);
@@ -63,66 +65,21 @@ function drawCharts (data_type, bird_data) {
 	var min_timestamp = values[0].x;
 	var max_timestamp = values[values.length - 1].x;
 	var startdate = new Date(min_timestamp);
-	drawHourCalHeatmap("#hour-month-heatmap", startdate, globalData.hour_month_heatdata, bird_data);
+	var nr_of_legend_categories = 6;
+	var legend_scale = calculateScale(globalData.hour_month_heatdata, nr_of_legend_categories);
+	drawHourCalHeatmap("#hour-month-heatmap", startdate, globalData.hour_month_heatdata, bird_data, legend_scale);
 	drawHourLineChart(globalData.hour_month_linedata, min_timestamp, max_timestamp);
     });
-
-    if (data_type === "colony_dist") {
-	var day_month_cartodbdata = fetchTrackingData_byDay(bird_data.device_info_serial, "point("+ bird_data.colony_longitude + "%20" + bird_data.colony_latitude + ")", "");
-    } else if (data_type === "dist_trav") {
-	var day_month_cartodbdata = fetchTravelledDist_byDay(bird_data.device_info_serial, "");
-    }
-    day_month_cartodbdata.done(function (data) {
-	globalData.day_month_heatdata = toCalHeatmap(data);
-	globalData.day_month_linedata = toNvd3Linedata(data);
-	var values = globalData.day_month_linedata[0].values;
-	var startdate = new Date(values[0].x);
-	drawDayCalHeatmap("#day-month-heatmap", startdate, globalData.day_month_heatdata, bird_data);
-    });
-    setBirdsLayer(window.map, bird_data.device_info_serial, "", "");
-
 }
 
-function drawDayCalHeatmap(element, startdate, data, bird_data) {
-    daycal = daycal.destroy(function () {
-	daycal = new CalHeatMap();
-	daycal.init({
-	    onComplete: addEvents,
-	    itemSelector: element,
-	    domain: "month",
-	    subDomain: "x_day",
-	    start: startdate,
-	    cellSize: 26,
-	    subDomainTextFormat: "%d",
-	    domainMargin: 10,
-	    itemName: ['kilometer', 'kilometers'],
-	    displayLegend: true,
-	    legend: [1, 5, 10, 50, 100],
-	    legendColors: {
-		range: [ "#a1d99b", "#74c476", "#41ab5d", "#238b45", "#005a32", "#000000"],
-		empty: "#CFCFCF"
-	    },
-	    legendCellSize: 20,
-	    legendCellPadding: 4,
-	    data: data,
-	    onClick: function(date, distance) {
-		clicked_date_timestamp = date.getTime();
-		next_date_timestamp = clicked_date_timestamp + (24 * 60 * 60 * 1000);
-		next_date = new Date(next_date_timestamp);
-		drawHourLineChart(globalData.hour_month_linedata, clicked_date_timestamp, next_date_timestamp);
-		setBirdsLayer(window.map, bird_data.device_info_serial, date, next_date);
-	    }
-	});
-    });
-}
-
-function drawHourCalHeatmap(element, startdate, data, bird_data) {
+function drawHourCalHeatmap(element, startdate, data, bird_data, legend_scale) {
     hourcal = hourcal.destroy(function () {
 	hourcal = new CalHeatMap();
 	hourcal.init({
 	    onComplete: addEvents,
 	    domain: "month",
 	    subDomain: "x_hour",
+	    range: 6,
 	    start: startdate,
 	    cellSize: 6.5,
 	    rowLimit: 24,
@@ -131,7 +88,10 @@ function drawHourCalHeatmap(element, startdate, data, bird_data) {
 	    domainMargin: 10,
 	    itemName: ['kilometer', 'kilometers'],
 	    displayLegend: true,
-	    legend: [0.05, 1, 5, 10, 50, 100],
+	    legend: legend_scale,
+	    legendOrientation: "vertical",
+	    legendVerticalPosition: "center",
+	    legendHorizontalPosition: "left",
 	    legendColors: {
 		range: ["#C2F2C3", "#a1d99b", "#74c476", "#41ab5d", "#238b45", "#005a32", "#000000"],
 		empty: "#CFCFCF"
@@ -149,6 +109,28 @@ function drawHourCalHeatmap(element, startdate, data, bird_data) {
 	    }
 	});
     });
+}
+
+function calculateScale(data, nr_of_categs) {
+    var values = [];
+    for (var key in data) {
+	values.push(data[key]);
+    }
+    min = values.sort(function(a,b) {return a-b})[0];
+    max = values.sort(function(a,b) {return b-a})[0];
+    range = [];
+    scale = [];
+    for (var i = 0; i <= nr_of_categs; i++) {
+	range.push(i);
+    }
+    // create quadratic scale, normalized to min-max interval
+    for (var range_e in range) {
+	el = (Math.pow(range_e, 2) / (Math.pow(nr_of_categs, 2))) * (max - min) + min;
+	out_el = Math.round(el*100) / 100.0;
+	scale.push(out_el);
+    }
+    scale.pop();
+    return scale
 }
 
 function drawHourLineChart(data, focus_min, focus_max) {
@@ -196,38 +178,41 @@ function drawHourLineChart(data, focus_min, focus_max) {
 // Go button
 $("#gobutton").on("click", function(event) {
     globalData.datatype = "total_dist";
+    $("#show-dist-col").attr("class", "tab active");
+    $("#show-dist-trav").attr("class", "tab inactive");
     var bird_index = $("#birdselector").val();
     var bird = globalData.bird_data[bird_index];
-    var data_type = $("#dataselector").val();
-    drawCharts(data_type, bird);
+    var data_type = "colony_dist";
+    drawMapAndCharts(data_type, bird);
 });
 
 // Calendar navigation
 $("#cal-next").on("click", function(event) {
-    daycal.next();
     hourcal.next();
 });
 
 $("#cal-previous").on("click", function(event) {
-    daycal.previous();
     hourcal.previous();
 });
 
 // Calendar tabs
-$("#show-day-cal").on("click", function(event) {
+$("#show-dist-col").on("click", function(event) {
     $(this).attr("class", "tab active");
-    $("#show-hour-cal").attr("class", "tab inactive");
-    $("#day-month-heatmap").toggle(true);
-    $("#hour-month-heatmap").toggle(false);
+    $("#show-dist-trav").attr("class", "tab inactive");
+    var bird_index = $("#birdselector").val();
+    var bird = globalData.bird_data[bird_index];
+    var data_type = "colony_dist";
+    drawCharts(data_type, bird);
 });
 
-$("#show-hour-cal").on("click", function(event) {
+$("#show-dist-trav").on("click", function(event) {
     $(this).attr("class", "tab active");
-    $("#show-day-cal").attr("class", "tab inactive");
-    $("#hour-month-heatmap").toggle(true);
-    $("#day-month-heatmap").toggle(false);
+    $("#show-dist-col").attr("class", "tab inactive");
+    var bird_index = $("#birdselector").val();
+    var bird = globalData.bird_data[bird_index];
+    var data_type = "dist_trav";
+    drawCharts(data_type, bird);
 });
-
 
 /* ------------
  * Add events to cal-heatmap graph-label
@@ -266,7 +251,6 @@ function addEvents() {
  * ------------
 */
 function insertBirdData(bird_data) {
-    $("#name-text").text(" " + bird_data.bird_name);
     $("#species-text").text(" " + bird_data.scientific_name);
     $("#sex-text").text(" " + bird_data.sex);
     $("#max-speed-text").text("");
