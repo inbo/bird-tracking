@@ -169,11 +169,19 @@ $("#cal-previous").on("click", function(event) {
 $("#show-dist-col").on("click", function(event) {
     $(this).attr("class", "tab active");
     $("#show-dist-trav").attr("class", "tab inactive");
+    var bird_index = $("#birdselector").val();
+    var bird = globalData.bird_data[bird_index];
+    var data_type = "colony_dist";
+    drawCharts(data_type, bird);
 });
 
 $("#show-dist-trav").on("click", function(event) {
     $(this).attr("class", "tab active");
     $("#show-dist-col").attr("class", "tab inactive");
+    var bird_index = $("#birdselector").val();
+    var bird = globalData.bird_data[bird_index];
+    var data_type = "dist_trav";
+    drawCharts(data_type, bird);
 });
 
 /* ------------
