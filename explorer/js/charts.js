@@ -79,6 +79,7 @@ function drawHourCalHeatmap(element, startdate, data, bird_data, legend_scale) {
 	    onComplete: addEvents,
 	    domain: "month",
 	    subDomain: "x_hour",
+	    range: 6,
 	    start: startdate,
 	    cellSize: 6.5,
 	    rowLimit: 24,
