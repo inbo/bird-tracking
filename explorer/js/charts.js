@@ -214,6 +214,17 @@ $("#show-dist-trav").on("click", function(event) {
     drawCharts(data_type, bird);
 });
 
+// Clear selection function
+function clearSelection() {
+    var bird_index = $("#birdselector").val();
+    var bird = globalData.bird_data[bird_index];
+    var values = globalData.hour_month_linedata[0].values;
+    var min_timestamp = values[0].x;
+    var max_timestamp = values[values.length - 1].x;
+    drawHourLineChart(globalData.hour_month_linedata, min_timestamp, max_timestamp);
+    setBirdsLayer(window.map, bird.device_info_serial, "", "");
+}
+
 /* ------------
  * Add events to cal-heatmap graph-label
  * This function is called as call-back function
