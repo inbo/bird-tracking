@@ -87,6 +87,7 @@ function drawHourCalHeatmap(element, startdate, data, bird_data, legend_scale) {
 	    itemSelector: element,
 	    domainMargin: 10,
 	    itemName: ['kilometer', 'kilometers'],
+	    tooltip: true,
 	    displayLegend: true,
 	    legend: legend_scale,
 	    legendOrientation: "vertical",

@@ -100,3 +100,34 @@ section {
     float: right;
 }
 
+.ch-tooltip {
+	padding: 10px;
+	background: #fff;
+	color: #000;
+	font-size: 14px;
+	line-height: 1.4;
+	width: 140px;
+	position: absolute;
+	z-index: 99999;
+	text-align: center;
+	border-radius: 0px;
+	box-shadow: 0px 0px 0px rgba(0,0,0,0.2);
+	display: none;
+	box-sizing: border-box;
+}
+
+.ch-tooltip::after {
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-color: transparent;
+	border-style: none;
+	content: "";
+	padding: 0;
+	display: "block";
+	bottom: -6px;
+	left: 50%;
+	margin-left: -6px;
+    border-width: 6px 6px 0;
+    border-top-color: #222;
+}
