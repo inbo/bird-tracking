@@ -112,6 +112,8 @@ function drawHourCalHeatmap(element, startdate, data, bird_data, legend_scale) {
 	hourcal = new CalHeatMap();
 	hourcal.init({
 	    onComplete: addEvents,
+	    afterLoadPreviousDomain: addEvents,
+	    afterLoadNextDomain: addEvents,
 	    domain: "month",
 	    subDomain: "x_hour",
 	    range: 6,
