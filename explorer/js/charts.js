@@ -15,10 +15,45 @@ $(document).ready(
 		bird = birds[i];
 		$("#birdselector").append("<option value=\"" + i + "\">" + bird.bird_name + "</option>");
 	    }
-	    drawMapAndCharts("colony_dist", birds[0]);
+	    var birdname = getBirdnameParameter();
+	    birdIndex = fetchBirdIndex(birdname, birds);
+	    console.log("bird name: ", birdname);
+	    console.log("bird index: ", birdIndex);
+	    drawMapAndCharts("colony_dist", birds[birdIndex]);
+	    $("#birdselector").val(birdIndex);
 	});
     }
 );
+
+// Fetch the birdname from the http parameters
+function getBirdnameParameter() {
+    qs = document.location.search;
+    qs = qs.slice(1);
+    qs = qs.split("&");
+    requested_birdname = "";
+    for (i=0; i<qs.length; i++) {
+	param = qs[i];
+	param_arr = param.split("=");
+	key = param_arr[0];
+	value = param_arr[1];
+	if (key == "birdname") {
+	    requested_birdname = value;
+	}
+    }
+    return requested_birdname;
+}
+
+// Return the bird index or return 0 if the bird was not found
+function fetchBirdIndex(birdname, birds) {
+    for (var i = 0; i<birds.length; i++) {
+	var bird = birds[i]
+	if (bird.bird_name == birdname) {
+	    return i
+	}
+    }
+    return 0
+}
+
 
 
 /* ------------
