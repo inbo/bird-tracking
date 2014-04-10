@@ -88,6 +88,15 @@ section {
     width: 60em;
 }
 
+.graph-label.highlight {
+    fill: #444;
+    font-weight: bold;
+}
 .graph-label:hover {
     cursor: pointer;
 }
+
+#selection-info {
+    float: right;
+}
+

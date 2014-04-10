@@ -100,10 +100,18 @@ function drawHourCalHeatmap(element, startdate, data, bird_data, legend_scale) {
 	    legendCellPadding: 4,
 	    data: data,
 	    onClick: function(date, distance) {
+		$(".graph-label").attr("class", "graph-label"); // remove highlight from month labels
 		start_of_that_day = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+		var highlight_dates = [];
+		for (var i = 0; i < 24; i++) {
+		    new_day = new Date(date.getFullYear(), date.getMonth(), date.getDate(), i);
+		    highlight_dates.push(new_day);
+		}
+		hourcal.highlight(highlight_dates);
 		clicked_date_timestamp = start_of_that_day.getTime();
 		next_date_timestamp = clicked_date_timestamp + (24 * 60 * 60 * 1000);
 		next_date = new Date(next_date_timestamp);
+		$("#cur-select").text(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate());
 		drawHourLineChart(globalData.hour_month_linedata, clicked_date_timestamp, next_date_timestamp);
 		setBirdsLayer(window.map, bird_data.device_info_serial, start_of_that_day, next_date);
 	    }
@@ -216,6 +224,9 @@ $("#show-dist-trav").on("click", function(event) {
 
 // Clear selection function
 function clearSelection() {
+    $("#cur-select").text("No date range selected");
+    hourcal.highlight(new Date(1971, 1, 1)); // remove highlight from calendar cells
+    $(".graph-label").attr("class", "graph-label"); // remove highlight from month labels
     var bird_index = $("#birdselector").val();
     var bird = globalData.bird_data[bird_index];
     var values = globalData.hour_month_linedata[0].values;
@@ -237,9 +248,13 @@ function addEvents() {
     $(".graph-label").on("click", function(event) {
 	// get class of parent DOM object. This should be "graph-domain m_A y_B"
 	// Where A and B are month and year respectively.
+	$(".graph-label").attr("class", "graph-label"); // remove highlight from other month labels
+	$(this).attr("class", "graph-label highlight"); // set highlight on this label
+	hourcal.highlight(new Date(1971, 1, 1)); // remove highlight from calendar cells
 	var pclasses = $(this).parent().attr("class").split(" ");
 	var month_nr = parseInt(pclasses[1].split("_")[1]);
 	var year_nr = parseInt(pclasses[2].split("_")[1]);
+	$("#cur-select").text(year_nr + "-" + month_nr);
 	var month_index = month_nr - 1;
 	if (month_nr == 12) {
 	    var next_month_index = 0;
