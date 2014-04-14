@@ -15,10 +15,45 @@ $(document).ready(
 		bird = birds[i];
 		$("#birdselector").append("<option value=\"" + i + "\">" + bird.bird_name + "</option>");
 	    }
-	    drawMapAndCharts("colony_dist", birds[0]);
+	    var birdname = getBirdnameParameter();
+	    birdIndex = fetchBirdIndex(birdname, birds);
+	    console.log("bird name: ", birdname);
+	    console.log("bird index: ", birdIndex);
+	    drawMapAndCharts("colony_dist", birds[birdIndex]);
+	    $("#birdselector").val(birdIndex);
 	});
     }
 );
+
+// Fetch the birdname from the http parameters
+function getBirdnameParameter() {
+    qs = document.location.search;
+    qs = qs.slice(1);
+    qs = qs.split("&");
+    requested_birdname = "";
+    for (i=0; i<qs.length; i++) {
+	param = qs[i];
+	param_arr = param.split("=");
+	key = param_arr[0];
+	value = param_arr[1];
+	if (key == "birdname") {
+	    requested_birdname = value;
+	}
+    }
+    return requested_birdname;
+}
+
+// Return the bird index or return 0 if the bird was not found
+function fetchBirdIndex(birdname, birds) {
+    for (var i = 0; i<birds.length; i++) {
+	var bird = birds[i]
+	if (bird.bird_name == birdname) {
+	    return i
+	}
+    }
+    return 0
+}
+
 
 
 /* ------------
@@ -77,6 +112,8 @@ function drawHourCalHeatmap(element, startdate, data, bird_data, legend_scale) {
 	hourcal = new CalHeatMap();
 	hourcal.init({
 	    onComplete: addEvents,
+	    afterLoadPreviousDomain: addEvents,
+	    afterLoadNextDomain: addEvents,
 	    domain: "month",
 	    subDomain: "x_hour",
 	    range: 6,
@@ -87,6 +124,7 @@ function drawHourCalHeatmap(element, startdate, data, bird_data, legend_scale) {
 	    itemSelector: element,
 	    domainMargin: 10,
 	    itemName: ['kilometer', 'kilometers'],
+	    tooltip: true,
 	    displayLegend: true,
 	    legend: legend_scale,
 	    legendOrientation: "vertical",
@@ -100,10 +138,18 @@ function drawHourCalHeatmap(element, startdate, data, bird_data, legend_scale) {
 	    legendCellPadding: 4,
 	    data: data,
 	    onClick: function(date, distance) {
+		$(".graph-label").attr("class", "graph-label"); // remove highlight from month labels
 		start_of_that_day = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+		var highlight_dates = [];
+		for (var i = 0; i < 24; i++) {
+		    new_day = new Date(date.getFullYear(), date.getMonth(), date.getDate(), i);
+		    highlight_dates.push(new_day);
+		}
+		hourcal.highlight(highlight_dates);
 		clicked_date_timestamp = start_of_that_day.getTime();
 		next_date_timestamp = clicked_date_timestamp + (24 * 60 * 60 * 1000);
 		next_date = new Date(next_date_timestamp);
+		$("#cur-select").text(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate());
 		drawHourLineChart(globalData.hour_month_linedata, clicked_date_timestamp, next_date_timestamp);
 		setBirdsLayer(window.map, bird_data.device_info_serial, start_of_that_day, next_date);
 	    }
@@ -214,6 +260,20 @@ $("#show-dist-trav").on("click", function(event) {
     drawCharts(data_type, bird);
 });
 
+// Clear selection function
+function clearSelection() {
+    $("#cur-select").text("No date range selected");
+    hourcal.highlight(new Date(1971, 1, 1)); // remove highlight from calendar cells
+    $(".graph-label").attr("class", "graph-label"); // remove highlight from month labels
+    var bird_index = $("#birdselector").val();
+    var bird = globalData.bird_data[bird_index];
+    var values = globalData.hour_month_linedata[0].values;
+    var min_timestamp = values[0].x;
+    var max_timestamp = values[values.length - 1].x;
+    drawHourLineChart(globalData.hour_month_linedata, min_timestamp, max_timestamp);
+    setBirdsLayer(window.map, bird.device_info_serial, "", "");
+}
+
 /* ------------
  * Add events to cal-heatmap graph-label
  * This function is called as call-back function
@@ -226,9 +286,13 @@ function addEvents() {
     $(".graph-label").on("click", function(event) {
 	// get class of parent DOM object. This should be "graph-domain m_A y_B"
 	// Where A and B are month and year respectively.
+	$(".graph-label").attr("class", "graph-label"); // remove highlight from other month labels
+	$(this).attr("class", "graph-label highlight"); // set highlight on this label
+	hourcal.highlight(new Date(1971, 1, 1)); // remove highlight from calendar cells
 	var pclasses = $(this).parent().attr("class").split(" ");
 	var month_nr = parseInt(pclasses[1].split("_")[1]);
 	var year_nr = parseInt(pclasses[2].split("_")[1]);
+	$("#cur-select").text(year_nr + "-" + month_nr);
 	var month_index = month_nr - 1;
 	if (month_nr == 12) {
 	    var next_month_index = 0;

@@ -5,7 +5,6 @@
     <link rel="shortcut icon" href="http://lifewatch.inbo.be/blog/theme/img/favicon.ico">
     <link rel="stylesheet" href="http://lifewatch.inbo.be/blog/theme/css/normalize.css">
     <link rel="stylesheet" href="http://lifewatch.inbo.be/blog/theme/css/main.css">
-    <link rel="stylesheet" href="css/custom.css">
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400">
     <link rel="stylesheet" href="http://lifewatch.inbo.be/blog/theme/css/font-awesome.min.css">
@@ -13,7 +12,8 @@
     <link rel="stylesheet" href="http://lifewatch.inbo.be/blog/theme/css/font-awesome-ie7.min.css">
     <![endif]-->
     <script src="http://lifewatch.inbo.be/blog//theme/js/vendor/modernizr-2.6.2.min.js"></script>
-    <link rel="stylesheet" href="css/cal-heatmap.css">    
+    <link rel="stylesheet" href="css/cal-heatmap.css">
+    <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/nv.d3.min.css">
     <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
 </head>
@@ -29,12 +29,16 @@
 
         <div class="content">
             <section>
-                <h1>Bird tracking explorer</h1>
+                <header>
+                    <h1>Bird tracking explorer</h1>
+                </header>
                 <p>We are <a href="http://lifewatch.inbo.be/blog/tag/bird-tracking.html">tracking birds</a> with the <a href="http://www.uva-bits.nl/">UvA-BiTS tracking system</a> and use <a href="http://lifewatch-inbo.cartodb.com/tables/f3534fdc-cd4f-416f-a00e-aa824bf2385b/public/table">CartoDB</a> to interact with the data. Here we demonstrate how you can explore and visualize the data using the <a href="https://lifewatch-inbo.cartodb.com/api/v2/sql?q=select * from bird_tracking limit 100">CartoDB API</a> and some awesome Javascript libraries. Checkout the <a href="https://github.com/LifeWatchINBO/bird-tracking-analysis">GitHub repository</a> for more details.</p>
             </section>
-            
+
             <section class="clearfix">
-                <h2>Select a bird</h2>
+                <header>
+                    <h2>Select a bird</h2>
+                </header>
                 <div id="controls">
                 <select id="birdselector"></select>
                 <button id="gobutton">Go</button>
@@ -49,21 +53,25 @@
             </section>
 
             <section>
-                <h2>Distance</h2>
+                <header>
+                    <h2>Distance</h2>
+                </header>
                 <div id="calendar">
                     <div class="clearfix">
                         <div class="tabspacer"></div>
                         <div class="tab active" id="show-dist-col" >Distance from colony</div>
                         <div class="tab inactive" id="show-dist-trav">Distance travelled</div>
+                        <div id="selection-info">
+                            <span id="cur-select">No date range selected</span>
+                            <button type="button" onclick="clearSelection()">Clear selection</button>
+                        </div>
                     </div>
 
                     <div class="clearfix">
                         <div class="cal-nav" id="cal-previous">
                             <span class="icon-chevron-left icon-large"></span>
                         </div>
-
                         <div class="cal-chart" id="hour-month-heatmap"></div>
-
                         <div class="cal-nav" id="cal-next">
                             <span class="icon-chevron-right icon-large"></span>
                         </div>
@@ -71,6 +79,23 @@
                 </div>
 
                 <div id="linechart"><svg style="height: 300px;"></svg></div>
+            </section>
+
+            <section class="comments">
+                <header>
+                    <h2>Comments</h2>
+                </header>
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    var disqus_shortname = 'lifewatchinbo';
+
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
             </section>
         </div>
 
@@ -80,7 +105,7 @@
             </footer>
         </div>
     </div>
-    
+
     <!-- Scripts -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
