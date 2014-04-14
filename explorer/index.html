@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="http://lifewatch.inbo.be/blog/theme/css/font-awesome-ie7.min.css">
     <![endif]-->
     <script src="http://lifewatch.inbo.be/blog//theme/js/vendor/modernizr-2.6.2.min.js"></script>
-    <link rel="stylesheet" href="css/cal-heatmap.css">    
+    <link rel="stylesheet" href="css/cal-heatmap.css">
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/nv.d3.min.css">
     <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
@@ -29,12 +29,16 @@
 
         <div class="content">
             <section>
-                <h1>Bird tracking explorer</h1>
+                <header>
+                    <h1>Bird tracking explorer</h1>
+                </header>
                 <p>We are <a href="http://lifewatch.inbo.be/blog/tag/bird-tracking.html">tracking birds</a> with the <a href="http://www.uva-bits.nl/">UvA-BiTS tracking system</a> and use <a href="http://lifewatch-inbo.cartodb.com/tables/f3534fdc-cd4f-416f-a00e-aa824bf2385b/public/table">CartoDB</a> to interact with the data. Here we demonstrate how you can explore and visualize the data using the <a href="https://lifewatch-inbo.cartodb.com/api/v2/sql?q=select * from bird_tracking limit 100">CartoDB API</a> and some awesome Javascript libraries. Checkout the <a href="https://github.com/LifeWatchINBO/bird-tracking-analysis">GitHub repository</a> for more details.</p>
             </section>
-            
+
             <section class="clearfix">
-                <h2>Select a bird</h2>
+                <header>
+                    <h2>Select a bird</h2>
+                </header>
                 <div id="controls">
                 <select id="birdselector"></select>
                 <button id="gobutton">Go</button>
@@ -49,7 +53,9 @@
             </section>
 
             <section>
-                <h2>Distance</h2>
+                <header>
+                    <h2>Distance</h2>
+                </header>
                 <div id="calendar">
                     <div class="clearfix">
                         <div class="tabspacer"></div>
