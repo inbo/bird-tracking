@@ -1,12 +1,10 @@
 # Bird tracking
 
-## Description
-
 Tools and documentation for analyzing and visualizing data from our [bird tracking network](http://lifewatch.inbo.be/blog/tag/bird-tracking.html).
 
-## CartoDB access
+## CartoDB documentation
 
-For more info on how to access our bird tracking data through [CartoDB](http://cartodb.com), see [cartodb/README](cartodb/README.md).
+For more info on how to access our bird tracking data through CartoDB, see [cartodb/README](cartodb/README.md).
 
 ## Bird tracking explorer
 
