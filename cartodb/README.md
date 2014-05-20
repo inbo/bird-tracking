@@ -29,7 +29,7 @@ This table contains all public occurrences recorded by the GPS tags. The data ar
 ### Public access
 
 * Table page: https://lifewatch-inbo.cartodb.com/tables/bird_tracking/public
-* SQL API: http://lifewatch-inbo.cartodb.com/api/v2/sql?q=SELECT%20*%20FROM%20bird_tracking_devices
+* SQL API: http://lifewatch-inbo.cartodb.com/api/v2/sql?q=SELECT%20*%20FROM%20bird_tracking%20LIMIT%20100
 
 ### Fields
 
@@ -66,7 +66,7 @@ This manually maintained reference table contains information on the GPS tags an
 ### Public access
 
 * Table page: https://lifewatch-inbo.cartodb.com/tables/bird_tracking_devices/public
-* SQL API: http://lifewatch-inbo.cartodb.com/api/v2/sql?q=SELECT%20*%20FROM%20bird_tracking%20LIMIT%20100
+* SQL API: http://lifewatch-inbo.cartodb.com/api/v2/sql?q=SELECT%20*%20FROM%20bird_tracking_devices
 
 ### Fields
 
