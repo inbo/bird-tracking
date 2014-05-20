@@ -1,4 +1,4 @@
-# Bird tracking data through CartoDB
+# Accessing the bird tracking data with CartoDB
 
 ## Introduction
 
