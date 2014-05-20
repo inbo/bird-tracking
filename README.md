@@ -1,13 +1,14 @@
 # Bird tracking
 
-## Description
-
 Tools and documentation for analyzing and visualizing data from our [bird tracking network](http://lifewatch.inbo.be/blog/tag/bird-tracking.html).
 
-## CartoDB access
+## Accessing the bird tracking data with CartoDB
 
-For more info on how to access our bird tracking data through [CartoDB](http://cartodb.com), see [cartodb/README](cartodb/README.md).
+[See this document](cartodb/README.md)
 
 ## Bird tracking explorer
 
-We built a page to explore the tracking data, using [D3.js](http://d3js.org/), [NVD3](http://nvd3.org), [Cal-heatmap](http://kamisama.github.io/cal-heatmap/), and [CartoDB.js](http://developers.cartodb.com/documentation/cartodb-js.html). [See it in action.](http://lifewatchinbo.github.io/bird-tracking/explorer/index.html)
+We built a tool to explore the bird tracking data, using [D3.js](http://d3js.org/), [NVD3](http://nvd3.org), [Cal-heatmap](http://kamisama.github.io/cal-heatmap/), and [CartoDB.js](http://developers.cartodb.com/documentation/cartodb-js.html).
+
+* [See it in action](http://lifewatchinbo.github.io/bird-tracking/explorer/index.html)
+* [Browse the code](explorer/)
