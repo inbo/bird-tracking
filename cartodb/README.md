@@ -104,4 +104,4 @@ You can reach us:
 
 * [@LifeWatchINBO](https://twitter.com/LifeWatchINBO)
 * By [creating an issue](https://github.com/LifeWatchINBO/bird-tracking/issues/new) to this repository.
-* By contacting the project researchers: [Eric Stienen](eric.stienen@inbo.be) for `gull` and [Anny Anselin](anny.anselin@inbo.be) for `wmh`.
+* By contacting the project researchers: [Eric Stienen](mailto:eric.stienen@inbo.be) for `gull` and [Anny Anselin](mailto:anny.anselin@inbo.be) for `wmh`.
