@@ -12,7 +12,7 @@ vernacular name | scientific name | family | project shortname | published datas
 --- | --- | --- | --- | ---
 [Lesser Black-backed Gull](http://en.wikipedia.org/wiki/Lesser_Black-backed_Gull) | Larus fuscus | Laridae | `gull` | 
 [European Herring Gull](http://en.wikipedia.org/wiki/European_Herring_Gull) | Larus argentatus | Laridae | `gull` | 
-[Western Marsh Harrier](http://en.wikipedia.org/wiki/Western_Marsh_Harrier) | Circus aeruginosus | Accipitridae | `wmh | 
+[Western Marsh Harrier](http://en.wikipedia.org/wiki/Western_Marsh_Harrier) | Circus aeruginosus | Accipitridae | `wmh` | 
 
 ## More information
 
