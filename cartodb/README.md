@@ -1,10 +1,16 @@
-# CartoDB access
+# Bird tracking data on CartoDB
 
 ## Introduction
 
-All our public bird tracking data are available through [CartoDB](http://cartodb.com), an open source tool to visualize and analyze geospatial data on the web. CartoDB allows users to query the data using SQL via the CartoDB API or download these in various formats (`csv`, `shp`, `kml`, `svg`, and `geosjon`).
+All our public bird tracking data are available through [CartoDB](http://cartodb.com), an open source tool to visualize and analyze geospatial data on the web. CartoDB allows users to query the data using SQL via the [CartoDB API](http://developers.cartodb.com/documentation/sql-api.html) or download these in various formats (`csv`, `shp`, `kml`, `svg`, and `geosjon`). The data are made available in two tables: `bird_tracking` and `bird_tracking_devices`.
 
-Two tables are of use: `bird_tracking` and `bird_tracking_devices`.
+## Interesting links
+
+* [Background information](http://lifewatch.be/birds) on the bird tracking network
+* Our [blog posts](http://lifewatch.inbo.be/blog/tag/bird-tracking.html) on the bird tracking network
+* Our [public CartoDB visualizations](https://lifewatch-inbo.cartodb.com/)
+* Our [bird tracking explorer](lifewatchinbo.github.io/bird-tracking/explorer/index.html)
+* [CartoDB API documentation](http://developers.cartodb.com/documentation/sql-api.html)
 
 ## bird_tracking table
 
