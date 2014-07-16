@@ -16,7 +16,7 @@
 4. Remove test records
 
     ```SQL
-    -- SQL to remove test tracking records, when tag was not mounted on bird
+    -- SQL to remove test tracking records, when tracker was not mounted on bird
     
     delete from bird_tracking_new_data
     using bird_tracking_devices as d
