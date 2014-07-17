@@ -71,6 +71,7 @@
         -- or date_time < tracking_start_date_time
         or altitude > 10000
         or km_per_hour > 120
+        or h_accuracy > 1000
       ) as outliers
     where outliers.cartodb_id = to_flag.cartodb_id
     ```
