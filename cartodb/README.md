@@ -42,7 +42,7 @@ altitude | number | Altitude recorded by the GPS tracker.
 date_time | date | UTC timestamp recorded by the GPS tracker.
 device_info_serial | number | ID of the GPS tracker and foreign key to `bird_tracking_devices` table.
 gps_fixtime | string | 
-h_accuracy | string | 
+h_accuracy | number | Horizontal accuracy (meters)
 latitude | number | WGS84 latitude recorded by the GPS tracker.
 location | string | 
 longitude | number | WGS84 longitude recorded by the GPS tracker.
