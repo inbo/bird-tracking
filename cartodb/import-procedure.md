@@ -32,6 +32,7 @@
     alter column altitude set data type integer using altitude::integer,
     alter column latitude set data type numeric using latitude::numeric,
     alter column longitude set data type numeric using longitude::numeric,
+    alter column h_accuracy set data type numeric using h_accuracy::numeric,
     alter column userflag set data type boolean using userflag::boolean
     ```
     
