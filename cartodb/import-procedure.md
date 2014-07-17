@@ -43,6 +43,7 @@
     -- * Records in the future
     -- * Records with an altitude above 10km
     -- * Records with a speed above 120km/h
+    -- * Records with a horizontal accuracy above 1000m
     
     with select_fields as (
       select
