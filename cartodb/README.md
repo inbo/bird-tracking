@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The best way to access our bird tracking data is via our officially published, documented, standardized, and [GBIF](http://www.gbif.org)-registered Darwin Core Archive:
+The best way to access our bird tracking data is via our officially published, standardized, documented, and [GBIF](http://www.gbif.org)-registered Darwin Core Archive:
 
 * [Bird tracking - GPS tracking of Lesser Black-backed Gull and Herring Gull breeding at the Belgian coast](http://www.gbif.org/dataset/83e20573-f7dd-4852-9159-21566e1e691e) (or see the [GitHub repository](https://github.com/LifeWatchINBO/bird-tracking-gull-occurrences/) for this dataset)
 
