@@ -12,10 +12,10 @@ But for those who prefer, we have also made our public bird tracking data availa
 
 We are currently tracking 3 species over 2 projects:
 
-vernacular name | scientific name | family | project shortname | published dataset
+vernacular name | scientific name | family | species code | published dataset
 --- | --- | --- | --- | ---
-[Lesser Black-backed Gull](http://en.wikipedia.org/wiki/Lesser_Black-backed_Gull) | Larus fuscus | Laridae | `gull` | 
-[Herring Gull](http://en.wikipedia.org/wiki/European_Herring_Gull) | Larus argentatus | Laridae | `gull` | 
+[Lesser Black-backed Gull](http://en.wikipedia.org/wiki/Lesser_Black-backed_Gull) | Larus fuscus | Laridae | `lbbg` | [bird-tracking-gull-occurrences](http://www.gbif.org/dataset/83e20573-f7dd-4852-9159-21566e1e691e)
+[Herring Gull](http://en.wikipedia.org/wiki/European_Herring_Gull) | Larus argentatus | Laridae | `hg` | [bird-tracking-gull-occurrences](http://www.gbif.org/dataset/83e20573-f7dd-4852-9159-21566e1e691e)
 [Western Marsh Harrier](http://en.wikipedia.org/wiki/Western_Marsh_Harrier) | Circus aeruginosus | Accipitridae | `wmh` |
 
 ## More information
@@ -106,12 +106,12 @@ bird_name | string | Name given to individual bird by the researcher.
 dead | boolean | `True` if individual bird is confirmed or likely dead.
 device_info_serial | number | ID of the GPS tracker. Used to link with `bird_tracking` table
 project_leader | string | Project leader of the research project for which this trackers are used.
-project_shortname | string | Shortname for the research project for which these trackers are used.
 remarks | string | Remarks by the researcher regarding the tracker or bird.
 ring_code | string | Code of the metal leg ring on the individual bird.
 ring_code_color | string | Code of the coloured leg ring on the individual bird.
 scientific_name | string | Species name of the individual bird.
 sex | string | Sex of the individual bird.
+species_code | string | Code for the species for which these trackers are used.
 tracking_end_date_time | date | UTC timestamp for when tracking is no longer (considered) operational.
 tracking_start_date_time | date | UTC timestamp for when tracking is (considered) operational (= somewhat later than tagging). Used to exclude pre-tracking test records during import.
 tracking_start_latitude | number | WGS84 latitude of the estimated tagging position.
