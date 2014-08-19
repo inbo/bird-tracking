@@ -12,8 +12,23 @@
     alter column device_info_serial set data type integer using device_info_serial::integer,
     alter column date_time set data type timestamp with time zone using date_time::timestamp with time zone
     ```
+4. Check for new devices
 
-4. Remove test records
+    ```SQL
+    -- SQL to find device_info_serial that are not found in bird_tracking_devices
+    
+    select t.device_info_serial
+    from bird_tracking_new_data t
+        left join bird_tracking_devices d
+        on t.device_info_serial = d.device_info_serial
+    where d.device_info_serial is null
+    group by t.device_info_serial
+    order by t.device_info_serial
+    ```
+
+5. Manually add any new devices and their metadata to the table `bird_trackin_devices`
+
+6. Remove test records
 
     ```SQL
     -- SQL to remove test tracking records, when tracker was not mounted on bird
@@ -25,7 +40,7 @@
         and bird_tracking_new_data.date_time < d.tracking_start_date_time
     ```
 
-5. Set other field types
+7. Set other field types
 
     ```SQL
     alter table bird_tracking_new_data
@@ -36,7 +51,7 @@
     alter column userflag set data type boolean using userflag::boolean
     ```
     
-6. Flag outliers
+8. Flag outliers
 
     ```SQL
     -- SQL to flag outliers in the tracking data
@@ -77,7 +92,7 @@
     where outliers.cartodb_id = to_flag.cartodb_id
     ```
     
-7. Show outliers
+9. Show outliers
 
     ```SQL
     select * 
@@ -85,7 +100,7 @@
     where userflag is true
     ```
     
-8. Import data into `bird_tracking`
+10. Import data into `bird_tracking`
 
     ```SQL
     -- SQL to insert new data into master bird_tracking table
