@@ -1,6 +1,5 @@
 -- SQL to show number of records recorded earlier than tracking_start_date_time.
 -- Those records should be removed.
--- https://lifewatch-inbo.cartodb.com/viz/5d42a40a-9951-11e3-8315-0ed66c7bc7f3/table
 
 select
   count(*)
