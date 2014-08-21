@@ -2,7 +2,87 @@
 
 1. Upload data to CartoDB
 2. Rename table to `bird_tracking_new_data`
-3. Set 2 field types
+3. Set `\N` to `NULL`
+
+    ```SQL
+        UPDATE bird_tracking_new_date
+        SET altitude = NULL
+        WHERE altitude = '\N';
+    UPDATE bird_tracking_new_date
+        SET date_time = NULL
+        WHERE date_time = '\N';
+    UPDATE bird_tracking_new_date
+        SET device_info_serial = NULL
+        WHERE device_info_serial = '\N';
+    UPDATE bird_tracking_new_date
+        SET direction = NULL
+        WHERE direction = '\N';
+    UPDATE bird_tracking_new_date
+        SET gps_fixtime = NULL
+        WHERE gps_fixtime = '\N';
+    UPDATE bird_tracking_new_date
+        SET h_accuracy = NULL
+        WHERE h_accuracy = '\N';
+    UPDATE bird_tracking_new_date
+        SET latitude = NULL
+        WHERE latitude = '\N';
+    UPDATE bird_tracking_new_date
+        SET location = NULL
+        WHERE location = '\N';
+    UPDATE bird_tracking_new_date
+        SET longitude = NULL
+        WHERE longitude = '\N';
+    UPDATE bird_tracking_new_date
+        SET positiondop = NULL
+        WHERE positiondop = '\N';
+    UPDATE bird_tracking_new_date
+        SET pressure = NULL
+        WHERE pressure = '\N';
+    UPDATE bird_tracking_new_date
+        SET satellites_used = NULL
+        WHERE satellites_used = '\N';
+    UPDATE bird_tracking_new_date
+        SET speed = NULL
+        WHERE speed = '\N';
+    UPDATE bird_tracking_new_date
+        SET speed3d = NULL
+        WHERE speed3d = '\N';
+    UPDATE bird_tracking_new_date
+        SET speed_3d = NULL
+        WHERE speed_3d = '\N';
+    UPDATE bird_tracking_new_date
+        SET speed_accuracy = NULL
+        WHERE speed_accuracy = '\N';
+    UPDATE bird_tracking_new_date
+        SET temperature = NULL
+        WHERE temperature = '\N';
+    UPDATE bird_tracking_new_date
+        SET userflag = NULL
+        WHERE userflag = '\N';
+    UPDATE bird_tracking_new_date
+        SET v_accuracy = NULL
+        WHERE v_accuracy = '\N';
+    UPDATE bird_tracking_new_date
+        SET vdown = NULL
+        WHERE vdown = '\N';
+    UPDATE bird_tracking_new_date
+        SET veast = NULL
+        WHERE veast = '\N';
+    UPDATE bird_tracking_new_date
+        SET vnorth = NULL
+        WHERE vnorth = '\N';
+    UPDATE bird_tracking_new_date
+        SET x_speed = NULL
+        WHERE x_speed = '\N';
+    UPDATE bird_tracking_new_date
+        SET y_speed = NULL
+        WHERE y_speed = '\N';
+    UPDATE bird_tracking_new_date
+        SET z_speed = NULL
+        WHERE z_speed = '\N';
+    ```
+
+4. Set 2 field types
 
     ```SQL
     -- SQL to set field types of device_info_serial and date_time after CSV import
@@ -12,7 +92,7 @@
     ALTER COLUMN device_info_serial SET data type integer USING device_info_serial::integer,
     ALTER COLUMN date_time SET data type timestamp with time zone USING date_time::timestamp with time zone
     ```
-4. Check for new devices
+5. Check for new devices
 
     ```SQL
     -- SQL to find device_info_serial that are not found in bird_tracking_devices
@@ -26,9 +106,9 @@
     ORDER BY t.device_info_serial
     ```
 
-5. Manually add any new devices and their metadata to the table `bird_tracking_devices`
+6. Manually add any new devices and their metadata to the table `bird_tracking_devices`
 
-6. Remove test records
+7. Remove test records
 
     ```SQL
     -- SQL to remove test tracking records, when tracker was not mounted on bird
@@ -40,7 +120,7 @@
         AND bird_tracking_new_data.date_time < d.tracking_start_date_time
     ```
 
-7. Set other field types
+8. Set other field types
 
     ```SQL
     ALTER TABLE bird_tracking_new_data
@@ -51,7 +131,7 @@
     ALTER COLUMN userflag SET data type boolean USING userflag::boolean
     ```
     
-8. Flag outliers
+9. Flag outliers
 
     ```SQL
     -- SQL to flag outliers in the tracking data
@@ -91,7 +171,7 @@
     WHERE outliers.cartodb_id = to_flag.cartodb_id
     ```
     
-9. Show outliers
+10. Show outliers
 
     ```SQL
     SELECT * 
@@ -99,7 +179,7 @@
     WHERE userflag IS TRUE
     ```
     
-10. Import data into `bird_tracking`
+11. Import data into `bird_tracking`
 
     ```SQL
     -- SQL to insert new data into master bird_tracking table
