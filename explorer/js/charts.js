@@ -89,7 +89,7 @@ function drawMapAndCharts(data_type, bird_data) {
 function drawCharts (data_type, bird_data) {
     insertBirdData(bird_data);
     if (data_type === "tracking_start_dist") {
-	var hour_month_cartodbdata = fetchTrackingData_byDayHour(bird_data.device_info_serial, "point("+ bird_data.tracking_start_longitude + "%20" + bird_data.tracking_start_latitude + ")", "");
+	var hour_month_cartodbdata = fetchTrackingData_byDayHour(bird_data.device_info_serial, "point("+ bird_data.catch_longitude + "%20" + bird_data.catch_latitude + ")", "");
     } else if (data_type === "dist_trav") {
 	var hour_month_cartodbdata = fetchTravelledDist_byHour(bird_data.device_info_serial, "");
     }
@@ -323,7 +323,7 @@ function insertBirdData(bird_data) {
     speed_result.done(function (data) {
 	$("#max-speed-text").text(" " + data.rows[0].round + " km/h");
     });
-    var dist_result = getMaxDistance(bird_data.device_info_serial, bird_data.tracking_start_longitude, bird_data.tracking_start_latitude);
+    var dist_result = getMaxDistance(bird_data.device_info_serial, bird_data.catch_longitude, bird_data.catch_latitude);
     dist_result.done(function (data) {
 	$("#max-dist-col").text(" " + Math.round(data.rows[0].max / 10) / 100 + " km");
     });

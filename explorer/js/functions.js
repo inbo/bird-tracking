@@ -57,14 +57,14 @@ function toNvd3Linedata(indata) {
 }
 
 function getAllBirdInfo(limit) {
-    var sql = "select bird_name, device_info_serial, sex, scientific_name, tracking_start_longitude, tracking_start_latitude from bird_tracking_devices order by bird_name";
+    var sql = "select bird_name, device_info_serial, sex, scientific_name, catch_longitude, catch_latitude from bird_tracking_devices order by bird_name";
     var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql + limit;
     var result = fetchTrackingData(url, "");
     return result;
 }
 
-function getMaxDistance(device_id, tracking_start_lon, tracking_start_lat) {
-    var sql = vsprintf("WITH distance_per_day as ( SELECT ST_Distance_Sphere( ST_GeomFromText('point(' || longitude || ' ' || latitude || ')',4326), ST_GeomFromText('point(%s %s)',4326)) as distance_from_start_position FROM bird_tracking WHERE device_info_serial=%s AND userflag IS FALSE) SELECT MAX(distance_from_start_position) FROM distance_per_day", [tracking_start_lon, tracking_start_lat, device_id]);
+function getMaxDistance(device_id, catch_lon, catch_lat) {
+    var sql = vsprintf("WITH distance_per_day as ( SELECT ST_Distance_Sphere( ST_GeomFromText('point(' || longitude || ' ' || latitude || ')',4326), ST_GeomFromText('point(%s %s)',4326)) as distance_from_start_position FROM bird_tracking WHERE device_info_serial=%s AND userflag IS FALSE) SELECT MAX(distance_from_start_position) FROM distance_per_day", [catch_lon, catch_lat, device_id]);
     var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql;
     var result = fetchTrackingData(url, "");
     return result
