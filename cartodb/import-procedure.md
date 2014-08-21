@@ -5,31 +5,31 @@
 3. Set `\N` to `NULL`
 
     ```SQL
-    UPDATE bird_tracking_new_date SET altitude = NULL WHERE altitude = '\N';
-    UPDATE bird_tracking_new_date SET date_time = NULL WHERE date_time = '\N';
-    UPDATE bird_tracking_new_date SET device_info_serial = NULL WHERE device_info_serial = '\N';
-    UPDATE bird_tracking_new_date SET direction = NULL WHERE direction = '\N';
-    UPDATE bird_tracking_new_date SET gps_fixtime = NULL WHERE gps_fixtime = '\N';
-    UPDATE bird_tracking_new_date SET h_accuracy = NULL WHERE h_accuracy = '\N';
-    UPDATE bird_tracking_new_date SET latitude = NULL WHERE latitude = '\N';
-    UPDATE bird_tracking_new_date SET location = NULL WHERE location = '\N';
-    UPDATE bird_tracking_new_date SET longitude = NULL WHERE longitude = '\N';
-    UPDATE bird_tracking_new_date SET positiondop = NULL WHERE positiondop = '\N';
-    UPDATE bird_tracking_new_date SET pressure = NULL WHERE pressure = '\N';
-    UPDATE bird_tracking_new_date SET satellites_used = NULL WHERE satellites_used = '\N';
-    UPDATE bird_tracking_new_date SET speed = NULL WHERE speed = '\N';
-    UPDATE bird_tracking_new_date SET speed3d = NULL WHERE speed3d = '\N';
-    UPDATE bird_tracking_new_date SET speed_3d = NULL WHERE speed_3d = '\N';
-    UPDATE bird_tracking_new_date SET speed_accuracy = NULL WHERE speed_accuracy = '\N';
-    UPDATE bird_tracking_new_date SET temperature = NULL WHERE temperature = '\N';
-    UPDATE bird_tracking_new_date SET userflag = NULL WHERE userflag = '\N';
-    UPDATE bird_tracking_new_date SET v_accuracy = NULL WHERE v_accuracy = '\N';
-    UPDATE bird_tracking_new_date SET vdown = NULL WHERE vdown = '\N';
-    UPDATE bird_tracking_new_date SET veast = NULL WHERE veast = '\N';
-    UPDATE bird_tracking_new_date SET vnorth = NULL WHERE vnorth = '\N';
-    UPDATE bird_tracking_new_date SET x_speed = NULL WHERE x_speed = '\N';
-    UPDATE bird_tracking_new_date SET y_speed = NULL WHERE y_speed = '\N';
-    UPDATE bird_tracking_new_date SET z_speed = NULL WHERE z_speed = '\N';
+    UPDATE bird_tracking_new_data SET altitude = NULL WHERE altitude = '\N';
+    UPDATE bird_tracking_new_data SET date_time = NULL WHERE date_time = '\N';
+    UPDATE bird_tracking_new_data SET device_info_serial = NULL WHERE device_info_serial = '\N';
+    UPDATE bird_tracking_new_data SET direction = NULL WHERE direction = '\N';
+    UPDATE bird_tracking_new_data SET gps_fixtime = NULL WHERE gps_fixtime = '\N';
+    UPDATE bird_tracking_new_data SET h_accuracy = NULL WHERE h_accuracy = '\N';
+    UPDATE bird_tracking_new_data SET latitude = NULL WHERE latitude = '\N';
+    UPDATE bird_tracking_new_data SET location = NULL WHERE location = '\N';
+    UPDATE bird_tracking_new_data SET longitude = NULL WHERE longitude = '\N';
+    UPDATE bird_tracking_new_data SET positiondop = NULL WHERE positiondop = '\N';
+    UPDATE bird_tracking_new_data SET pressure = NULL WHERE pressure = '\N';
+    UPDATE bird_tracking_new_data SET satellites_used = NULL WHERE satellites_used = '\N';
+    UPDATE bird_tracking_new_data SET speed = NULL WHERE speed = '\N';
+    UPDATE bird_tracking_new_data SET speed3d = NULL WHERE speed3d = '\N';
+    UPDATE bird_tracking_new_data SET speed_3d = NULL WHERE speed_3d = '\N';
+    UPDATE bird_tracking_new_data SET speed_accuracy = NULL WHERE speed_accuracy = '\N';
+    UPDATE bird_tracking_new_data SET temperature = NULL WHERE temperature = '\N';
+    UPDATE bird_tracking_new_data SET userflag = NULL WHERE userflag = '\N';
+    UPDATE bird_tracking_new_data SET v_accuracy = NULL WHERE v_accuracy = '\N';
+    UPDATE bird_tracking_new_data SET vdown = NULL WHERE vdown = '\N';
+    UPDATE bird_tracking_new_data SET veast = NULL WHERE veast = '\N';
+    UPDATE bird_tracking_new_data SET vnorth = NULL WHERE vnorth = '\N';
+    UPDATE bird_tracking_new_data SET x_speed = NULL WHERE x_speed = '\N';
+    UPDATE bird_tracking_new_data SET y_speed = NULL WHERE y_speed = '\N';
+    UPDATE bird_tracking_new_data SET z_speed = NULL WHERE z_speed = '\N';
     ```
 
 4. Set 2 field types
