@@ -4,7 +4,7 @@
 select
   count(*)
 from
-bird_tracking as t
+bird_tracking_new_data as t
 left join bird_tracking_devices as d
 on t.device_info_serial = d.device_info_serial
 where
