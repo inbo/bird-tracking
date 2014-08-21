@@ -4,7 +4,7 @@ Tools and documentation for analyzing and visualizing data from our [bird tracki
 
 ## Accessing the bird tracking data with CartoDB
 
-[See this document](cartodb/README.md)
+[See this document](cartodb/README.md).
 
 ## Bird tracking explorer
 

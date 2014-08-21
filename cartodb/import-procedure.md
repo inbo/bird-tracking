@@ -12,11 +12,26 @@
     alter column device_info_serial set data type integer using device_info_serial::integer,
     alter column date_time set data type timestamp with time zone using date_time::timestamp with time zone
     ```
-
-4. Remove test records
+4. Check for new devices
 
     ```SQL
-    -- SQL to remove test tracking records, when tag was not mounted on bird
+    -- SQL to find device_info_serial that are not found in bird_tracking_devices
+    
+    select t.device_info_serial
+    from bird_tracking_new_data t
+        left join bird_tracking_devices d
+        on t.device_info_serial = d.device_info_serial
+    where d.device_info_serial is null
+    group by t.device_info_serial
+    order by t.device_info_serial
+    ```
+
+5. Manually add any new devices and their metadata to the table `bird_trackin_devices`
+
+6. Remove test records
+
+    ```SQL
+    -- SQL to remove test tracking records, when tracker was not mounted on bird
     
     delete from bird_tracking_new_data
     using bird_tracking_devices as d
@@ -25,23 +40,25 @@
         and bird_tracking_new_data.date_time < d.tracking_start_date_time
     ```
 
-5. Set other field types
+7. Set other field types
 
     ```SQL
     alter table bird_tracking_new_data
     alter column altitude set data type integer using altitude::integer,
     alter column latitude set data type numeric using latitude::numeric,
     alter column longitude set data type numeric using longitude::numeric,
+    alter column h_accuracy set data type numeric using h_accuracy::numeric,
     alter column userflag set data type boolean using userflag::boolean
     ```
     
-6. Flag outliers
+8. Flag outliers
 
     ```SQL
     -- SQL to flag outliers in the tracking data
     -- * Records in the future
     -- * Records with an altitude above 10km
     -- * Records with a speed above 120km/h
+    -- * Records with a horizontal accuracy above 1000m
     
     with select_fields as (
       select
@@ -70,11 +87,12 @@
         -- or date_time < tracking_start_date_time
         or altitude > 10000
         or km_per_hour > 120
+        or h_accuracy > 1000
       ) as outliers
     where outliers.cartodb_id = to_flag.cartodb_id
     ```
     
-7. Show outliers
+9. Show outliers
 
     ```SQL
     select * 
@@ -82,7 +100,7 @@
     where userflag is true
     ```
     
-8. Import data into `bird_tracking`
+10. Import data into `bird_tracking`
 
     ```SQL
     -- SQL to insert new data into master bird_tracking table

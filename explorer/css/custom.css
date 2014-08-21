@@ -1,6 +1,11 @@
 /* Override some settings from main.css */
 .content {
+    padding-top: 1em;
     max-width: 60em;
+}
+.header {
+    min-width: 24em; /* Necessary for relative position: 20em + padding */
+    position: relative;
 }
 
 /* Custom css */
