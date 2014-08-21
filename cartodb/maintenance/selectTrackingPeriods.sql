@@ -4,7 +4,7 @@
 select
   d.bird_name,
   d.scientific_name,
-  d.ring_code_color,
+  d.colour_ring_code,
   min(t.date_time) as start,
   max(t.date_time) as end,
   max(t.date_time)::date - min(t.date_time)::date as days,
@@ -16,6 +16,6 @@ where t.userflag is false
 group by 
   d.bird_name,
   d.scientific_name,
-  d.ring_code_color,
+  d.colour_ring_code,
   d.remarks
 order by days desc
