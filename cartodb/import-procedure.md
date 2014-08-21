@@ -26,7 +26,7 @@
     order by t.device_info_serial
     ```
 
-5. Manually add any new devices and their metadata to the table `bird_trackin_devices`
+5. Manually add any new devices and their metadata to the table `bird_tracking_devices`
 
 6. Remove test records
 
