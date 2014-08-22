@@ -77,7 +77,7 @@ latitude | number | WGS84 latitude recorded by the GPS tracker.
 longitude | number | WGS84 longitude recorded by the GPS tracker.
 satellites_used | number | Number of satellites used to get a GPS fix.
 speed_accuracy | number | 
-temperature | number | Temperature measured by the GPS tracker in degrees Celsius.
+temperature | number | Temperature recorded by the GPS tracker in degrees Celsius.
 userflag | boolean | `True` for outliers, which are automatically flagged on import (see [import procedure](import-procedure.md)).
 v_accuracy | number | Vertical accuracy in meters.
 x_speed | number | meters per second
