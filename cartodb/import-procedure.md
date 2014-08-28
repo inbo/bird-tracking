@@ -87,7 +87,7 @@
     USING bird_tracking_devices AS d
     WHERE
         bird_tracking_new_data.device_info_serial = d.device_info_serial
-        AND bird_tracking_new_data.date_time < d.tracking_start_date_time
+        AND bird_tracking_new_data.date_time < d.tracking_started_at
     ```
     
 10. Flag outliers
@@ -104,7 +104,7 @@
             t.cartodb_id,
             d.device_info_serial,
             d.bird_name,
-            d.tracking_start_date_time,
+            d.tracking_started_at,
             t.date_time,
             t.altitude,
             t.h_accuracy as height_accuracy,
