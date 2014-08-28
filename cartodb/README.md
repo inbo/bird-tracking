@@ -106,7 +106,7 @@ bird_name | string | Name given to individual bird by the researcher.
 catch_latitude | number | WGS84 latitude of the estimated catch position.
 catch_location | string | Name of area where the bird was catched. Gulls are catched on nest, so this is can be considered their colony location. Harriers are catched near their nest, so this can be considered their home range for at least the first year.
 catch_longitude | number | WGS84 longitude of the estimated catch position.
-catch_weight_in_g | number | Weight of the individual bird in grams when catched.
+catch_weight | number | Weight of the individual bird in grams when catched.
 colour_ring_code | string | Code of the coloured leg ring on the individual bird.
 dead | boolean | `True` if individual bird is confirmed or likely dead.
 device_info_serial | number | ID of the GPS tracker. Used to link with `bird_tracking` table
