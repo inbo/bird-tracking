@@ -4,7 +4,19 @@
     border-top: 1px solid #dddddd;
     padding-bottom: 20px;
     padding-top: 20px;
+}
+#display {
+    padding-bottom: 20px;
     padding-top: 20px;
+    }
+    #display .row {
+        margin-bottom: 20px;
+        }
+        #metric-metadata {
+            margin-top: 20px;
+            padding-top: 5px;
+        }
+
     padding-bottom: 20px;
 
 .chart {
