@@ -6,4 +6,8 @@
     padding-top: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
+
+.chart {
+    background-color: #313131;
+    min-height: 200px;
 }
