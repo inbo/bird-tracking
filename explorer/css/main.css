@@ -1,5 +1,9 @@
 #controls {
     background-color: #f8f8f8;
+    border-bottom: 1px solid #dddddd;
+    border-top: 1px solid #dddddd;
+    padding-bottom: 20px;
+    padding-top: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
 }
