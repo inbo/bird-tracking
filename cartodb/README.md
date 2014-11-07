@@ -109,7 +109,7 @@ catch_longitude | number | WGS84 longitude of the estimated catch position.
 catch_weight | number | Weight of the individual bird in grams when catched.
 colour_ring_code | string | Code of the coloured leg ring on the individual bird.
 device_info_serial | number | ID of the GPS tracker. Used to link with `bird_tracking` table
-is_dead | boolean | `True` if individual bird is confirmed or likely dead.
+is_inactive | boolean | `True` if individual bird is confirmed or likely dead.
 project_leader | string | Project leader of the research project for which this trackers are used.
 remarks | string | Remarks by the researcher regarding the tracker or bird.
 ring_code | string | Code of the metal leg ring on the individual bird.
