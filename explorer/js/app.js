@@ -18,11 +18,6 @@ function fetchBirdData() {
 }
 
 // -------------------------
-// Add data to DOM
-// -------------------------
-
-
-// -------------------------
 // app function will contain
 // all functionality for the
 // app
