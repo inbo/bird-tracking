@@ -16,3 +16,15 @@ asyncTest("fetch 10 occurrences for device 703", 1, function() {
         start();
     });
 });
+
+asyncTest("fetch bird data", 1, function() {
+    result = fetchBirdData();
+    result.done(function (data) {
+        equal(data.rows.length, 66);
+        start();
+    })
+    .fail(function () {
+        ok('', 'fetching bird data failed');
+        start();
+    });
+});
