@@ -18,6 +18,21 @@ function fetchBirdData() {
 }
 
 // -------------------------
+// Convert data
+// -------------------------
+
+// convert cartodb data to cal-heatmap input
+function toCalHeatmap(indata) {
+    var outdata = new Object();
+    _.each(indata.rows, function(el, i) {
+        var t = el.timestamp;
+        var d = el.distance;
+        outdata[t] = d;
+    });
+    return outdata;
+}
+
+// -------------------------
 // app function will contain
 // all functionality for the
 // app

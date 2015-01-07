@@ -28,3 +28,31 @@ asyncTest("fetch bird data", 1, function() {
         start();
     });
 });
+
+// -------------------------------------
+// Test data convertion functions
+// -------------------------------------
+
+// Convert to expected object type for calendar heatmap
+test("convert object from cartodb to cal-heatmap input", function() {
+    var testCartoDbOutput = {
+        "time":0.05,
+        "fields":{
+            "timestamp":{"type":"number"},
+            "distance":{"type":"number"}
+        },
+        "total_rows":1,
+            "rows":[
+                {
+                    "timestamp": 1370044800,
+                    "distance":5881.3
+                },
+                {
+                    "timestamp": 4,
+                    "distance": 9
+                }
+            ]
+    };
+    var calHeatmapInput = {"1370044800": 5881.3, "4": 9};
+    deepEqual(toCalHeatmap(testCartoDbOutput), calHeatmapInput);
+});
