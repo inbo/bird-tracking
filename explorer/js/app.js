@@ -17,3 +17,42 @@ function fetchBirdData() {
     return fetchTrackingData(url);
 }
 
+// -------------------------
+// Add data to DOM
+// -------------------------
+
+
+// -------------------------
+// app function will contain
+// all functionality for the
+// app
+// -------------------------
+var app = function() {
+    var birds_call = fetchBirdData();
+    var birds = [];
+    birds_call.done(function(data) {
+        birds = _.sortBy(data.rows, function(bird) {return bird.scientific_name + bird.bird_name});
+        addBirdsToSelect()
+    })
+
+    function addBirdsToSelect() {
+        // create optgroups per species
+        all_species = _.map(birds, function(bird){ return bird.scientific_name });
+        species = _.uniq(all_species, true);
+        opt_groups = {};
+        _.each(species, function(spec_name){ opt_groups[spec_name] = "<optgroup label=\"" + spec_name +"\">"});
+
+        // append bird names to the correct optgroups
+        for (var i=0;i<birds.length;i++) {
+            opt = "<option value\"" + i + "\">" + birds[i].bird_name + "</option>";
+            opt_groups[birds[i].scientific_name] += opt;
+        }
+
+        // create one html text with all the optgroups and their options
+        optgrp_html = "";
+        _.each(opt_groups, function(optgrp, spec_name){ optgrp_html += optgrp + "</optgroup>"});
+
+        // append the optgroups html to the select-bird element
+        $("#select-bird").append(optgrp_html);
+    }
+}();
