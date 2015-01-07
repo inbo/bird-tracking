@@ -25,11 +25,25 @@ function fetchBirdData() {
 var app = function() {
     var birds_call = fetchBirdData();
     var birds = [];
+    var selectedBird;
     birds_call.done(function(data) {
         birds = _.sortBy(data.rows, function(bird) {return bird.scientific_name + bird.bird_name});
         addBirdsToSelect()
     })
 
+    // -------------------------
+    // Bind functions to DOM elements
+    // -------------------------
+    $("#select-bird").on("change", function(e) {
+        var optionSelected = $("option:selected", this);
+        selectedBird = optionSelected.val();
+        insertBirdMetadata();
+    });
+
+    // -------------------------
+    // DOM interaction functions
+    // -------------------------
+    
     function addBirdsToSelect() {
         // create optgroups per species
         all_species = _.map(birds, function(bird){ return bird.scientific_name });
@@ -39,7 +53,7 @@ var app = function() {
 
         // append bird names to the correct optgroups
         for (var i=0;i<birds.length;i++) {
-            opt = "<option value\"" + i + "\">" + birds[i].bird_name + "</option>";
+            opt = "<option value=" + i + ">" + birds[i].bird_name + "</option>";
             opt_groups[birds[i].scientific_name] += opt;
         }
 
@@ -49,5 +63,13 @@ var app = function() {
 
         // append the optgroups html to the select-bird element
         $("#select-bird").append(optgrp_html);
+        selectedBird = 0;
+        insertBirdMetadata();
+    }
+
+    function insertBirdMetadata() {
+        spec = birds[selectedBird].scientific_name;
+        sex = birds[selectedBird].sex;
+        $("#bird-metadata").text("Species: " + spec + " | Sex: " + sex);
     }
 }();
