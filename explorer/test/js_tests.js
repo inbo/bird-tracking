@@ -17,6 +17,20 @@ asyncTest("fetch 10 occurrences for device 703", 1, function() {
     });
 });
 
+asyncTest("fetch distances data by day for device 703 and point 3.1828, 51.3407", 1, function() {
+    var device = "703";
+    var point = "3.1828 51.3407"
+    var result = fetchDistancesByDay(device, point);
+    result.done(function(data) {
+        deepEqual(_.map(data.rows[0], function(val, key) {return key}), ["timestamp", "distance"]);
+        start();
+    })
+    .fail(function() {
+        ok("", "fetching distances data failed");
+        start();
+    });
+});
+
 asyncTest("fetch bird data", 1, function() {
     result = fetchBirdData();
     result.done(function (data) {

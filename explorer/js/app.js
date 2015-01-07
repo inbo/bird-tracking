@@ -10,6 +10,13 @@ function fetchTrackingData(url) {
     return result;
 }
 
+// fetch distances of a device to a point per day (max)
+function fetchDistancesByDay(device, point) {
+    query = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,ST_GeomFromText('point(" + point + ")',4326) ) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE) SELECT extract(epoch FROM date_trunc('day',date_time)) AS timestamp, round((max(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp"
+    var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + query;
+    return fetchTrackingData(url);
+}
+
 // function to fetch all birds in the bird_tracking_devices table
 function fetchBirdData() {
     query = "SELECT bird_name, device_info_serial, sex, scientific_name from bird_tracking_devices";
