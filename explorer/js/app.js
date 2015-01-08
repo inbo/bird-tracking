@@ -138,10 +138,14 @@ var app = function() {
         yearDataCall.done(function(data) {
             if (data.rows.length > 0) {
                 setYearData(data);
-                if (typeof(yearcal) != "undefined") {
+                if (typeof(yearcal) != "undefined" && yearcal != null) {
                     yearcal = yearcal.destroy(drawNewYearChart);
                 } else {
                     drawNewYearChart();
+                }
+            } else {
+                if (typeof(yearcal) != "undefined" && yearcal != null) {
+                    yearcal = yearcal.destroy();
                 }
             }
         });
