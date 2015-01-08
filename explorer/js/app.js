@@ -14,7 +14,6 @@ function fetchTrackingData(url) {
 function fetchDistancesByDay(device, point) {
     query = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,ST_GeomFromText('point(" + point + ")',4326) ) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE) SELECT extract(epoch FROM date_trunc('day',date_time)) AS timestamp, round((max(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp"
     var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + query;
-    console.log(url);
     return fetchTrackingData(url);
 }
 
@@ -114,11 +113,8 @@ var app = function() {
     // function to set the year data to the needed local variables
     function setYearData(data) {
         yeardata = toCalHeatmap(data);
-        console.log(data);
-        console.log(yeardata);
         timestampLastDate = _.last(_.sortBy(_.keys(yeardata), function(el) {return el}));
         timestampFirstDate = getDayOneYearAgo(timestampLastDate);
-        console.log("last data point at: " + new Date(timestampLastDate* 1000));
     }
 
     // helper function to actually draw the year chart
