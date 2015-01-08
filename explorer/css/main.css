@@ -4,7 +4,28 @@
     border-top: 1px solid #e7e7e7;
     padding-bottom: 20px;
     padding-top: 20px;
-}
+    }
+    #controls .chart,
+    #controls .cal-nav {
+        float: left;
+        height: 130px; /* Height of chart, affects padding of .cal-nav span */
+    }
+    #controls .chart {
+        width: calc(100% - 2 * 40px);
+    }
+    #controls .cal-nav {
+        color: #428bca; /* Bootstrap blue for a */
+        cursor: pointer;
+        width: 40px; /* Affects width of .chart */
+        }
+        #controls .cal-nav:hover {
+            color: #2a6496; /* Bootstrap blue for a:hover */;
+        }
+        #controls .cal-nav span { /* Arrow icon */
+            display: block;
+            padding: 51px 12px; /* Icon is 28 x 16, padding stretches span to full div */
+        }
+
 #display {
     padding-bottom: 20px;
     padding-top: 20px;
@@ -25,7 +46,8 @@
     padding-top: 20px;
 }
 
-.chart { /* Temporarily */
+#display .chart { /* Temporarily */
     background-color: #313131;
-    min-height: 200px;
+    min-height: 200px; 
+    min-width: 20px;
 }
