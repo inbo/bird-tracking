@@ -45,7 +45,11 @@ function toCalHeatmap(indata) {
 // -------------------------
 function getDayOneYearAgo(datetime) {
     d = new Date(datetime * 1000);
-    c = new Date(d.getFullYear() - 1, d.getMonth(), d.getDate());
+    if (d.getMonth() != 11) {
+        c = new Date(d.getFullYear() - 1, d.getMonth() + 1);
+    } else {
+        c = new Date(d.getFullYear(), 0);
+    }
     return c.valueOf() / 1000;
 }
 
@@ -121,11 +125,14 @@ var app = function() {
     function drawNewYearChart() {
         yearcal = new CalHeatMap();
         yearcal.init({
-            domain: "year",
+            domain: "month",
             subDomain: "day",
+            itemName: ['kilometer', 'kilometers'],
+            domainGutter: 5,
+            tooltip: true,
             itemSelector: "#year-chart",
-            start: new Date(timestampLastDate * 1000),
-            range: 1,
+            start: new Date(timestampFirstDate * 1000),
+            range: 12,
             data: yeardata
         });
     }

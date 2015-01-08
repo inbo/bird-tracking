@@ -75,13 +75,13 @@ test("convert object from cartodb to cal-heatmap input", function() {
 // Test other helper functions
 // -------------------------------------
 
-// Get day 365 days before given day
-test("get day one year ago", function() {
-    var inputDate = new Date(2005, 0, 1); // January 1st, 1999
+// Get first day of the month of 11 months before given day
+test("get day 11 months ago", function() {
+    var inputDate = new Date(2005, 11, 10);
     var inputSeconds = inputDate.valueOf() / 1000; // cal heatmap works with seconds, not miliseconds
     var result = getDayOneYearAgo(inputSeconds);
     var d = new Date(result * 1000);
-    equal(d.getFullYear(), 2004);
+    equal(d.getFullYear(), 2005);
     equal(d.getMonth(), 0);
     equal(d.getDate(), 1);
 });
