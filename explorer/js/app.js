@@ -14,6 +14,7 @@ function fetchTrackingData(url) {
 function fetchDistancesByDay(device, point) {
     query = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,ST_GeomFromText('point(" + point + ")',4326) ) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE) SELECT extract(epoch FROM date_trunc('day',date_time)) AS timestamp, round((max(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp"
     var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + query;
+    console.log(url);
     return fetchTrackingData(url);
 }
 
@@ -39,6 +40,16 @@ function toCalHeatmap(indata) {
     return outdata;
 }
 
+
+// -------------------------
+// General helper functions
+// -------------------------
+function getDayOneYearAgo(datetime) {
+    d = new Date(datetime * 1000);
+    c = new Date(d.getFullYear() - 1, d.getMonth(), d.getDate());
+    return c.valueOf() / 1000;
+}
+
 // -------------------------
 // app function will contain
 // all functionality for the
@@ -48,6 +59,10 @@ var app = function() {
     var birds_call = fetchBirdData();
     var birds = [];
     var selectedBird;
+    var yearcal;
+    var yeardata;
+    var timestampFirstDate;
+    var timestampLastDate;
     birds_call.done(function(data) {
         birds = _.sortBy(data.rows, function(bird) {return bird.scientific_name + bird.bird_name});
         addBirdsToSelect()
@@ -60,6 +75,7 @@ var app = function() {
         var optionSelected = $("option:selected", this);
         selectedBird = optionSelected.val();
         insertBirdMetadata();
+        createYearChart();
     });
 
     // -------------------------
@@ -94,4 +110,45 @@ var app = function() {
         sex = birds[selectedBird].sex;
         $("#bird-metadata").text("Species: " + spec + " | Sex: " + sex);
     }
+
+    // function to set the year data to the needed local variables
+    function setYearData(data) {
+        yeardata = toCalHeatmap(data);
+        console.log(data);
+        console.log(yeardata);
+        timestampLastDate = _.last(_.sortBy(_.keys(yeardata), function(el) {return el}));
+        timestampFirstDate = getDayOneYearAgo(timestampLastDate);
+        console.log("last data point at: " + new Date(timestampLastDate* 1000));
+    }
+
+    // helper function to actually draw the year chart
+    function drawNewYearChart() {
+        yearcal = new CalHeatMap();
+        yearcal.init({
+            domain: "year",
+            subDomain: "day",
+            itemSelector: "#year-chart",
+            start: new Date(timestampLastDate * 1000),
+            range: 1,
+            data: yeardata
+        });
+    }
+
+    // fetch data and create the year chart
+    function createYearChart() {
+        var bird = birds[selectedBird];
+        var point = bird.longitude + " " + bird.latitude;
+        yearDataCall = fetchDistancesByDay(bird.device_info_serial, point);
+        yearDataCall.done(function(data) {
+            if (data.rows.length > 0) {
+                setYearData(data);
+                if (typeof(yearcal) != "undefined") {
+                    yearcal = yearcal.destroy(drawNewYearChart);
+                } else {
+                    drawNewYearChart();
+                }
+            }
+        });
+    }
+
 }();

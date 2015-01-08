@@ -70,3 +70,18 @@ test("convert object from cartodb to cal-heatmap input", function() {
     var calHeatmapInput = {"1370044800": 5881.3, "4": 9};
     deepEqual(toCalHeatmap(testCartoDbOutput), calHeatmapInput);
 });
+
+// -------------------------------------
+// Test other helper functions
+// -------------------------------------
+
+// Get day 365 days before given day
+test("get day one year ago", function() {
+    var inputDate = new Date(2005, 0, 1); // January 1st, 1999
+    var inputSeconds = inputDate.valueOf() / 1000; // cal heatmap works with seconds, not miliseconds
+    var result = getDayOneYearAgo(inputSeconds);
+    var d = new Date(result * 1000);
+    equal(d.getFullYear(), 2004);
+    equal(d.getMonth(), 0);
+    equal(d.getDate(), 1);
+});
