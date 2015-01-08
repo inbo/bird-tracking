@@ -129,6 +129,8 @@ var app = function() {
             subDomain: "day",
             itemName: ['kilometer', 'kilometers'],
             domainGutter: 5,
+            displayLegend: false,
+            cellSize: 14,
             tooltip: true,
             itemSelector: "#year-chart",
             start: new Date(timestampFirstDate * 1000),
