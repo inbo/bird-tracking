@@ -133,6 +133,8 @@ var app = function() {
             cellSize: 14,
             tooltip: true,
             itemSelector: "#year-chart",
+            previousSelector: "#previous-month",
+            nextSelector: "#next-month",
             start: new Date(timestampFirstDate * 1000),
             range: 12,
             data: yeardata
