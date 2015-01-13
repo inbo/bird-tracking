@@ -118,7 +118,17 @@ var app = function() {
     function insertBirdMetadata() {
         spec = birds[selectedBird].scientific_name;
         sex = birds[selectedBird].sex;
-        $("#bird-metadata").text("Species: " + spec + " | Sex: " + sex);
+        catch_loc = birds[selectedBird].catch_location;
+        colour_ring = birds[selectedBird].colour_ring_code;
+        tracking_start = new Date(birds[selectedBird].tracking_started_at);
+        track_start_date = tracking_start.getFullYear() + "-" + tracking_start.getMonth() + "-" + tracking_start.getDate();
+        $("#bird-metadata").text(
+            "Species: " + spec +
+            " | Sex: " + sex +
+            " | Catched at: " + catch_loc +
+            " | Colour ring: " + colour_ring +
+            " | Tracked since: " + track_start_date
+        );
     }
 
     // function to set the year data to the needed local variables
