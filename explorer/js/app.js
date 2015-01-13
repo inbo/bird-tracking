@@ -151,8 +151,7 @@ var app = function() {
     // fetch data and create the year chart
     function createYearChart() {
         var bird = birds[selectedBird];
-        var point = bird.longitude + " " + bird.latitude;
-        yearDataCall = fetchDistancesByDay(bird.device_info_serial, point);
+        yearDataCall = fetchDistTravelledByDay(bird.device_info_serial);
         yearDataCall.done(function(data) {
             if (data.rows.length > 0) {
                 setYearData(data);
