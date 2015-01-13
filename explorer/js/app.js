@@ -121,7 +121,7 @@ var app = function() {
         catch_loc = birds[selectedBird].catch_location;
         colour_ring = birds[selectedBird].colour_ring_code;
         tracking_start = new Date(birds[selectedBird].tracking_started_at);
-        track_start_date = tracking_start.getFullYear() + "-" + tracking_start.getMonth() + "-" + tracking_start.getDate();
+        track_start_date = tracking_start.getFullYear() + "-" + (tracking_start.getMonth() + 1) + "-" + tracking_start.getDate();
         $("#bird-metadata").text(
             "Species: " + spec +
             " | Sex: " + sex +
