@@ -44,10 +44,11 @@ asyncTest("fetch distance travelled by day for device 703", 1, function() {
     });
 });
 
-asyncTest("fetch bird data", 1, function() {
+asyncTest("fetch bird data", 2, function() {
     result = fetchBirdData();
     result.done(function (data) {
         equal(data.rows.length, 66);
+        deepEqual(_.map(data.rows[0], function(val, key) {return key}), ["bird_name", "device_info_serial", "sex", "scientific_name", "longitude", "latitude"]);
         start();
     })
     .fail(function () {
