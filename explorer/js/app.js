@@ -140,8 +140,6 @@ var app = function() {
         var svgWidth = getSVGWidth("year-chart");
         svgWidth = svgWidth.substr(0, svgWidth.length - 2);
         yearcalRange = Math.floor(svgWidth / 88); // 88 is an estimated average for the total domain width. It depends on the number of columns that are present in a domain and hence, this will not be 100% correct.
-        console.log(svgWidth);
-        console.log(yearcalRange);
     }
 
     // function to set the year data to the needed local variables
