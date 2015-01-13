@@ -148,6 +148,11 @@ var app = function() {
             domainGutter: 5,
             displayLegend: false,
             cellSize: 14,
+            legendColors: {
+                min: "#DAE289",
+                max: "#3B6427",
+                empty: "#dddddd"
+            },
             tooltip: true,
             itemSelector: "#year-chart",
             previousSelector: "#previous-month",
