@@ -50,14 +50,15 @@ function toCalHeatmap(indata) {
 // -------------------------
 // General helper functions
 // -------------------------
-function getDayOneYearAgo(datetime) {
+function getDayXMonthsAgo(datetime, nrOfMonths) {
     d = new Date(datetime * 1000);
-    if (d.getMonth() != 11) {
-        c = new Date(d.getFullYear() - 1, d.getMonth() + 1);
-    } else {
-        c = new Date(d.getFullYear(), 0);
-    }
+    c = d.setMonth(d.getMonth() - nrOfMonths);
     return c.valueOf() / 1000;
+}
+
+function getSVGWidth(id) {
+    var svg = d3.select("#" + id);
+    return svg.style("width");
 }
 
 // -------------------------
@@ -71,6 +72,7 @@ var app = function() {
     var selectedBird;
     var yearcal;
     var yeardata;
+    var yearcalRange;
     var timestampFirstDate;
     var timestampLastDate;
     birds_call.done(function(data) {
@@ -131,11 +133,22 @@ var app = function() {
         );
     }
 
+    // function to define the number of domains that will be drawn
+    // in the year calendar chart. This is based on the width of
+    // the svg element.
+    function setYearcalRange() {
+        var svgWidth = getSVGWidth("year-chart");
+        svgWidth = svgWidth.substr(0, svgWidth.length - 2);
+        yearcalRange = Math.floor(svgWidth / 88); // 88 is an estimated average for the total domain width. It depends on the number of columns that are present in a domain and hence, this will not be 100% correct.
+        console.log(svgWidth);
+        console.log(yearcalRange);
+    }
+
     // function to set the year data to the needed local variables
     function setYearData(data) {
         yeardata = toCalHeatmap(data);
         timestampLastDate = _.last(_.sortBy(_.keys(yeardata), function(el) {return el}));
-        timestampFirstDate = getDayOneYearAgo(timestampLastDate);
+        timestampFirstDate = getDayXMonthsAgo(timestampLastDate, yearcalRange - 1);
     }
 
     // helper function to actually draw the year chart
@@ -158,7 +171,7 @@ var app = function() {
             previousSelector: "#previous-month",
             nextSelector: "#next-month",
             start: new Date(timestampFirstDate * 1000),
-            range: 12,
+            range: yearcalRange,
             data: yeardata
         });
     }
@@ -169,6 +182,7 @@ var app = function() {
         yearDataCall = fetchDistTravelledByDay(bird.device_info_serial);
         yearDataCall.done(function(data) {
             if (data.rows.length > 0) {
+                setYearcalRange();
                 setYearData(data);
                 if (typeof(yearcal) != "undefined" && yearcal != null) {
                     yearcal = yearcal.destroy(drawNewYearChart);
