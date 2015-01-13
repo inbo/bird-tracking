@@ -75,6 +75,8 @@ var app = function() {
     var yearcalRange;
     var timestampFirstDate;
     var timestampLastDate;
+    var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     birds_call.done(function(data) {
         birds = _.sortBy(data.rows, function(bird) {return bird.scientific_name + bird.bird_name});
         addBirdsToSelect()
@@ -117,6 +119,7 @@ var app = function() {
         insertBirdMetadata();
     }
 
+    // this function will insert bird metadata in the #bird-metadata element
     function insertBirdMetadata() {
         spec = birds[selectedBird].scientific_name;
         sex = birds[selectedBird].sex;
@@ -133,6 +136,17 @@ var app = function() {
         );
     }
 
+    // function to insert the selected date in the frontend
+    function insertDateSelection(date) {
+        var selectedTime = d3.select("#selected-time");
+        selectedTime.text(date);
+    }
+
+    // this function will clear the date selection from the #selected-time element
+    function clearDateSelection() {
+        d3.select("#selected-time").text("");
+    }
+
     // function to define the number of domains that will be drawn
     // in the year calendar chart. This is based on the width of
     // the svg element.
@@ -147,6 +161,57 @@ var app = function() {
         yeardata = toCalHeatmap(data);
         timestampLastDate = _.last(_.sortBy(_.keys(yeardata), function(el) {return el}));
         timestampFirstDate = getDayXMonthsAgo(timestampLastDate, yearcalRange - 1);
+    }
+
+    // function to draw the month heatmap chart
+    function drawMonthChart() {
+        console.log("drawing the month chart");
+    }
+
+    // function to draw the cartodb map
+    function drawMap() {
+        console.log("drawing the map");
+    }
+
+    // function to draw the day line chart
+    function drawDayLineChart() {
+        console.log("drawing the day line chart");
+    }
+
+    // funtion called when a cell in the year calendar is clicked
+    function dayClick(date, value) {
+        yearcal.highlight(date);
+        var dateStr = weekdays[date.getDay()] + " " + monthNames[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+        insertDateSelection(dateStr);
+        drawMonthChart();
+        drawMap();
+        drawDayLineChart();
+    }
+
+    // this function is called when a month label is clicked
+    function monthClick(d, i) {
+        date = new Date(d);
+        var dateStr = monthNames[date.getMonth()] + " " + date.getFullYear();
+        insertDateSelection(dateStr);
+        drawMonthChart();
+        drawMap();
+        drawDayLineChart();
+    }
+
+    // this function will be called whenever a selection needs to be cleared
+    function clearSelection() {
+        clearDateSelection();
+        console.log("clear month heatmap");
+        console.log("clear map");
+        console.log("clear day line chart");
+    }
+
+    // This function will add onClick events to all .graph-label elements
+    function addCalendarMonthclickEvent() {
+        console.log("adding calendar month click events");
+        var labels = d3.selectAll(".graph-label");
+        console.log(labels);
+        labels.on("click", monthClick);
     }
 
     // helper function to actually draw the year chart
@@ -170,7 +235,9 @@ var app = function() {
             nextSelector: "#next-month",
             start: new Date(timestampFirstDate * 1000),
             range: yearcalRange,
-            data: yeardata
+            data: yeardata,
+            onClick: dayClick,
+            onComplete: addCalendarMonthclickEvent
         });
     }
 
@@ -184,12 +251,14 @@ var app = function() {
                 setYearData(data);
                 if (typeof(yearcal) != "undefined" && yearcal != null) {
                     yearcal = yearcal.destroy(drawNewYearChart);
+                    clearSelection();
                 } else {
                     drawNewYearChart();
                 }
             } else {
                 if (typeof(yearcal) != "undefined" && yearcal != null) {
                     yearcal = yearcal.destroy();
+                    clearSelection();
                 }
             }
         });

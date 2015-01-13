@@ -12,7 +12,11 @@
     }
     #controls .chart {
         width: calc(100% - 2 * 40px);
-    }
+        }
+        #controls .chart .graph-label:hover {
+            cursor: pointer;
+            font-weight: bold;
+        }
     #controls .cal-nav {
         color: #428bca; /* Bootstrap blue for a */
         cursor: pointer;
