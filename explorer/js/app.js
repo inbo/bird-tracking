@@ -73,6 +73,8 @@ var app = function() {
     var yearcal;
     var yeardata;
     var yearcalRange;
+    var map;
+    var cartodbLayer = "empty";
     var timestampFirstDate;
     var timestampLastDate;
     var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -175,9 +177,65 @@ var app = function() {
         console.log("drawing the month chart");
     }
 
+    // helper function to create the google maps base layer
+    function createNewBaseLayer() {
+        var mapOptions = {
+            zoom: 9,
+            center: new google.maps.LatLng(51.2, 3),
+            mapTypeControlOptions: {
+                mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.HYBRID]
+            },
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById('map'),  mapOptions);
+    }
+
+    // helper function to add a new cartodb layer to the map
+    function createNewCartoDBLayer(sql) {
+        cartodb.createLayer(map, {
+            user_name: "lifewatch-inbo",
+            type: "cartodb",
+            sublayers: [{
+                sql: sql,
+                cartocss: "#bird_tracking{ marker-fill: #ffcc00; marker-width: 2.5; marker-line-color: #FFF; marker-line-width: 0; marker-line-opacity: 0.5; marker-opacity: 0.9; marker-comp-op: multiply; marker-type: ellipse; marker-placement: point; marker-allow-overlap: true; marker-clip: false; marker-multi-policy: largest; }"
+            }]
+        })
+        .addTo(map)
+        .done(function(layer) {
+            cartodbLayer = layer;
+        });
+    }
+
+    // this function will clear the cartodb layer
+    function clearCartodbLayer() {
+        sublayer = cartodbLayer.getSubLayer(0);
+        sublayer.remove();
+        cartodbLayer = "empty";
+    }
+
+
     // function to draw the cartodb map
-    function drawMap() {
-        console.log("drawing the map");
+    function drawMap(dateRange) {
+        // construct the query based on the given dateRange and the current selected bird
+        var start_str = dateRange[0].getFullYear() + "/" + (dateRange[0].getMonth() + 1) + "/" + dateRange[0].getDate();
+        var end_str = dateRange[1].getFullYear() + "/" + (dateRange[1].getMonth() + 1) + "/" + dateRange[1].getDate();
+        var sql = "select * from bird_tracking where userflag is false and date_time > '" + start_str + "' and date_time < '" + end_str + "' and device_info_serial='" + birds[selectedBird].device_info_serial + "'";
+
+        // determine whether the map already exists. If so, we only need to update
+        // the sql of the cartodb sublayer.
+        if (typeof(map) == "undefined") {
+            createNewBaseLayer();
+            createNewCartoDBLayer(sql);
+        } else {
+            if (cartodbLayer == "empty") {
+                // map is still present, but layer was removed.
+                // need to create a new layer.
+                createNewCartoDBLayer(sql);
+            } else {
+                sublayer = cartodbLayer.getSubLayer(0);
+                sublayer.setSQL(sql);
+            }
+        }
     }
 
     // function to draw the day line chart
@@ -189,9 +247,12 @@ var app = function() {
     function dayClick(date, value) {
         yearcal.highlight(date);
         var dateStr = weekdays[date.getDay()] + " " + monthNames[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+        var endDate = new Date(date);
+        endDate.setDate(date.getDate() + 1);
+        var dateRange = [date, endDate];
         insertDateSelection(dateStr);
         drawMonthChart();
-        drawMap();
+        drawMap(dateRange);
         drawDayLineChart();
     }
 
@@ -199,17 +260,21 @@ var app = function() {
     function monthClick(d, i) {
         date = new Date(d);
         var dateStr = monthNames[date.getMonth()] + " " + date.getFullYear();
+        var endDate = new Date(getDayXMonthsAgo(date.valueOf() / 1000, -1) * 1000);
+        var dateRange = [date, endDate]
         insertDateSelection(dateStr);
         drawMonthChart();
-        drawMap();
+        drawMap(dateRange);
         drawDayLineChart();
     }
+
 
     // this function will be called whenever a selection needs to be cleared
     function clearSelection() {
         clearDateSelection();
         console.log("clear month heatmap");
         console.log("clear map");
+        clearCartodbLayer();
         console.log("clear day line chart");
     }
 
@@ -217,7 +282,6 @@ var app = function() {
     function addCalendarMonthclickEvent() {
         console.log("adding calendar month click events");
         var labels = d3.selectAll(".graph-label");
-        console.log(labels);
         labels.on("click", monthClick);
     }
 
