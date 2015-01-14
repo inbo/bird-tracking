@@ -26,7 +26,7 @@ function fetchDistTravelledByDay(device) {
 
 // function to fetch all birds in the bird_tracking_devices table
 function fetchBirdData() {
-    query = "SELECT bird_name, catch_location, colour_ring_code, device_info_serial, sex, scientific_name, longitude, latitude, tracking_started_at from bird_tracking_devices";
+    query = "SELECT d.bird_name, d.catch_location, d.colour_ring_code, d.device_info_serial, d.sex, d.scientific_name, d.longitude, d.latitude, d.tracking_started_at, MAX(t.date_time) last_timestamp FROM bird_tracking_devices d LEFT OUTER JOIN bird_tracking t ON d.device_info_serial = t.device_info_serial GROUP BY d.bird_name, d.catch_location, d.colour_ring_code, d.device_info_serial, d.sex, d.scientific_name, d.longitude, d.latitude, d.tracking_started_at";
     var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + query;
     return fetchTrackingData(url);
 }

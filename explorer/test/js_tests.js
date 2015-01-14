@@ -48,7 +48,7 @@ asyncTest("fetch bird data", 2, function() {
     result = fetchBirdData();
     result.done(function (data) {
         equal(data.rows.length, 66);
-        deepEqual(_.map(data.rows[0], function(val, key) {return key}), ["bird_name", "catch_location", "colour_ring_code", "device_info_serial", "sex", "scientific_name", "longitude", "latitude", "tracking_started_at"]);
+        deepEqual(_.map(data.rows[0], function(val, key) {return key}), ["bird_name", "catch_location", "colour_ring_code", "device_info_serial", "sex", "scientific_name", "longitude", "latitude", "tracking_started_at", "last_timestamp"]);
         start();
     })
     .fail(function () {
