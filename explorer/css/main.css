@@ -11,6 +11,7 @@
         height: 130px; /* Height of chart, affects padding of .cal-nav span */
     }
     #controls .chart {
+        overflow: hidden;
         width: calc(100% - 2 * 40px);
         }
         #controls .chart .graph-label:hover {
