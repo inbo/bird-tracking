@@ -44,11 +44,16 @@ asyncTest("fetch distance travelled by day for device 703", 1, function() {
     });
 });
 
-asyncTest("fetch distance travelled by hour for device 703", 1, function() {
+asyncTest("fetch distance travelled by hour for device 703", 2, function() {
     var device = "703";
-    var result = fetchDistTravelledByHour(device);
+    // june 1, 2013 = 1370037600000
+    // july 1, 2013 = 1372629600000
+    var june1 = new Date(1370037600000);
+    var july1 = new Date(1372629600000);
+    var result = fetchDistTravelledByHour(device, [june1, july1]);
     result.done(function(data) {
         deepEqual(_.map(data.rows[0], function(val, key) {return key}), ["timestamp", "distance"]);
+        ok(data.rows.length < 31*24);
         start();
     })
     .fail(function() {
