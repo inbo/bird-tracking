@@ -71,6 +71,10 @@ function getSVGWidth(id) {
     return svg.style("width");
 }
 
+function findCurrentSelectedMetric() {
+    activeMetricElement = d3.select("#select-metric .active");
+    return "distance_travelled";
+}
 // -------------------------
 // app function will contain
 // all functionality for the
@@ -87,6 +91,8 @@ var app = function() {
     var monthdata;
     var nrOfDaysInMonth;
     var currentMonthRange;
+    var currentlySelectedMetric = "distance_travelled";
+    var currentlyDisplayedMetric;
     var map;
     var cartodbLayer = "empty";
     var linechart = "empty";
@@ -202,7 +208,9 @@ var app = function() {
     // function to draw the month heatmap chart
     function drawMonthChart(dateRange) {
         var bird = birds[selectedBird];
-        monthDataCall = fetchDistTravelledByHour(bird.device_info_serial, dateRange);
+        if (currentlySelectedMetric == "distance_travelled") {
+            monthDataCall = fetchDistTravelledByHour(bird.device_info_serial, dateRange);
+        }
         monthDataCall.done(function(data) {
             if (data.rows.length > 0) {
                 setMonthData(data);
@@ -299,8 +307,10 @@ var app = function() {
         endDate.setDate(date.getDate() + 1);
         var dateRange = [date, endDate];
         insertDateSelection(dateStr);
-        if (!_.isEqual(currentMonthRange, monthRange)) {
+        currentlySelectedMetric = findCurrentSelectedMetric();
+        if (!_.isEqual(currentMonthRange, monthRange) || !_.isEqual(currentlySelectedMetric, currentlyDisplayedMetric)) {
             currentMonthRange = monthRange;
+            currentlyDisplayedMetric = currentlySelectedMetric;
             drawMonthChart(monthRange);
         } else {
             monthcal.highlight(highlightedDay);
@@ -316,8 +326,10 @@ var app = function() {
         var endDate = new Date(getDayXMonthsAgo(date.valueOf() / 1000, -1) * 1000);
         var dateRange = [date, endDate]
         insertDateSelection(dateStr);
-        if (!_.isEqual(currentMonthRange, dateRange)) {
+        currentlySelectedMetric = findCurrentSelectedMetric();
+        if (!_.isEqual(currentMonthRange, dateRange) || !_.isEqual(currentlySelectedMetric, currentlyDisplayedMetric)) {
             currentMonthRange = dateRange;
+            currentlyDisplayedMetric = currentlySelectedMetric;
             drawMonthChart(dateRange);
         } else {
             monthcal.highlight(highlightedDay);
