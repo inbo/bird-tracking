@@ -30,7 +30,6 @@ function fetchDistTravelledByHour(device, dateRange) {
     var end = dateRange[1].getFullYear() + "/" + (dateRange[1].getMonth() + 1) + "/" + dateRange[1].getDate();
     var query = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom,1) OVER(ORDER BY device_info_serial, date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE AND date_time>'" + start + "' AND date_time<'" + end + "') SELECT extract(epoch FROM date_trunc('hour',date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
     var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + query;
-    console.log(url);
     return fetchTrackingData(url);
 
 }
@@ -85,10 +84,15 @@ var app = function() {
     var yeardata;
     var yearcalRange;
     var monthcal;
+    var monthdata;
+    var nrOfDaysInMonth;
+    var currentMonthRange;
     var map;
     var cartodbLayer = "empty";
+    var linechart = "empty";
     var timestampFirstDate;
     var timestampLastDate;
+    var highlightedDay = "";
     var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     birds_call.done(function(data) {
@@ -104,6 +108,7 @@ var app = function() {
         selectedBird = optionSelected.val();
         insertBirdMetadata();
         createYearChart();
+        clearSelection();
     });
 
     var selMetricElements = d3.selectAll("#select-metric li");
@@ -184,9 +189,30 @@ var app = function() {
         timestampFirstDate = getDayXMonthsAgo(timestampLastDate, yearcalRange - 1);
     }
 
+    function setMonthData(data) {
+        monthdata = toCalHeatmap(data);
+        var dayInMonth = new Date(_.keys(monthdata)[0] * 1000);
+        var monthStart = new Date(dayInMonth.getFullYear(), dayInMonth.getMonth());
+        var lastMonthDay = new Date(monthStart);
+        lastMonthDay.setMonth(lastMonthDay.getMonth() + 1);
+        lastMonthDay.setDate(lastMonthDay.getDate() - 1);
+        nrOfDaysInMonth = lastMonthDay.getDate();
+    }
+
     // function to draw the month heatmap chart
-    function drawMonthChart() {
-        console.log("drawing the month chart");
+    function drawMonthChart(dateRange) {
+        var bird = birds[selectedBird];
+        monthDataCall = fetchDistTravelledByHour(bird.device_info_serial, dateRange);
+        monthDataCall.done(function(data) {
+            if (data.rows.length > 0) {
+                setMonthData(data);
+                if (typeof(monthcal) != "undefined" && monthcal != null) {
+                    monthcal = monthcal.destroy(drawNewMonthChart);
+                } else {
+                    drawNewMonthChart();
+                }
+            }
+        });
     }
 
     // helper function to create the google maps base layer
@@ -258,12 +284,27 @@ var app = function() {
     // funtion called when a cell in the year calendar is clicked
     function dayClick(date, value) {
         yearcal.highlight(date);
+        highlightedDay = [];
+        for (var i=0;i<24;i++) {
+            highlightHour = new Date(date);
+            highlightHour.setHours(i);
+            highlightedDay.push(highlightHour);
+        }
         var dateStr = weekdays[date.getDay()] + " " + monthNames[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
         var endDate = new Date(date);
+        var monthStart = new Date(date.getFullYear(), date.getMonth());
+        var monthEnd = new Date(monthStart);
+        monthEnd.setMonth(monthEnd.getMonth() + 1);
+        var monthRange = [monthStart, monthEnd];
         endDate.setDate(date.getDate() + 1);
         var dateRange = [date, endDate];
         insertDateSelection(dateStr);
-        drawMonthChart();
+        if (!_.isEqual(currentMonthRange, monthRange)) {
+            currentMonthRange = monthRange;
+            drawMonthChart(monthRange);
+        } else {
+            monthcal.highlight(highlightedDay);
+        }
         drawMap(dateRange);
         drawDayLineChart();
     }
@@ -275,7 +316,12 @@ var app = function() {
         var endDate = new Date(getDayXMonthsAgo(date.valueOf() / 1000, -1) * 1000);
         var dateRange = [date, endDate]
         insertDateSelection(dateStr);
-        drawMonthChart();
+        if (!_.isEqual(currentMonthRange, dateRange)) {
+            currentMonthRange = dateRange;
+            drawMonthChart(dateRange);
+        } else {
+            monthcal.highlight(highlightedDay);
+        }
         drawMap(dateRange);
         drawDayLineChart();
     }
@@ -284,15 +330,20 @@ var app = function() {
     // this function will be called whenever a selection needs to be cleared
     function clearSelection() {
         clearDateSelection();
-        console.log("clear month heatmap");
-        console.log("clear map");
-        clearCartodbLayer();
-        console.log("clear day line chart");
+        highlightedDay = "";
+        if (typeof(monthcal) != "undefined" && monthcal != null) {
+            monthcal.destroy();
+        }
+        if (cartodbLayer != "empty") {
+            clearCartodbLayer();
+        }
+        if (linechart != "empty") {
+            console.log("clear day line chart");
+        }
     }
 
     // This function will add onClick events to all .graph-label elements
     function addCalendarMonthclickEvent() {
-        console.log("adding calendar month click events");
         var labels = d3.selectAll(".graph-label");
         labels.on("click", monthClick);
     }
@@ -324,6 +375,40 @@ var app = function() {
         });
     }
 
+    // helper function to actually draw the month year chart
+    function drawNewMonthChart() {
+        ts = new Date(_.keys(monthdata)[0] * 1000);
+        start_ts = new Date(ts.getFullYear(), ts.getMonth());
+        monthcal = new CalHeatMap();
+        monthcal.init({
+            domain: "day",
+            subDomain: "x_hour",
+            itemName: ['kilometer', 'kilometers'],
+            domainGutter: 2,
+            displayLegend: true,
+            cellSize: 8,
+            verticalOrientation: true,
+            rowLimit: 24,
+            legendColors: {
+                min: "#DAE289",
+                max: "#3B6427",
+                empty: "#dddddd"
+            },
+            label: {
+                position: "left",
+                width: 46,
+                height: 4
+            },
+            domainLabelFormat: "%d",
+            tooltip: true,
+            itemSelector: "#month-chart",
+            start: start_ts,
+            highlight: highlightedDay,
+            range: nrOfDaysInMonth,
+            data: monthdata
+        });
+    }
+
     // fetch data and create the year chart
     function createYearChart() {
         var bird = birds[selectedBird];
@@ -346,11 +431,4 @@ var app = function() {
             }
         });
     }
-
-    // fetch data and create month chart
-    function createMonthChart() {
-        var bird = birds[selectedBird];
-        monthDataCall = fetchDistTravelledByHour(bird.device_info_serial, month);
-    }
-
 }();
