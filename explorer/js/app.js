@@ -92,6 +92,13 @@ var app = function() {
         createYearChart();
     });
 
+    var selMetricElements = d3.selectAll("#select-metric li");
+    selMetricElements.on("click", function() {
+        clicked_element = d3.select(this);
+        selMetricElements.classed("active", false);
+        clicked_element.classed("active", true);
+    });
+
     // -------------------------
     // DOM interaction functions
     // -------------------------
