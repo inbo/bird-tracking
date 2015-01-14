@@ -44,6 +44,19 @@ asyncTest("fetch distance travelled by day for device 703", 1, function() {
     });
 });
 
+asyncTest("fetch distance travelled by hour for device 703", 1, function() {
+    var device = "703";
+    var result = fetchDistTravelledByHour(device);
+    result.done(function(data) {
+        deepEqual(_.map(data.rows[0], function(val, key) {return key}), ["timestamp", "distance"]);
+        start();
+    })
+    .fail(function() {
+        ok("", "fetching distance travelled data failed");
+        start();
+    });
+});
+
 asyncTest("fetch bird data", 2, function() {
     result = fetchBirdData();
     result.done(function (data) {
