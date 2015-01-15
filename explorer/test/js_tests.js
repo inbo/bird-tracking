@@ -122,6 +122,34 @@ test("convert object from cartodb to cal-heatmap input", function() {
     deepEqual(toCalHeatmap(testCartoDbOutput), calHeatmapInput);
 });
 
+// Convert to expected type for C3 line chart
+test("convert data to C3 input format", function() {
+    var testCartoDbOutput = {
+        "time":0.05,
+        "fields":{
+            "timestamp":{"type":"number"},
+            "distance":{"type":"number"}
+        },
+        "total_rows":1,
+            "rows":[
+                {
+                    "timestamp": 1,
+                    "distance": 20
+                },
+                {
+                    "timestamp": 4,
+                    "distance": 10
+                },
+                {
+                    "timestamp": 5,
+                    "distance": 40
+                }
+            ]
+    };
+    var c3input = {x: 'x', columns: [['x', 1, 4, 5], ['distance', 20, 10, 40]]};
+    deepEqual(toC3Format(testCartoDbOutput), c3input);
+});
+
 // -------------------------------------
 // Test other helper functions
 // -------------------------------------

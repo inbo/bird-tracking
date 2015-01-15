@@ -65,6 +65,15 @@ function toCalHeatmap(indata) {
     return outdata;
 }
 
+function toC3Format(indata) {
+    var x = ["x"];
+    var y = ["distance"];
+    _.each(indata.rows, function(el, i) {
+        x.push(el.timestamp);
+        y.push(el.distance);
+    });
+    return {x: "x", columns: [x, y]};
+}
 
 // -------------------------
 // General helper functions
@@ -310,9 +319,18 @@ var app = function() {
         }
     }
 
+    // function to draw a new line chart if no one exists
+    function drawNewDayLineChart() {
+        console.log("drawing the day line chart");
+    }
+
     // function to draw the day line chart
     function drawDayLineChart() {
-        console.log("drawing the day line chart");
+        drawNewDayLineChart();
+    }
+
+    function clearDayChart() {
+        console.log("removing day line chart");
     }
 
     // funtion called when a cell in the year calendar is clicked
@@ -361,7 +379,7 @@ var app = function() {
             monthcal.highlight(highlightedDay);
         }
         drawMap(dateRange);
-        drawDayLineChart();
+        clearDayChart();
     }
 
 
@@ -376,7 +394,7 @@ var app = function() {
             clearCartodbLayer();
         }
         if (linechart != "empty") {
-            console.log("clear day line chart");
+            clearDayChart()
         }
     }
 
