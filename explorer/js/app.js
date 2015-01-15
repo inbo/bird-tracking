@@ -183,7 +183,7 @@ var app = function() {
         tracking_start = new Date(birds[selectedBird].tracking_started_at);
         track_start_date = tracking_start.getFullYear() + "-" + (tracking_start.getMonth() + 1) + "-" + tracking_start.getDate();
         $("#bird-metadata").html(
-            sex + " <em>" + species + "</em> (" + ring_code + "), catched in " + track_start_date.substring(0,4) + "."
+            sex + " <em>" + species + "</em> (" + ring_code + "), caught in " + track_start_date.substring(0,4) + "."
         );
     }
 
