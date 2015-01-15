@@ -36,7 +36,7 @@ function fetchDistTravelledByHour(device, dateRange) {
 
 // function to fetch all birds in the bird_tracking_devices table
 function fetchBirdData() {
-    query = "SELECT d.bird_name, d.catch_location, d.colour_ring_code, d.device_info_serial, d.sex, d.scientific_name, d.longitude, d.latitude, d.tracking_started_at, MAX(t.date_time) last_timestamp FROM bird_tracking_devices d LEFT OUTER JOIN bird_tracking t ON d.device_info_serial = t.device_info_serial GROUP BY d.bird_name, d.catch_location, d.colour_ring_code, d.device_info_serial, d.sex, d.scientific_name, d.longitude, d.latitude, d.tracking_started_at";
+    query = "SELECT d.bird_name, d.catch_location, d.ring_code, d.device_info_serial, d.sex, d.scientific_name, d.longitude, d.latitude, d.tracking_started_at, MAX(t.date_time) last_timestamp FROM bird_tracking_devices d LEFT OUTER JOIN bird_tracking t ON d.device_info_serial = t.device_info_serial GROUP BY d.bird_name, d.catch_location, d.ring_code, d.device_info_serial, d.sex, d.scientific_name, d.longitude, d.latitude, d.tracking_started_at";
     var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + query;
     return fetchTrackingData(url);
 }
@@ -153,18 +153,14 @@ var app = function() {
 
     // this function will insert bird metadata in the #bird-metadata element
     function insertBirdMetadata() {
-        spec = birds[selectedBird].scientific_name;
+        species = birds[selectedBird].scientific_name;
         sex = birds[selectedBird].sex;
-        catch_loc = birds[selectedBird].catch_location;
-        colour_ring = birds[selectedBird].colour_ring_code;
+        catch_location = birds[selectedBird].catch_location;
+        ring_code = birds[selectedBird].ring_code;
         tracking_start = new Date(birds[selectedBird].tracking_started_at);
         track_start_date = tracking_start.getFullYear() + "-" + (tracking_start.getMonth() + 1) + "-" + tracking_start.getDate();
-        $("#bird-metadata").text(
-            "Species: " + spec +
-            " | Sex: " + sex +
-            " | Catched at: " + catch_loc +
-            " | Colour ring: " + colour_ring +
-            " | Tracked since: " + track_start_date
+        $("#bird-metadata").html(
+            sex + " <em>" + species + "</em> (" + ring_code + "), catched in " + track_start_date.substring(0,4) + "."
         );
     }
 

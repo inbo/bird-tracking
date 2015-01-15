@@ -29,6 +29,9 @@
             display: block;
             padding: 51px 12px; /* Icon is 28 x 16, padding stretches span to full div */
         }
+    #bird-metadata:first-letter {
+        text-transform: capitalize;
+    }
 
 #display {
     padding-bottom: 20px;
