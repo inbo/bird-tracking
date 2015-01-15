@@ -31,6 +31,25 @@ asyncTest("fetch distances data by day for device 703 and point 3.1828, 51.3407"
     });
 });
 
+asyncTest("fetch distance data by hour for device 703 and point 3.1828, 51.3407", 2, function() {
+    var device = "703";
+    var point = "3.1828 51.3407"
+    // june 1, 2013 = 1370037600000
+    // july 1, 2013 = 1372629600000
+    var june1 = new Date(1370037600000);
+    var july1 = new Date(1372629600000);
+    var result = fetchDistancesByHour(device, point, [june1, july1]);
+    result.done(function(data) {
+        deepEqual(_.map(data.rows[0], function(val, key) {return key}), ["timestamp", "distance"]);
+        ok(data.rows.length < 31*24);
+        start();
+    })
+    .fail(function() {
+        ok("", "fetching distance travelled data failed");
+        start();
+    });
+});
+
 asyncTest("fetch distance travelled by day for device 703", 1, function() {
     var device = "703";
     var result = fetchDistTravelledByDay(device);

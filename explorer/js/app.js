@@ -17,6 +17,15 @@ function fetchDistancesByDay(device, point) {
     return fetchTrackingData(url);
 }
 
+// fetch distances of a device to a point per hour (max) for a date range
+function fetchDistancesByHour(device, point, dateRange) {
+    var start = dateRange[0].getFullYear() + "/" + (dateRange[0].getMonth() + 1) + "/" + dateRange[0].getDate();
+    var end = dateRange[1].getFullYear() + "/" + (dateRange[1].getMonth() + 1) + "/" + dateRange[1].getDate();
+    query = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,ST_GeomFromText('point(" + point + ")',4326) ) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE AND date_time>'" + start + "' AND date_time<'" + end + "') SELECT extract(epoch FROM date_trunc('hour',date_time)) AS timestamp, round((max(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp"
+    var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + query;
+    return fetchTrackingData(url);
+}
+
 // fetch distance travelled of a device per day
 function fetchDistTravelledByDay(device) {
     query = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom,1) OVER(ORDER BY device_info_serial, date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE) SELECT extract(epoch FROM date_trunc('day',date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
@@ -72,9 +81,16 @@ function getSVGWidth(id) {
 }
 
 function findCurrentSelectedMetric() {
-    activeMetricElement = d3.select("#select-metric .active");
-    return "distance_travelled";
+    var activeMetricElement = d3.select("#select-metric .active a");
+    var text = activeMetricElement.text();
+    console.log("the currently selected metric is: " + text);
+    if (text == "Distance travelled") {
+        return "distance_travelled";
+    } else if (text == "Distance from catch location") {
+        return "distance_from_catch_loc";
+    }
 }
+
 // -------------------------
 // app function will contain
 // all functionality for the
@@ -118,11 +134,7 @@ var app = function() {
     });
 
     var selMetricElements = d3.selectAll("#select-metric li");
-    selMetricElements.on("click", function() {
-        clicked_element = d3.select(this);
-        selMetricElements.classed("active", false);
-        clicked_element.classed("active", true);
-    });
+    selMetricElements.on("click", changeMetric);
 
     // -------------------------
     // DOM interaction functions
@@ -205,11 +217,25 @@ var app = function() {
         nrOfDaysInMonth = lastMonthDay.getDate();
     }
 
+    // function called when the metric is changed
+    function changeMetric() {
+        clicked_element = d3.select(this);
+        selMetricElements.classed("active", false);
+        clicked_element.classed("active", true);
+        currentlySelectedMetric = findCurrentSelectedMetric();
+        drawMonthChart();
+    }
+
     // function to draw the month heatmap chart
-    function drawMonthChart(dateRange) {
+    function drawMonthChart() {
         var bird = birds[selectedBird];
         if (currentlySelectedMetric == "distance_travelled") {
-            monthDataCall = fetchDistTravelledByHour(bird.device_info_serial, dateRange);
+            console.log("fetching distance travelled month data");
+            monthDataCall = fetchDistTravelledByHour(bird.device_info_serial, currentMonthRange);
+        } else {
+            console.log("fetching distance from catch location month data");
+            point = bird.longitude + " " + bird.latitude;
+            monthDataCall = fetchDistancesByHour(bird.device_info_serial, point, currentMonthRange);
         }
         monthDataCall.done(function(data) {
             if (data.rows.length > 0) {
@@ -291,6 +317,10 @@ var app = function() {
 
     // funtion called when a cell in the year calendar is clicked
     function dayClick(date, value) {
+        var monthStart = new Date(date.getFullYear(), date.getMonth());
+        var monthEnd = new Date(monthStart);
+        monthEnd.setMonth(monthEnd.getMonth() + 1);
+        var monthRange = [monthStart, monthEnd];
         yearcal.highlight(date);
         highlightedDay = [];
         for (var i=0;i<24;i++) {
@@ -300,10 +330,6 @@ var app = function() {
         }
         var dateStr = weekdays[date.getDay()] + " " + monthNames[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
         var endDate = new Date(date);
-        var monthStart = new Date(date.getFullYear(), date.getMonth());
-        var monthEnd = new Date(monthStart);
-        monthEnd.setMonth(monthEnd.getMonth() + 1);
-        var monthRange = [monthStart, monthEnd];
         endDate.setDate(date.getDate() + 1);
         var dateRange = [date, endDate];
         insertDateSelection(dateStr);
@@ -311,7 +337,7 @@ var app = function() {
         if (!_.isEqual(currentMonthRange, monthRange) || !_.isEqual(currentlySelectedMetric, currentlyDisplayedMetric)) {
             currentMonthRange = monthRange;
             currentlyDisplayedMetric = currentlySelectedMetric;
-            drawMonthChart(monthRange);
+            drawMonthChart();
         } else {
             monthcal.highlight(highlightedDay);
         }
@@ -330,7 +356,7 @@ var app = function() {
         if (!_.isEqual(currentMonthRange, dateRange) || !_.isEqual(currentlySelectedMetric, currentlyDisplayedMetric)) {
             currentMonthRange = dateRange;
             currentlyDisplayedMetric = currentlySelectedMetric;
-            drawMonthChart(dateRange);
+            drawMonthChart();
         } else {
             monthcal.highlight(highlightedDay);
         }
