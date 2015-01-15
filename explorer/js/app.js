@@ -68,11 +68,11 @@ function toCalHeatmap(indata) {
 function toC3Format(indata) {
     var x = ["x"];
     var y = ["distance"];
-    _.each(indata.rows, function(el, i) {
-        x.push(el.timestamp);
-        y.push(el.distance);
+    _.each(indata, function(val, key) {
+        x.push(parseInt(key) * 1000);
+        y.push(val);
     });
-    return {x: "x", columns: [x, y]};
+    return [x, y];
 }
 
 // -------------------------
@@ -92,7 +92,6 @@ function getSVGWidth(id) {
 function findCurrentSelectedMetric() {
     var activeMetricElement = d3.select("#select-metric .active a");
     var text = activeMetricElement.text();
-    console.log("the currently selected metric is: " + text);
     if (text == "Distance travelled") {
         return "distance_travelled";
     } else if (text == "Distance from catch location") {
@@ -114,8 +113,11 @@ var app = function() {
     var yearcalRange;
     var monthcal;
     var monthdata;
+    var daychart;
+    var daydata;
     var nrOfDaysInMonth;
     var currentMonthRange;
+    var currentDayRange;
     var currentlySelectedMetric = "distance_travelled";
     var currentlyDisplayedMetric;
     var map;
@@ -226,36 +228,42 @@ var app = function() {
         nrOfDaysInMonth = lastMonthDay.getDate();
     }
 
+    function drawMonthAndDayChart(includeDayChart) {
+        var bird = birds[selectedBird];
+        if (currentlySelectedMetric == "distance_travelled") {
+            monthDataCall = fetchDistTravelledByHour(bird.device_info_serial, currentMonthRange);
+        } else {
+            point = bird.longitude + " " + bird.latitude;
+            monthDataCall = fetchDistancesByHour(bird.device_info_serial, point, currentMonthRange);
+        }
+        monthDataCall.done(function(data) {
+            setMonthData(data);
+            drawMonthChart();
+            if (includeDayChart) {
+                setDayData(currentDayRange)
+                drawDayLineChart();
+            }
+        });
+    }
+
     // function called when the metric is changed
     function changeMetric() {
         clicked_element = d3.select(this);
         selMetricElements.classed("active", false);
         clicked_element.classed("active", true);
         currentlySelectedMetric = findCurrentSelectedMetric();
-        drawMonthChart();
+        drawMonthAndDayChart(true);
     }
 
     // function to draw the month heatmap chart
     function drawMonthChart() {
-        var bird = birds[selectedBird];
-        if (currentlySelectedMetric == "distance_travelled") {
-            console.log("fetching distance travelled month data");
-            monthDataCall = fetchDistTravelledByHour(bird.device_info_serial, currentMonthRange);
-        } else {
-            console.log("fetching distance from catch location month data");
-            point = bird.longitude + " " + bird.latitude;
-            monthDataCall = fetchDistancesByHour(bird.device_info_serial, point, currentMonthRange);
-        }
-        monthDataCall.done(function(data) {
-            if (data.rows.length > 0) {
-                setMonthData(data);
-                if (typeof(monthcal) != "undefined" && monthcal != null) {
-                    monthcal = monthcal.destroy(drawNewMonthChart);
-                } else {
-                    drawNewMonthChart();
-                }
+        if (_.keys(monthdata).length > 0) {
+            if (typeof(monthcal) != "undefined" && monthcal != null) {
+                monthcal = monthcal.destroy(drawNewMonthChart);
+            } else {
+                drawNewMonthChart();
             }
-        });
+        }
     }
 
     // helper function to create the google maps base layer
@@ -319,18 +327,58 @@ var app = function() {
         }
     }
 
+    function setDayData(dateRange) {
+        var timestamps = _.sortBy(_.keys(monthdata), function(x) {return x});
+        var selectedData = new Object();
+        _.each(timestamps, function(timestamp) {
+            if (timestamp > dateRange[0].valueOf() / 1000  && timestamp < dateRange[1].valueOf() / 1000) {
+                selectedData[timestamp] = monthdata[timestamp]
+            }
+        });
+        daydata = toC3Format(selectedData);
+    }
+
+    // function to load data in an existing line chart
+    function loadDataInLineChart() {
+        daychart.load({columns: daydata});
+    }
+
+    // function to clear the data in the day line chart
+    function unloadDataInLineChart() {
+        daychart.unload({ids: ["x", "distance"]});
+    }
+
     // function to draw a new line chart if no one exists
     function drawNewDayLineChart() {
-        console.log("drawing the day line chart");
+        data = {
+            x: "x",
+            columns: daydata[0]
+        };
+        data.columns = [data.columns[0]],
+        daychart = c3.generate({
+            bindto: "#day-chart",
+            data: data,
+            axis: {
+                x: {
+                    type: "timeseries",
+                    tick: {format: "%Hh"}
+                }
+            }
+        });
     }
 
     // function to draw the day line chart
     function drawDayLineChart() {
-        drawNewDayLineChart();
+        if (typeof(daychart) == "undefined" || daychart == null) {
+            drawNewDayLineChart();
+        }
+        loadDataInLineChart();
     }
 
+    // function to remove the day line chart completely
     function clearDayChart() {
-        console.log("removing day line chart");
+        daychart.destroy();
+        daychart = null;
     }
 
     // funtion called when a cell in the year calendar is clicked
@@ -349,18 +397,19 @@ var app = function() {
         var dateStr = weekdays[date.getDay()] + " " + monthNames[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
         var endDate = new Date(date);
         endDate.setDate(date.getDate() + 1);
-        var dateRange = [date, endDate];
+        currentDayRange = [date, endDate];
         insertDateSelection(dateStr);
         currentlySelectedMetric = findCurrentSelectedMetric();
         if (!_.isEqual(currentMonthRange, monthRange) || !_.isEqual(currentlySelectedMetric, currentlyDisplayedMetric)) {
             currentMonthRange = monthRange;
             currentlyDisplayedMetric = currentlySelectedMetric;
-            drawMonthChart();
+            drawMonthAndDayChart(true);
         } else {
             monthcal.highlight(highlightedDay);
+            setDayData(currentDayRange)
+            drawDayLineChart();
         }
-        drawMap(dateRange);
-        drawDayLineChart();
+        drawMap(currentDayRange);
     }
 
     // this function is called when a month label is clicked
@@ -374,12 +423,15 @@ var app = function() {
         if (!_.isEqual(currentMonthRange, dateRange) || !_.isEqual(currentlySelectedMetric, currentlyDisplayedMetric)) {
             currentMonthRange = dateRange;
             currentlyDisplayedMetric = currentlySelectedMetric;
-            drawMonthChart();
+            drawMonthAndDayChart(false);
         } else {
-            monthcal.highlight(highlightedDay);
+            highlightedDay = "";
+            monthcal.highlight([]);
         }
         drawMap(dateRange);
-        clearDayChart();
+        if (typeof(daychart) != "undefined" && daychart != null) {
+            unloadDataInLineChart();
+        }
     }
 
 
