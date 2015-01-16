@@ -122,7 +122,6 @@ var app = function() {
     var currentlyDisplayedMetric;
     var map;
     var cartodbLayer = "empty";
-    var linechart = "empty";
     var timestampFirstDate;
     var timestampLastDate;
     var highlightedDay = "";
@@ -441,7 +440,7 @@ var app = function() {
         if (cartodbLayer != "empty") {
             clearCartodbLayer();
         }
-        if (linechart != "empty") {
+        if (typeof(daychart) != "undefined" && daychart != null) {
             clearDayChart()
         }
     }
