@@ -4,31 +4,24 @@
 
 // general function to fetch data given a url
 function fetchTrackingData(url) {
-    var result = jQuery.get(url, function(data) {
-        jQuery('.result').html(data);
+    var result = $.get(url, function(data) {
+        $('.result').html(data);
     });
     return result;
-}
-
-// fetch distances of a device to a point per day (max)
-function fetchDistancesByDay(device, point) {
-    query = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,ST_GeomFromText('point(" + point + ")',4326) ) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE) SELECT extract(epoch FROM date_trunc('day',date_time)) AS timestamp, round((max(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp"
-    var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + query;
-    return fetchTrackingData(url);
 }
 
 // fetch distances of a device to a point per hour (max) for a date range
 function fetchDistancesByHour(device, point, dateRange) {
     var start = dateRange[0].getFullYear() + "/" + (dateRange[0].getMonth() + 1) + "/" + dateRange[0].getDate();
     var end = dateRange[1].getFullYear() + "/" + (dateRange[1].getMonth() + 1) + "/" + dateRange[1].getDate();
-    query = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,ST_GeomFromText('point(" + point + ")',4326) ) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE AND date_time>'" + start + "' AND date_time<'" + end + "') SELECT extract(epoch FROM date_trunc('hour',date_time)) AS timestamp, round((max(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp"
+    var query = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,ST_GeomFromText('point(" + point + ")',4326) ) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE AND date_time>'" + start + "' AND date_time<'" + end + "') SELECT extract(epoch FROM date_trunc('hour',date_time)) AS timestamp, round((max(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
     var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + query;
     return fetchTrackingData(url);
 }
 
 // fetch distance travelled of a device per day
 function fetchDistTravelledByDay(device) {
-    query = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom,1) OVER(ORDER BY device_info_serial, date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE) SELECT extract(epoch FROM date_trunc('day',date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
+    var query = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom,1) OVER(ORDER BY device_info_serial, date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE) SELECT extract(epoch FROM date_trunc('day',date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
     var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + query;
     return fetchTrackingData(url);
 }
@@ -45,7 +38,7 @@ function fetchDistTravelledByHour(device, dateRange) {
 
 // function to fetch all birds in the bird_tracking_devices table
 function fetchBirdData() {
-    query = "SELECT d.bird_name, d.catch_location, d.ring_code, d.device_info_serial, d.sex, d.scientific_name, d.longitude, d.latitude, d.tracking_started_at, MAX(t.date_time) last_timestamp FROM bird_tracking_devices d LEFT OUTER JOIN bird_tracking t ON d.device_info_serial = t.device_info_serial GROUP BY d.bird_name, d.catch_location, d.ring_code, d.device_info_serial, d.sex, d.scientific_name, d.longitude, d.latitude, d.tracking_started_at";
+    var query = "SELECT d.bird_name, d.catch_location, d.ring_code, d.device_info_serial, d.sex, d.scientific_name, d.longitude, d.latitude, d.tracking_started_at, MAX(t.date_time) last_timestamp FROM bird_tracking_devices d LEFT OUTER JOIN bird_tracking t ON d.device_info_serial = t.device_info_serial GROUP BY d.bird_name, d.catch_location, d.ring_code, d.device_info_serial, d.sex, d.scientific_name, d.longitude, d.latitude, d.tracking_started_at";
     var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + query;
     return fetchTrackingData(url);
 }
@@ -56,7 +49,7 @@ function fetchBirdData() {
 
 // convert cartodb data to cal-heatmap input
 function toCalHeatmap(indata) {
-    var outdata = new Object();
+    var outdata = {};
     _.each(indata.rows, function(el, i) {
         var t = el.timestamp;
         var d = el.distance;
@@ -79,8 +72,8 @@ function toC3Format(indata) {
 // General helper functions
 // -------------------------
 function getDayXMonthsAgo(datetime, nrOfMonths) {
-    d = new Date(datetime * 1000);
-    c = d.setMonth(d.getMonth() - nrOfMonths);
+    var d = new Date(datetime * 1000);
+    var c = d.setMonth(d.getMonth() - nrOfMonths);
     return c.valueOf() / 1000;
 }
 
@@ -128,9 +121,9 @@ var app = function() {
     var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     birds_call.done(function(data) {
-        birds = _.sortBy(data.rows, function(bird) {return bird.scientific_name + bird.bird_name});
-        addBirdsToSelect()
-    })
+        birds = _.sortBy(data.rows, function(bird) {return bird.scientific_name + bird.bird_name;});
+        addBirdsToSelect();
+    });
 
     // -------------------------
     // Bind functions to DOM elements
@@ -152,20 +145,20 @@ var app = function() {
     
     function addBirdsToSelect() {
         // create optgroups per species
-        all_species = _.map(birds, function(bird){ return bird.scientific_name });
-        species = _.uniq(all_species, true);
-        opt_groups = {};
-        _.each(species, function(spec_name){ opt_groups[spec_name] = "<optgroup label=\"" + spec_name +"\">"});
+        var all_species = _.map(birds, function(bird){ return bird.scientific_name;});
+        var species = _.uniq(all_species, true);
+        var opt_groups = {};
+        _.each(species, function(spec_name){ opt_groups[spec_name] = "<optgroup label=\"" + spec_name +"\">";});
 
         // append bird names to the correct optgroups
         for (var i=0;i<birds.length;i++) {
-            opt = "<option value=" + i + ">" + birds[i].bird_name + "</option>";
+            var opt = "<option value=" + i + ">" + birds[i].bird_name + "</option>";
             opt_groups[birds[i].scientific_name] += opt;
         }
 
         // create one html text with all the optgroups and their options
-        optgrp_html = "";
-        _.each(opt_groups, function(optgrp, spec_name){ optgrp_html += optgrp + "</optgroup>"});
+        var optgrp_html = "";
+        _.each(opt_groups, function(optgrp, spec_name){ optgrp_html += optgrp + "</optgroup>";});
 
         // append the optgroups html to the select-bird element
         $("#select-bird").append(optgrp_html);
@@ -175,12 +168,11 @@ var app = function() {
 
     // this function will insert bird metadata in the #bird-metadata element
     function insertBirdMetadata() {
-        species = birds[selectedBird].scientific_name;
-        sex = birds[selectedBird].sex;
-        catch_location = birds[selectedBird].catch_location;
-        ring_code = birds[selectedBird].ring_code;
-        tracking_start = new Date(birds[selectedBird].tracking_started_at);
-        track_start_date = tracking_start.getFullYear() + "-" + (tracking_start.getMonth() + 1) + "-" + tracking_start.getDate();
+        var species = birds[selectedBird].scientific_name;
+        var sex = birds[selectedBird].sex;
+        var ring_code = birds[selectedBird].ring_code;
+        var tracking_start = new Date(birds[selectedBird].tracking_started_at);
+        var track_start_date = tracking_start.getFullYear() + "-" + (tracking_start.getMonth() + 1) + "-" + tracking_start.getDate();
         $("#bird-metadata").html(
             sex + " <em>" + species + "</em> (" + ring_code + "), caught in " + track_start_date.substring(0,4) + "."
         );
@@ -209,7 +201,7 @@ var app = function() {
     // function to set the year data to the needed local variables
     function setYearData(data) {
         yeardata = toCalHeatmap(data);
-        timestampLastDate = _.last(_.sortBy(_.keys(yeardata), function(el) {return el}));
+        timestampLastDate = _.last(_.sortBy(_.keys(yeardata), function(el) {return el;}));
         timestampFirstDate = getDayXMonthsAgo(timestampLastDate, yearcalRange - 1);
     }
 
@@ -224,18 +216,19 @@ var app = function() {
     }
 
     function drawMonthAndDayChart(includeDayChart) {
+        var monthDataCall;
         var bird = birds[selectedBird];
         if (currentlySelectedMetric == "distance_travelled") {
             monthDataCall = fetchDistTravelledByHour(bird.device_info_serial, currentMonthRange);
         } else {
-            point = bird.longitude + " " + bird.latitude;
+            var point = bird.longitude + " " + bird.latitude;
             monthDataCall = fetchDistancesByHour(bird.device_info_serial, point, currentMonthRange);
         }
         monthDataCall.done(function(data) {
             setMonthData(data);
             drawMonthChart();
             if (includeDayChart) {
-                setDayData(currentDayRange)
+                setDayData(currentDayRange);
                 drawDayLineChart();
             }
         });
@@ -243,7 +236,7 @@ var app = function() {
 
     // function called when the metric is changed
     function changeMetric() {
-        clicked_element = d3.select(this);
+        var clicked_element = d3.select(this);
         selMetricElements.classed("active", false);
         clicked_element.classed("active", true);
         currentlySelectedMetric = findCurrentSelectedMetric();
@@ -253,7 +246,7 @@ var app = function() {
     // function to draw the month heatmap chart
     function drawMonthChart() {
         if (_.keys(monthdata).length > 0) {
-            if (typeof(monthcal) != "undefined" && monthcal != null) {
+            if (typeof(monthcal) != "undefined" && monthcal !== null) {
                 monthcal = monthcal.destroy(drawNewMonthChart);
             } else {
                 drawNewMonthChart();
@@ -292,7 +285,7 @@ var app = function() {
 
     // this function will clear the cartodb layer
     function clearCartodbLayer() {
-        sublayer = cartodbLayer.getSubLayer(0);
+        var sublayer = cartodbLayer.getSubLayer(0);
         sublayer.remove();
         cartodbLayer = "empty";
     }
@@ -316,18 +309,18 @@ var app = function() {
                 // need to create a new layer.
                 createNewCartoDBLayer(sql);
             } else {
-                sublayer = cartodbLayer.getSubLayer(0);
+                var sublayer = cartodbLayer.getSubLayer(0);
                 sublayer.setSQL(sql);
             }
         }
     }
 
     function setDayData(dateRange) {
-        var timestamps = _.sortBy(_.keys(monthdata), function(x) {return x});
-        var selectedData = new Object();
+        var timestamps = _.sortBy(_.keys(monthdata), function(x) {return x;});
+        var selectedData = {};
         _.each(timestamps, function(timestamp) {
             if (timestamp > dateRange[0].valueOf() / 1000  && timestamp < dateRange[1].valueOf() / 1000) {
-                selectedData[timestamp] = monthdata[timestamp]
+                selectedData[timestamp] = monthdata[timestamp];
             }
         });
         daydata = toC3Format(selectedData);
@@ -345,7 +338,7 @@ var app = function() {
 
     // function to draw a new line chart if no one exists
     function drawNewDayLineChart() {
-        data = {
+        var data = {
             x: "x",
             columns: daydata[0]
         };
@@ -364,7 +357,7 @@ var app = function() {
 
     // function to draw the day line chart
     function drawDayLineChart() {
-        if (typeof(daychart) == "undefined" || daychart == null) {
+        if (typeof(daychart) == "undefined" || daychart === null) {
             drawNewDayLineChart();
         }
         loadDataInLineChart();
@@ -385,7 +378,7 @@ var app = function() {
         yearcal.highlight(date);
         highlightedDay = [];
         for (var i=0;i<24;i++) {
-            highlightHour = new Date(date);
+            var highlightHour = new Date(date);
             highlightHour.setHours(i);
             highlightedDay.push(highlightHour);
         }
@@ -401,7 +394,7 @@ var app = function() {
             drawMonthAndDayChart(true);
         } else {
             monthcal.highlight(highlightedDay);
-            setDayData(currentDayRange)
+            setDayData(currentDayRange);
             drawDayLineChart();
         }
         drawMap(currentDayRange);
@@ -409,10 +402,10 @@ var app = function() {
 
     // this function is called when a month label is clicked
     function monthClick(d, i) {
-        date = new Date(d);
+        var date = new Date(d);
         var dateStr = monthNames[date.getMonth()] + " " + date.getFullYear();
         var endDate = new Date(getDayXMonthsAgo(date.valueOf() / 1000, -1) * 1000);
-        var dateRange = [date, endDate]
+        var dateRange = [date, endDate];
         insertDateSelection(dateStr);
         currentlySelectedMetric = findCurrentSelectedMetric();
         if (!_.isEqual(currentMonthRange, dateRange) || !_.isEqual(currentlySelectedMetric, currentlyDisplayedMetric)) {
@@ -424,7 +417,7 @@ var app = function() {
             monthcal.highlight([]);
         }
         drawMap(dateRange);
-        if (typeof(daychart) != "undefined" && daychart != null) {
+        if (typeof(daychart) != "undefined" && daychart !== null) {
             unloadDataInLineChart();
         }
     }
@@ -434,14 +427,14 @@ var app = function() {
     function clearSelection() {
         clearDateSelection();
         highlightedDay = "";
-        if (typeof(monthcal) != "undefined" && monthcal != null) {
+        if (typeof(monthcal) != "undefined" && monthcal !== null) {
             monthcal.destroy();
         }
         if (cartodbLayer != "empty") {
             clearCartodbLayer();
         }
-        if (typeof(daychart) != "undefined" && daychart != null) {
-            clearDayChart()
+        if (typeof(daychart) != "undefined" && daychart !== null) {
+            clearDayChart();
         }
     }
 
@@ -480,8 +473,8 @@ var app = function() {
 
     // helper function to actually draw the month year chart
     function drawNewMonthChart() {
-        ts = new Date(_.keys(monthdata)[0] * 1000);
-        start_ts = new Date(ts.getFullYear(), ts.getMonth());
+        var ts = new Date(_.keys(monthdata)[0] * 1000);
+        var start_ts = new Date(ts.getFullYear(), ts.getMonth());
         monthcal = new CalHeatMap();
         monthcal.init({
             domain: "day",
@@ -515,19 +508,19 @@ var app = function() {
     // fetch data and create the year chart
     function createYearChart() {
         var bird = birds[selectedBird];
-        yearDataCall = fetchDistTravelledByDay(bird.device_info_serial);
+        var yearDataCall = fetchDistTravelledByDay(bird.device_info_serial);
         yearDataCall.done(function(data) {
             if (data.rows.length > 0) {
                 setYearcalRange();
                 setYearData(data);
-                if (typeof(yearcal) != "undefined" && yearcal != null) {
+                if (typeof(yearcal) != "undefined" && yearcal !== null) {
                     yearcal = yearcal.destroy(drawNewYearChart);
                     clearSelection();
                 } else {
                     drawNewYearChart();
                 }
             } else {
-                if (typeof(yearcal) != "undefined" && yearcal != null) {
+                if (typeof(yearcal) != "undefined" && yearcal !== null) {
                     yearcal = yearcal.destroy();
                     clearSelection();
                 }

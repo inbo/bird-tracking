@@ -17,20 +17,6 @@ asyncTest("fetch 10 occurrences for device 703", 1, function() {
     });
 });
 
-asyncTest("fetch distances data by day for device 703 and point 3.1828, 51.3407", 1, function() {
-    var device = "703";
-    var point = "3.1828 51.3407"
-    var result = fetchDistancesByDay(device, point);
-    result.done(function(data) {
-        deepEqual(_.map(data.rows[0], function(val, key) {return key}), ["timestamp", "distance"]);
-        start();
-    })
-    .fail(function() {
-        ok("", "fetching distances data failed");
-        start();
-    });
-});
-
 asyncTest("fetch distance data by hour for device 703 and point 3.1828, 51.3407", 2, function() {
     var device = "703";
     var point = "3.1828 51.3407"
@@ -45,7 +31,7 @@ asyncTest("fetch distance data by hour for device 703 and point 3.1828, 51.3407"
         start();
     })
     .fail(function() {
-        ok("", "fetching distance travelled data failed");
+        ok("", "fetching distance data failed");
         start();
     });
 });
