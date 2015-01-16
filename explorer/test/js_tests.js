@@ -71,7 +71,7 @@ asyncTest("fetch bird data", 2, function() {
     result = fetchBirdData();
     result.done(function (data) {
         equal(data.rows.length, 66);
-        deepEqual(_.map(data.rows[0], function(val, key) {return key}), ["bird_name", "catch_location", "colour_ring_code", "device_info_serial", "sex", "scientific_name", "longitude", "latitude", "tracking_started_at", "last_timestamp"]);
+        deepEqual(_.map(data.rows[0], function(val, key) {return key}), ["bird_name", "catch_location", "ring_code", "device_info_serial", "sex", "scientific_name", "longitude", "latitude", "tracking_started_at", "last_timestamp"]);
         start();
     })
     .fail(function () {
@@ -110,12 +110,20 @@ test("convert object from cartodb to cal-heatmap input", function() {
 
 // Convert to expected type for C3 line chart
 test("convert data to C3 input format", function() {
-    var monthdata = {
-        1: 20,
-        4: 10,
-        5: 40
-    }
-    var c3input = [['x', 1000, 4000, 5000], ['distance', 20, 10, 40]];
+    // 946681200000 = January 1, 2000, 0h
+    // 946684800000 = January 1, 2000, 1h
+    // 946688400000 = January 1, 2000, 2h
+    var h0 = 946681200000 / 1000; // cal-heatmap data is timestamp / 1000
+    var h1 = 946684800000 / 1000;
+    var h2 = 946688400000 / 1000;
+    var monthdata = {};
+    monthdata[h0] = 20;
+    monthdata[h1] = 10;
+    monthdata[h2] = 40;
+    var c3input = [
+        ['x', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+        ['distance', 20, 10, 40, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+    ];
     deepEqual(toC3Format(monthdata), c3input);
 });
 

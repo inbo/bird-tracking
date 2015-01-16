@@ -59,11 +59,11 @@ function toCalHeatmap(indata) {
 }
 
 function toC3Format(indata) {
-    var x = ["x"];
-    var y = ["distance"];
+    var x = ["x", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+    var y = ["distance", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
     _.each(indata, function(val, key) {
-        x.push(parseInt(key) * 1000);
-        y.push(val);
+        var d = new Date(key * 1000);
+        y[d.getHours() + 1] = val;
     });
     return [x, y];
 }
@@ -348,9 +348,8 @@ var app = function() {
             data: data,
             axis: {
                 x: {
-                    type: "timeseries",
-                    tick: {format: "%Hh"}
-                }
+                    tick: {format: function (x) {return x + "h";}}
+                },
             }
         });
     }
