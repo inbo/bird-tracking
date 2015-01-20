@@ -366,6 +366,7 @@ var app = function() {
     function clearDayChart() {
         daychart.destroy();
         daychart = null;
+        d3.select("#day-chart").text("Select a day from the top heatmap.");
     }
 
     // funtion called when a cell in the year calendar is clicked
