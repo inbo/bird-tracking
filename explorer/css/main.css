@@ -53,8 +53,7 @@
     padding-top: 20px;
 }
 
-#display .chart { /* Temporarily */
-    background-color: #313131;
-    min-height: 200px; 
+#display .chart {
+    min-height: 350px; 
     min-width: 20px;
 }
