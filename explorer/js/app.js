@@ -371,6 +371,7 @@ var app = function() {
 
     // funtion called when a cell in the year calendar is clicked
     function dayClick(date, value) {
+        date.setHours(0);
         var monthStart = new Date(date.getFullYear(), date.getMonth());
         var monthEnd = new Date(monthStart);
         monthEnd.setMonth(monthEnd.getMonth() + 1);
@@ -499,6 +500,7 @@ var app = function() {
             tooltip: true,
             itemSelector: "#month-chart",
             start: start_ts,
+            onClick: dayClick,
             highlight: highlightedDay,
             range: nrOfDaysInMonth,
             data: monthdata
