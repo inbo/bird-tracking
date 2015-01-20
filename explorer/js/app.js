@@ -227,6 +227,7 @@ var app = function() {
         monthDataCall.done(function(data) {
             setMonthData(data);
             drawMonthChart();
+            showMetrics();
             if (includeDayChart) {
                 setDayData(currentDayRange);
                 drawDayLineChart();
@@ -241,6 +242,50 @@ var app = function() {
         clicked_element.classed("active", true);
         currentlySelectedMetric = findCurrentSelectedMetric();
         drawMonthAndDayChart(true);
+    }
+
+    // this function will insert metrics into the #metric-metadata element
+    function showDistTravelledMetric() {
+        var sum = _.reduce(monthdata, function(memo, dist, timestamp) {return memo+dist;});
+        var nr_of_days = _.keys(monthdata).length / 24;
+        var avg = sum / nr_of_days;
+        avg = Math.round(avg * 100) / 100;
+        d3.select("#metric-metadata").text("Travelled " + avg + " km per day on average this month.");
+    }
+
+    function showDistFromCatchMetric() {
+        var maxDistPerDay = {};
+        _.each(monthdata, function(dist, timestamp) {
+            var ts = new Date(timestamp * 1000);
+            ts.setHours(0); // ts refers to the beginning of the day
+            if (_.contains(_.keys(maxDistPerDay), ts.valueOf().toString())) {
+                maxDistPerDay[ts.valueOf()].push(dist);
+            } else {
+                maxDistPerDay[ts.valueOf()] = [dist];
+            }
+        });
+        var maxDistances = [];
+        _.each(maxDistPerDay, function(distArr, timestamp) {
+            maxDistances.push(_.max(distArr));
+        });
+        var sum = _.reduce(maxDistances, function(memo, dist, timestamp) {return memo+dist;});
+        var nr_of_days = maxDistances.length;
+        var avgMax = sum / nr_of_days;
+        avgMax = Math.round(avgMax * 100) / 100;
+        d3.select("#metric-metadata").text("Average maximum distance from nest per day this month: " + avgMax + " km.");
+    }
+
+    function showMetrics() {
+        if (currentlySelectedMetric == "distance_travelled") {
+            showDistTravelledMetric();
+        } else {
+            showDistFromCatchMetric();
+        }
+    }
+
+    // this function will clear the information in the #metric-metadata element
+    function clearMetrics() {
+        d3.select("#metric-metadata").text();
     }
 
     // function to draw the month heatmap chart
@@ -437,6 +482,7 @@ var app = function() {
         if (typeof(daychart) != "undefined" && daychart !== null) {
             clearDayChart();
         }
+        clearMetrics();
     }
 
     // This function will add onClick events to all .graph-label elements
