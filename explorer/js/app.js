@@ -4,9 +4,7 @@
 
 // general function to fetch data given a url
 function fetchTrackingData(url) {
-    var result = $.get(url, function(data) {
-        $('.result').html(data);
-    });
+    var result = $.get(url);
     return result;
 }
 
