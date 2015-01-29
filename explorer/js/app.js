@@ -504,7 +504,7 @@ var app = function() {
             legendColors: {
                 min: "#DAE289",
                 max: "#3B6427",
-                empty: "#dddddd"
+                base: "#dddddd"
             },
             tooltip: true,
             itemSelector: "#year-chart",
