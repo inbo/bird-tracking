@@ -383,7 +383,8 @@ var app = function() {
     function drawNewDayLineChart() {
         var data = {
             x: "x",
-            columns: daydata[0]
+            columns: daydata[0],
+            type: "spline"
         };
         data.columns = [data.columns[0]],
         daychart = c3.generate({
