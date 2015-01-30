@@ -483,10 +483,36 @@ var app = function() {
         clearMetrics();
     }
 
+    // this function will add an event to the #next-month element that
+    // will cause the year calendar to load the next domain
+    function addNextClickEvent() {
+        d3.select("#next-month").on("click", function () {
+            yearcal.next();
+            addCalendarMonthclickEvent();
+        });
+    }
+
+    // this function will add an event to the #previous-month element that
+    // will cause the year calendar to load the previous domain
+    function addPreviousClickEvent() {
+        d3.select("#previous-month").on("click", function () {
+           yearcal.previous();
+            addCalendarMonthclickEvent();
+        });
+    }
+
     // This function will add onClick events to all .graph-label elements
     function addCalendarMonthclickEvent() {
         var labels = d3.selectAll(".graph-label");
         labels.on("click", monthClick);
+    }
+
+    // This function will add events to interact with the calender after it
+    // is drawn.
+    function addYearCalendarEvents() {
+        addNextClickEvent();
+        addPreviousClickEvent();
+        addCalendarMonthclickEvent();
     }
 
     // helper function to actually draw the year chart
@@ -506,13 +532,11 @@ var app = function() {
             },
             tooltip: true,
             itemSelector: "#year-chart",
-            previousSelector: "#previous-month",
-            nextSelector: "#next-month",
             start: new Date(timestampFirstDate * 1000),
             range: yearcalRange,
             data: yeardata,
             onClick: dayClick,
-            onComplete: addCalendarMonthclickEvent
+            onComplete: addYearCalendarEvents
         });
     }
 
