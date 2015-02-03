@@ -112,7 +112,7 @@ var app = function() {
     var currentlySelectedMetric = "distance_travelled";
     var currentlyDisplayedMetric;
     var map;
-    var cartodbLayer = "empty";
+    var mapLayer = "";
     var timestampFirstDate;
     var timestampLastDate;
     var highlightedDay = "";
@@ -121,6 +121,7 @@ var app = function() {
     birds_call.done(function(data) {
         birds = _.sortBy(data.rows, function(bird) {return bird.scientific_name + bird.bird_name;});
         addBirdsToSelect();
+        initMap();
     });
 
     // -------------------------
@@ -297,41 +298,7 @@ var app = function() {
         }
     }
 
-    // helper function to create the google maps base layer
-    function createNewBaseLayer() {
-        var mapOptions = {
-            zoom: 9,
-            center: new google.maps.LatLng(51.2, 3),
-            mapTypeControlOptions: {
-                mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.HYBRID]
-            },
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        map = new google.maps.Map(document.getElementById('map'),  mapOptions);
-    }
-
-    // helper function to add a new cartodb layer to the map
-    function createNewCartoDBLayer(sql) {
-        cartodb.createLayer(map, {
-            user_name: "lifewatch-inbo",
-            type: "cartodb",
-            sublayers: [{
-                sql: sql,
-                cartocss: "#bird_tracking{ marker-fill: #ffcc00; marker-width: 2.5; marker-line-color: #FFF; marker-line-width: 0; marker-line-opacity: 0.5; marker-opacity: 0.9; marker-comp-op: multiply; marker-type: ellipse; marker-placement: point; marker-allow-overlap: true; marker-clip: false; marker-multi-policy: largest; }"
-            }]
-        })
-        .addTo(map)
-        .done(function(layer) {
-            cartodbLayer = layer;
-        });
-    }
-
-    // this function will clear the cartodb layer
-    function clearCartodbLayer() {
-        var sublayer = cartodbLayer.getSubLayer(0);
-        sublayer.remove();
-        cartodbLayer = "empty";
-    }
+    
 
 
     // function to draw the cartodb map
@@ -344,19 +311,57 @@ var app = function() {
         // determine whether the map already exists. If so, we only need to update
         // the sql of the cartodb sublayer.
         if (typeof(map) == "undefined") {
-            createNewBaseLayer();
-            createNewCartoDBLayer(sql);
+            // createNewBaseLayer();
+            // createNewCartoDBLayer(sql);
         } else {
             if (cartodbLayer == "empty") {
                 // map is still present, but layer was removed.
                 // need to create a new layer.
-                createNewCartoDBLayer(sql);
+                // createNewCartoDBLayer(sql);
             } else {
                 var sublayer = cartodbLayer.getSubLayer(0);
                 sublayer.setSQL(sql);
             }
         }
+    };
+
+    // function to draw the CartoDB map
+    var initMap = function () {
+        // Create map
+        map = new L.Map("map", {
+            center: [51.2, 3],
+            zoom: 8
+        });
+        // Add dark matter baselayer
+        L.tileLayer("http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png", {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+        }).addTo(map);
+
+        // Create default layer
+        cartodb.createLayer(map, "http://lifewatchinbo.cartodb.com/api/v2/viz/7c0c1fc0-ab8d-11e4-ad27-0e0c41326911/viz.json")
+            .addTo(map)
+            .on("done", function (layer) {
+                mapLayer = layer; // Store layer handle
+            }).on("error", function () {});
+    };
+
+    // function to load the default CartoDB layer
+    function clearMapLayer() {
+        mapLayer.getSubLayer(0).set({"sql": "SELECT * FROM bird_tracking"});
+        // sublayer.remove();
+        // mapLayer = "";
     }
+
+    // function to load data on the CartoDB map
+    var refreshMap = function (dateRange) {
+        var start_str = dateRange[0].getFullYear() + "/" + (dateRange[0].getMonth() + 1) + "/" + dateRange[0].getDate();
+        var end_str = dateRange[1].getFullYear() + "/" + (dateRange[1].getMonth() + 1) + "/" + dateRange[1].getDate();
+        var sql = "select * from bird_tracking where userflag is false and date_time > '" + start_str + "' and date_time < '" + end_str + "' and device_info_serial='" + birds[selectedBird].device_info_serial + "'";
+        clearMapLayer();
+        mapLayer.getSubLayer(0).set({"sql": sql});
+    }
+
+
 
     function setDayData(dateRange) {
         var timestamps = _.sortBy(_.keys(monthdata), function(x) {return x;});
@@ -442,7 +447,7 @@ var app = function() {
             setDayData(currentDayRange);
             drawDayLineChart();
         }
-        drawMap(currentDayRange);
+        refreshMap(currentDayRange);
     }
 
     // this function is called when a month label is clicked
@@ -461,7 +466,7 @@ var app = function() {
             highlightedDay = "";
             monthcal.highlight([]);
         }
-        drawMap(dateRange);
+        refreshMap(dateRange);
         if (typeof(daychart) != "undefined" && daychart !== null) {
             unloadDataInLineChart();
         }
@@ -475,8 +480,8 @@ var app = function() {
         if (typeof(monthcal) != "undefined" && monthcal !== null) {
             monthcal.destroy();
         }
-        if (cartodbLayer != "empty") {
-            clearCartodbLayer();
+        if (mapLayer != "") {
+            clearMapLayer();
         }
         if (typeof(daychart) != "undefined" && daychart !== null) {
             clearDayChart();
