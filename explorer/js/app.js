@@ -249,7 +249,7 @@ var app = function() {
         var nr_of_days = _.keys(monthdata).length / 24;
         var avg = sum / nr_of_days;
         avg = Math.round(avg * 100) / 100;
-        d3.select("#metric-metadata").text("Travelled " + avg + " km per day on average this month.");
+        d3.select("#metric-metadata").text("Average distance travelled this month: " + avg + " km/day.");
     }
 
     function showDistFromCatchMetric() {
@@ -271,7 +271,7 @@ var app = function() {
         var nr_of_days = maxDistances.length;
         var avgMax = sum / nr_of_days;
         avgMax = Math.round(avgMax * 100) / 100;
-        d3.select("#metric-metadata").text("Average maximum distance from nest per day this month: " + avgMax + " km.");
+        d3.select("#metric-metadata").text("Average furthest distance this month: "+ avgMax + " km/day.");
     }
 
     function showMetrics() {
@@ -328,7 +328,7 @@ var app = function() {
     // function to draw the CartoDB map
     var initMap = function () {
         // Create map
-        map = new L.Map("map", {
+        map = new L.Map("map-canvas", {
             center: [51.2, 3],
             zoom: 8
         });
@@ -399,6 +399,9 @@ var app = function() {
                 x: {
                     tick: {format: function (x) {return x + "h";}}
                 },
+            },
+            legend: {
+                show: false
             }
         });
     }
@@ -415,7 +418,6 @@ var app = function() {
     function clearDayChart() {
         daychart.destroy();
         daychart = null;
-        d3.select("#day-chart").text("Select a day from the top heatmap.");
     }
 
     // funtion called when a cell in the year calendar is clicked
@@ -532,8 +534,8 @@ var app = function() {
             displayLegend: false,
             cellSize: 14,
             legendColors: {
-                min: "#DAE289",
-                max: "#3B6427",
+                min: "#dae289",
+                max: "#3b6427",
                 base: "#dddddd"
             },
             tooltip: true,
@@ -561,8 +563,8 @@ var app = function() {
             verticalOrientation: true,
             rowLimit: 24,
             legendColors: {
-                min: "#DAE289",
-                max: "#3B6427",
+                min: "#dae289",
+                max: "#3b6427",
                 empty: "#dddddd"
             },
             label: {

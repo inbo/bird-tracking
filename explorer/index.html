@@ -8,8 +8,8 @@
         <link rel="shortcut icon" href="http://lifewatch.inbo.be/blog/theme/img/favicon.ico">
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="css/cal-heatmap.css" />
         <link rel="stylesheet" type="text/css" href="http://libs.cartocdn.com/cartodb.js/v3/3.9.08/themes/css/cartodb.css">
+        <link rel="stylesheet" type="text/css" href="css/cal-heatmap.css">
         <link rel="stylesheet" type="text/css" href="css/c3.min.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
@@ -23,14 +23,23 @@
             </div>
         </div>
 
+        <div id="map">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="map-canvas"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="controls">
             <div class="container">
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="select-bird" class="control-label col-sm-2">Select a bird</label>
                         <div class="col-sm-4">
-                            <select id="select-bird" class="form-control">
-                            </select>
+                            <select id="select-bird" class="form-control"></select>
                         </div>
                         <div class="col-sm-6 clearfix">
                             <p id="bird-metadata" class="form-control-static pull-right"></p>
@@ -42,40 +51,42 @@
                         <div id="previous-month" class="cal-nav">
                             <span class="fa fa-chevron-left fa-2x"></span>
                         </div>
-                        <div id="year-chart" class="chart"></div>
+                        <div id="year-chart"></div>
                         <div id="next-month" class="cal-nav">
                             <span class="fa fa-chevron-right fa-2x"></span>
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="text-center">Select a month or day on the chart for more detailed distance information.</p>
+                    </div>
+                </div>
             </div>
         </div>
         
-        <div id="display">
+        <div id="metrics">
             <div class="container">
-                <ul id="select-metric" class="nav nav-pills" role="tablist">
-                    <li class="active"><a href="javascript:;">Distance travelled</a></li>
-                    <li><a href="javascript:;">Distance from catch location</a></li>
-                </ul>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h2 id="selected-time">Showing data for</h2>
+                <div class="row metrics-header">
+                    <div class="col-sm-5">
+                        <h3 id="selected-time">Select a month or day</h3>
                     </div>
-                    <div class="col-sm-6 clearfix">
-                        <p id="metric-metadata" class="pull-right">I'm a long way from home.</p>
+                    <div class="col-sm-7">
+                        <div class="pull-right">
+                            <ul id="select-metric" class="nav nav-pills">
+                                <li class="active"><a href="javascript:;">Distance travelled</a></li>
+                                <li><a href="javascript:;">Furthest distance from catch location</a></li>
+                            </ul>
+                            <p id="metric-metadata">I'm a long way from home.</p>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
-                        <div id="month-chart" class="chart"></div>
+                        <div id="month-chart"></div>
                     </div>
                     <div class="col-sm-8">
-                        <div id="map" class="chart"></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div id="day-chart" class="chart">Select a day from the top heatmap.</div>
+                        <div id="day-chart"></div>
                     </div>
                 </div>
             </div>
@@ -99,7 +110,6 @@
         <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
         <script type="text/javascript" src="js/cal-heatmap.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
         <script type="text/javascript" src="http://libs.cartocdn.com/cartodb.js/v3/3.9.08/cartodb.js"></script>
         <script type="text/javascript" src="js/c3.min.js"></script>
         <script type="text/javascript" src="js/app.js"></script>

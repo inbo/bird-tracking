@@ -1,3 +1,11 @@
+#map {
+    padding-bottom: 20px;
+    }
+    #map-canvas {
+        background-color: #313131;
+        height: 350px;
+    }
+
 #controls {
     background-color: #f8f8f8;
     border-bottom: 1px solid #e7e7e7;
@@ -5,25 +13,35 @@
     padding-bottom: 20px;
     padding-top: 20px;
     }
-    #controls .chart,
+    #year-chart,
     #controls .cal-nav {
         float: left;
-        height: 130px; /* Height of chart, affects padding of .cal-nav span */
+        height: 150px; /* Height of chart, affects padding of .cal-nav span */
     }
-    #controls .chart {
+    #year-chart {
         width: calc(100% - 2 * 40px);
         }
-        #controls .chart .graph-label:hover {
-            cursor: pointer;
-            font-weight: bold;
+        #year-chart rect.highlight,
+        #year-chart rect:hover {
+            stroke: #428bca;
+            stroke-width: 2;
         }
+        #year-chart .graph-label {
+            fill: #428bca; /* Bootstrap blue for a */
+            font-size: 11px;
+            }
+            #year-chart .graph-label:hover {
+                cursor: pointer;
+                fill: #2a6496; /* Bootstrap blue for a:hover */
+                font-weight: bold;
+            }
     #controls .cal-nav {
-        color: #428bca; /* Bootstrap blue for a */
+        color: #428bca;
         cursor: pointer;
-        width: 40px; /* Affects width of .chart */
+        width: 40px; /* Affects width of #year-chart */
         }
         #controls .cal-nav:hover {
-            color: #2a6496; /* Bootstrap blue for a:hover */;
+            color: #2a6496;
         }
         #controls .cal-nav span { /* Arrow icon */
             display: block;
@@ -33,16 +51,25 @@
         text-transform: capitalize;
     }
 
-#display {
+#metrics {
+    min-height: 300px;
     padding-bottom: 20px;
     padding-top: 20px;
     }
-    #display .row {
+    .metrics-header {
         margin-bottom: 20px;
+        padding-top: 10px;
         }
-        #metric-metadata {
-            margin-top: 20px;
-            padding-top: 5px;
+        .metrics-header h3 {
+            margin-top: 5px;
+        }
+        .metrics-header p {
+            margin-top: 5px;
+        }
+    #month-chart rect.highlight,
+    #month-chart rect:hover {
+            stroke: #428bca;
+            stroke-width: 1;
         }
 
 #footer {
@@ -51,9 +78,4 @@
     margin-top: 20px;
     padding-bottom: 20px;
     padding-top: 20px;
-}
-
-#display .chart {
-    min-height: 350px; 
-    min-width: 20px;
 }
