@@ -1,153 +1,136 @@
 // -------------------------
-// Fetch data from cartodb
+// General helper functions
 // -------------------------
 
-// general function to fetch data given a url
-function fetchTrackingData(url) {
-    var result = $.get(url);
-    return result;
-}
+// Get certain day of defined number of months ago
+var getDayXMonthsAgo = function (datetime, nrOfMonths) {
+    var d = new Date(datetime * 1000);
+    var c = d.setMonth(d.getMonth() - nrOfMonths);
+    return c.valueOf() / 1000;
+};
 
-// fetch distances of a device to a point per hour (max) for a date range
-function fetchDistancesByHour(device, point, dateRange) {
+// Get width of SVG
+var getSVGWidth = function (id) {
+    var svg = d3.select("#" + id);
+    return svg.style("width");
+};
+
+// -------------------------
+// Fetch data functions
+// -------------------------
+
+// Fetch bird_tracking_devices with tracking data
+var fetchBirdData = function () {
+    var sql = "SELECT d.* FROM bird_tracking_devices AS d INNER JOIN (SELECT DISTINCT device_info_serial FROM bird_tracking WHERE userflag IS FALSE) AS t ON d.device_info_serial = t.device_info_serial ORDER BY d.scientific_name, d.bird_name";
+    return $.get("https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql);
+};
+
+// Fetch distance travelled by a device, per day
+var fetchDistanceTravelledPerDay = function (device) {
+    var sql = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom, 1) OVER(ORDER BY device_info_serial, date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE) SELECT extract(epoch FROM date_trunc('day', date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
+    return $.get("https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql);
+};
+
+// Fetch distance travelled by a device, per hour, for a date range
+var fetchDistanceTravelledPerHour = function (device, dateRange) {
+    // TODO: add date function
     var start = dateRange[0].getFullYear() + "/" + (dateRange[0].getMonth() + 1) + "/" + dateRange[0].getDate();
     var end = dateRange[1].getFullYear() + "/" + (dateRange[1].getMonth() + 1) + "/" + dateRange[1].getDate();
-    var query = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,ST_GeomFromText('point(" + point + ")',4326) ) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE AND date_time>'" + start + "' AND date_time<'" + end + "') SELECT extract(epoch FROM date_trunc('hour',date_time)) AS timestamp, round((max(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
-    var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + query;
-    return fetchTrackingData(url);
-}
+    var sql = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom, 1) OVER(ORDER BY device_info_serial, date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE AND date_time > '" + start + "' AND date_time < '" + end + "') SELECT extract(epoch FROM date_trunc('hour', date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
+    return $.get("https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql);
+};
 
-// fetch distance travelled of a device per day
-function fetchDistTravelledByDay(device) {
-    var query = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom,1) OVER(ORDER BY device_info_serial, date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE) SELECT extract(epoch FROM date_trunc('day',date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
-    var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + query;
-    return fetchTrackingData(url);
-}
-
-// fetch distance travelled of a device per hour
-function fetchDistTravelledByHour(device, dateRange) {
+// Fetch furthest distance of a device from a location, per hour, for a date range
+var fetchFurthestDistanceByHour = function (device, point, dateRange) {
+    // TODO: add date function
     var start = dateRange[0].getFullYear() + "/" + (dateRange[0].getMonth() + 1) + "/" + dateRange[0].getDate();
     var end = dateRange[1].getFullYear() + "/" + (dateRange[1].getMonth() + 1) + "/" + dateRange[1].getDate();
-    var query = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom,1) OVER(ORDER BY device_info_serial, date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE AND date_time>'" + start + "' AND date_time<'" + end + "') SELECT extract(epoch FROM date_trunc('hour',date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
-    var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + query;
-    return fetchTrackingData(url);
-
-}
-
-// function to fetch all birds in the bird_tracking_devices table
-function fetchBirdData() {
-    var query = "SELECT d.bird_name, d.catch_location, d.ring_code, d.device_info_serial, d.sex, d.scientific_name, d.longitude, d.latitude, d.tracking_started_at, MAX(t.date_time) last_timestamp FROM bird_tracking_devices d LEFT OUTER JOIN bird_tracking t ON d.device_info_serial = t.device_info_serial GROUP BY d.bird_name, d.catch_location, d.ring_code, d.device_info_serial, d.sex, d.scientific_name, d.longitude, d.latitude, d.tracking_started_at";
-    var url = "https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + query;
-    return fetchTrackingData(url);
-}
+    var sql = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,ST_GeomFromText('point(" + point + ")',4326) ) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE AND date_time>'" + start + "' AND date_time<'" + end + "') SELECT extract(epoch FROM date_trunc('hour',date_time)) AS timestamp, round((max(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
+    return $.get("https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql);
+};
 
 // -------------------------
-// Convert data
+// Data convert functions
 // -------------------------
 
-// convert cartodb data to cal-heatmap input
-function toCalHeatmap(indata) {
-    var outdata = {};
-    _.each(indata.rows, function(el, i) {
-        var t = el.timestamp;
-        var d = el.distance;
-        outdata[t] = d;
+// Convert CartoDB tracking data to cal-heatmap data
+var toCalHeatmap = function (inputData) {
+    var outputData = {};
+    _.each(inputData.rows, function(el, i) {
+        outputData[el.timestamp] = el.distance;
     });
-    return outdata;
-}
+    return outputData;
+};
 
-function toC3Format(indata) {
+// Convert distance data to C3 timeseries chart data
+var toC3Chart = function (inputData) {
     var x = ["x", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
     var y = ["distance", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
-    _.each(indata, function(val, key) {
+    _.each(inputData, function(val, key) {
         var d = new Date(key * 1000);
         y[d.getHours() + 1] = val;
     });
     return [x, y];
-}
+};
 
 // -------------------------
-// General helper functions
+// Main app function
 // -------------------------
-function getDayXMonthsAgo(datetime, nrOfMonths) {
-    var d = new Date(datetime * 1000);
-    var c = d.setMonth(d.getMonth() - nrOfMonths);
-    return c.valueOf() / 1000;
-}
 
-function getSVGWidth(id) {
-    var svg = d3.select("#" + id);
-    return svg.style("width");
-}
-
-function findCurrentSelectedMetric() {
-    var activeMetricElement = d3.select("#select-metric .active a");
-    var text = activeMetricElement.text();
-    if (text == "Distance travelled") {
-        return "distance_travelled";
-    } else if (text == "Distance from catch location") {
-        return "distance_from_catch_loc";
-    }
-}
-
-// -------------------------
-// app function will contain
-// all functionality for the
-// app
-// -------------------------
 var app = function() {
-    var birds_call = fetchBirdData();
-    var birds = [];
-    var selectedBird;
-    var yearcal;
-    var yeardata;
-    var yearcalRange;
-    var monthcal;
-    var monthdata;
-    var daychart;
-    var daydata;
-    var nrOfDaysInMonth;
-    var currentMonthRange;
-    var currentDayRange;
-    var currentlySelectedMetric = "distance_travelled";
-    var currentlyDisplayedMetric;
-    var map;
-    var mapLayer = "";
-    var timestampFirstDate;
-    var timestampLastDate;
-    var highlightedDay = "";
-    var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    birds_call.done(function(data) {
-        birds = _.sortBy(data.rows, function(bird) {return bird.scientific_name + bird.bird_name;});
-        addBirdsToSelect();
-        initMap();
-    });
-
-    // -------------------------
-    // Bind functions to DOM elements
-    // -------------------------
-    $("#select-bird").on("change", function(e) {
-        var optionSelected = $("option:selected", this);
-        selectedBird = optionSelected.val();
+    var birds = [],
+        selectedBird,
+        selectedMetric = "distance-travelled",
+        yearcal,
+        yeardata,
+        yearcalRange,
+        monthcal,
+        monthdata,
+        daychart,
+        daydata,
+        nrOfDaysInMonth,
+        currentMonthRange,
+        currentDayRange,
+        currentlyDisplayedMetric,
+        map,
+        mapLayer = "",
+        timestampFirstDate,
+        timestampLastDate,
+        highlightedDay = "",
+        weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    
+    var changeBird = function() {
+        selectedBird = $("option:selected", this).val();
         insertBirdMetadata();
         createYearChart();
-        clearSelection();
-    });
+        clearSelection();        
+    };
 
-    var selMetricElements = d3.selectAll("#select-metric li");
-    selMetricElements.on("click", changeMetric);
+    var changeMetric = function () {
+        selectedMetricElement = $(this);
+        var siblings = selectedMetricElement.siblings();
+        siblings.removeClass("active");
+        selectedMetricElement.addClass("active");
+        selectedMetric = selectedMetricElement.attr("id");
+        drawMonthAndDayChart(true); // TODO: check this
+    };
 
-    // -------------------------
-    // DOM interaction functions
-    // -------------------------
+
+
+
+
+
+
     
-    function addBirdsToSelect() {
+    var addBirdsToSelect = function () {
         // create optgroups per species
         var all_species = _.map(birds, function(bird){ return bird.scientific_name;});
         var species = _.uniq(all_species, true);
         var opt_groups = {};
-        _.each(species, function(spec_name){ opt_groups[spec_name] = "<optgroup label=\"" + spec_name +"\">";});
+        _.each(species, function (spec_name) {
+            opt_groups[spec_name] = "<optgroup label=\"" + spec_name +"\">";
+        });
 
         // append bird names to the correct optgroups
         for (var i=0;i<birds.length;i++) {
@@ -157,16 +140,18 @@ var app = function() {
 
         // create one html text with all the optgroups and their options
         var optgrp_html = "";
-        _.each(opt_groups, function(optgrp, spec_name){ optgrp_html += optgrp + "</optgroup>";});
+        _.each(opt_groups, function (optgrp) {
+            optgrp_html += optgrp + "</optgroup>";
+        });
 
         // append the optgroups html to the select-bird element
         $("#select-bird").append(optgrp_html);
         selectedBird = 0;
         insertBirdMetadata();
-    }
+    };
 
     // this function will insert bird metadata in the #bird-metadata element
-    function insertBirdMetadata() {
+    var insertBirdMetadata = function () {
         var species = birds[selectedBird].scientific_name;
         var sex = birds[selectedBird].sex;
         var ring_code = birds[selectedBird].ring_code;
@@ -175,36 +160,36 @@ var app = function() {
         $("#bird-metadata").html(
             sex + " <em>" + species + "</em> (" + ring_code + "), caught in " + track_start_date.substring(0,4) + "."
         );
-    }
+    };
 
     // function to insert the selected date in the frontend
-    function insertDateSelection(date) {
+    var insertDateSelection = function (date) {
         var selectedTime = d3.select("#selected-time");
         selectedTime.text(date);
-    }
+    };
 
     // this function will clear the date selection from the #selected-time element
-    function clearDateSelection() {
+    var clearDateSelection = function () {
         d3.select("#selected-time").text("");
-    }
+    };
 
     // function to define the number of domains that will be drawn
     // in the year calendar chart. This is based on the width of
     // the svg element.
-    function setYearcalRange() {
+    var setYearcalRange = function () {
         var svgWidth = getSVGWidth("year-chart");
         svgWidth = svgWidth.substr(0, svgWidth.length - 2);
         yearcalRange = Math.floor(svgWidth / 88); // 88 is an estimated average for the total domain width. It depends on the number of columns that are present in a domain and hence, this will not be 100% correct.
-    }
+    };
 
     // function to set the year data to the needed local variables
-    function setYearData(data) {
+    var setYearData = function (data) {
         yeardata = toCalHeatmap(data);
         timestampLastDate = _.last(_.sortBy(_.keys(yeardata), function(el) {return el;}));
         timestampFirstDate = getDayXMonthsAgo(timestampLastDate, yearcalRange - 1);
-    }
+    };
 
-    function setMonthData(data) {
+    var setMonthData = function (data) {
         monthdata = toCalHeatmap(data);
         var dayInMonth = new Date(_.keys(monthdata)[0] * 1000);
         var monthStart = new Date(dayInMonth.getFullYear(), dayInMonth.getMonth());
@@ -212,16 +197,16 @@ var app = function() {
         lastMonthDay.setMonth(lastMonthDay.getMonth() + 1);
         lastMonthDay.setDate(lastMonthDay.getDate() - 1);
         nrOfDaysInMonth = lastMonthDay.getDate();
-    }
+    };
 
-    function drawMonthAndDayChart(includeDayChart) {
+    var drawMonthAndDayChart = function (includeDayChart) {
         var monthDataCall;
         var bird = birds[selectedBird];
-        if (currentlySelectedMetric == "distance_travelled") {
-            monthDataCall = fetchDistTravelledByHour(bird.device_info_serial, currentMonthRange);
+        if (selectedMetric == "distance-travelled") {
+            monthDataCall = fetchDistanceTravelledPerHour(bird.device_info_serial, currentMonthRange);
         } else {
             var point = bird.longitude + " " + bird.latitude;
-            monthDataCall = fetchDistancesByHour(bird.device_info_serial, point, currentMonthRange);
+            monthDataCall = fetchFurthestDistanceByHour(bird.device_info_serial, point, currentMonthRange);
         }
         monthDataCall.done(function(data) {
             setMonthData(data);
@@ -232,27 +217,20 @@ var app = function() {
                 drawDayLineChart();
             }
         });
-    }
+    };
 
-    // function called when the metric is changed
-    function changeMetric() {
-        var clicked_element = d3.select(this);
-        selMetricElements.classed("active", false);
-        clicked_element.classed("active", true);
-        currentlySelectedMetric = findCurrentSelectedMetric();
-        drawMonthAndDayChart(true);
-    }
+    
 
     // this function will insert metrics into the #metric-metadata element
-    function showDistTravelledMetric() {
+    var showDistTravelledMetric = function () {
         var sum = _.reduce(monthdata, function(memo, dist, timestamp) {return memo+dist;});
         var nr_of_days = _.keys(monthdata).length / 24;
         var avg = sum / nr_of_days;
         avg = Math.round(avg * 100) / 100;
         d3.select("#metric-metadata").text("Average distance travelled this month: " + avg + " km/day.");
-    }
+    };
 
-    function showDistFromCatchMetric() {
+    var showDistFromCatchMetric = function () {
         var maxDistPerDay = {};
         _.each(monthdata, function(dist, timestamp) {
             var ts = new Date(timestamp * 1000);
@@ -272,55 +250,28 @@ var app = function() {
         var avgMax = sum / nr_of_days;
         avgMax = Math.round(avgMax * 100) / 100;
         d3.select("#metric-metadata").text("Average furthest distance this month: "+ avgMax + " km/day.");
-    }
+    };
 
-    function showMetrics() {
-        if (currentlySelectedMetric == "distance_travelled") {
+    var showMetrics = function () {
+        if (selectedMetric == "distance-travelled") {
             showDistTravelledMetric();
         } else {
             showDistFromCatchMetric();
         }
-    }
+    };
 
     // this function will clear the information in the #metric-metadata element
-    function clearMetrics() {
+    var clearMetrics = function () {
         d3.select("#metric-metadata").text();
-    }
+    };
 
     // function to draw the month heatmap chart
-    function drawMonthChart() {
+    var drawMonthChart = function () {
         if (_.keys(monthdata).length > 0) {
             if (typeof(monthcal) != "undefined" && monthcal !== null) {
                 monthcal = monthcal.destroy(drawNewMonthChart);
             } else {
                 drawNewMonthChart();
-            }
-        }
-    }
-
-    
-
-
-    // function to draw the cartodb map
-    function drawMap(dateRange) {
-        // construct the query based on the given dateRange and the current selected bird
-        var start_str = dateRange[0].getFullYear() + "/" + (dateRange[0].getMonth() + 1) + "/" + dateRange[0].getDate();
-        var end_str = dateRange[1].getFullYear() + "/" + (dateRange[1].getMonth() + 1) + "/" + dateRange[1].getDate();
-        var sql = "select * from bird_tracking where userflag is false and date_time > '" + start_str + "' and date_time < '" + end_str + "' and device_info_serial='" + birds[selectedBird].device_info_serial + "'";
-
-        // determine whether the map already exists. If so, we only need to update
-        // the sql of the cartodb sublayer.
-        if (typeof(map) == "undefined") {
-            // createNewBaseLayer();
-            // createNewCartoDBLayer(sql);
-        } else {
-            if (cartodbLayer == "empty") {
-                // map is still present, but layer was removed.
-                // need to create a new layer.
-                // createNewCartoDBLayer(sql);
-            } else {
-                var sublayer = cartodbLayer.getSubLayer(0);
-                sublayer.setSQL(sql);
             }
         }
     };
@@ -346,11 +297,11 @@ var app = function() {
     };
 
     // function to load the default CartoDB layer
-    function clearMapLayer() {
+    var clearMapLayer = function () {
         mapLayer.getSubLayer(0).set({"sql": "SELECT * FROM bird_tracking"});
         // sublayer.remove();
         // mapLayer = "";
-    }
+    };
 
     // function to load data on the CartoDB map
     var refreshMap = function (dateRange) {
@@ -359,11 +310,9 @@ var app = function() {
         var sql = "select * from bird_tracking where userflag is false and date_time > '" + start_str + "' and date_time < '" + end_str + "' and device_info_serial='" + birds[selectedBird].device_info_serial + "'";
         clearMapLayer();
         mapLayer.getSubLayer(0).set({"sql": sql});
-    }
+    };
 
-
-
-    function setDayData(dateRange) {
+    var setDayData = function (dateRange) {
         var timestamps = _.sortBy(_.keys(monthdata), function(x) {return x;});
         var selectedData = {};
         _.each(timestamps, function(timestamp) {
@@ -371,27 +320,27 @@ var app = function() {
                 selectedData[timestamp] = monthdata[timestamp];
             }
         });
-        daydata = toC3Format(selectedData);
-    }
+        daydata = toC3Chart(selectedData);
+    };
 
     // function to load data in an existing line chart
-    function loadDataInLineChart() {
+    var loadDataInLineChart = function () {
         daychart.load({columns: daydata});
-    }
+    };
 
     // function to clear the data in the day line chart
-    function unloadDataInLineChart() {
+    var unloadDataInLineChart = function () {
         daychart.unload({ids: ["x", "distance"]});
-    }
+    };
 
     // function to draw a new line chart if no one exists
-    function drawNewDayLineChart() {
+    var drawNewDayLineChart = function () {
         var data = {
             x: "x",
             columns: daydata[0],
             type: "spline"
         };
-        data.columns = [data.columns[0]],
+        data.columns = [data.columns[0]];
         daychart = c3.generate({
             bindto: "#day-chart",
             data: data,
@@ -404,24 +353,24 @@ var app = function() {
                 show: false
             }
         });
-    }
+    };
 
     // function to draw the day line chart
-    function drawDayLineChart() {
+    var drawDayLineChart = function () {
         if (typeof(daychart) == "undefined" || daychart === null) {
             drawNewDayLineChart();
         }
         loadDataInLineChart();
-    }
+    };
 
     // function to remove the day line chart completely
-    function clearDayChart() {
+    var clearDayChart = function () {
         daychart.destroy();
         daychart = null;
-    }
+    };
 
     // funtion called when a cell in the year calendar is clicked
-    function dayClick(date, value) {
+    var dayClick = function (date, value) {
         date.setHours(0);
         var monthStart = new Date(date.getFullYear(), date.getMonth());
         var monthEnd = new Date(monthStart);
@@ -439,10 +388,10 @@ var app = function() {
         endDate.setDate(date.getDate() + 1);
         currentDayRange = [date, endDate];
         insertDateSelection(dateStr);
-        currentlySelectedMetric = findCurrentSelectedMetric();
-        if (!_.isEqual(currentMonthRange, monthRange) || !_.isEqual(currentlySelectedMetric, currentlyDisplayedMetric)) {
+        // selectedMetric = getSelectedMetric();
+        if (!_.isEqual(currentMonthRange, monthRange) || !_.isEqual(selectedMetric, currentlyDisplayedMetric)) {
             currentMonthRange = monthRange;
-            currentlyDisplayedMetric = currentlySelectedMetric;
+            currentlyDisplayedMetric = selectedMetric;
             drawMonthAndDayChart(true);
         } else {
             monthcal.highlight(highlightedDay);
@@ -450,19 +399,19 @@ var app = function() {
             drawDayLineChart();
         }
         refreshMap(currentDayRange);
-    }
+    };
 
     // this function is called when a month label is clicked
-    function monthClick(d, i) {
+    var monthClick = function (d, i) {
         var date = new Date(d);
         var dateStr = monthNames[date.getMonth()] + " " + date.getFullYear();
         var endDate = new Date(getDayXMonthsAgo(date.valueOf() / 1000, -1) * 1000);
         var dateRange = [date, endDate];
         insertDateSelection(dateStr);
-        currentlySelectedMetric = findCurrentSelectedMetric();
-        if (!_.isEqual(currentMonthRange, dateRange) || !_.isEqual(currentlySelectedMetric, currentlyDisplayedMetric)) {
+        // selectedMetric = getSelectedMetric();
+        if (!_.isEqual(currentMonthRange, dateRange) || !_.isEqual(selectedMetric, currentlyDisplayedMetric)) {
             currentMonthRange = dateRange;
-            currentlyDisplayedMetric = currentlySelectedMetric;
+            currentlyDisplayedMetric = selectedMetric;
             drawMonthAndDayChart(false);
         } else {
             highlightedDay = "";
@@ -472,59 +421,58 @@ var app = function() {
         if (typeof(daychart) != "undefined" && daychart !== null) {
             unloadDataInLineChart();
         }
-    }
-
+    };
 
     // this function will be called whenever a selection needs to be cleared
-    function clearSelection() {
+    var clearSelection = function () {
         clearDateSelection();
         highlightedDay = "";
         if (typeof(monthcal) != "undefined" && monthcal !== null) {
             monthcal.destroy();
         }
-        if (mapLayer != "") {
+        if (mapLayer !== "") {
             clearMapLayer();
         }
         if (typeof(daychart) != "undefined" && daychart !== null) {
             clearDayChart();
         }
         clearMetrics();
-    }
+    };
 
     // this function will add an event to the #next-month element that
     // will cause the year calendar to load the next domain
-    function addNextClickEvent() {
+    var addNextClickEvent = function () {
         d3.select("#next-month").on("click", function () {
             yearcal.next();
             addCalendarMonthclickEvent();
         });
-    }
+    };
 
     // this function will add an event to the #previous-month element that
     // will cause the year calendar to load the previous domain
-    function addPreviousClickEvent() {
+    var addPreviousClickEvent = function () {
         d3.select("#previous-month").on("click", function () {
            yearcal.previous();
             addCalendarMonthclickEvent();
         });
-    }
+    };
 
     // This function will add onClick events to all .graph-label elements
-    function addCalendarMonthclickEvent() {
+    var addCalendarMonthclickEvent = function () {
         var labels = d3.selectAll(".graph-label");
         labels.on("click", monthClick);
-    }
+    };
 
     // This function will add events to interact with the calender after it
     // is drawn.
-    function addYearCalendarEvents() {
+    var addYearCalendarEvents = function () {
         addNextClickEvent();
         addPreviousClickEvent();
         addCalendarMonthclickEvent();
-    }
+    };
 
     // helper function to actually draw the year chart
-    function drawNewYearChart() {
+    var drawNewYearChart = function () {
         yearcal = new CalHeatMap();
         yearcal.init({
             domain: "month",
@@ -546,10 +494,10 @@ var app = function() {
             onClick: dayClick,
             onComplete: addYearCalendarEvents
         });
-    }
+    };
 
     // helper function to actually draw the month year chart
-    function drawNewMonthChart() {
+    var drawNewMonthChart = function () {
         var ts = new Date(_.keys(monthdata)[0] * 1000);
         var start_ts = new Date(ts.getFullYear(), ts.getMonth());
         monthcal = new CalHeatMap();
@@ -581,12 +529,12 @@ var app = function() {
             range: nrOfDaysInMonth,
             data: monthdata
         });
-    }
+    };
 
     // fetch data and create the year chart
-    function createYearChart() {
+    var createYearChart = function () {
         var bird = birds[selectedBird];
-        var yearDataCall = fetchDistTravelledByDay(bird.device_info_serial);
+        var yearDataCall = fetchDistanceTravelledPerDay(bird.device_info_serial);
         yearDataCall.done(function(data) {
             if (data.rows.length > 0) {
                 setYearcalRange();
@@ -604,5 +552,18 @@ var app = function() {
                 }
             }
         });
-    }
+    };
+
+    // Init function
+    fetchBirdData().done(function (data) {
+        birds = data.rows;
+        addBirdsToSelect();
+        // TODO: load default bird
+        initMap();
+    });
+
+    // DOM interactions
+    $("#select-bird").on("change", changeBird);
+    $("#select-metric li").on("click", changeMetric);
+
 }();
