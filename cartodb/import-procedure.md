@@ -39,7 +39,7 @@
 4. Set data types (this should drastically reduce the storage space of the table):
 
     ```SQL
-        ALTER TABLE bird_tracking_new_data
+    ALTER TABLE bird_tracking_new_data
     ALTER COLUMN device_info_serial SET data type integer USING device_info_serial::integer,
     ALTER COLUMN date_time SET data type timestamp with time zone USING date_time::timestamp with time zone,
     ALTER COLUMN latitude SET data type double precision USING latitude::double precision,
