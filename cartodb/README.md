@@ -34,8 +34,8 @@ This table contains two months of tracking data from one individual: Lesser Blac
 
 ### Public access
 
-* Table page: https://lifewatch-inbo.cartodb.com/tables/tracking_eric/public
-* SQL API: http://lifewatch-inbo.cartodb.com/api/v2/sql?q=SELECT%20*%20FROM%20tracking_eric%20LIMIT%20100
+* Table page: https://inbo.cartodb.com/u/lifewatch/tables/tracking_eric/public
+* SQL API: [http://lifewatch.cartodb.com/api/v2/sql?q=SELECT * FROM tracking_eric LIMIT 100](http://lifewatch.cartodb.com/api/v2/sql?q=SELECT%20*%20FROM%20tracking_eric%20LIMIT%20100)
 
 ### Fields
 
@@ -57,8 +57,8 @@ This table contains all public occurrences recorded by the GPS trackers. The dat
 
 ### Public access
 
-* Table page: https://lifewatch-inbo.cartodb.com/tables/bird_tracking/public
-* SQL API: http://lifewatch-inbo.cartodb.com/api/v2/sql?q=SELECT%20*%20FROM%20bird_tracking%20LIMIT%20100
+* Table page: https://inbo.cartodb.com/u/lifewatch/tables/bird_tracking/public
+* SQL API: [http://lifewatch.cartodb.com/api/v2/sql?q=SELECT * FROM bird_tracking LIMIT 100](http://lifewatch.cartodb.com/api/v2/sql?q=SELECT%20*%20FROM%20bird_tracking%20LIMIT%20100)
 
 ### Fields
 
@@ -92,8 +92,8 @@ This manually maintained reference table contains information on the GPS tracker
 
 ### Public access
 
-* Table page: https://lifewatch-inbo.cartodb.com/tables/bird_tracking_devices/public
-* SQL API: http://lifewatch-inbo.cartodb.com/api/v2/sql?q=SELECT%20*%20FROM%20bird_tracking_devices
+* Table page: https://inbo.cartodb.com/u/lifewatch/tables/bird_tracking_devices/public
+* SQL API: [http://lifewatch.cartodb.com/api/v2/sql?q=SELECT * FROM bird_tracking_devices](http://lifewatch.cartodb.com/api/v2/sql?q=SELECT%20*%20FROM%20bird_tracking_devices)
 
 ### Fields
 
