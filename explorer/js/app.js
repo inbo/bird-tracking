@@ -254,7 +254,7 @@ var app = function() {
             axis: {
                 x: {
                     tick: {format: function (x) {return x + "h";}}
-                },
+                }
             },
             legend: {
                 show: false
