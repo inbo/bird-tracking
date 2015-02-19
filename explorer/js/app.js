@@ -385,9 +385,13 @@ var app = function() {
     var drawNewMonthChart = function () {
         var ts = new Date(_.keys(monthdata)[0] * 1000);
         var start_ts = new Date(ts.getFullYear(), ts.getMonth());
+        monthcal = new CalHeatMap();
+        monthcal.init({
             domain: "day",
             subDomain: "x_hour",
             itemName: ['kilometer', 'kilometers'],
+            domainGutter: 2,
+            displayLegend: true,
             cellSize: 8,
             verticalOrientation: true,
             rowLimit: 24,
@@ -395,6 +399,10 @@ var app = function() {
                 min: "#dae289",
                 max: "#3b6427",
                 empty: "#dddddd"
+            },
+            label: {
+                position: "left",
+                width: 46,
                 height: 4
             },
             domainLabelFormat: "%d",
@@ -402,6 +410,8 @@ var app = function() {
             itemSelector: "#month-chart",
             start: start_ts,
             onClick: dayClick,
+            highlight: highlightedDay,
+            range: nrOfDaysInMonth,
             data: monthdata
         });
     };
