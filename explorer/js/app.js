@@ -450,7 +450,7 @@ var app = function() {
         }).addTo(map);
 
         // Create default layer
-        cartodb.createLayer(map, "http://lifewatchinbo.cartodb.com/api/v2/viz/7c0c1fc0-ab8d-11e4-ad27-0e0c41326911/viz.json")
+        cartodb.createLayer(map, "http://lifewatch.cartodb.com/api/v2/viz/86605af2-b1fc-11e4-8c13-0e0c41326911/viz.json")
             .addTo(map)
             .on("done", function (layer) {
                 mapLayer = layer; // Store layer handle
