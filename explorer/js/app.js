@@ -431,8 +431,10 @@ var app = function() {
     };
 
     // Load selected data on map
-    var refreshMap = function () {
-        var sql = "SELECT * FROM bird_tracking WHERE userflag IS FALSE AND date_time >= '" + startDate + "' AND date_time <= '" + endDate + "' AND device_info_serial='" + selectedBird.device_info_serial + "'";
+    var refreshMap = function (dateRange) {
+        var start = toISODate(dateRange[0]);
+        var end = toISODate(dateRange[1]);
+        var sql = "SELECT * FROM bird_tracking WHERE userflag IS FALSE AND date_time >= '" + start + "' AND date_time <= '" + end + "' AND device_info_serial='" + selectedBird.device_info_serial + "'";
         clearMapLayer();
         mapLayer.getSubLayer(0).set({"sql": sql});
     };
@@ -518,7 +520,7 @@ var app = function() {
         // clearSelection();
         startDate = toISODate(selectedBird.start_date);
         endDate = toISODate(selectedBird.end_date);
-        refreshMap();
+        refreshMap([startDate, endDate]);
         insertBirdMetadata();
         createYearChart();
     };
