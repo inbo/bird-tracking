@@ -315,15 +315,15 @@ var app = function() {
         var endDate = new Date(getDayXMonthsAgo(date.valueOf() / 1000, -1) * 1000);
         var dateRange = [date, endDate];
         insertDateSelection(dateStr);
+        highlightedDay = "";
+        monthcal.highlight("now"); // should clear the highlight but can't get it to work. Since we're publishing data after an embargo period, "now" will always seem to clear the highlight.
+        yearChart.highlight("now");
         // selectedMetric = getSelectedMetric();
         // TODO: Don't use dateRange
         if (!_.isEqual(currentMonthRange, dateRange) || !_.isEqual(selectedMetric, currentlyDisplayedMetric)) {
             currentMonthRange = dateRange;
             currentlyDisplayedMetric = selectedMetric;
             drawMonthAndDayChart(false);
-        } else {
-            highlightedDay = "";
-            monthcal.highlight([]);
         }
         refreshMap(dateRange);
         if (typeof(daychart) != "undefined" && daychart !== null) {
