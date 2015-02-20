@@ -515,7 +515,7 @@ var app = function() {
     };
 
     var loadMetric = function () {
-        drawMonthAndDayChart(true); // TODO: check this
+        drawMonthAndDayChart(true); // TODO: Load data in the load metric function
     };
 
 
@@ -526,9 +526,9 @@ var app = function() {
     // Create bird selection dropdown
     var createBirdSelection = function () {
         // Create optgroups per species
-        var all_species = _.map(birds, function (bird){ return bird.scientific_name; });
-        var species = _.uniq(all_species, true);
-        var optgroups = {};
+        var allSpecies = _.map(birds, function (bird) { return bird.scientific_name; }),
+            species = _.uniq(allSpecies, true),
+            optgroups = {};
         _.each(species, function (spec_name) {
             optgroups[spec_name] = '<optgroup label="' + spec_name + '">';
         });
