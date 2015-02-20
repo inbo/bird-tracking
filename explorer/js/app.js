@@ -6,8 +6,6 @@ var app = function() {
     var birds = [],
         selectedBird = [],
         selectedMetric = "distance-travelled",
-        startDate,
-        endDate,
         map,
         mapLayer = "",
         yearChart,
@@ -518,10 +516,8 @@ var app = function() {
     // -------------------------
 
     var loadBird = function () {
-        // clearSelection();
-        startDate = toISODate(selectedBird.start_date);
-        endDate = toISODate(selectedBird.end_date);
-        refreshMap([startDate, endDate]);
+        // clearSelection(); // TODO: Remove
+        refreshMap([selectedBird.start_date, selectedBird.end_date]);
         insertBirdMetadata();
         createYearChart();
     };
