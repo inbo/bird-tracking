@@ -175,33 +175,45 @@ var app = function() {
 
     // this function will insert metrics into the #metric-metadata element
     var showDistTravelledMetric = function () {
-        var sum = _.reduce(monthdata, function(memo, dist, timestamp) {return memo+dist;});
-        var nr_of_days = _.keys(monthdata).length / 24;
-        var avg = sum / nr_of_days;
-        avg = Math.round(avg * 100) / 100;
-        d3.select("#metric-metadata").text("Average distance travelled this month: " + avg + " km/day.");
+        var text = "";
+        if (_.keys(monthdata).length != 0) {
+            var sum = _.reduce(monthdata, function (memo, dist, timestamp) {
+                return memo + dist;
+            });
+            var nr_of_days = _.keys(monthdata).length / 24;
+            var avg = sum / nr_of_days;
+            avg = Math.round(avg * 100) / 100;
+            text = "Average distance travelled this month: " + avg + " km/day.";
+        }
+        d3.select("#metric-metadata").text(text);
     };
 
     var showDistFromCatchMetric = function () {
-        var maxDistPerDay = {};
-        _.each(monthdata, function(dist, timestamp) {
-            var ts = new Date(timestamp * 1000);
-            ts.setHours(0); // ts refers to the beginning of the day
-            if (_.contains(_.keys(maxDistPerDay), ts.valueOf().toString())) {
-                maxDistPerDay[ts.valueOf()].push(dist);
-            } else {
-                maxDistPerDay[ts.valueOf()] = [dist];
-            }
-        });
-        var maxDistances = [];
-        _.each(maxDistPerDay, function(distArr, timestamp) {
-            maxDistances.push(_.max(distArr));
-        });
-        var sum = _.reduce(maxDistances, function(memo, dist, timestamp) {return memo+dist;});
-        var nr_of_days = maxDistances.length;
-        var avgMax = sum / nr_of_days;
-        avgMax = Math.round(avgMax * 100) / 100;
-        d3.select("#metric-metadata").text("Average furthest distance this month: "+ avgMax + " km/day.");
+        var text = "";
+        if (_.keys(monthdata).length != 0) {
+            var maxDistPerDay = {};
+            _.each(monthdata, function (dist, timestamp) {
+                var ts = new Date(timestamp * 1000);
+                ts.setHours(0); // ts refers to the beginning of the day
+                if (_.contains(_.keys(maxDistPerDay), ts.valueOf().toString())) {
+                    maxDistPerDay[ts.valueOf()].push(dist);
+                } else {
+                    maxDistPerDay[ts.valueOf()] = [dist];
+                }
+            });
+            var maxDistances = [];
+            _.each(maxDistPerDay, function (distArr, timestamp) {
+                maxDistances.push(_.max(distArr));
+            });
+            var sum = _.reduce(maxDistances, function (memo, dist, timestamp) {
+                return memo + dist;
+            });
+            var nr_of_days = maxDistances.length;
+            var avgMax = sum / nr_of_days;
+            avgMax = Math.round(avgMax * 100) / 100;
+            text = "Average furthest distance this month: "+ avgMax + " km/day.";
+        }
+        d3.select("#metric-metadata").text(text);
     };
 
     var showMetrics = function () {
