@@ -579,6 +579,7 @@ var app = function() {
     // -------------------------
 
     var selectBird = function() {
+        clearSelection();
         var birdID = $("option:selected", this).val();
         selectedBird = birds[birdID];
         loadBird();        
