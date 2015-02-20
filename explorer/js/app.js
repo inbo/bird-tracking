@@ -62,7 +62,6 @@ var app = function() {
         return $.get("https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql);
     };
 
-
     // -------------------------
     // Data transformation functions
     // -------------------------
@@ -92,10 +91,6 @@ var app = function() {
         });
         return [x, y];
     };
-
-
-
-
 
     // TODO: START REVIEW --------
 
@@ -163,8 +158,6 @@ var app = function() {
         });
     };
 
-    
-
     // this function will insert metrics into the #metric-metadata element
     var showDistTravelledMetric = function () {
         var text = "";
@@ -231,8 +224,6 @@ var app = function() {
             }
         }
     };
-
-
 
     // function to load data in an existing line chart
     var loadDataInLineChart = function () {
@@ -384,8 +375,6 @@ var app = function() {
         addCalendarMonthclickEvent();
     };
 
-
-
     // helper function to actually draw the month year chart
     var drawNewMonthChart = function () {
         var ts = new Date(_.keys(monthdata)[0] * 1000);
@@ -462,7 +451,6 @@ var app = function() {
                 callback();
             }).on("error", function () {});
     };
-
 
     // -------------------------
     // Year chart functions
