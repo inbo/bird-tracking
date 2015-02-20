@@ -6,8 +6,6 @@ var app = function() {
     var birds = [],
         selectedBird = [],
         selectedMetric = "distance-travelled",
-        startDate,
-        endDate,
         map,
         mapLayer = "",
         yearChart,
@@ -54,19 +52,13 @@ var app = function() {
 
     // Fetch distance travelled by a device, per hour, for a date range
     var fetchDistanceTravelledPerHour = function (device, dateRange) {
-        // TODO: don't use dateRange
-        var start = dateRange[0].getFullYear() + "/" + (dateRange[0].getMonth() + 1) + "/" + dateRange[0].getDate();
-        var end = dateRange[1].getFullYear() + "/" + (dateRange[1].getMonth() + 1) + "/" + dateRange[1].getDate();
-        var sql = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom, 1) OVER(ORDER BY device_info_serial, date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE AND date_time > '" + start + "' AND date_time < '" + end + "') SELECT extract(epoch FROM date_trunc('hour', date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
+        var sql = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom, 1) OVER(ORDER BY device_info_serial, date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE AND date_time > '" + toISODate(dateRange[0]) + "' AND date_time < '" + toISODate(dateRange[1]) + "') SELECT extract(epoch FROM date_trunc('hour', date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
         return $.get("https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql);
     };
 
     // Fetch furthest distance of a device from a location, per hour, for a date range
     var fetchFurthestDistanceByHour = function (device, point, dateRange) {
-        // TODO: don't use dateRange
-        var start = dateRange[0].getFullYear() + "/" + (dateRange[0].getMonth() + 1) + "/" + dateRange[0].getDate();
-        var end = dateRange[1].getFullYear() + "/" + (dateRange[1].getMonth() + 1) + "/" + dateRange[1].getDate();
-        var sql = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,ST_GeomFromText('point(" + point + ")',4326) ) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE AND date_time>'" + start + "' AND date_time<'" + end + "') SELECT extract(epoch FROM date_trunc('hour',date_time)) AS timestamp, round((max(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
+        var sql = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,ST_GeomFromText('point(" + point + ")',4326) ) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE AND date_time>'" + toISODate(dateRange[0]) + "' AND date_time<'" + toISODate(dateRange[1]) + "') SELECT extract(epoch FROM date_trunc('hour',date_time)) AS timestamp, round((max(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
         return $.get("https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql);
     };
 
@@ -445,9 +437,7 @@ var app = function() {
 
     // Load selected data on map
     var refreshMap = function (dateRange) {
-        var start = toISODate(dateRange[0]);
-        var end = toISODate(dateRange[1]);
-        var sql = "SELECT * FROM bird_tracking WHERE userflag IS FALSE AND date_time >= '" + start + "' AND date_time <= '" + end + "' AND device_info_serial='" + selectedBird.device_info_serial + "'";
+        var sql = "SELECT * FROM bird_tracking WHERE userflag IS FALSE AND date_time >= '" + toISODate(dateRange[0]) + "' AND date_time <= '" + toISODate(dateRange[1]) + "' AND device_info_serial='" + selectedBird.device_info_serial + "'";
         clearMapLayer();
         mapLayer.getSubLayer(0).set({"sql": sql});
     };
@@ -530,16 +520,14 @@ var app = function() {
     // -------------------------
 
     var loadBird = function () {
-        // clearSelection();
-        startDate = toISODate(selectedBird.start_date);
-        endDate = toISODate(selectedBird.end_date);
-        refreshMap([startDate, endDate]);
+        // clearSelection(); // TODO: Remove
+        refreshMap([selectedBird.start_date, selectedBird.end_date]);
         insertBirdMetadata();
         createYearChart();
     };
 
     var loadMetric = function () {
-        drawMonthAndDayChart(true); // TODO: check this
+        drawMonthAndDayChart(true); // TODO: Load data in the load metric function
     };
 
 
@@ -550,9 +538,9 @@ var app = function() {
     // Create bird selection dropdown
     var createBirdSelection = function () {
         // Create optgroups per species
-        var all_species = _.map(birds, function (bird){ return bird.scientific_name; });
-        var species = _.uniq(all_species, true);
-        var optgroups = {};
+        var allSpecies = _.map(birds, function (bird) { return bird.scientific_name; }),
+            species = _.uniq(allSpecies, true),
+            optgroups = {};
         _.each(species, function (spec_name) {
             optgroups[spec_name] = '<optgroup label="' + spec_name + '">';
         });
