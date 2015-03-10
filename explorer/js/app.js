@@ -43,13 +43,13 @@ var app = function() {
     // Fetch metadata of bird_tracking_devices (that have tracking data)
     var fetchBirdData = function () {
         var sql = "SELECT d.*, t.start_date, t.end_date FROM bird_tracking_devices AS d INNER JOIN (SELECT device_info_serial, min(date_time) AS start_date, max(date_time) AS end_date FROM bird_tracking WHERE userflag IS FALSE GROUP BY device_info_serial) AS t ON d.device_info_serial = t.device_info_serial ORDER BY d.scientific_name, d.bird_name";
-        return $.get("https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql);
+        return $.get("https://lifewatch.cartodb.com/api/v2/sql?q=" + sql);
     };
 
     // Fetch distance travelled by a device, per day
     var fetchDistanceTravelledPerDay = function (device) {
         var sql = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom, 1) OVER(ORDER BY device_info_serial, date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE) SELECT extract(epoch FROM date_trunc('day', date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
-        return $.get("https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql);
+        return $.get("https://lifewatch.cartodb.com/api/v2/sql?q=" + sql);
     };
 
     // Fetch distance travelled by a device, per hour, for a date range
@@ -58,7 +58,7 @@ var app = function() {
         var start = dateRange[0].getFullYear() + "/" + (dateRange[0].getMonth() + 1) + "/" + dateRange[0].getDate();
         var end = dateRange[1].getFullYear() + "/" + (dateRange[1].getMonth() + 1) + "/" + dateRange[1].getDate();
         var sql = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom, 1) OVER(ORDER BY device_info_serial, date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE AND date_time > '" + start + "' AND date_time < '" + end + "') SELECT extract(epoch FROM date_trunc('hour', date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
-        return $.get("https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql);
+        return $.get("https://lifewatch.cartodb.com/api/v2/sql?q=" + sql);
     };
 
     // Fetch furthest distance of a device from a location, per hour, for a date range
@@ -67,7 +67,7 @@ var app = function() {
         var start = dateRange[0].getFullYear() + "/" + (dateRange[0].getMonth() + 1) + "/" + dateRange[0].getDate();
         var end = dateRange[1].getFullYear() + "/" + (dateRange[1].getMonth() + 1) + "/" + dateRange[1].getDate();
         var sql = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,ST_GeomFromText('point(" + point + ")',4326) ) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE AND date_time>'" + start + "' AND date_time<'" + end + "') SELECT extract(epoch FROM date_trunc('hour',date_time)) AS timestamp, round((max(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
-        return $.get("https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + sql);
+        return $.get("https://lifewatch.cartodb.com/api/v2/sql?q=" + sql);
     };
 
 
