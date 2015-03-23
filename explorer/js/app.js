@@ -69,7 +69,7 @@ var app = function() {
     // Transform datetimestring to ISO date
     var toISODate = function (dateTimeString) {
         var dateTime = new Date(dateTimeString);
-        return dateTime.toISOString().substring(0,10);
+        return dateTime.toISOString();
     };
 
     // Transfrom CartoDB tracking data to calender heatmap data
