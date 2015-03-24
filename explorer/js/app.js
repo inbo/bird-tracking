@@ -222,6 +222,8 @@ var app = function() {
             } else {
                 drawNewMonthChart();
             }
+        } else if (typeof(monthcal) != "undefined" && monthcal !== null) {
+            monthcal = monthcal.destroy();
         }
     };
 
