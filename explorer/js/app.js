@@ -551,17 +551,6 @@ var app = function() {
         $("#select-bird").append(html);
     };
 
-    var init = function() {
-        fetchBirdData()
-            .done(function (data) {
-                birds = data.rows;
-                selectedBird = birds[0]; // First bird
-                createBirdSelection(); // Don't wait to finish
-                createMap(loadBird);
-            });
-    };
-    
-    init();
 
 
     // -------------------------
@@ -586,5 +575,34 @@ var app = function() {
 
     $("#select-bird").on("change", selectBird);
     $("#select-metric li").on("click", selectMetric);
+
+
+    // -------------------------
+    // execution-only code
+    // -------------------------
+    var init = function() {
+        fetchBirdData()
+            .done(function (data) {
+                birds = data.rows;
+                selectedBird = birds[0]; // First bird
+                createBirdSelection(); // Don't wait to finish
+                createMap(loadBird);
+            });
+    };
+    
+    // -------------------------
+    // implement in module, and expose API
+    // -------------------------
+    var a = {
+        fetchFurthestDistanceByHour: fetchFurthestDistanceByHour,
+        fetchDistanceTravelledPerDay: fetchDistanceTravelledPerDay,
+        fetchDistanceTravelledPerHour: fetchDistanceTravelledPerHour,
+        fetchBirdData: fetchBirdData,
+        toCalendarHeatmapData: toCalendarHeatmapData,
+        toC3Chart: toC3Chart,
+        getDayXMonthsAgo: getDayXMonthsAgo,
+        init: init
+    };
+    return a;
 
 }();

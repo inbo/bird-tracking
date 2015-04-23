@@ -2,21 +2,6 @@
 // Test calls to cartodb backend
 // -------------------------------------
 
-asyncTest("fetch 10 occurrences for device 703", 1, function() {
-    var device = "703";
-    var query = "SELECT date_time FROM bird_tracking WHERE device_info_serial='" + device + "' LIMIT 10";
-    var result = app.fetchTrackingData("https://lifewatch-inbo.cartodb.com/api/v2/sql?q=" + query);
-    var expectedNROfRecords = 10;
-    result.done(function (data) {
-        equal(data.rows.length, expectedNROfRecords);
-        start();
-    })
-    .fail(function () {
-        ok('', 'fetching 10 occurrences for device 703 failed');
-        start();
-    });
-});
-
 asyncTest("fetch distance data by hour for device 703 and point 3.1828, 51.3407", 2, function() {
     var device = "703";
     var point = "3.1828 51.3407"
@@ -24,7 +9,7 @@ asyncTest("fetch distance data by hour for device 703 and point 3.1828, 51.3407"
     // july 1, 2013 = 1372629600000
     var june1 = new Date(1370037600000);
     var july1 = new Date(1372629600000);
-    var result = fetchDistancesByHour(device, point, [june1, july1]);
+    var result = app.fetchFurthestDistanceByHour(device, point, [june1, july1]);
     result.done(function(data) {
         deepEqual(_.map(data.rows[0], function(val, key) {return key}), ["timestamp", "distance"]);
         ok(data.rows.length < 31*24);
@@ -38,7 +23,7 @@ asyncTest("fetch distance data by hour for device 703 and point 3.1828, 51.3407"
 
 asyncTest("fetch distance travelled by day for device 703", 1, function() {
     var device = "703";
-    var result = fetchDistTravelledByDay(device);
+    var result = app.fetchDistanceTravelledPerDay(device);
     result.done(function(data) {
         deepEqual(_.map(data.rows[0], function(val, key) {return key}), ["timestamp", "distance"]);
         start();
@@ -55,7 +40,7 @@ asyncTest("fetch distance travelled by hour for device 703", 2, function() {
     // july 1, 2013 = 1372629600000
     var june1 = new Date(1370037600000);
     var july1 = new Date(1372629600000);
-    var result = fetchDistTravelledByHour(device, [june1, july1]);
+    var result = app.fetchDistanceTravelledPerHour(device, [june1, july1]);
     result.done(function(data) {
         deepEqual(_.map(data.rows[0], function(val, key) {return key}), ["timestamp", "distance"]);
         ok(data.rows.length < 31*24);
@@ -68,7 +53,7 @@ asyncTest("fetch distance travelled by hour for device 703", 2, function() {
 });
 
 asyncTest("fetch bird data", 2, function() {
-    result = fetchBirdData();
+    result = app.fetchBirdData();
     result.done(function (data) {
         equal(data.rows.length, 66);
         deepEqual(_.map(data.rows[0], function(val, key) {return key}), ["bird_name", "catch_location", "ring_code", "device_info_serial", "sex", "scientific_name", "longitude", "latitude", "tracking_started_at", "last_timestamp"]);
@@ -105,7 +90,7 @@ test("convert object from cartodb to cal-heatmap input", function() {
             ]
     };
     var calHeatmapInput = {"1370044800": 5881.3, "4": 9};
-    deepEqual(toCalHeatmap(testCartoDbOutput), calHeatmapInput);
+    deepEqual(app.toCalendarHeatmapData(testCartoDbOutput), calHeatmapInput);
 });
 
 // Convert to expected type for C3 line chart
@@ -124,7 +109,7 @@ test("convert data to C3 input format", function() {
         ['x', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
         ['distance', 20, 10, 40, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
     ];
-    deepEqual(toC3Format(monthdata), c3input);
+    deepEqual(app.toC3Chart(monthdata), c3input);
 });
 
 // -------------------------------------
@@ -135,7 +120,7 @@ test("convert data to C3 input format", function() {
 test("get day 11 months ago", function() {
     var inputDate = new Date(2005, 11, 10);
     var inputSeconds = inputDate.valueOf() / 1000; // cal heatmap works with seconds, not miliseconds
-    var result = getDayXMonthsAgo(inputSeconds, 11);
+    var result = app.getDayXMonthsAgo(inputSeconds, 11);
     var d = new Date(result * 1000);
     equal(d.getFullYear(), 2005);
     equal(d.getMonth(), 0);
