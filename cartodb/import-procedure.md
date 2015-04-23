@@ -138,9 +138,15 @@
     WHERE userflag IS TRUE
     ```
     
-12. Verify if `bird_tracking` is missing fields, add those, and update the query in the step below.
+12. Drop all record from `bird_tracking` (since we do not have stable identifiers for records, we cannot compare between the old and new records and do an incremental update). 
 
-13. Import data into `bird_tracking`
+    ```SQL
+    DELETE FROM lifewatch.bird_tracking
+    ```
+
+13. Verify if `bird_tracking` is missing fields, add those, and update the query in the step below.
+
+14. Import new data into `bird_tracking`
 
     ```SQL
     -- SQL to insert new data into master bird_tracking table
