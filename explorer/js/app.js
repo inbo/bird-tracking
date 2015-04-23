@@ -399,7 +399,8 @@ var app = function() {
             label: {
                 position: "left",
                 width: 46,
-                height: 4
+                height: 4,
+                offset: {x: 3, y: 8}
             },
             domainLabelFormat: "%d",
             tooltip: true,
