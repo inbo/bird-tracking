@@ -55,8 +55,8 @@ asyncTest("fetch distance travelled by hour for device 703", 2, function() {
 asyncTest("fetch bird data", 2, function() {
     result = app.fetchBirdData();
     result.done(function (data) {
-        equal(data.rows.length, 66);
-        deepEqual(_.map(data.rows[0], function(val, key) {return key}), ["bird_name", "catch_location", "ring_code", "device_info_serial", "sex", "scientific_name", "longitude", "latitude", "tracking_started_at", "last_timestamp"]);
+        equal(data.rows.length, 27);
+        deepEqual(_.map(data.rows[0], function(val, key) {return key}), ["bird_name", "catch_location", "ring_code", "device_info_serial", "sex", "scientific_name", "longitude", "latitude", "tracking_started_at"]);
         start();
     })
     .fail(function () {
