@@ -40,7 +40,7 @@ var app = function() {
 
     // Fetch metadata of bird_tracking_devices (that have tracking data)
     var fetchBirdData = function () {
-        var sql = "SELECT d.bird_name, d.catch_location, d.ring_code, d.device_info_serial, d.sex, d.scientific_name, d.longitude, d.latitude, d.tracking_started_at FROM bird_tracking_devices AS d INNER JOIN (SELECT device_info_serial, min(date_time) AS start_date, max(date_time) AS end_date FROM bird_tracking WHERE userflag IS FALSE GROUP BY device_info_serial) AS t ON d.device_info_serial = t.device_info_serial ORDER BY d.scientific_name, d.bird_name";
+        var sql = "SELECT d.bird_name, d.catch_location, d.ring_code, d.device_info_serial, d.sex, d.scientific_name, d.longitude, d.latitude, d.tracking_started_at, t.start_date, t.end_date FROM bird_tracking_devices AS d INNER JOIN (SELECT device_info_serial, min(date_time) AS start_date, max(date_time) AS end_date FROM bird_tracking WHERE userflag IS FALSE GROUP BY device_info_serial) AS t ON d.device_info_serial = t.device_info_serial ORDER BY d.scientific_name, d.bird_name";
         return $.get("https://lifewatch.cartodb.com/api/v2/sql?q=" + sql);
     };
 
