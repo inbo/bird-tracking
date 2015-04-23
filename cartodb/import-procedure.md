@@ -1,11 +1,11 @@
 # Procedure to import new tracking data
 
-1. Upload data to CartoDB.
+1. Upload data to CartoDB (`bird-tracking` account)
 2. Rename table to `bird_tracking_new_data`.
 3. Drop unused columns:
 
     ```SQL
-    ALTER TABLE bird_tracking_new_data
+    ALTER TABLE "bird-tracking".bird_tracking_new_data
     DROP COLUMN pressure,
     DROP COLUMN positiondop,
     DROP COLUMN location,
@@ -20,26 +20,26 @@
 3. Set `\N` to `NULL` for nullable fields:
 
     ```SQL
-    UPDATE bird_tracking_new_data SET latitude = NULL WHERE latitude = '\N';
-    UPDATE bird_tracking_new_data SET longitude = NULL WHERE longitude = '\N';
-    UPDATE bird_tracking_new_data SET altitude = NULL WHERE altitude = '\N';
-    UPDATE bird_tracking_new_data SET temperature = NULL WHERE temperature = '\N';
-    UPDATE bird_tracking_new_data SET h_accuracy = NULL WHERE h_accuracy = '\N';
-    UPDATE bird_tracking_new_data SET v_accuracy = NULL WHERE v_accuracy = '\N';
-    UPDATE bird_tracking_new_data SET x_speed = NULL WHERE x_speed = '\N';
-    UPDATE bird_tracking_new_data SET y_speed = NULL WHERE y_speed = '\N';
-    UPDATE bird_tracking_new_data SET z_speed = NULL WHERE z_speed = '\N';
-    UPDATE bird_tracking_new_data SET gps_fixtime = NULL WHERE gps_fixtime = '\N';
-    UPDATE bird_tracking_new_data SET userflag = NULL WHERE userflag = '\N';
-    UPDATE bird_tracking_new_data SET satellites_used = NULL WHERE satellites_used = '\N';
-    UPDATE bird_tracking_new_data SET speed_accuracy = NULL WHERE speed_accuracy = '\N';
-    UPDATE bird_tracking_new_data SET direction = NULL WHERE direction = '\N';
+    UPDATE "bird-tracking".bird_tracking_new_data SET latitude = NULL WHERE latitude = '\N';
+    UPDATE "bird-tracking".bird_tracking_new_data SET longitude = NULL WHERE longitude = '\N';
+    UPDATE "bird-tracking".bird_tracking_new_data SET altitude = NULL WHERE altitude = '\N';
+    UPDATE "bird-tracking".bird_tracking_new_data SET temperature = NULL WHERE temperature = '\N';
+    UPDATE "bird-tracking".bird_tracking_new_data SET h_accuracy = NULL WHERE h_accuracy = '\N';
+    UPDATE "bird-tracking".bird_tracking_new_data SET v_accuracy = NULL WHERE v_accuracy = '\N';
+    UPDATE "bird-tracking".bird_tracking_new_data SET x_speed = NULL WHERE x_speed = '\N';
+    UPDATE "bird-tracking".bird_tracking_new_data SET y_speed = NULL WHERE y_speed = '\N';
+    UPDATE "bird-tracking".bird_tracking_new_data SET z_speed = NULL WHERE z_speed = '\N';
+    UPDATE "bird-tracking".bird_tracking_new_data SET gps_fixtime = NULL WHERE gps_fixtime = '\N';
+    UPDATE "bird-tracking".bird_tracking_new_data SET userflag = NULL WHERE userflag = '\N';
+    UPDATE "bird-tracking".bird_tracking_new_data SET satellites_used = NULL WHERE satellites_used = '\N';
+    UPDATE "bird-tracking".bird_tracking_new_data SET speed_accuracy = NULL WHERE speed_accuracy = '\N';
+    UPDATE "bird-tracking".bird_tracking_new_data SET direction = NULL WHERE direction = '\N';
     ```
 
 4. Set data types (this should drastically reduce the storage space of the table):
 
     ```SQL
-        ALTER TABLE bird_tracking_new_data
+    ALTER TABLE "bird-tracking".bird_tracking_new_data
     ALTER COLUMN device_info_serial SET data type integer USING device_info_serial::integer,
     ALTER COLUMN date_time SET data type timestamp with time zone USING date_time::timestamp with time zone,
     ALTER COLUMN latitude SET data type double precision USING latitude::double precision,
@@ -64,8 +64,8 @@
     -- SQL to find device_info_serial that are not found in bird_tracking_devices
     
     SELECT t.device_info_serial
-    FROM bird_tracking_new_data t
-        LEFT JOIN bird_tracking_devices d
+    FROM "bird-tracking".bird_tracking_new_data t
+        LEFT JOIN lifewatch.bird_tracking_devices d
         ON t.device_info_serial = d.device_info_serial
     WHERE d.device_info_serial IS NULL
     GROUP BY t.device_info_serial
@@ -83,11 +83,11 @@
     ```SQL
     -- SQL to remove test tracking records, when tracker was not mounted on bird
     
-    DELETE FROM bird_tracking_new_data
-    USING bird_tracking_devices AS d
+    DELETE FROM "bird-tracking".bird_tracking_new_data
+    USING lifewatch.bird_tracking_devices AS d
     WHERE
-        bird_tracking_new_data.device_info_serial = d.device_info_serial
-        AND bird_tracking_new_data.date_time < d.tracking_started_at
+        "bird-tracking".bird_tracking_new_data.device_info_serial = d.device_info_serial
+        AND "bird-tracking".bird_tracking_new_data.date_time < d.tracking_started_at
     ```
     
 10. Flag outliers
@@ -111,12 +111,12 @@
             t.the_geom,
             t.the_geom_webmercator,
             (st_distance_sphere(t.the_geom,lag(t.the_geom,1) over(ORDER BY t.device_info_serial, t.date_time))/1000)/(extract(epoch FROM (t.date_time - lag(t.date_time,1) over(ORDER BY t.device_info_serial, t.date_time)))/3600) AS km_per_hour
-        FROM bird_tracking_new_data AS t
-            LEFT JOIN bird_tracking_devices AS d
+        FROM "bird-tracking".bird_tracking_new_data AS t
+            LEFT JOIN lifewatch.bird_tracking_devices AS d
             ON t.device_info_serial = d.device_info_serial
     )
     
-    UPDATE bird_tracking_new_data
+    UPDATE "bird-tracking".bird_tracking_new_data
     SET userflag = TRUE
     FROM (
         SELECT cartodb_id
@@ -127,14 +127,14 @@
             OR km_per_hour > 120
             OR height_accuracy > 1000
           ) AS outliers
-    WHERE outliers.cartodb_id = bird_tracking_new_data.cartodb_id
+    WHERE outliers.cartodb_id = "bird-tracking".bird_tracking_new_data.cartodb_id
     ```
     
 11. Show outliers
 
     ```SQL
     SELECT * 
-    FROM bird_tracking_new_data
+    FROM "bird-tracking".bird_tracking_new_data
     WHERE userflag IS TRUE
     ```
     
@@ -146,7 +146,7 @@
     -- SQL to insert new data into master bird_tracking table
     -- cartodb_id, the_geom_webmercator, created_at, updated_at are all calculated by CartoDB
     
-    INSERT INTO bird_tracking (
+    INSERT INTO lifewatch.bird_tracking (
         the_geom,
         altitude,
         date_time,
@@ -183,5 +183,5 @@
         x_speed,
         y_speed,
         z_speed
-    FROM bird_tracking_new_data
+    FROM "bird-tracking".bird_tracking_new_data
     ```
