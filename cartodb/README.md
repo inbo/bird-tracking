@@ -75,6 +75,7 @@ gps_fixtime | number | Time to get a GPS fix in seconds.
 h_accuracy | number | Horizontal accuracy in meters.
 latitude | number | WGS84 latitude recorded by the GPS tracker.
 longitude | number | WGS84 longitude recorded by the GPS tracker.
+occurrenceid | text | A unique, stable identifier for each  record.
 satellites_used | number | Number of satellites used to get a GPS fix.
 speed_accuracy | number | 
 temperature | number | Temperature recorded by the GPS tracker in degrees Celsius.
