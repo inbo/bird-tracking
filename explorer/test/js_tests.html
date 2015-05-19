@@ -2,16 +2,18 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Tracking eric analysis JavaScript tests</title>
-  <link rel="stylesheet" href="../lib/qunit.css">
-  <script src="../lib/jquery.js"></script>
-  <script src="../lib/sprintf.min.js"></script>
-  <script src="../src/functions.js"></script>
+  <title>Bird tracking explorer JavaScript tests</title>
+  <link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.16.0.css">
+  <!-- These libraries are needed to make the code in app.js work -->
+  <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+  <script src="../js/app.js"></script>
 </head>
 <body>
   <div id="qunit"></div>
   <div id="qunit-fixture"></div>
-  <script src="../lib/qunit.js"></script>
+  <!-- Qunit is needed to run the unit tests -->
+  <script src="//code.jquery.com/qunit/qunit-1.16.0.js"></script>
   <script src="js_tests.js"></script>
 </body>
 </html>
