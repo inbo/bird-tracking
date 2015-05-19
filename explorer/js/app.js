@@ -580,7 +580,7 @@ var app = function() {
     };
 
     $("#select-bird").on("change", selectBird);
-    $("#select-metric li").on("click", selectMetric);
+    $(".select-metric").on("click", selectMetric);
     $("#clear-select").on("click", clearSelectionAndReloadMap);
 
 

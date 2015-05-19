@@ -26,7 +26,7 @@
         <div id="map">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-md-12">
                         <div id="map-canvas"></div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                     </div>
                 </form>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-md-12">
                         <div id="previous-month" class="cal-nav">
                             <span class="fa fa-chevron-left fa-2x"></span>
                         </div>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-md-12">
                         <p class="text-center">Select a month or day on the chart for more detailed distance information.</p>
                     </div>
                 </div>
@@ -68,25 +68,23 @@
         <div id="metrics">
             <div class="container">
                 <div class="row metrics-header">
-                    <div class="col-sm-5">
+                    <div class="col-md-5">
                         <h3 id="selected-time">Select a month or day</h3>
                     </div>
-                    <button id="clear-select">Clear selection</button>
-                    <div class="col-sm-7">
-                        <div class="pull-right">
-                            <ul id="select-metric" class="nav nav-pills">
-                                <li id="distance-travelled" class="active"><a href="javascript:;">Distance travelled</a></li>
-                                <li id="furthest-distance"><a href="javascript:;">Furthest distance from catch location</a></li>
-                            </ul>
+                    <div class="col-md-7">
+                            <div class="btn-group">
+                                <button id="distance-travelled" type="button" class="btn btn-default select-metric active">Distance travelled</button>
+                                <button id="furthest-distance" type="button" class="btn btn-default select-metric">Furthest distance from catch location</button>
+                                <button id="clear-select" type="button" class="btn btn-primary">Clear selection</button>
+                            </div>
                             <p id="metric-metadata">I'm a long way from home.</p>
-                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-md-5">
                         <div id="month-chart"></div>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-md-7">
                         <div id="day-chart"></div>
                     </div>
                 </div>
