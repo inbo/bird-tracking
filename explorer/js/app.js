@@ -126,7 +126,7 @@ var app = function() {
 
     // this function will clear the date selection from the #selected-time element
     var clearDateSelection = function () {
-        d3.select("#selected-time").text("");
+        d3.select("#selected-time").text("Select a month or day");
     };
 
     var setMonthData = function (data) {
@@ -344,6 +344,11 @@ var app = function() {
         }
         clearMetrics();
     };
+
+    var clearSelectionAndReloadMap = function () {
+        clearSelection();
+        refreshMap([selectedBird.start_date, selectedBird.end_date]);
+    }
 
     // this function will add an event to the #next-month element that
     // will cause the year calendar to load the next domain
@@ -576,6 +581,7 @@ var app = function() {
 
     $("#select-bird").on("change", selectBird);
     $("#select-metric li").on("click", selectMetric);
+    $("#clear-select").on("click", clearSelectionAndReloadMap);
 
 
     // -------------------------
