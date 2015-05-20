@@ -386,6 +386,8 @@ var app = function() {
     var drawNewMonthChart = function () {
         var ts = new Date(_.keys(monthdata)[0] * 1000);
         var start_ts = new Date(ts.getFullYear(), ts.getMonth());
+        var maxdist = _.max(_.values(monthdata));
+        var legend = [maxdist / 5, 2*maxdist / 5 , 3*maxdist / 5, 4*maxdist / 5];
         monthcal = new CalHeatMap();
         monthcal.init({
             domain: "day",
@@ -396,6 +398,7 @@ var app = function() {
             cellSize: 8,
             verticalOrientation: true,
             rowLimit: 24,
+            legend: legend,
             legendColors: {
                 min: "#dae289",
                 max: "#3b6427",
@@ -486,6 +489,8 @@ var app = function() {
                         $(anchor).empty(); // Faster than yearChart.destroy()
                     }
                     yearChart = new CalHeatMap();
+                    var maxdist = _.max(_.values(yearChartData));
+                    var legend = [maxdist / 10, 2*maxdist / 10 , 3*maxdist / 10, 4*maxdist / 10]; // "10" was defined empirically to give the most pleasing result
                     yearChart.init({
                         data: yearChartData,
                         start: new Date(yearChartStart * 1000),
@@ -497,6 +502,7 @@ var app = function() {
                         cellSize: 14,
                         domainGutter: 5,
                         displayLegend: false,
+                        legend: legend,
                         legendColors: {
                             min: "#dae289",
                             max: "#3b6427",
