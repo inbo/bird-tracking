@@ -1,125 +1,119 @@
 <!DOCTYPE html>
-<head>
-    <meta charset="utf-8">
-    <title>Bird tracking explorer</title>
-    <link rel="shortcut icon" href="http://lifewatch.inbo.be/blog/theme/img/favicon.ico">
-    <link rel="stylesheet" href="http://lifewatch.inbo.be/blog/theme/css/normalize.css">
-    <link rel="stylesheet" href="http://lifewatch.inbo.be/blog/theme/css/main.css">
-
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400">
-    <link rel="stylesheet" href="http://lifewatch.inbo.be/blog/theme/css/font-awesome.min.css">
-    <!--[if IE 7]>
-    <link rel="stylesheet" href="http://lifewatch.inbo.be/blog/theme/css/font-awesome-ie7.min.css">
-    <![endif]-->
-    <script src="http://lifewatch.inbo.be/blog//theme/js/vendor/modernizr-2.6.2.min.js"></script>
-    <link rel="stylesheet" href="css/cal-heatmap.css">
-    <link rel="stylesheet" href="css/custom.css">
-    <link rel="stylesheet" href="css/nv.d3.min.css">
-    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css">
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <header class="clearfix">
-                <h2><a href="http://lifewatch.inbo.be/blog">Lifewatch INBO</a></h2>
-                <nav>
-                    <ul>
-                        <li><a href="https://github.com/LifeWatchINBO/bird-tracking">Source code</a></li>
-                    </ul>
-                </nav>
-            </header>
-            <div><img src="http://lifewatch.inbo.be/blog/theme/img/inbo-logo.png" alt="inbo-logo"></div>
-        </div>
-
-        <div class="content">
-            <section>
-                <header>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Bird tracking explorer</title>
+        <meta name="author" content="LifeWatch INBO">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="http://lifewatch.inbo.be/blog/theme/img/favicon.ico">
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="http://libs.cartocdn.com/cartodb.js/v3/3.9.08/themes/css/cartodb.css">
+        <link rel="stylesheet" type="text/css" href="css/cal-heatmap.css">
+        <link rel="stylesheet" type="text/css" href="css/c3.min.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+    </head>
+    <body>
+        <div id="intro">
+            <div class="container">
+                <div class="page-header">
                     <h1>Bird tracking explorer</h1>
-                </header>
-                <p>We are <a href="http://lifewatch.inbo.be/blog/tag/bird-tracking.html">tracking birds</a> with the <a href="http://www.uva-bits.nl/">UvA-BiTS tracking system</a> and use <a href="http://lifewatch-inbo.cartodb.com/tables/f3534fdc-cd4f-416f-a00e-aa824bf2385b/public/table">CartoDB</a> to interact with the data. Here we demonstrate how you can explore and visualize the data using the <a href="https://lifewatch-inbo.cartodb.com/api/v2/sql?q=select * from bird_tracking limit 100">CartoDB API</a> and some awesome Javascript libraries. Checkout the <a href="https://github.com/LifeWatchINBO/bird-tracking">GitHub repository</a> for more details.</p>
-            </section>
-
-            <section class="clearfix">
-                <header>
-                    <h2>Select a bird</h2>
-                </header>
-                <div id="controls">
-                <select id="birdselector"></select>
-                <button id="gobutton">Go</button>
-                <ul>
-                    <li><strong>Species:</strong><span id="species-text"></span></li>
-                    <li><strong>Sex:</strong><span id="sex-text"></span></li>
-                    <li><strong>Maximum speed:</strong><span id="max-speed-text"></span></li>
-                    <li><strong>Maximum distance from colony:</strong><span id="max-dist-col"></span></li>
-                </ul>
                 </div>
-                <div id="map"></div>
-            </section>
+                <p class="lead">We are <a href="http://lifewatch.inbo.be/blog/tag/bird-tracking.html">tracking birds</a> with the <a href="http://www.uva-bits.nl/">UvA-BiTS tracking system</a> and use <a href="https://lifewatch-inbo.cartodb.com/">CartoDB</a> to interact with the data. Here we demonstrate how you can explore and visualize the data using the <a href="https://lifewatch-inbo.cartodb.com/api/v2/sql?q=select * from bird_tracking limit 100">CartoDB API</a> and some great Javascript libraries. Checkout the <a href="https://github.com/LifeWatchINBO/bird-tracking">GitHub repository</a> for more details.</p>
+            </div>
+        </div>
 
-            <section>
-                <header>
-                    <h2>Distance</h2>
-                </header>
-                <div id="calendar">
-                    <div class="clearfix">
-                        <div class="tabspacer"></div>
-                        <div class="tab active" id="show-dist-col" >Distance from colony</div>
-                        <div class="tab inactive" id="show-dist-trav">Distance travelled</div>
-                        <div id="selection-info">
-                            <span id="cur-select">No date range selected</span>
-                            <button type="button" onclick="clearSelection()">Clear selection</button>
+        <div id="map">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="map-canvas"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="controls">
+            <div class="container">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="select-bird" class="control-label col-sm-2">Select a bird</label>
+                        <div class="col-sm-4">
+                            <select id="select-bird" class="form-control"></select>
+                        </div>
+                        <div class="col-sm-6 clearfix">
+                            <p id="bird-metadata" class="form-control-static pull-right"></p>
                         </div>
                     </div>
-
-                    <div class="clearfix">
-                        <div class="cal-nav" id="cal-previous">
-                            <span class="icon-chevron-left icon-large"></span>
+                </form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="previous-month" class="cal-nav">
+                            <span class="fa fa-chevron-left fa-2x"></span>
                         </div>
-                        <div class="cal-chart" id="hour-month-heatmap"></div>
-                        <div class="cal-nav" id="cal-next">
-                            <span class="icon-chevron-right icon-large"></span>
+                        <div id="year-chart"></div>
+                        <div id="next-month" class="cal-nav">
+                            <span class="fa fa-chevron-right fa-2x"></span>
                         </div>
                     </div>
                 </div>
-
-                <div id="linechart"><svg style="height: 300px;"></svg></div>
-            </section>
-
-            <section class="comments">
-                <header>
-                    <h2>Comments</h2>
-                </header>
-                <div id="disqus_thread"></div>
-                <script type="text/javascript">
-                    var disqus_shortname = 'lifewatchinbo';
-
-                    (function() {
-                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                    })();
-                </script>
-                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-            </section>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="text-center">Select a month or day on the chart for more detailed distance information.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="metrics">
+            <div class="container">
+                <div class="row metrics-header">
+                    <div class="col-md-5">
+                        <h3 id="selected-time">Select a month or day</h3>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="btn-group">
+                            <button id="distance-travelled" type="button" class="btn btn-default select-metric active">Distance travelled</button>
+                            <button id="furthest-distance" type="button" class="btn btn-default select-metric">Furthest distance from catch location</button>
+                            <button id="clear-select" type="button" class="btn btn-primary">Clear selection</button>
+                        </div>
+                        <p id="metric-metadata">I'm a long way from home.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div id="month-chart"></div>
+                    </div>
+                    <div class="col-md-7">
+                        <div id="day-chart"></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="footer">
-            <footer class="clearfix">
-                <div><img src="http://lifewatch.inbo.be/blog/theme/img/lifewatch-inbo-logo.png" alt="lifewatch-inbo-logo"/></div>
-            </footer>
-        </div>
-    </div>
+        <div id="comments">
+            <div class="container">
 
-    <!-- Scripts -->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
-    <script type="text/javascript" src="js/nv.d3.js"></script>
-    <script type="text/javascript" src="js/cal-heatmap.min.js"></script>
-    <script type="text/javascript" src="js/sprintf.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
-    <script type="text/javascript" src="js/data.js"></script>
-    <script type="text/javascript" src="js/functions.js"></script>
-    <script type="text/javascript" src="js/map.js"></script>
-    <script type="text/javascript" src="js/charts.js"></script>
-</body>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div class="container clearfix">
+                <p class="pull-left">Created by <a href="http://lifewatch.inbo.be">LifeWatch INBO</a></p>
+                <p class="pull-right"><a href="https://github.com/LifeWatchINBO/bird-tracking">Source code</a></p>
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
+        <script type="text/javascript" src="js/cal-heatmap.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+        <script type="text/javascript" src="http://libs.cartocdn.com/cartodb.js/v3/3.9.08/cartodb.js"></script>
+        <script type="text/javascript" src="js/c3.min.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        <script>
+            app.init();
+        </script>
+    </body>
+</html>
