@@ -211,7 +211,7 @@ var app = function() {
 
     // this function will clear the information in the #metric-metadata element
     var clearMetrics = function () {
-        d3.select("#metric-metadata").text();
+        d3.select("#metric-metadata").text("");
     };
 
     // function to draw the month heatmap chart
@@ -333,6 +333,7 @@ var app = function() {
     var clearSelection = function () {
         clearDateSelection();
         highlightedDay = "";
+        yearChart.highlight("now");
         if (typeof(monthcal) != "undefined" && monthcal !== null) {
             monthcal.destroy();
         }
