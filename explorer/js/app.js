@@ -241,10 +241,9 @@ var app = function() {
     var drawNewDayLineChart = function () {
         var data = {
             x: "x",
-            columns: daydata[0],
+            columns: [daydata[0]],
             type: "spline"
         };
-        data.columns = [data.columns[0]];
         daychart = c3.generate({
             bindto: "#day-chart",
             data: data,
@@ -269,8 +268,7 @@ var app = function() {
 
     // function to remove the day line chart completely
     var clearDayChart = function () {
-        daychart.destroy();
-        daychart = null;
+        unloadDataInLineChart();
     };
 
     // funtion called when a cell in the year calendar is clicked
@@ -526,6 +524,8 @@ var app = function() {
         refreshMap([selectedBird.start_date, selectedBird.end_date]);
         insertBirdMetadata();
         createYearChart();
+        daydata = toC3Chart({}); // nothing selected yet
+        drawNewDayLineChart();
     };
 
     var loadMetric = function () {
