@@ -8,7 +8,7 @@ title | published at | registered at | issue tracker
 --- | --- | --- | ---
 Bird tracking - GPS tracking of Lesser Black-backed Gull and Herring Gull breeding at the Belgian coast | [INBO IPT](http://dataset.inbo.be/bird-tracking-gull-occurrences) | [GBIF](http://www.gbif.org/dataset/83e20573-f7dd-4852-9159-21566e1e691e) | [GitHub](https://github.com/LifeWatchINBO/bird-tracking-gull-occurrences/)
 
-But for those who prefer, we have also made our public bird tracking data available through [CartoDB](http://cartodb.com), an open source tool to visualize and analyze geospatial data on the web. CartoDB allows users to query the data using SQL via the [CartoDB API](http://developers.cartodb.com/documentation/sql-api.html) or download these in various formats (`csv`, `shp`, `kml`, `svg`, and `geosjon`). The data are made available as two tables: `bird_tracking` and `bird_tracking_devices`. We also released a small sample dataset `tracking_eric`, containing 2 months of tracking data from one individual.
+But for those who prefer, we have also made our public bird tracking data available through [CartoDB](http://cartodb.com), an open source tool to visualize and analyze geospatial data on the web. CartoDB allows users to query the data using SQL via the [CartoDB API](http://docs.cartodb.com/cartodb-platform/sql-api.html) or download these in various formats (`csv`, `shp`, `kml`, `svg`, and `geosjon`). The data are made available as two tables: `bird_tracking` and `bird_tracking_devices`. We also released a small sample dataset `tracking_eric`, containing 2 months of tracking data from one individual.
 
 ## Tracked species
 
@@ -26,7 +26,7 @@ vernacular name | scientific name | family | species code | published dataset
 * [Our blog posts](http://lifewatch.inbo.be/blog/tag/bird-tracking.html) on the bird tracking network
 * [Our public CartoDB visualizations](https://lifewatch-inbo.cartodb.com/)
 * [Our bird tracking explorer](http://lifewatchinbo.github.io/bird-tracking/explorer/index.html)
-* [CartoDB API documentation](http://developers.cartodb.com/documentation/sql-api.html)
+* [CartoDB API documentation](http://docs.cartodb.com/cartodb-platform/sql-api.html)
 
 ## tracking_eric table
 
