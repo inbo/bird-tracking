@@ -19,8 +19,9 @@ A workshop by [Peter Desmet](https://twitter.com/peterdesmet) at the [Animal Mov
 
 ## Upload data
 
-1. **Go to your datasets overview.**
-3. **Upload `scge_lbbg_migration.csv`** by dragging the file to your browser window. CartoDB recognizes [multiple files formats](http://docs.cartodb.com/cartodb-editor.html#supported-file-formats).
+1. Download [this tracking data file](http://horizon.science.uva.nl/public/AMA_2015/DAY5/CartoDB/scge_lbbg_migration.csv.zip)
+2. **Go to your datasets overview.**
+3. **Upload `scge_lbbg_migration.csv`** (or the zip, it doesn't matter) by dragging the file to your browser window. CartoDB recognizes [multiple files formats](http://docs.cartodb.com/cartodb-editor.html#supported-file-formats).
 
 ## Data view
 
