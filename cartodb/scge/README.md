@@ -46,7 +46,7 @@
 
 9. **Click** `Clear view` to remove any applied SQL.
  
-## Create a basic map
+## Create your first map
 
 1. **Click** `Visualize` in the top right to create your first visualization and **name it** `My first map`.
 2. **Click** `Map view`.
@@ -93,7 +93,7 @@
     }
     ```
 
-## Map of migration speed
+## Create a map of migration speed
 
 1. We want to save our previous work and create another visualization. **Click** `Edit > Duplicate map` and **name it** `Where does gull 311 rest?`.
 2. **Add a `WHERE` clause to the SQL** to only select male gull 311 between specific dates:
@@ -136,13 +136,97 @@
 
     ![Update the legend](migration-speed-2.png)
 
-6. **Describe your map** in the top left by clicking `Edit metadata...`.
-7. **Share your map** by clicking `Publish` in the top right. The sharing dialog box provides you with a link or the code to embed in a html page. The `CartoDB.js` is for advanced use in apps.
-8. **Copy the link, paste it in a new browser tab and verify the bounding box** (i.e. is the interesting part of the data visible?). Anything you update in your visualization (including zoom level and bounding box) will affect the visualization (reload the page to see the changes).
+6. **Click a point** and chose `Select field` to create an info window.
 
-<iframe width="100%" height="520" frameborder="0" src="https://inbo.cartodb.com/u/lifewatch/viz/7ad8e926-2644-11e5-9890-0e4fddd5de28/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+    ![Define info windows](migration-speed-3.png)
 
+7. **Describe your map** in the top left by clicking `Edit metadata...`.
+8. **Share your map** by clicking `Publish` in the top right. The sharing dialog box provides you with a link or the code to embed in a html page. The `CartoDB.js` is for advanced use in apps.
+9. **Copy the link and paste it in a new browser tab** to verify the info windows and the bounding box** (i.e. is the interesting part of the data visible?). Anything you update in your visualization (including zoom level and bounding box) will affect the visualization (reload the page to see the changes).
 
+[See the final visualization](https://inbo.cartodb.com/u/lifewatch/viz/7ad8e926-2644-11e5-9890-0e4fddd5de28/public_map)
+
+## Create a map of tracks per month
+
+1. **Duplicate** your visualization and **name it** `Tracks per month`.
+2. This time we want to string the occurrences together as lines: one line per individual, per month. **This can be done in the SQL**. See the [PostgreSQL documentation](http://www.postgresql.org/docs/9.4/static/functions-datetime.html) for date functions. `the_geom_webmercator` is a geospatial field that is calculated by CartoDB in the background based on `the_geom` and is used for the actual display on the map. Since we're defining a new geospatial field (i.e. a line), we have to explicitely include it.
+
+    ```SQL
+    SELECT
+        ST_MakeLine(the_geom_webmercator ORDER BY date_time ASC) AS the_geom_webmercator,
+        extract(month from date_time) AS month,
+        device_info_serial
+    FROM scge_lbbg_migration
+    WHERE
+        date_time >= '2010-08-01'
+        AND date_time <= '2010-12-31'
+    GROUP BY
+        device_info_serial,
+        month
+    ```
+
+3. We want to display each month in a different colour, so **start with a `Choropleth` map**, with the following options:
+
+    ![Start from a choropleth map](month-tracks-1.png)
+
+4. We will also include labels (start doing this in the `Choropleth` options), so you can still see which track belongs to which individual. **Fine-tune the visualization in the CSS**:
+
+    ```CSS
+    /** choropleth visualization */
+
+    #scge_lbbg_migration{
+      polygon-opacity: 0;
+      line-color: #FFFFCC;
+      line-width: 1.5;
+      line-opacity: 0.8;
+    }
+
+    #scge_lbbg_migration::labels {
+      text-name: [device_info_serial];
+      text-face-name: 'Lato Bold';
+      text-size: 12;
+      text-label-position-tolerance: 10;
+      text-fill: #000;
+      text-halo-fill: #FFF;
+      text-halo-radius: 2;
+      text-dy: -10;
+      text-allow-overlap: false;
+      text-placement: interior;
+      text-placement-type: simple;
+    }
+
+    #scge_lbbg_migration [ month <= 12] {
+       line-color: #253494;
+    }
+    #scge_lbbg_migration [ month <= 11] {
+       line-color: #2C7FB8;
+    }
+    #scge_lbbg_migration [ month <= 10] {
+       line-color: #41B6C4;
+    }
+    #scge_lbbg_migration [ month <= 9] {
+       line-color: #A1DAB4;
+    }
+    #scge_lbbg_migration [ month <= 8] {
+       line-color: #FFFFCC;
+    }
+    ```
+
+5. **Update the legend**:
+
+    ![Update the legend](month-tracks-2.png)
+
+6. To provide some more context, let's annotate the map. In the top right, **click** `Add Element > Add annotation item` and **indicate summer and winter location**:
+
+    ![Add annotatinos](month-tracks-3.png)
+
+7. Finally, **update the description** in `Edit metadata...` and **publish your map**.
+
+[See the final visualization](https://inbo.cartodb.com/u/lifewatch/viz/3f607d1c-264b-11e5-9d8b-0e018d66dc29/public_map)
+
+## Create an animated map
+
+1. **Duplicate** your visualization and **name it** `Migration in time`.
 
 ## Appendices
 
