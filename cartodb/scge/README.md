@@ -227,6 +227,82 @@
 ## Create an animated map
 
 1. **Duplicate** your visualization and **name it** `Migration in time`.
+2. This time, we'll add a visualization on top of the previous one. **Click** `+` on the right hand side to add a new layer and **choose the same table** `scge_lbbg_migration`.
+
+    ![Add a layer](torque-1.png)
+
+3. **Apply the same time contraints** in the SQL:
+
+    ```SQL
+    SELECT * 
+    FROM scge_lbbg_migration
+    WHERE
+        date_time >= '2010-08-01'
+        AND date_time <= '2010-12-31'
+    ```
+
+4. From the `Wizards`, **choose** `Torque cat`, with the following options. The `Time Column` should always be your date
+
+    ![Torque cat](torque-2.png)
+
+    ![Torque cat](torque-3.png)
+
+5. The final CSS looks like this:
+
+    ```CSS
+    /** torque_cat visualization */
+
+    Map {
+    -torque-frame-count:256;
+    -torque-animation-duration:30;
+    -torque-time-attribute:"date_time";
+    -torque-aggregation-function:"CDB_Math_Mode(torque_category)";
+    -torque-resolution:1;
+    -torque-data-aggregation:linear;
+    }
+
+    #scge_lbbg_migration{
+      comp-op: source-over;
+      marker-fill-opacity: 0.9;
+      marker-line-color: #FFF;
+      marker-line-width: 0;
+      marker-line-opacity: 1;
+      marker-type: ellipse;
+      marker-width: 3;
+      marker-fill: #FF9900;
+    }
+    #scge_lbbg_migration[frame-offset=1] {
+     marker-width:5;
+     marker-fill-opacity:0.45; 
+    }
+    #scge_lbbg_migration[frame-offset=2] {
+     marker-width:7;
+     marker-fill-opacity:0.225; 
+    }
+    #scge_lbbg_migration[value=1] {
+       marker-fill: #D6301D;
+    }
+    #scge_lbbg_migration[value=2] {
+       marker-fill: #A53ED5;
+    }
+    #scge_lbbg_migration[value=3] {
+       marker-fill: #FFCC00;
+    }
+    ```
+
+6. **Update the legend**, **remove the `device_info_serial` labels** from the other layer (they are no longer required) and **publish your map**.
+
+[See the final visualization](https://inbo.cartodb.com/u/lifewatch/viz/a36b9c78-2679-11e5-a586-0e853d047bba/public_map)
+
+## Further information
+
+This is just the beginning: upload your own dataset and create beautiful maps. For inspiration and tutorials, see:
+
+* [LifeWatch INBO maps](https://inbo.cartodb.com/u/lifewatch/maps): lots of tracking data maps
+* [LifeWatch INBO blog posts on CartoDB](http://lifewatch.inbo.be/blog/tag/cartodb.html): tutorials and things we`ve build with CartoDB
+* [CartoDB map gallery](https://cartodb.com/gallery/): the cream of the crop of CartoDB maps
+* [CartoDB academy](http://academy.cartodb.com/): step by step tutorials on how to create maps in CartoDB
+* [CartoDB documentation](http://docs.cartodb.com/): if you want to dive deep into all the hidden features.
 
 ## Appendices
 
