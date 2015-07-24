@@ -14,8 +14,7 @@
     DROP COLUMN vdown,
     DROP COLUMN speed,
     DROP COLUMN speed_3d,
-    DROP COLUMN speed3d,
-    ADD COLUMN occurrenceid text
+    DROP COLUMN speed3d
     ```
 
 3. Set `\N` to `NULL` for nullable fields:
@@ -59,13 +58,7 @@
     ALTER COLUMN direction SET data type double precision USING direction::double precision
     ```
 
-5. Generate a stable unique `occurrenceID`, based on `device_info_serial` and `date_time`
-
-    ```SQL
-    UPDATE "bird-tracking".bird_tracking_new_data SET occurrenceid = md5(device_info_serial::text || date_time::text)
-    ```
-
-6. Check for new devices
+5. Check for new devices
 
     ```SQL
     -- SQL to find device_info_serial that are not found in bird_tracking_devices
@@ -79,13 +72,13 @@
     ORDER BY t.device_info_serial
     ```
 
-7. Manually add any new devices and their metadata to the table `bird_tracking_devices`
+6. Manually add any new devices and their metadata to the table `bird_tracking_devices`
 
-8. Optionally, check tracking days (using [this query](maintenance/selectTrackingPeriods.sql)).
+7. Optionally, check tracking days (using [this query](maintenance/selectTrackingPeriods.sql)).
 
-9. Optionally, check number of test records (using [this query](maintenance/selectTestRecords.sql)).
+8. Optionally, check number of test records (using [this query](maintenance/selectTestRecords.sql)).
 
-10. Remove test records
+9. Remove test records
 
     ```SQL
     -- SQL to remove test tracking records, when tracker was not mounted on bird
@@ -97,7 +90,7 @@
         AND "bird-tracking".bird_tracking_new_data.date_time < d.tracking_started_at
     ```
     
-11. Flag outliers
+10. Flag outliers
 
     ```SQL
     -- SQL to flag outliers in the tracking data
@@ -137,7 +130,7 @@
     WHERE outliers.cartodb_id = "bird-tracking".bird_tracking_new_data.cartodb_id
     ```
     
-12. Show outliers
+11. Show outliers
 
     ```SQL
     SELECT * 
@@ -145,15 +138,15 @@
     WHERE userflag IS TRUE
     ```
     
-13. Drop all record from `bird_tracking` (since we do not have stable identifiers for records, we cannot compare between the old and new records and do an incremental update). 
+12. Drop all record from `bird_tracking` (since we do not have stable identifiers for records, we cannot compare between the old and new records and do an incremental update). 
 
     ```SQL
     DELETE FROM lifewatch.bird_tracking
     ```
 
-14. Verify if `bird_tracking` is missing fields, add those, and update the query in the step below.
+13. Verify if `bird_tracking` is missing fields, add those, and update the query in the step below.
 
-15. Import new data into `bird_tracking`
+14. Import new data into `bird_tracking`
 
     ```SQL
     -- SQL to insert new data into master bird_tracking table
