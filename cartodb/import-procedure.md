@@ -124,7 +124,7 @@
         FROM select_fields
         WHERE
             the_geom IS NULL
-            date_time > current_date
+            OR date_time > current_date
             OR altitude > 10000
             OR km_per_hour > 120
             OR height_accuracy > 1000
