@@ -94,6 +94,7 @@
 
     ```SQL
     -- SQL to flag outliers in the tracking data
+    -- * Records without geospatial information
     -- * Records in the future
     -- * Records with an altitude above 10km
     -- * Records with a speed above 120km/h
@@ -122,6 +123,7 @@
         SELECT cartodb_id
         FROM select_fields
         WHERE
+            the_geom IS NULL
             date_time > current_date
             OR altitude > 10000
             OR km_per_hour > 120
