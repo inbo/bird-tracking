@@ -2,7 +2,7 @@
 
 1. Upload data to CartoDB (`bird-tracking` account)
 2. Rename table to `bird_tracking_new_data`.
-3. Drop unused columns and add one for an ID:
+3. Drop unused columns:
 
     ```SQL
     ALTER TABLE "bird-tracking".bird_tracking_new_data
@@ -74,11 +74,19 @@
 
 6. Manually add any new devices and their metadata to the table `bird_tracking_devices`
 
-7. Optionally, check tracking days (using [this query](maintenance/selectTrackingPeriods.sql)).
+7. Check for records that were not georeferenced by CartoDB and add coordinates manually:
 
-8. Optionally, check number of test records (using [this query](maintenance/selectTestRecords.sql)).
+    ```SQL
+    SELECT *
+    FROM "bird-tracking".bird_tracking_new_data
+    WHERE the_geom IS NULL
+    ```
 
-9. Remove test records
+8. Optionally, check tracking days (using [this query](maintenance/selectTrackingPeriods.sql)).
+
+9. Optionally, check number of test records (using [this query](maintenance/selectTestRecords.sql)).
+
+10. Remove test records
 
     ```SQL
     -- SQL to remove test tracking records, when tracker was not mounted on bird
@@ -90,11 +98,10 @@
         AND "bird-tracking".bird_tracking_new_data.date_time < d.tracking_started_at
     ```
     
-10. Flag outliers
+11. Flag outliers
 
     ```SQL
     -- SQL to flag outliers in the tracking data
-    -- * Records without geospatial information
     -- * Records in the future
     -- * Records with an altitude above 10km
     -- * Records with a speed above 120km/h
@@ -123,8 +130,7 @@
         SELECT cartodb_id
         FROM select_fields
         WHERE
-            the_geom IS NULL
-            OR date_time > current_date
+            date_time > current_date
             OR altitude > 10000
             OR km_per_hour > 120
             OR height_accuracy > 1000
@@ -132,7 +138,7 @@
     WHERE outliers.cartodb_id = "bird-tracking".bird_tracking_new_data.cartodb_id
     ```
     
-11. Show outliers
+12. Show outliers
 
     ```SQL
     SELECT * 
@@ -140,15 +146,15 @@
     WHERE userflag IS TRUE
     ```
     
-12. Drop all record from `bird_tracking` (since we do not have stable identifiers for records, we cannot compare between the old and new records and do an incremental update). 
+13. Drop all record from `bird_tracking` (since we do not have stable identifiers for records, we cannot compare between the old and new records and do an incremental update). 
 
     ```SQL
     DELETE FROM lifewatch.bird_tracking
     ```
 
-13. Verify if `bird_tracking` is missing fields, add those, and update the query in the step below.
+14. Verify if `bird_tracking` is missing fields, add those, and update the query in the step below.
 
-14. Import new data into `bird_tracking`
+15. Import new data into `bird_tracking`
 
     ```SQL
     -- SQL to insert new data into master bird_tracking table
