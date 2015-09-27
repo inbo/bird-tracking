@@ -6,15 +6,12 @@
 
     ```SQL
     ALTER TABLE lifewatch.bird_tracking_new_data
-    DROP COLUMN pressure,
-    DROP COLUMN positiondop,
+    DROP COLUMN altitude_agl,
     DROP COLUMN location,
-    DROP COLUMN vnorth,
-    DROP COLUMN veast,
-    DROP COLUMN vdown,
-    DROP COLUMN speed,
-    DROP COLUMN speed_3d,
-    DROP COLUMN speed3d
+    DROP COLUMN positiondop,
+    DROP COLUMN pressure,
+    DROP COLUMN speed_2d,
+    DROP COLUMN speed_3d
     ```
 
 3. Set `\N` to `NULL` for nullable fields:
