@@ -14,7 +14,7 @@
     DROP COLUMN speed_3d
     ```
 
-3. Set `\N` to `NULL` for nullable fields:
+3. Set `\N` to `NULL` for string fields. Fields that were interpreted automatically by CartoDB to number, date, etc. (i.e. there were no `\N` values blocking the interpretation to another data type) should be removed from this query:
 
     ```SQL
     UPDATE lifewatch.bird_tracking_new_data SET latitude = NULL WHERE latitude = '\N';
