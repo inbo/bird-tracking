@@ -55,7 +55,7 @@
     ALTER COLUMN direction SET data type double precision USING direction::double precision
     ```
 
-5. Check for new devices
+5. Check for new devices:
 
     ```SQL
     -- SQL to find device_info_serial that are not found in bird_tracking_devices
@@ -69,7 +69,7 @@
     ORDER BY t.device_info_serial
     ```
 
-6. Manually add any new devices and their metadata to the table `bird_tracking_devices`
+6. Manually add any new devices and their metadata to the table `bird_tracking_devices` and check above query again.
 
 7. Check for records that were not georeferenced by CartoDB and add coordinates manually:
 
@@ -79,15 +79,45 @@
     WHERE the_geom IS NULL
     ```
 
-8. Optionally, check tracking days (using [this query](maintenance/selectTrackingPeriods.sql)).
-
-9. Optionally, check number of test records (using [this query](maintenance/selectTestRecords.sql)).
-
-10. Remove test records
+8. Optionally, check tracking days to discover birds with relatively low number of tracking days (could indicate bird is dead):
 
     ```SQL
-    -- SQL to remove test tracking records, when tracker was not mounted on bird
-    
+    SELECT
+      d.bird_name,
+      d.scientific_name,
+      d.colour_ring_code,
+      min(t.date_time) AS start_date,
+      max(t.date_time) AS end_date,
+      max(t.date_time)::date - min(t.date_time)::date as days,
+      d.remarks
+    FROM lifewatch.bird_tracking_new_data t
+      LEFT JOIN lifewatch.bird_tracking_devices d
+      ON t.device_info_serial = d.device_info_serial
+    WHERE t.userflag is false
+    GROUP BY 
+      d.bird_name,
+      d.scientific_name,
+      d.colour_ring_code,
+      d.remarks
+    ORDER BY days DESC
+    ```
+
+9. Optionally, check number of test records, i.e. records recorded when tracker was not mounted on bird or very shortly after release of bird. Those records have a `date_time` earlier than the `tracking_started_at`:
+
+    ```SQL
+    SELECT
+      count(*)
+    FROM
+      lifewatch.bird_tracking_new_data as t
+      LEFT JOIN lifewatch.bird_tracking_devices as d
+      ON t.device_info_serial = d.device_info_serial
+    WHERE
+      t.date_time < d.tracking_started_at
+      ```
+
+10. Remove test records:
+
+    ```SQL
     DELETE FROM lifewatch.bird_tracking_new_data
     USING lifewatch.bird_tracking_devices AS d
     WHERE
@@ -143,15 +173,63 @@
     WHERE userflag IS TRUE
     ```
     
-13. Drop all record from `bird_tracking` (since we do not have stable identifiers for records, we cannot compare between the old and new records and do an incremental update). 
+13. Compare new data with current data, to discover potentially missing records in the new data:
+
+    ```SQL
+    WITH per_device AS (
+        SELECT
+            join_with_current.device_info_serial AS device_info_serial,
+            join_with_current.species_code,
+            join_with_current.current_records,
+            count(new.*) AS new_records
+        FROM
+            (
+                SELECT
+                    metadata.device_info_serial,
+                    metadata.species_code,
+                    count(current.*) AS current_records
+                FROM
+                    lifewatch.bird_tracking_devices AS metadata
+                    LEFT JOIN lifewatch.bird_tracking AS current
+                    ON metadata.device_info_serial = current.device_info_serial
+                GROUP BY
+                    metadata.device_info_serial,
+                    metadata.species_code
+            ) AS join_with_current
+            LEFT JOIN lifewatch.bird_tracking_new_data AS new
+            ON join_with_current.device_info_serial = new.device_info_serial
+        GROUP BY
+            join_with_current.device_info_serial,
+            join_with_current.species_code,
+            join_with_current.current_records
+    )
+
+    SELECT
+        device_info_serial,
+        species_code,
+        current_records,
+        new_records,
+        new_records - current_records AS difference,
+        CASE
+            WHEN new_records - current_records < 0 THEN 'missing records'
+            ELSE ''
+        END AS warning
+    FROM
+        per_device
+    ORDER BY
+        species_code DESC,
+        device_info_serial
+    ```
+
+14. If no missing records, drop all records from `bird_tracking` for a certain species_code (since we do not have stable identifiers for records, we cannot compare between the old and new records and do an incremental update). 
 
     ```SQL
     DELETE FROM lifewatch.bird_tracking
     ```
 
-14. Verify if `bird_tracking` is missing fields, add those, and update the query in the step below.
+15. Verify if `bird_tracking` is missing fields, add those, and update the query in the step below.
 
-15. Import new data into `bird_tracking`
+16. Import new data into `bird_tracking`
 
     ```SQL
     -- SQL to insert new data into master bird_tracking table
