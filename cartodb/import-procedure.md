@@ -221,7 +221,7 @@
         device_info_serial
     ```
 
-15. If no unexpected records are missing, drop all records from `bird_tracking` for a certain `species_code` (update the query below for the relevant `species_code`). Since we do not have stable identifiers for records, we cannot compare between the old and new records and do an incremental update. 
+15. If no unexpected records are missing, drop all records from `bird_tracking` for a certain `species_code` (update the query below for the relevant `species_code`). **Make sure there is sufficient space for step 17**. Since we do not have stable identifiers for records, we cannot compare between the old and new records and do an incremental update. 
 
     ```SQL
     DELETE FROM lifewatch.bird_tracking
@@ -233,7 +233,7 @@
 
 16. Verify if `bird_tracking` is missing fields, add those, and update the query in the step below.
 
-17. Import new data into `bird_tracking`
+17. Import new data into `bird_tracking`:
 
     ```SQL
     -- SQL to insert new data into master bird_tracking table
@@ -278,3 +278,4 @@
         z_speed
     FROM lifewatch.bird_tracking_new_data
     ```
+18. Remove `bird_tracking_new_data`.
