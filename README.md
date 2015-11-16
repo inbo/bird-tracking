@@ -2,6 +2,11 @@
 
 Tools and documentation for analyzing and visualizing data from our [bird tracking network](http://lifewatch.inbo.be/blog/tag/bird-tracking.html).
 
+## Published dataset
+
+* [Published dataset](http://doi.org/10.15468/02omly)
+* [Our data publication process](https://github.com/LifeWatchINBO/data-publication/tree/master/datasets/bird-tracking-gull-occurrences)
+
 ## Accessing the bird tracking data with CartoDB
 
 [See this document](cartodb/README.md).
