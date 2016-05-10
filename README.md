@@ -5,7 +5,7 @@ Tools and documentation for analyzing and visualizing data from our [bird tracki
 ## Published dataset
 
 * [Published dataset](http://doi.org/10.15468/02omly)
-* [Our data publication process](https://github.com/LifeWatchINBO/data-publication/tree/master/datasets/bird-tracking-gull-occurrences)
+* [Our data publication process](https://github.com/inbo/data-publication/tree/master/datasets/bird-tracking-gull-occurrences)
 
 ## Accessing the bird tracking data with CartoDB
 
@@ -15,5 +15,5 @@ Tools and documentation for analyzing and visualizing data from our [bird tracki
 
 We built a tool to explore the bird tracking data, using [D3.js](http://d3js.org/), [C3](http://c3js.org), [Cal-heatmap](http://kamisama.github.io/cal-heatmap/), and [CartoDB.js](http://developers.cartodb.com/documentation/cartodb-js.html).
 
-* [See it in action](http://lifewatchinbo.github.io/bird-tracking/explorer/index.html)
+* [See it in action](http://inbo.github.io/bird-tracking/explorer/index.html)
 * [Browse the code](explorer/)
