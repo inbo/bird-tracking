@@ -40,25 +40,25 @@ var app = function() {
 
     // Fetch metadata of bird_tracking_devices (that have tracking data)
     var fetchBirdData = function () {
-        var sql = "SELECT d.bird_name, d.catch_location, d.ring_code, d.device_info_serial, d.sex, d.scientific_name, d.longitude, d.latitude, d.tracking_started_at, t.start_date, t.end_date FROM bird_tracking_devices AS d INNER JOIN (SELECT device_info_serial, min(date_time) AS start_date, max(date_time) AS end_date FROM bird_tracking WHERE userflag IS FALSE GROUP BY device_info_serial) AS t ON d.device_info_serial = t.device_info_serial ORDER BY d.scientific_name, d.bird_name";
+        var sql = "SELECT d.bird_name, d.catch_location, d.ring_code, d.device_info_serial, d.sex, d.scientific_name, d.longitude, d.latitude, d.tracking_started_at, t.start_date, t.end_date FROM bird_tracking_devices AS d INNER JOIN (SELECT device_info_serial, min(date_time) AS start_date, max(date_time) AS end_date FROM bird_tracking GROUP BY device_info_serial) AS t ON d.device_info_serial = t.device_info_serial ORDER BY d.scientific_name, d.bird_name";
         return $.get("https://lifewatch.cartodb.com/api/v2/sql?q=" + sql);
     };
 
     // Fetch distance travelled by a device, per day
     var fetchDistanceTravelledPerDay = function (device) {
-        var sql = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom, 1) OVER(ORDER BY device_info_serial, date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE) SELECT extract(epoch FROM date_trunc('day', date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
+        var sql = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom, 1) OVER(ORDER BY device_info_serial, date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "') SELECT extract(epoch FROM date_trunc('day', date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
         return $.get("https://lifewatch.cartodb.com/api/v2/sql?q=" + sql);
     };
 
     // Fetch distance travelled by a device, per hour, for a date range
     var fetchDistanceTravelledPerHour = function (device, dateRange) {
-        var sql = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom, 1) OVER(ORDER BY device_info_serial, date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE AND date_time > '" + toISODate(dateRange[0]) + "' AND date_time < '" + toISODate(dateRange[1]) + "') SELECT extract(epoch FROM date_trunc('hour', date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
+        var sql = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,lag(the_geom, 1) OVER(ORDER BY device_info_serial, date_time)) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND date_time > '" + toISODate(dateRange[0]) + "' AND date_time < '" + toISODate(dateRange[1]) + "') SELECT extract(epoch FROM date_trunc('hour', date_time)) AS timestamp, round((sum(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
         return $.get("https://lifewatch.cartodb.com/api/v2/sql?q=" + sql);
     };
 
     // Fetch furthest distance of a device from a location, per hour, for a date range
     var fetchFurthestDistanceByHour = function (device, point, dateRange) {
-        var sql = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,ST_GeomFromText('point(" + point + ")',4326) ) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND userflag IS FALSE AND date_time>'" + toISODate(dateRange[0]) + "' AND date_time<'" + toISODate(dateRange[1]) + "') SELECT extract(epoch FROM date_trunc('hour',date_time)) AS timestamp, round((max(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
+        var sql = "WITH distance_view AS (SELECT date_time, ST_Distance_Sphere(the_geom,ST_GeomFromText('point(" + point + ")',4326) ) AS distance_in_meters FROM bird_tracking WHERE device_info_serial='" + device + "' AND date_time>'" + toISODate(dateRange[0]) + "' AND date_time<'" + toISODate(dateRange[1]) + "') SELECT extract(epoch FROM date_trunc('hour',date_time)) AS timestamp, round((max(distance_in_meters)/1000)::numeric, 3) AS distance FROM distance_view GROUP BY timestamp ORDER BY timestamp";
         return $.get("https://lifewatch.cartodb.com/api/v2/sql?q=" + sql);
     };
 
@@ -436,7 +436,7 @@ var app = function() {
 
     // Load selected data on map
     var refreshMap = function (dateRange) {
-        var sql = "SELECT * FROM bird_tracking WHERE userflag IS FALSE AND date_time >= '" + toISODate(dateRange[0]) + "' AND date_time <= '" + toISODate(dateRange[1]) + "' AND device_info_serial='" + selectedBird.device_info_serial + "'";
+        var sql = "SELECT * FROM bird_tracking WHERE date_time >= '" + toISODate(dateRange[0]) + "' AND date_time <= '" + toISODate(dateRange[1]) + "' AND device_info_serial='" + selectedBird.device_info_serial + "'";
         clearMapLayer();
         mapLayer.getSubLayer(0).set({"sql": sql});
     };
