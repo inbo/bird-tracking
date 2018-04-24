@@ -1,0 +1,132 @@
+---
+title: "Get individual bird data"
+author:
+- Peter Desmet
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+---
+
+# Setup
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Set locale (so we use UTF-8 character encoding):
+
+```{r}
+# This works on Mac OS X, might not work on other OS
+Sys.setlocale("LC_CTYPE", "en_US.UTF-8")
+```
+
+Load libraries:
+
+```{r}
+library(dplyr)
+library(RODBC)
+library(odbc)
+```
+
+Set file paths (all paths should be relative to this script):
+ 
+```{r}
+individuals_file = "../data/interim/individuals.csv"
+```
+
+## Connect to UvA-BiTS database
+
+Setup connection with UvA-BiTS database using `RODBC` package:
+
+```{r}
+uvabits <- config::get("uvabits")
+connection_string <- paste0(
+  "driver=", uvabits$driver,
+  ";server=", uvabits$server,
+  ";port=", uvabits$port,
+  ";database=", uvabits$database,
+  ";username=", uvabits$username,
+  ";password=", uvabits$password,
+  ";sslmode=require;"
+)
+```
+
+```{r connect_to_uvabits_db}
+con <- odbcDriverConnect(connection_string, case = "postgresql")
+```
+
+Test connection:
+
+```{r}
+sqlTables(con) %>% head()
+```
+
+# Get individuals
+
+Define SQL:
+
+```{r}
+individuals_sql <- "SELECT
+  s.key_name,
+  p.station_name,
+  i.individual_id,
+  i.ring_number,
+  i.colour_ring,
+  i.species_latin_name,
+  i.mass,
+  i.sex,
+  i.remarks AS remarks_individual,
+  sp.english_name,
+  s.device_info_serial,
+  s.start_date AS start_date_track_session,
+  s.end_date AS end_date_track_session,
+  s.start_latitude,
+  s.start_longitude,
+  s.remarks AS remarks_track_session,
+  s.track_session_id,
+  s.tracker_id
+FROM (
+  SELECT * FROM gps.ee_individual_limited
+  UNION
+  SELECT * FROM gps.ee_shared_individual_limited) i
+LEFT JOIN (
+  SELECT * FROM gps.ee_track_session_limited
+  UNION
+  SELECT * FROM gps.ee_shared_track_session_limited) s
+  ON i.individual_id = s.individual_id
+LEFT JOIN gps.ee_species_limited sp
+  ON i.species_latin_name = sp.latin_name
+LEFT JOIN gps.ee_project_limited p
+  on s.key_name = p.key_name
+ORDER BY
+  key_name,
+  device_info_serial"
+```
+
+Query database:
+
+```{r}
+individuals <- sqlQuery(con, individuals_sql)
+```
+
+Show characteristics about the data:
+
+```{r}
+str(individuals)
+```
+
+Preview data:
+
+```{r}
+individuals %>% head()
+```
+
+Save to CSV:
+
+```{r}
+write.csv(individuals, file = individuals_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+```
