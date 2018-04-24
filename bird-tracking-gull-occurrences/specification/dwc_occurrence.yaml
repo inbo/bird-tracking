@@ -1,0 +1,113 @@
+# Dataset: bird-tracking-gull-occurrences
+# DOI: https://doi.org/10.15468/02omly
+# 
+# Scope: dwc-occurrence
+# Author: Peter Desmet
+# Syntax version: https://github.com/inbo/whip/blob/5468ffc2b4b0ab163eca4e1f5acb2470cdb95a26/docs/syntax.md
+
+occurrenceID:
+  regex: '\d{3,4}:\d{14}'
+
+type:
+  allowed: Event
+
+language:
+  allowed: en
+
+license:
+  allowed: http://creativecommons.org/publicdomain/zero/1.0/
+
+rightsHolder:
+  allowed: INBO
+
+accessRights:
+  allowed: http://www.inbo.be/en/norms-for-data-use
+
+datasetID:
+  allowed: https://doi.org/10.15468/02omly
+
+institutionCode:
+  allowed: INBO
+
+datasetName:
+  allowed: 'Bird tracking - GPS tracking of Lesser Black-backed Gulls and Herring Gulls breeding at the southern North Sea coast'
+
+basisOfRecord:
+  allowed: MachineObservation
+
+informationWithheld:
+  allowed: see metadata
+
+dynamicProperties:
+  stringformat: json # e.g. {"device_info_serial":801,"catch_location":"Vismijn, Oostende","tracking_started_at":"2013-05-17", "heading_in_degrees":156.959}
+
+sex:
+  empty: True # Sex could not be determined for all gulls (i.e. "Chris")
+  allowed: [female, male]
+
+lifeStage:
+  allowed: adult
+
+organismID:
+  empty: False
+
+organismName:
+  empty: False
+
+samplingProtocol:
+  allowed: 'https://doi.org/10.1007/s10336-012-0908-1'
+
+samplingEffort:
+  stringformat: json # e.g. {"seconds_since_last_occurrence":1814}
+
+eventDate:
+  dateformat: ['%Y-%m-%dT%H:%M:%SZ'] # e.g. 2013-05-17T18:05:26Z
+  mindate: 2013-05-17
+  maxdate: 2016-08-31
+
+minimumElevationInMeters:
+  allowed: 0
+
+minimumDistanceAboveSurfaceInMeters:
+  empty: True # Not available for all records
+  type: integer # Can we use this definition? See https://github.com/inbo/whip/issues/14
+  min: -1100
+  max: 10000
+
+decimalLatitude:
+  type: float # Can we use this definition? See https://github.com/inbo/whip/issues/14
+  numberformat: '.7'
+  min: 12
+  max: 58
+
+decimalLongitude:
+  type: float # Can we use this definition? See https://github.com/inbo/whip/issues/14
+  numberformat: '.7'
+  min: -18
+  max: 18
+
+geodeticdatum:
+  allowed: WGS84
+
+coordinateUncertaintyInMeters:
+  type: integer # Can we use this definition? See https://github.com/inbo/whip/issues/14
+  min: 1
+  max: 1000
+
+georeferenceSources:
+  allowed: GPS
+
+georeferenceVerificationStatus:
+  allowed: unverified
+
+scientificName:
+  allowed: [Larus argentatus, Larus fuscus]
+
+kingdom:
+  allowed: Animalia
+
+taxonRank:
+  allowed: species
+
+vernacularName:
+  allowed: [Herring Gull, Lesser Black-backed Gull]
