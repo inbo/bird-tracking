@@ -28,8 +28,7 @@ Load libraries:
 
 ```{r}
 library(dplyr)
-library(RODBC)
-library(odbc)
+source(file = "functions/query_uvabits.R")
 ```
 
 Set file paths (all paths should be relative to this script):
@@ -40,29 +39,10 @@ individuals_file = "../data/interim/individuals.csv"
 
 ## Connect to UvA-BiTS database
 
-Setup connection with UvA-BiTS database using `RODBC` package:
-
-```{r}
-uvabits <- config::get("uvabits")
-connection_string <- paste0(
-  "driver=", uvabits$driver,
-  ";server=", uvabits$server,
-  ";port=", uvabits$port,
-  ";database=", uvabits$database,
-  ";username=", uvabits$username,
-  ";password=", uvabits$password,
-  ";sslmode=require;"
-)
-```
-
-```{r connect_to_uvabits_db}
-con <- odbcDriverConnect(connection_string, case = "postgresql")
-```
-
 Test connection:
 
-```{r}
-sqlTables(con) %>% head()
+```{r test_connection}
+query_uvabits("SELECT * FROM gps.ee_species_limited") %>% head()
 ```
 
 # Get individuals
@@ -110,7 +90,7 @@ ORDER BY
 Query database:
 
 ```{r}
-individuals <- sqlQuery(con, individuals_sql)
+individuals <- query_uvabits(individuals_sql)
 ```
 
 Show characteristics about the data:
