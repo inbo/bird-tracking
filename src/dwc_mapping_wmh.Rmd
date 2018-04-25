@@ -1,0 +1,138 @@
+---
+title: "Darwin Core mapping"
+subtitle: "For: Western Marsh Harriers"
+author:
+- Peter Desmet
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+---
+
+# Setup
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Set locale (so we use UTF-8 character encoding):
+
+```{r}
+# This works on Mac OS X, might not work on other OS
+Sys.setlocale("LC_CTYPE", "en_US.UTF-8")
+```
+
+Load libraries:
+
+```{r}
+library(tidyverse)
+library(magrittr)
+library(readr)
+library(RPostgreSQL)
+library(glue)
+```
+
+Set file paths (all paths should be relative to this script):
+ 
+```{r}
+individual_track_session_file = "../data/interim/wmh/individual_track_session.csv"
+dwc_occurrence_tagging_file = "../data/processed/wmh/occurrence_tagging.csv"
+```
+
+## Connect to UvA-BiTS database
+
+Get credentials from config file (not included in this repo) and create a database connection:
+
+```{r connect_to_uvabits}
+uvabits <- config::get("uvabits")
+con = dbConnect(
+  dbDriver("PostgreSQL"),
+  user = uvabits$username,
+  password = uvabits$password,
+  host = uvabits$server,
+  port = uvabits$port,
+  dbname = uvabits$database
+)
+```
+
+## Set dataset specific settings
+
+```{r}
+project_keys <- c("MH_WATERLAND")
+datasetID <- "https://doi.org/10.15468/rbguhj"
+datasetName <- "Bird tracking - GPS tracking of Western Marsh Harriers breeding near the Belgium-Netherlands border"
+institutionCode <- "INBO"
+rightsHolder <- "INBO"
+license <- "http://creativecommons.org/publicdomain/zero/1.0/"
+accessRights <- "http://www.inbo.be/en/norms-for-data-use"
+informationWithheld <- "see metadata"
+```
+
+# Create occurrence core for bird tagging
+
+## Get denormalized individuals and track sessions
+
+To create occurrences for the bird capture/tagging with GPS trackers (= `HumanObservation`) and the associated measurements, we query for all bird individuals in a project and their track session information. This view will be used as a base for the Darwin Core mapping:
+
+```{r}
+individual_track_session_sql <- glue_sql(
+  read_file("sql/individual_track_session.sql"),
+  .con = con
+)
+```
+
+To get an overview of this information, we also run and save the query:
+
+```{r query_individual_track_session}
+individual_track_session <- dbGetQuery(con, individual_track_session_sql)
+```
+
+Preview results:
+
+```{r}
+individual_track_session %>% head()
+```
+
+Save results:
+
+```{r}
+write.csv(individual_track_session, file = individual_track_session_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+```
+
+## Term mapping
+
+Map the source data to [Darwin Core Occurrence](http://rs.gbif.org/core/dwc_occurrence_2015-07-02.xml). The mapping is done in SQL:
+
+```{r}
+dwc_occurrence_tagging_sql <- glue_sql(
+  read_file("sql/dwc_occurrence_tagging.sql"),
+  .con = con
+)
+```
+
+Show SQL:
+
+```{r}
+dwc_occurrence_tagging_sql
+```
+
+Run SQL:
+
+```{r query_dwc_occurrence_tagging}
+dwc_occurrence_tagging <- dbGetQuery(con, dwc_occurrence_tagging_sql)
+```
+
+Preview results:
+
+```{r}
+dwc_occurrence_tagging %>% head()
+```
+
+Save results:
+
+```{r}
+write.csv(dwc_occurrence_tagging, file = dwc_occurrence_tagging_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+```
