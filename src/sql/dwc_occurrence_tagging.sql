@@ -38,4 +38,4 @@ SELECT
   'species' AS taxonRank,
   english_name AS vernacularName
 
-FROM ({individual_track_session_sql}) AS t
+FROM ({individual_track_session_sql}) AS its

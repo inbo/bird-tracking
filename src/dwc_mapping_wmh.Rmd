@@ -40,6 +40,7 @@ Set file paths (all paths should be relative to this script):
 ```{r}
 individual_track_session_file = "../data/interim/wmh/individual_track_session.csv"
 dwc_occurrence_tagging_file = "../data/processed/wmh/occurrence_tagging.csv"
+dwc_mof_tagging_file = "../data/processed/wmh/mof_tagging.csv"
 ```
 
 ## Connect to UvA-BiTS database
@@ -135,4 +136,41 @@ Save results:
 
 ```{r}
 write.csv(dwc_occurrence_tagging, file = dwc_occurrence_tagging_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+```
+
+# Create measurement or fact extension for bird tagging
+
+## Term mapping
+
+Map the source data to [Darwin Core Measurement Or Facts](http://rs.gbif.org/extension/dwc/measurements_or_facts.xml). The mapping is done in SQL:
+
+```{r}
+dwc_mof_tagging_sql <- glue_sql(
+  read_file("sql/dwc_mof_tagging.sql"),
+  .con = con
+)
+```
+
+Show SQL:
+
+```{r}
+dwc_mof_tagging_sql
+```
+
+Run SQL:
+
+```{r query_dwc_mof_tagging}
+dwc_mof_tagging <- dbGetQuery(con, dwc_mof_tagging_sql)
+```
+
+Preview results:
+
+```{r}
+dwc_mof_tagging %>% head()
+```
+
+Save results:
+
+```{r}
+write.csv(dwc_mof_tagging, file = dwc_mof_tagging_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
