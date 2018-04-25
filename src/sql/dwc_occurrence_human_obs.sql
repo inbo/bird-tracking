@@ -1,5 +1,6 @@
 SELECT
   device_info_serial || ':' || to_char(start_date_track_session at time zone 'UTC', 'YYYYMMDDHH24MISS') || ':tagging' AS occurrenceID,
+
   'Event' AS "type",
   'en' AS language,
   {license} AS license,
@@ -18,6 +19,7 @@ SELECT
     ELSE 'unknown'
   END AS sex,
   'adult' AS lifeStage,
+  'present' AS occurrenceStatus,
 
   ring_number AS organismID,
   remarks_individual AS organismName,
@@ -27,15 +29,16 @@ SELECT
   to_char(start_date_track_session at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS eventDate,
   -- minimumElevationInMeters
   -- minimumDistanceAboveSurfaceInMeters
-  start_latitude AS decimalLatitude,
-  start_longitude AS decimalLongitude,
-  'WGS84' AS geodeticDatum,
-  30 AS coordinateUncertaintyInMeters,
+  to_char(round(start_latitude, 7), '999.0000000') AS decimalLatitude,
+  to_char(round(start_longitude, 7), '999.0000000') AS decimalLongitude,
+  'EPSG:4326' AS geodeticDatum,
+  30 AS coordinateUncertaintyInMeters, --
   'GPS' AS georeferenceSources,
 
+  'urn:lsid:marinespecies.org:taxname:558541' AS taxonID,
   species_latin_name AS scientificName,
   'Animalia' AS kingdom,
   'species' AS taxonRank,
   english_name AS vernacularName
 
-FROM ({individual_track_session_sql}) AS its
+FROM ({individuals_and_track_sessions_sql}) AS its

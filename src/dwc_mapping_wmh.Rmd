@@ -38,7 +38,7 @@ library(glue)
 Set file paths (all paths should be relative to this script):
  
 ```{r}
-individual_track_session_file = "../data/interim/wmh/individual_track_session.csv"
+individuals_and_track_sessions_file = "../data/interim/wmh/individuals_and_track_sessions.csv"
 occurrence_human_obs_file = "../data/processed/wmh/dwc_occurrence_human_obs.csv"
 mof_human_obs_file = "../data/processed/wmh/dwc_mof_human_obs.csv"
 ```
@@ -79,28 +79,28 @@ informationWithheld <- "see metadata"
 To create occurrences for the bird capture/tagging with GPS trackers (= `HumanObservation`) and the associated measurements, we query for all bird individuals in a project and their track session information. This view will be used as a base for the Darwin Core mapping:
 
 ```{r}
-individual_track_session_sql <- glue_sql(
-  read_file("sql/individual_track_session.sql"),
+individuals_and_track_sessions_sql <- glue_sql(
+  read_file("sql/individuals_and_track_sessions.sql"),
   .con = con
 )
 ```
 
 To get an overview of this information, we also run and save the query:
 
-```{r query_individual_track_session}
-individual_track_session <- dbGetQuery(con, individual_track_session_sql)
+```{r query_individuals_and_track_sessions}
+individuals_and_track_sessions <- dbGetQuery(con, individuals_and_track_sessions_sql)
 ```
 
 Preview results:
 
 ```{r}
-individual_track_session %>% head()
+individuals_and_track_sessions %>% head()
 ```
 
 Save results:
 
 ```{r}
-write.csv(individual_track_session, file = individual_track_session_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(individuals_and_track_sessions, file = individuals_and_track_sessions_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
 
 ## Term mapping
@@ -174,3 +174,13 @@ Save results:
 ```{r}
 write.csv(mof_human_obs, file = mof_human_obs_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
+
+# Create occurrence core for bird GPS fixes (machine observations)
+
+```{r}
+individuals_and_track_sessions_sql <- glue_sql(
+  read_file("sql/individuals_and_track_sessions.sql"),
+  .con = con
+)
+```
+
