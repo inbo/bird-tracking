@@ -39,8 +39,8 @@ Set file paths (all paths should be relative to this script):
  
 ```{r}
 individual_track_session_file = "../data/interim/wmh/individual_track_session.csv"
-dwc_occurrence_tagging_file = "../data/processed/wmh/occurrence_tagging.csv"
-dwc_mof_tagging_file = "../data/processed/wmh/mof_tagging.csv"
+occurrence_human_obs_file = "../data/processed/wmh/dwc_occurrence_human_obs.csv"
+mof_human_obs_file = "../data/processed/wmh/dwc_mof_human_obs.csv"
 ```
 
 ## Connect to UvA-BiTS database
@@ -72,7 +72,7 @@ accessRights <- "http://www.inbo.be/en/norms-for-data-use"
 informationWithheld <- "see metadata"
 ```
 
-# Create occurrence core for bird tagging
+# Create occurrence core for bird tagging (human observations)
 
 ## Get denormalized individuals and track sessions
 
@@ -108,8 +108,8 @@ write.csv(individual_track_session, file = individual_track_session_file, na = "
 Map the source data to [Darwin Core Occurrence](http://rs.gbif.org/core/dwc_occurrence_2015-07-02.xml). The mapping is done in SQL:
 
 ```{r}
-dwc_occurrence_tagging_sql <- glue_sql(
-  read_file("sql/dwc_occurrence_tagging.sql"),
+occurrence_human_obs_sql <- glue_sql(
+  read_file("sql/dwc_occurrence_human_obs.sql"),
   .con = con
 )
 ```
@@ -117,25 +117,25 @@ dwc_occurrence_tagging_sql <- glue_sql(
 Show SQL:
 
 ```{r}
-dwc_occurrence_tagging_sql
+occurrence_human_obs_sql
 ```
 
 Run SQL:
 
-```{r query_dwc_occurrence_tagging}
-dwc_occurrence_tagging <- dbGetQuery(con, dwc_occurrence_tagging_sql)
+```{r query_occurrence_human_obs}
+occurrence_human_obs <- dbGetQuery(con, occurrence_human_obs_sql)
 ```
 
 Preview results:
 
 ```{r}
-dwc_occurrence_tagging %>% head()
+occurrence_human_obs %>% head()
 ```
 
 Save results:
 
 ```{r}
-write.csv(dwc_occurrence_tagging, file = dwc_occurrence_tagging_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(occurrence_human_obs, file = occurrence_human_obs_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
 
 # Create measurement or fact extension for bird tagging
@@ -145,8 +145,8 @@ write.csv(dwc_occurrence_tagging, file = dwc_occurrence_tagging_file, na = "", r
 Map the source data to [Darwin Core Measurement Or Facts](http://rs.gbif.org/extension/dwc/measurements_or_facts.xml). The mapping is done in SQL:
 
 ```{r}
-dwc_mof_tagging_sql <- glue_sql(
-  read_file("sql/dwc_mof_tagging.sql"),
+mof_human_obs_sql <- glue_sql(
+  read_file("sql/dwc_mof_human_obs.sql"),
   .con = con
 )
 ```
@@ -154,23 +154,23 @@ dwc_mof_tagging_sql <- glue_sql(
 Show SQL:
 
 ```{r}
-dwc_mof_tagging_sql
+mof_human_obs_sql
 ```
 
 Run SQL:
 
-```{r query_dwc_mof_tagging}
-dwc_mof_tagging <- dbGetQuery(con, dwc_mof_tagging_sql)
+```{r query_mof_human_obs}
+mof_human_obs <- dbGetQuery(con, mof_human_obs_sql)
 ```
 
 Preview results:
 
 ```{r}
-dwc_mof_tagging %>% head()
+mof_human_obs %>% head()
 ```
 
 Save results:
 
 ```{r}
-write.csv(dwc_mof_tagging, file = dwc_mof_tagging_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(mof_human_obs, file = mof_human_obs_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
