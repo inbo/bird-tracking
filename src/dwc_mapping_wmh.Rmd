@@ -80,7 +80,7 @@ To create occurrences for the bird capture/tagging with GPS trackers (= `HumanOb
 
 ```{r}
 individuals_and_track_sessions_sql <- glue_sql(
-  read_file("sql/individuals_and_track_sessions.sql"),
+  read_file("../sql/individuals_and_track_sessions.sql"),
   .con = con
 )
 ```
@@ -109,7 +109,7 @@ Map the source data to [Darwin Core Occurrence](http://rs.gbif.org/core/dwc_occu
 
 ```{r}
 occurrence_human_obs_sql <- glue_sql(
-  read_file("sql/dwc_occurrence_human_obs.sql"),
+  read_file("../sql/dwc_occurrence_human_obs.sql"),
   .con = con
 )
 ```
