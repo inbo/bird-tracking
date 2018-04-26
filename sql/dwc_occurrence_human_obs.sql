@@ -24,7 +24,7 @@ SELECT
   ring_number AS organismID,
   individual_remarks AS organismName,
 
-  'capture and tag with GPS tracker' AS samplingProtocol,
+  'https://doi.org/10.1007/s10336-012-0908-1' AS samplingProtocol,
   -- samplingEffort
   to_char(track_session_start_date at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS eventDate,
   -- minimumElevationInMeters
