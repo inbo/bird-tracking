@@ -19,7 +19,14 @@ SELECT
     ELSE 'unknown'
   END AS sex,
   'adult' AS lifeStage,
-  'present' AS occurrenceStatus,
+  CASE
+    WHEN calc.speed < 0 THEN 'doubtful'
+    WHEN calc.speed > 33.33333 THEN 'doubtful'
+    WHEN t.altitude > 10000 THEN 'doubtful'
+    WHEN t.h_accuracy > 1000 THEN 'doubtful'
+    WHEN t.date_time > current_date THEN 'doubtful'
+    ELSE 'present'
+  END AS occurrenceStatus,
 
   ring_number AS organismID,
   remarks_individual AS organismName,

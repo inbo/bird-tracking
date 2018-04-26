@@ -38,10 +38,10 @@ SELECT
   t.speed_2d,
   t.direction,
 -- t.altitude_agl,
-  calc.distance,
-  calc.interval,
-  calc.speed as speed_interval,
-  calc.direction as direction_direction -- could be removed
+  calc.distance AS calc_distance,
+  calc.interval AS calc_interval,
+  calc.speed AS calc_speed_for_interval,
+  calc.direction AS calc_direction
 FROM
   gps.get_uvagps_track_speed_incl_shared(6240) calc
   INNER JOIN gps.ee_tracking_speed_limited t
