@@ -43,7 +43,7 @@ SELECT
   calc.speed AS calc_speed_for_interval,
   calc.direction AS calc_direction
 FROM
-  gps.get_uvagps_track_speed_incl_shared(6240) calc
+  gps.get_uvagps_track_speed_incl_shared(6240, true) calc
   INNER JOIN gps.ee_tracking_speed_limited t
   ON
     calc.device_info_serial = t.device_info_serial
