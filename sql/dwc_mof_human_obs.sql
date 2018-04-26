@@ -1,30 +1,30 @@
 (
 SELECT
-  device_info_serial || ':' || to_char(start_date_track_session at time zone 'UTC', 'YYYYMMDDHH24MISS') || ':tagging' AS occurrenceID,
+  device_info_serial || ':' || to_char(track_session_start_date at time zone 'UTC', 'YYYYMMDDHH24MISS') || ':tagging' AS occurrenceID,
   'weight' AS measurementType,
   'http://vocab.nerc.ac.uk/collection/P01/current/SPWGXX01/' AS measurementTypeID,
   mass::text AS measurementValue,
   'g' AS measurementUnit,
   '' AS measurementMethod,
-  to_char(start_date_track_session at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS measurementDeterminedDate
+  to_char(track_session_start_date at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS measurementDeterminedDate
 FROM ({individuals_and_track_sessions_sql}) AS its
 )
 UNION
 (
 SELECT
-  device_info_serial || ':' || to_char(start_date_track_session at time zone 'UTC', 'YYYYMMDDHH24MISS') || ':tagging' AS occurrenceID,
+  device_info_serial || ':' || to_char(track_session_start_date at time zone 'UTC', 'YYYYMMDDHH24MISS') || ':tagging' AS occurrenceID,
   'lifeStage' AS measurementType,
   'http://vocab.nerc.ac.uk/collection/P01/current/LSTAGE01/' AS measurementTypeID,
   'adult' AS measurementValue,
   '' AS measurementUnit,
   '' AS measurementMethod,
-  to_char(start_date_track_session at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS measurementDeterminedDate
+  to_char(track_session_start_date at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS measurementDeterminedDate
 FROM ({individuals_and_track_sessions_sql}) AS its
 )
 UNION
 (
 SELECT
-  device_info_serial || ':' || to_char(start_date_track_session at time zone 'UTC', 'YYYYMMDDHH24MISS') || ':tagging' AS occurrenceID,
+  device_info_serial || ':' || to_char(track_session_start_date at time zone 'UTC', 'YYYYMMDDHH24MISS') || ':tagging' AS occurrenceID,
   'sex' AS measurementType,
   'http://vocab.nerc.ac.uk/collection/P01/current/ENTSEX01/' AS measurementTypeID,
   CASE
@@ -34,13 +34,13 @@ SELECT
   END AS measurementValue,
   '' AS measurementUnit,
   '' AS measurementMethod,
-  to_char(start_date_track_session at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS measurementDeterminedDate
+  to_char(track_session_start_date at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS measurementDeterminedDate
 FROM ({individuals_and_track_sessions_sql}) AS its
 )
 UNION
 (
 SELECT
-  device_info_serial || ':' || to_char(start_date_track_session at time zone 'UTC', 'YYYYMMDDHH24MISS') || ':tagging' AS occurrenceID,
+  device_info_serial || ':' || to_char(track_session_start_date at time zone 'UTC', 'YYYYMMDDHH24MISS') || ':tagging' AS occurrenceID,
   'colour ring' AS measurementType,
   '' AS measurementTypeID,
   colour_ring::text AS measurementValue,

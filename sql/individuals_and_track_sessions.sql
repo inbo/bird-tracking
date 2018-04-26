@@ -7,14 +7,14 @@ SELECT
   i.species_latin_name,
   i.mass,
   i.sex,
-  i.remarks AS remarks_individual,
+  i.remarks AS individual_remarks,
   sp.english_name,
   s.device_info_serial,
-  s.start_date AS start_date_track_session,
-  s.end_date AS end_date_track_session,
+  s.start_date AS track_session_start_date,
+  s.end_date AS track_session_end_date,
   s.start_latitude,
   s.start_longitude,
-  s.remarks AS remarks_track_session,
+  s.remarks AS track_session_remarks,
   s.track_session_id,
   s.tracker_id
 FROM (

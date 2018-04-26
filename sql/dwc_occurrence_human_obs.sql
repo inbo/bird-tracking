@@ -22,17 +22,17 @@ SELECT
   'present' AS occurrenceStatus,
 
   ring_number AS organismID,
-  remarks_individual AS organismName,
+  individual_remarks AS organismName,
 
   'capture and tag with GPS tracker' AS samplingProtocol,
   -- samplingEffort
-  to_char(start_date_track_session at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS eventDate,
+  to_char(track_session_start_date at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS eventDate,
   -- minimumElevationInMeters
   -- minimumDistanceAboveSurfaceInMeters
   to_char(round(start_latitude, 7), '999.0000000') AS decimalLatitude,
   to_char(round(start_longitude, 7), '999.0000000') AS decimalLongitude,
   'EPSG:4326' AS geodeticDatum,
-  30 AS coordinateUncertaintyInMeters, --
+  30 AS coordinateUncertaintyInMeters,
   'GPS' AS georeferenceSources,
 
   'urn:lsid:marinespecies.org:taxname:558541' AS taxonID,
