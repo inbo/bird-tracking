@@ -66,7 +66,6 @@ dwc_occurrence_detections <- function(individual_detections, metadata) {
     ),
     georeferenceSources = "GPS",
 
-    taxonID = "urn:lsid:marinespecies.org:taxname:558541",
     scientificName = species_latin_name,
     kingdom = "Animalia",
     taxonRank = "species",

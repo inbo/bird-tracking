@@ -6,7 +6,7 @@ SELECT
   i.colour_ring,
   i.species_latin_name,
   i.mass,
-  i.sex,
+  i.sex AS individual_sex,
   i.remarks AS individual_remarks,
   sp.english_name,
   s.device_info_serial,
