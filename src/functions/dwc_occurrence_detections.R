@@ -18,7 +18,7 @@ dwc_occurrence_detections <- function(individual_detections, metadata) {
 
   # Map to Darwin Core
   occ <- individual_detections %>% mutate(
-    occurrenceID = "",
+    occurrenceID = paste("urn", "catalog", metadata$institutionCode, metadata$collectionCode, ring_number, format(date_time, "%Y%m%d%H%M%S"), sep = ":"),
 
     type = "Event",
     language = "en",
