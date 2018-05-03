@@ -34,6 +34,8 @@ dwc_occurrence_detections <- function(individual_detections, metadata) {
     # dynamicProperties
 
     # sex
+    # lifeStage
+
     occurrenceStatus = case_when(
       quality_issue ~ "doubtful",
       TRUE ~ "present"
@@ -43,6 +45,32 @@ dwc_occurrence_detections <- function(individual_detections, metadata) {
       TRUE ~ ""
     ),
 
+    organismID = ring_number,
+    organismName = remarks_individual,
+
+    samplingProtocol = "https://doi.org/10.1007/s10336-012-0908-1",
+    # samplingEffort
+    eventDate = format(date_time,"%Y-%m-%dT%H:%M:%SZ"),
+
+    minimumElevationInMeters = 0,
+    maximumElevationInMeters = 0,
+    minimumDistanceAboveSurfaceInMeters = altitude,
+    maximumDistanceAboveSurfaceInMeters = altitude,
+
+    decimalLatitude = sprintf("%.7f", round(latitude, digits = 7)),
+    decimalLongitude = sprintf("%.7f", round(longitude, digits = 7)),
+    geodeticDatum = "EPSG:4326",
+    coordinateUncertaintyInMeters = case_when(
+      !is.na(h_accuracy) ~ h_accuracy,
+      TRUE ~ 30
+    ),
+    georeferenceSources = "GPS",
+
+    taxonID = "urn:lsid:marinespecies.org:taxname:558541",
+    scientificName = species_latin_name,
+    kingdom = "Animalia",
+    taxonRank = "species",
+    vernacularName = english_name
   )
 
   occ <- occ %>% select(-one_of(input_colnames))
