@@ -110,25 +110,11 @@ write.csv(individuals_and_track_sessions, file = individuals_and_track_sessions_
 
 ## Term mapping
 
-Map the source data to [Darwin Core Occurrence](http://rs.gbif.org/core/dwc_occurrence_2015-07-02.xml). The mapping is done in SQL:
+Map the source data to [Darwin Core Occurrence](http://rs.gbif.org/core/dwc_occurrence_2015-07-02.xml). The mapping is done in dplyr with a function:
 
-```{r}
-dwc_occurrence_tagging_sql <- glue_sql(
-  read_file("../sql/dwc_occurrence_tagging.sql"),
-  .con = con
-)
-```
-
-Show SQL:
-
-```{r}
-dwc_occurrence_tagging_sql
-```
-
-Run SQL:
-
-```{r query_occurrence_human_obs}
-dwc_occurrence_tagging <- dbGetQuery(con, dwc_occurrence_tagging_sql)
+```{r map_dwc_occurrence_tagging}
+source("functions/dwc_occurrence_tagging.R")
+dwc_occurrence_tagging <- dwc_occurrence_tagging(individuals_and_track_sessions, metadata)
 ```
 
 Preview results:
