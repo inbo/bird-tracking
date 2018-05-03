@@ -182,10 +182,41 @@ write.csv(dwc_mof_tagging, file = dwc_mof_tagging_file, na = "", row.names = FAL
 
 # Create occurrence core for bird GPS fixes (machine observations)
 
+## Get detections within a track session
+
+To create occurrences for the bird GPS fixes (= `MachineObservation`) and the associated measurements, we query for all GPS fixes within a track session for a single individual. That leaves out test GPS fixes (= outside track session). Since the view makes use of the function `get_uvagps_track_speed(device_info_serial)`, it has to be created for every individual (or more correctly: device). The resulting view will be used as a base for the Darwin Core mapping:
+
 ```{r}
-individuals_and_track_sessions_sql <- glue_sql(
-  read_file("sql/individuals_and_track_sessions.sql"),
-  .con = con
-)
+device_info_serial = 586
 ```
 
+Get and run SQL:
+
+```{r query_individual_detections}
+individual_detections_sql <- glue_sql(
+  read_file("../sql/individual_detections.sql"),
+  .con = con
+)
+individual_detections <- dbGetQuery(con, individual_detections_sql)
+```
+
+## Term mapping
+
+Map the source data to [Darwin Core Occurrence](http://rs.gbif.org/core/dwc_occurrence_2015-07-02.xml). The mapping is done in dplyr with a function:
+
+```{r}
+source("functions/dwc_occurrence_detections.R")
+dwc_occurrence_detections <- dwc_occurrence_detections(individual_detections, metadata)
+```
+
+Preview results:
+
+```{r}
+dwc_occurrence_detections %>% head()
+```
+
+Save results:
+
+```{r}
+write.csv(dwc_occurrence_detections, file = paste0("../data/processed/dwc_occurrence_detections_", device_info_serial, ".csv"), na = "", row.names = FALSE, fileEncoding = "UTF-8")
+```
