@@ -81,7 +81,7 @@ metadata[["informationWithheld"]] <- "see metadata"
 
 ## Get denormalized individuals and track sessions
 
-To create occurrences for the bird capture/tagging with GPS trackers (= `HumanObservation`) and the associated measurements, we query for all bird individuals in a project and their track session information. This view will be used as a base for the Darwin Core mapping:
+To create occurrences for the bird capture/tagging with GPS trackers (= `HumanObservation`) and the associated measurements, we query for all bird individuals in a project and their track session information. The resulting view will be used as a base for the Darwin Core mapping:
 
 ```{r}
 individuals_and_track_sessions_sql <- glue_sql(
@@ -147,7 +147,7 @@ write.csv(dwc_occurrence_tagging, file = dwc_occurrence_tagging_file, na = "", r
 
 ## Term mapping
 
-Map the source data to [Darwin Core Measurement Or Facts](http://rs.gbif.org/extension/dwc/measurements_or_facts.xml). The mapping is done in SQL:
+Map the source data to [Extended Measurement Or Facts](http://rs.gbif.org/extension/obis/extended_measurement_or_fact.xml). The mapping is done in SQL:
 
 ```{r}
 dwc_mof_tagging_sql <- glue_sql(
