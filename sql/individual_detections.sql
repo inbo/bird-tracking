@@ -7,8 +7,8 @@ SELECT
   i.species_latin_name,
 --  i.mass,
 --  i.sex,
---  i.remarks AS remarks_individual,
---  sp.english_name (table not joined),
+  i.remarks AS remarks_individual,
+  sp.english_name,
   s.device_info_serial,
 --  s.start_date AS start_date_track_session,
 --  s.end_date AS end_date_track_session,
@@ -43,16 +43,17 @@ SELECT
   calc.speed AS calc_speed_for_interval,
   calc.direction AS calc_direction
 FROM
-  gps.get_uvagps_track_speed_incl_shared(6240, true) calc
+  gps.get_uvagps_track_speed({device_info_serial}, true) calc
   INNER JOIN gps.ee_tracking_speed_limited t
-  ON
-    calc.device_info_serial = t.device_info_serial
-    AND calc.date_time = t.date_time
+    ON
+      calc.device_info_serial = t.device_info_serial
+      AND calc.date_time = t.date_time
   INNER JOIN gps.ee_track_session_limited s
-  ON
-    t.device_info_serial = s.device_info_serial
-    AND t.date_time >= s.start_date
-    AND t.date_time <= s.end_date
-  INNER JOIN gps.ee_individual_limited i
-  ON
-    s.ring_number = i.ring_number
+    ON
+      t.device_info_serial = s.device_info_serial
+      AND t.date_time >= s.start_date
+      AND t.date_time <= s.end_date
+  LEFT JOIN gps.ee_individual_limited i
+    ON s.ring_number = i.ring_number
+  LEFT JOIN gps.ee_species_limited sp
+    ON i.species_latin_name = sp.latin_name
