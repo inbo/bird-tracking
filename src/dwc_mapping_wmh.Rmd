@@ -63,13 +63,18 @@ con = dbConnect(
 
 ```{r}
 project_keys <- c("MH_WATERLAND")
-datasetID <- "https://doi.org/10.15468/rbguhj"
-datasetName <- "Bird tracking - GPS tracking of Western Marsh Harriers breeding near the Belgium-Netherlands border"
-institutionCode <- "INBO"
-rightsHolder <- "INBO"
-license <- "http://creativecommons.org/publicdomain/zero/1.0/"
-accessRights <- "http://www.inbo.be/en/norms-for-data-use"
-informationWithheld <- "see metadata"
+```
+
+```{r}
+metadata <- list()
+metadata[["datasetID"]] <- "https://doi.org/10.15468/rbguhj"
+metadata[["datasetName"]] <- "Bird tracking - GPS tracking of Western Marsh Harriers breeding near the Belgium-Netherlands border"
+metadata[["institutionCode"]] <- "INBO"
+metadata[["collectionCode"]] <- "bird-tracking"
+metadata[["rightsHolder"]] <- "INBO"
+metadata[["license"]] <- "http://creativecommons.org/publicdomain/zero/1.0/"
+metadata[["accessRights"]] <- "http://www.inbo.be/en/norms-for-data-use"
+metadata[["informationWithheld"]] <- "see metadata"
 ```
 
 # Create occurrence core for bird tagging (human observations)
