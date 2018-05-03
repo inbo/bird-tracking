@@ -27,6 +27,7 @@ dwc_occurrence_detections <- function(individual_detections, metadata) {
     accessRights = metadata$accessRights,
     datasetID = metadata$datasetID,
     institutionCode = metadata$institutionCode,
+    collecionCode = metadata$collectionCode,
     datasetName = metadata$datasetName,
     basisOfRecord = "MachineObservation",
     informationWithheld = metadata$informationWithheld,
