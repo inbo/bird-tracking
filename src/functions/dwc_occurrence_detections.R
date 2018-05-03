@@ -1,8 +1,8 @@
-dwc_occurrence_detections <- function(individual_detections, metadata) {
+dwc_occurrence_detections <- function(data, metadata) {
   require(dplyr)
 
   # Add quality issue flag
-  individual_detections <- individual_detections %>% mutate(
+  data <- data %>% mutate(
     quality_issue = case_when(
       speed_2d < 0 ~ TRUE,
       speed_2d > 33.33333 ~ TRUE,
@@ -14,11 +14,19 @@ dwc_occurrence_detections <- function(individual_detections, metadata) {
   )
 
   # Save original column names
-  input_colnames <- colnames(individual_detections)
+  input_colnames <- colnames(data)
 
   # Map to Darwin Core
-  occ <- individual_detections %>% mutate(
-    occurrenceID = paste("urn", "catalog", metadata$institutionCode, metadata$collectionCode, ring_number, format(date_time, "%Y%m%d%H%M%S"), sep = ":"),
+  occ <- data %>% mutate(
+    occurrenceID = paste(
+      "urn",
+      "catalog",
+      metadata$institutionCode,
+      metadata$collectionCode,
+      ring_number,
+      format(date_time, "%Y%m%d%H%M%S"),
+      sep = ":"
+    ),
 
     type = "Event",
     language = "en",
@@ -72,7 +80,11 @@ dwc_occurrence_detections <- function(individual_detections, metadata) {
     vernacularName = english_name
   )
 
+  # Remove original columns
   occ <- occ %>% select(-one_of(input_colnames))
+
+  # Sort by occurrenceID
+  occ <- occ %>% arrange(occurrenceID)
 
   return(occ)
 }

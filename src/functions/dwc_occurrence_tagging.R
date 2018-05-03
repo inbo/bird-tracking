@@ -1,12 +1,20 @@
-dwc_tagging_detections <- function(individuals_and_track_sessions, metadata) {
+dwc_occurrence_tagging <- function(data, metadata) {
   require(dplyr)
 
   # Save original column names
-  input_colnames <- colnames(individuals_and_track_sessions)
+  input_colnames <- colnames(data)
 
   # Map to Darwin Core
-  occ <- individuals_and_track_sessions %>% mutate(
-    occurrenceID = paste("urn", "catalog", metadata$institutionCode, metadata$collectionCode, ring_number, format(date_time, "%Y%m%d%H%M%S"), sep = ":"),
+  occ <- data %>% mutate(
+    occurrenceID = paste(
+      "urn",
+      "catalog",
+      metadata$institutionCode,
+      metadata$collectionCode,
+      ring_number,
+      format(track_session_start_date, "%Y%m%d%H%M%S"),
+      sep = ":"
+    ),
 
     type = "Event",
     language = "en",
@@ -56,7 +64,11 @@ dwc_tagging_detections <- function(individuals_and_track_sessions, metadata) {
     vernacularName = english_name
   )
 
+  # Remove original columns
   occ <- occ %>% select(-one_of(input_colnames))
+
+  # Sort by occurrenceID
+  occ <- occ %>% arrange(occurrenceID)
 
   return(occ)
 }
