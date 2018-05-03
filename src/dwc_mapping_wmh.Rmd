@@ -77,7 +77,7 @@ metadata[["accessRights"]] <- "http://www.inbo.be/en/norms-for-data-use"
 metadata[["informationWithheld"]] <- "see metadata"
 ```
 
-# Create occurrence core for bird tagging (human observations)
+# Human observations
 
 ## Get denormalized individuals and track sessions
 
@@ -108,7 +108,7 @@ Save results:
 write.csv(individuals_and_track_sessions, file = individuals_and_track_sessions_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
 
-## Term mapping
+## Create occurrence core
 
 Map the source data to [Darwin Core Occurrence](http://rs.gbif.org/core/dwc_occurrence_2015-07-02.xml). The mapping is done in dplyr with a function:
 
@@ -174,7 +174,7 @@ individual_detections <- dbGetQuery(con, individual_detections_sql)
 
 Map the source data to [Darwin Core Occurrence](http://rs.gbif.org/core/dwc_occurrence_2015-07-02.xml). The mapping is done in dplyr with a function:
 
-```{r}
+```{r map_dwc_occurrence_detections}
 source("functions/dwc_occurrence_detections.R")
 dwc_occurrence_detections <- dwc_occurrence_detections(individual_detections, metadata)
 ```
