@@ -129,29 +129,13 @@ Save results:
 write.csv(dwc_occurrence_tagging, file = dwc_occurrence_tagging_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
 
-# Create measurement or fact extension for bird tagging
+## Create measurement or fact extension
 
-## Term mapping
+Map the source data to [Extended Measurement Or Facts](http://rs.gbif.org/extension/obis/extended_measurement_or_fact.xml). The mapping is done in dplyr with a function:
 
-Map the source data to [Extended Measurement Or Facts](http://rs.gbif.org/extension/obis/extended_measurement_or_fact.xml). The mapping is done in SQL:
-
-```{r}
-dwc_mof_tagging_sql <- glue_sql(
-  read_file("../sql/dwc_mof_tagging.sql"),
-  .con = con
-)
-```
-
-Show SQL:
-
-```{r}
-dwc_mof_tagging_sql
-```
-
-Run SQL:
-
-```{r query_mof_human_obs}
-dwc_mof_tagging <- dbGetQuery(con, dwc_mof_tagging_sql)
+```{r map_dwc_mof_tagging}
+source("functions/dwc_mof_tagging.R")
+dwc_mof_tagging <- dwc_mof_tagging(individuals_and_track_sessions, metadata)
 ```
 
 Preview results:
