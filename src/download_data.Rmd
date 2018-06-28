@@ -1,0 +1,89 @@
+---
+title: "Download data from UvA-BiTS"
+author:
+- Peter Desmet
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+---
+
+# Setup
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Set locale (so we use UTF-8 character encoding):
+
+```{r}
+# This works on Mac OS X, might not work on other OS
+Sys.setlocale("LC_CTYPE", "en_US.UTF-8")
+```
+
+Load libraries:
+
+```{r}
+library(tidyverse)
+library(RPostgreSQL)
+library(glue)
+```
+
+Set file paths (all paths should be relative to this script):
+ 
+```{r}
+# SQL
+individuals_sql_file = "../sql/individuals.sql"
+
+# Data
+individuals_file = "../data/interim/individuals.csv"
+```
+
+# Connect to UvA-BiTS database
+
+Get credentials from config file (not included in this repo) and create a database connection:
+
+```{r connect_to_uvabits}
+uvabits <- config::get("uvabits")
+con = dbConnect(
+  dbDriver("PostgreSQL"),
+  user = uvabits$username,
+  password = uvabits$password,
+  host = uvabits$server,
+  port = uvabits$port,
+  dbname = uvabits$database
+)
+```
+
+# Get individuals
+
+Get data on individuals and their associated track sessions, from all our bird tracking projects combined.
+
+Load SQL:
+
+```{r}
+# The SQL below doesn't have any {variables}, but I opted to use glue anyway
+individuals_sql <- glue_sql(read_file(individuals_sql_file), .con = con)
+```
+
+Run SQL:
+
+```{r query_individuals}
+individuals <- dbGetQuery(con, individuals_sql)
+```
+
+Preview data:
+
+```{r}
+individuals %>% head()
+```
+
+Save to CSV:
+
+```{r}
+write.csv(individuals, file = individuals_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+```
+
