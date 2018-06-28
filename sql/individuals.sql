@@ -33,8 +33,6 @@ FROM
     ON i.species_latin_name = sp.latin_name
   LEFT JOIN gps.ee_project_limited p
     ON s.key_name = p.key_name
-WHERE
-  s.key_name IN ({project_keys})
 ORDER BY
   key_name,
   device_info_serial
