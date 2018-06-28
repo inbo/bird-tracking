@@ -1,22 +1,22 @@
 SELECT
   s.key_name,
   p.station_name,
+  i.species_latin_name,
+  sp.english_name,
   i.individual_id,
   i.ring_number,
   i.colour_ring,
-  i.species_latin_name,
-  i.mass,
-  i.sex AS individual_sex,
   i.remarks AS individual_remarks,
-  sp.english_name,
+  i.mass,
+  i.sex,
+  s.track_session_id,
   s.device_info_serial,
+  s.tracker_id,
   s.start_date AS track_session_start_date,
   s.end_date AS track_session_end_date,
-  s.start_latitude,
-  s.start_longitude,
-  s.remarks AS track_session_remarks,
-  s.track_session_id,
-  s.tracker_id
+  s.start_latitude AS track_session_start_latitude,
+  s.start_longitude AS track_session_start_longitude,
+  s.remarks AS track_session_remarks
 FROM
   (
     SELECT * FROM gps.ee_individual_limited
