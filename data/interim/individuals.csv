@@ -1,4 +1,4 @@
-"key_name","station_name","individual_id","ring_number","colour_ring","species_latin_name","mass","sex","remarks_individual","english_name","device_info_serial","start_date_track_session","end_date_track_session","start_latitude","start_longitude","remarks_track_session","track_session_id","tracker_id"
+"key_name","station_name","individual_id","ring_number","colour_ring","species_latin_name","mass","individual_sex","individual_remarks","english_name","device_info_serial","track_session_start_date","track_session_end_date","start_latitude","start_longitude","track_session_remarks","track_session_id","tracker_id"
 "HG_OOSTENDE","Oostende",689,"H903183","YLAH","Larus argentatus",859,"X",,"Herring Gull",783,2013-05-24 00:00:00,9999-12-31 00:00:00,51.233056,2.930977,,522,861
 "HG_OOSTENDE","Oostende",688,"H903182","YKAT","Larus argentatus",859,"X",,"Herring Gull",786,2013-05-24 00:00:00,9999-12-31 00:00:00,51.233056,2.930977,,521,849
 "HG_OOSTENDE","Oostende",687,"H903169","YLAT","Larus argentatus",1036,"X",,"Herring Gull",799,2013-05-17 00:00:00,9999-12-31 00:00:00,51.233056,2.930977,,523,651
