@@ -203,14 +203,14 @@
 "LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1772,"5543134","45","Vlissingen",929,"M",15688,5721,12031,2018-05-24 12:00:00,2025-06-12 10:31:00,51.44750805,3.69647026,
 "LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1771,"5543133","44","Vlissingen",945,"M",15687,5723,12032,2018-05-24 12:00:00,2025-06-12 10:30:00,51.45454175,3.68634224,
 "LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1773,"5543137","46","Vlissingen",735,"F",15689,5724,12033,2018-05-29 12:00:00,2025-06-12 10:32:00,51.44752142,3.69655609,
-"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",686,"H173481","none","Mia",785,"F",546,586,184,2013-05-16 19:55:00,9999-12-31 00:00:00,51.276078,3.59748,"tagging_location: Waterland-Oudeman, BE"
-"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",701,"L143451","none","Jozef",512,"M",547,610,467,2013-06-24 10:00:00,9999-12-31 00:00:00,51.276213,3.59542,"tagging_location: Waterland-Oudeman, BE"
-"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",702,"L143457","none","Peter",482,"M",548,623,570,2013-07-22 10:30:00,9999-12-31 00:00:00,51.270609,3.59295,"tagging_location: Waterland-Oudeman, BE"
+"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",686,"H173481","none","Mia",785,"F",546,586,184,2013-05-16 19:55:00,9999-12-31 00:00:00,51.276078,3.59748,"Waterland-Oudeman, BE"
+"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",701,"L143451","none","Jozef",512,"M",547,610,467,2013-06-24 10:00:00,9999-12-31 00:00:00,51.276213,3.59542,"Waterland-Oudeman, BE"
+"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",702,"L143457","none","Peter",482,"M",548,623,570,2013-07-22 10:30:00,9999-12-31 00:00:00,51.270609,3.59295,"Waterland-Oudeman, BE"
 "MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",1305,"H185298","none","Almut
-",656,"F",15238,630,387,2016-06-03 11:11:00,2024-06-07 21:11:00,51.28661459,3.55570793,"tagging_location: Waterland-Oudeman, BE | remarks: Tracker reused from Raymond"
-"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",1105,"L143467","none","Raymond",472,"M",15041,630,387,2015-05-26 09:28:00,2016-03-26 00:00:00,51.28535308,3.56180191,"tagging_location: Waterland-Oudeman, BE | remarks: Raymond found dead on 2016-03-31 in Alps, last active day is 2016-03-25. Tracker reused for Almut."
-"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",1224,"L143472","none","Ben",571,"M",15162,6058,782,2016-05-02 12:58:00,9999-12-31 00:00:00,51.27180977,3.6843574,"tagging_location: Waterland-Oudeman, BE"
-"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",1276,"L143473","none","Walter",485,"M",15211,6059,841,2016-06-01 13:36:00,9999-12-31 00:00:00,51.28639987,3.5556221,"tagging_location: Waterland-Oudeman, BE"
+",656,"F",15238,630,387,2016-06-03 11:11:00,2024-06-07 21:11:00,51.28661459,3.55570793,"Waterland-Oudeman, BE | Tracker reused from Raymond"
+"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",1105,"L143467","none","Raymond",472,"M",15041,630,387,2015-05-26 09:28:00,2016-03-26 00:00:00,51.28535308,3.56180191,"Waterland-Oudeman, BE | Raymond found dead on 2016-03-31 in Alps, last active day is 2016-03-25. Tracker reused for Almut."
+"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",1224,"L143472","none","Ben",571,"M",15162,6058,782,2016-05-02 12:58:00,9999-12-31 00:00:00,51.27180977,3.6843574,"Waterland-Oudeman, BE"
+"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",1276,"L143473","none","Walter",485,"M",15211,6059,841,2016-06-01 13:36:00,9999-12-31 00:00:00,51.28639987,3.5556221,"Waterland-Oudeman, BE"
 ,,"Larus fuscus","Lesser Black-backed Gull",1779,"L901819","DKOK",,978,"M",,,,,,,,
 ,,"Larus fuscus","Lesser Black-backed Gull",1777,"5508363","BD","Vlissingen",808,"F",,,,,,,,
 ,,"Larus fuscus","Lesser Black-backed Gull",1781,"L926494","DROS",,959,"M",,,,,,,,
