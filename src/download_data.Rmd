@@ -41,11 +41,6 @@ individual_detections_sql_file = "../sql/individual_detections.sql"
 
 # Data
 individuals_file = "../data/interim/individuals.csv"
-
-# Variables
-project_keys <- list()        # Later used as e.g. project_keys$wmh
-device_info_serials <- list() # Later used as e.g. device_info_serials$wmh
-download_directory <- ""      # Later used as e.g. download_directory$wmh
 ```
 
 # Connect to UvA-BiTS database
@@ -98,24 +93,56 @@ write.csv(individuals, file = individuals_file, na = "", row.names = FALSE, file
 Define dataset properties:
 
 ```{r}
-download_directory$wmh = "../data/interim/wmh"
-project_keys$wmh = c("MH_WATERLAND")
+project_keys = c("MH_WATERLAND")
+download_directory = "../data/interim/wmh"
 ```
 
 Get `device_info_serial`s for that project(s). Note that because of the reuse of tags, there might be less `device_info_serials` than bird individuals:
 
 ```{r}
-device_info_serials$wmh <- individuals %>%
-  filter(key_name %in% project_keys$wmh) %>%
+device_info_serials <- individuals %>%
+  filter(key_name %in% project_keys) %>%
   distinct(device_info_serial, .keep_all = TRUE) %>%
   pull(device_info_serial)
 
-device_info_serials$wmh
+device_info_serials
 ```
 
 Get detections and write to download directory:
 
 ```{r query_detections}
 source("functions/download_detections.R")
-download_detections(device_info_serials$wmh, download_directory$wmh, con, FALSE)
+download_detections(device_info_serials, download_directory, con, FALSE)
+```
+
+# Download gull detections
+
+Define dataset properties:
+
+```{r}
+project_keys = c("HG_OOSTENDE", "LBBG_ZEEBRUGGE")
+download_directory = "../data/interim/gull"
+```
+
+Get `device_info_serial`s for that project(s). Note that because of the reuse of tags, there might be less `device_info_serials` than bird individuals:
+
+```{r}
+device_info_serials <- individuals %>%
+  filter(key_name %in% project_keys) %>%
+  distinct(device_info_serial, .keep_all = TRUE) %>%
+  pull(device_info_serial)
+
+device_info_serials
+```
+
+```{r}
+# Take subset for now. TODO: remove
+device_info_serials <- device_info_serials[1:4]
+```
+
+Get detections and write to download directory:
+
+```{r query_detections}
+source("functions/download_detections.R")
+download_detections(device_info_serials, download_directory, con, FALSE)
 ```
