@@ -1,218 +1,218 @@
 "key_name","station_name","species_latin_name","english_name","individual_id","ring_number","colour_ring","individual_remarks","mass","sex","track_session_id","device_info_serial","tracker_id","track_session_start_date","track_session_end_date","track_session_start_latitude","track_session_start_longitude","track_session_remarks"
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",689,"H903183","YLAH",,859,"X",522,783,861,2013-05-24 00:00:00,9999-12-31 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",688,"H903182","YKAT",,859,"X",521,786,849,2013-05-24 00:00:00,9999-12-31 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",687,"H903169","YLAT",,1036,"X",523,799,651,2013-05-17 00:00:00,9999-12-31 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",691,"H903185","YGAP",,806,"X",520,801,772,2013-05-24 00:00:00,9999-12-31 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",690,"H903184","YGAA",,1072,"X",519,804,862,2013-05-24 00:00:00,9999-12-31 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",818,"H903635","YWAZ",,960,"M",14752,1601,787,2014-06-05 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",817,"H903644","YJAR",,1014,"M",14751,6001,778,2014-06-05 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",825,"H903646","YJAZ",,786,"F",14759,6002,755,2014-06-13 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",824,"H903621","ZVAR","died",1034,"M",14758,6002,755,2014-05-30 00:00:00,2014-06-11 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",814,"H903612","ZVAX",,856,"F",14748,6003,756,2014-05-27 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",813,"H900926","ZTAW",,778,"F",14747,6005,757,2014-05-23 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",812,"H903614","ZTAK",,811,"F",14746,6008,779,2014-05-23 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",816,"H903613","ZVAT",,821,"F",14750,6013,735,2014-05-30 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",822,"H903611","ZVAG","died",859,"F",14756,6036,838,2014-05-27 00:00:00,2014-06-11 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",823,"H903607","ZVAW",,0,"F",14757,6036,838,2014-06-13 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",821,"H903639","YKAW",,0,"F",14755,6037,839,2014-06-25 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",820,"H903186","YWAL","died",1021,"M",14754,6037,839,2014-06-05 00:00:00,2014-06-15 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",811,"H903604","ZVAU",,852,"F",14745,6043,840,2014-05-23 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",815,"H903622","ZUAF",,1085,"M",14749,6069,993,2014-05-30 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",819,"H903609","YLAY",,1098,"M",14753,6070,994,2014-06-05 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1329,"H903294","ZZAA",,1081,"M",15263,6119,11395,2016-05-31 12:00:00,2024-06-24 09:56:00,51.23292344,2.93118801,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1332,"H905205","ZZAM",,1111,"M",15264,6144,11397,2016-06-02 12:00:00,2024-06-24 09:58:00,51.23292344,2.93118801,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1333,"H903297","ZZAG",,899,"F",15265,6147,11398,2016-06-02 12:00:00,2024-06-24 10:01:00,51.23292344,2.93118801,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1134,"H903128","ZCAG",,1068,"M",15066,6178,990,2015-05-21 14:00:00,2022-06-09 14:09:00,51.233008,2.931033,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1136,"H903133","ZBAA",,854,"F",15068,6183,11193,2015-06-02 14:00:00,2022-06-09 14:10:00,51.233008,2.931033,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1101,"H903131","ZCAD",,826,"F",15025,6186,11196,2015-05-26 11:00:00,2022-05-27 20:25:00,51.233008,2.931033,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1322,"H905201","ZWAG",,889,"F",15260,6187,11197,2016-05-23 12:00:00,2024-06-24 09:50:00,51.23292344,2.93118801,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1102,"H903130","ZBAC",,848,"F",15026,6188,11198,2015-05-26 12:00:00,2022-05-27 20:26:00,51.233008,2.931033,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1163,"H903149","ZCAU",,1077,"M",15096,6189,11199,2015-06-09 13:00:00,2022-09-01 14:12:00,51.23314051,2.93111149,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1103,"H903132","RZAG",,987,"M",15027,6191,11226,2015-05-26 13:00:00,2022-05-27 20:26:00,51.233008,2.931033,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1162,"H903134","ZAAB",,1034,"M",15095,6193,11227,2015-06-09 14:00:00,2022-09-01 14:10:00,51.23314051,2.93111149,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1100,"5426549","ZAAZ",,845,"F",15024,6194,11228,2015-05-26 13:00:00,2022-05-27 20:23:00,51.233008,2.931033,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1135,"H903129","ZAAL",,770,"F",15067,6196,11229,2015-05-21 15:00:00,2022-06-09 14:10:00,51.233008,2.931033,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1323,"H903293","ZYAN",,904,"F",15266,6209,11472,2016-05-23 12:00:00,2024-06-24 10:02:00,51.23292344,2.93118801,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1334,"H903296","ZXAT",,1094,"M",15267,6215,11473,2016-06-02 12:00:00,2024-06-24 10:02:00,51.23292344,2.93118801,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1324,"H901555","ZWAM",,901,"F",15261,6231,11347,2016-05-23 12:00:00,2024-06-24 09:54:00,51.23292344,2.93118801,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1330,"H903295","ZZAX",,1009,"M",15262,6234,11375,2016-05-31 12:00:00,2024-06-24 09:55:00,51.23292344,2.93118801,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1364,"H900906","ZWAP",,1057,"M",15268,6236,11439,2016-05-25 12:00:00,2024-06-24 10:03:00,51.23292344,2.93118801,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1327,"H905324","ZZAB",,830,"F",15269,6239,11440,2016-05-25 12:00:00,2024-06-24 10:04:00,51.23292344,2.93118801,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1325,"H905203","ZWAA",,1070,"M",15270,6240,11400,2016-05-23 12:00:00,2024-06-24 10:04:00,51.23292344,2.93118801,
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",689,"H903183","YLAH","Wilma",859,"X",522,783,861,2013-05-24 00:00:00,9999-12-31 00:00:00,51.233056,2.930977,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",688,"H903182","YKAT","Anne",859,"X",521,786,849,2013-05-24 00:00:00,9999-12-31 00:00:00,51.233056,2.930977,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",687,"H903169","YLAT","Luc",1036,"X",523,799,651,2013-05-17 00:00:00,9999-12-31 00:00:00,51.233056,2.930977,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",691,"H903185","YGAP","Jurgen",806,"X",520,801,772,2013-05-24 00:00:00,9999-12-31 00:00:00,51.233056,2.930977,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",690,"H903184","YGAA","Nicky",1072,"X",519,804,862,2013-05-24 00:00:00,2016-06-04 00:00:00,51.233056,2.930977,"Vismijn, Oostende | Presumed dead."
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",818,"H903635","YWAZ","Robin",960,"M",14752,1601,787,2014-06-05 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,"Visserskaai, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",817,"H903644","YJAR","Jan",1014,"M",14751,6001,778,2014-06-05 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,"Visserskaai, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",824,"H903621","ZVAR",,1034,"M",14758,6002,755,2014-05-30 00:00:00,2014-06-11 00:00:00,51.233056,2.930977,"- | Dead."
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",825,"H903646","YJAZ","Rolanda",786,"F",14759,6002,755,2014-06-13 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",814,"H903612","ZVAX","Karen",856,"F",14748,6003,756,2014-05-27 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",813,"H900926","ZTAW","Hilde",778,"F",14747,6005,757,2014-05-23 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",812,"H903614","ZTAK","Catia",811,"F",14746,6008,779,2014-05-23 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",816,"H903613","ZVAT","Leslie",821,"F",14750,6013,735,2014-05-30 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",823,"H903607","ZVAW","Stefanie",0,"F",14757,6036,838,2014-06-13 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",822,"H903611","ZVAG",,859,"F",14756,6036,838,2014-05-27 00:00:00,2014-06-11 00:00:00,51.233056,2.930977,"- | Dead."
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",821,"H903639","YKAW","Wendy",0,"F",14755,6037,839,2014-06-25 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",820,"H903186","YWAL",,1021,"M",14754,6037,839,2014-06-05 00:00:00,2014-06-15 00:00:00,51.233056,2.930977,"- | Dead."
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",811,"H903604","ZVAU","Magda",852,"F",14745,6043,840,2014-05-23 00:00:00,2017-06-09 00:00:00,51.233056,2.930977,"Vismijn, Oostende | Tracker defect. Gull captured and tracker removed."
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",815,"H903622","ZUAF","Tjess",1085,"M",14749,6069,993,2014-05-30 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",819,"H903609","YLAY","Klaas",1098,"M",14753,6070,994,2014-06-05 00:00:00,2022-08-01 00:00:00,51.233056,2.930977,"Visserskaai, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1329,"H903294","ZZAA","Geert",1081,"M",15263,6119,11395,2016-05-31 12:00:00,2024-06-24 09:56:00,51.23292344,2.93118801,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1332,"H905205","ZZAM","Rudy",1111,"M",15264,6144,11397,2016-06-02 12:00:00,2024-06-24 09:58:00,51.23292344,2.93118801,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1333,"H903297","ZZAG","Mirte",899,"F",15265,6147,11398,2016-06-02 12:00:00,2024-06-24 10:01:00,51.23292344,2.93118801,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1134,"H903128","ZCAG","Dre",1068,"M",15066,6178,990,2015-05-31 14:00:00,2022-06-09 14:09:00,51.233008,2.931033,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1136,"H903133","ZBAA","Joanna",854,"F",15068,6183,11193,2015-06-02 14:00:00,2022-06-09 14:10:00,51.233008,2.931033,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1101,"H903131","ZCAD","Lilian",826,"F",15025,6186,11196,2015-05-26 11:00:00,2022-05-27 20:25:00,51.233008,2.931033,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1322,"H905201","ZWAG","Tessa",889,"F",15260,6187,11197,2016-05-23 12:00:00,2024-06-24 09:50:00,51.23292344,2.93118801,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1102,"H903130","ZBAC","Louise",848,"F",15026,6188,11198,2015-05-26 12:00:00,2022-05-27 20:26:00,51.233008,2.931033,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1163,"H903149","ZCAU","Ceryl",1077,"M",15096,6189,11199,2015-06-09 13:00:00,2022-09-01 14:12:00,51.23314051,2.93111149,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1103,"H903132","RZAG","Hein",987,"M",15027,6191,11226,2015-05-26 13:00:00,2022-05-27 20:26:00,51.233008,2.931033,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1162,"H903134","ZAAB","Suk-hyo",1034,"M",15095,6193,11227,2015-06-09 14:00:00,2022-09-01 14:10:00,51.23314051,2.93111149,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1100,"5426549","ZAAZ","Renske",845,"F",15024,6194,11228,2015-05-26 13:00:00,2022-05-27 20:23:00,51.233008,2.931033,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1135,"H903129","ZAAL","Eva",770,"F",15067,6196,11229,2015-05-21 15:00:00,2022-06-09 14:10:00,51.233008,2.931033,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1323,"H903293","ZYAN","Fien",904,"F",15266,6209,11472,2016-05-23 12:00:00,2024-06-24 10:02:00,51.23292344,2.93118801,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1334,"H903296","ZXAT","Francis",1094,"M",15267,6215,11473,2016-06-02 12:00:00,2024-06-24 10:02:00,51.23292344,2.93118801,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1324,"H901555","ZWAM","Mia",901,"F",15261,6231,11347,2016-05-23 12:00:00,2024-06-24 09:54:00,51.23292344,2.93118801,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1330,"H903295","ZZAX","Joost",1009,"M",15262,6234,11375,2016-05-31 12:00:00,2024-06-24 09:55:00,51.23292344,2.93118801,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1364,"H900906","ZWAP","Koen",1057,"M",15268,6236,11439,2016-05-25 12:00:00,2024-06-24 10:03:00,51.23292344,2.93118801,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1327,"H905324","ZZAB","Veronic",830,"F",15269,6239,11440,2016-05-25 12:00:00,2024-06-24 10:04:00,51.23292344,2.93118801,"Vismijn, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1325,"H905203","ZWAA","Maurice",1070,"M",15270,6240,11400,2016-05-23 12:00:00,2024-06-24 10:04:00,51.23292344,2.93118801,"Vismijn, Oostende"
 "HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1763,"H905082","FZOZ",,896,"F",15679,6246,11442,2018-06-16 12:00:00,2025-06-12 09:14:00,51.23307723,2.93111801,
 "HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1765,"H905085","FWOH",,851,"F",15681,6247,11443,2018-06-06 12:00:00,2025-06-12 09:16:00,51.23307723,2.93111801,
 "HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1762,"H905081","FGOL",,1205,"M",15678,6248,11444,2018-06-06 12:00:00,2025-06-12 09:12:00,51.23307723,2.93111801,
 "HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1764,"H905083","FROH",,813,"F",15680,6249,11445,2018-06-06 12:00:00,2025-06-12 09:15:00,51.23307723,2.93111801,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1633,"H901822","CSOF","Zeebrugge",1159,"M",15530,6251,11448,2017-05-31 12:00:00,2025-08-23 15:19:00,51.34677899,3.17286175,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1632,"H907931","ZHAP","Zeebrugge",895,"F",15526,6254,11447,2017-05-29 12:00:00,2025-08-23 15:08:00,51.34506243,3.17324638,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1636,"H907934","CNOU","Oostende",999,"M",15535,6256,11449,2017-06-14 12:00:00,2025-08-23 15:44:00,51.23270846,2.92259421,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1630,"H907928","ZHAZ","Zeebrugge",881,"F",15528,6257,11450,2017-05-29 12:00:00,2025-08-23 15:14:00,51.34484898,3.17337673,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1627,"H907925","ZJAM","Zeebrugge",1084,"M",15525,6262,11452,2017-05-24 12:00:00,2025-08-23 15:04:00,51.34519746,3.1731407,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1631,"H907929","ZKAH","Zeebrugge",1247,"M",15532,6264,11453,2017-05-29 12:00:00,2025-08-23 15:22:00,51.34718107,3.17256134,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1634,"H907932","CMOK","Zeebrugge",1021,"M",15534,6267,11454,2017-05-31 12:00:00,2025-08-23 15:43:00,51.34710065,3.17286175,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1628,"H907926","ZHAC","Zeebrugge",906,"F",15527,6268,11455,2017-05-24 12:00:00,2025-08-23 15:09:00,51.34511704,3.17337673,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1626,"H901497","ZKAN","Zeebrugge",931,"F",15529,6270,11457,2017-05-24 12:00:00,2025-08-23 15:18:00,51.34500982,3.17320507,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1635,"H907933","ZHAH","Zeebrugge",1170,"M",15533,6271,11458,2017-05-31 12:00:00,2025-08-23 15:23:00,51.34707385,3.172733,
-"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1629,"H907927","ZJAJ","Zeebrugge",1039,"M",15531,6272,11459,2017-05-24 12:00:00,2025-08-23 15:21:00,51.34533149,3.17320507,
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1633,"H901822","CSOF","Niels",1159,"M",15530,6251,11448,2017-05-31 12:00:00,2025-08-23 15:19:00,51.34677899,3.17286175,"Bus, Zeebrugge"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1632,"H907931","ZHAP","Silke",895,"F",15526,6254,11447,2017-05-29 12:00:00,2025-08-23 15:08:00,51.34506243,3.17324638,"Bus, Zeebrugge"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1636,"H907934","CNOU","Joryck",999,"M",15535,6256,11449,2017-06-14 12:00:00,2025-08-23 15:44:00,51.23270846,2.92259421,"Visserskaai, Oostende"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1630,"H907928","ZHAZ","Tine",881,"F",15528,6257,11450,2017-05-29 12:00:00,2025-08-23 15:14:00,51.34484898,3.17337673,"Kleine Vlakte, Zeebrugge"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1627,"H907925","ZJAM","Sander",1084,"M",15525,6262,11452,2017-05-24 12:00:00,2025-08-23 15:04:00,51.34519746,3.1731407,"Bus, Zeebrugge"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1631,"H907929","ZKAH","Rik",1247,"M",15532,6264,11453,2017-05-29 12:00:00,2025-08-23 15:22:00,51.34718107,3.17256134,"Kleine Vlakte, Zeebrugge"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1634,"H907932","CMOK","Claude",1021,"M",15534,6267,11454,2017-05-31 12:00:00,2025-08-23 15:43:00,51.34710065,3.17286175,"Kleine Vlakte, Zeebrugge"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1628,"H907926","ZHAC","Brigitte",906,"F",15527,6268,11455,2017-05-24 12:00:00,2025-08-23 15:09:00,51.34511704,3.17337673,"Bord, Zeebrugge"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1626,"H901497","ZKAN","Tatiana",931,"F",15529,6270,11457,2017-05-24 12:00:00,2025-08-23 15:18:00,51.34500982,3.17320507,"Bus, Zeebrugge"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1635,"H907933","ZHAH","Bram",1170,"M",15533,6271,11458,2017-05-31 12:00:00,2025-08-23 15:23:00,51.34707385,3.172733,"Kleine Vlakte, Zeebrugge"
+"HG_OOSTENDE","Oostende","Larus argentatus","Herring Gull",1629,"H907927","ZJAJ","Wim",1039,"M",15531,6272,11459,2017-05-24 12:00:00,2025-08-23 15:21:00,51.34533149,3.17320507,"Bord, Zeebrugge"
 "H_GRONINGEN",,"Circus aeruginosus","Western Marsh Harrier",268,"5446465","NA","William",524,"M",295,291,476,2012-05-10 15:10:00,9999-12-31 00:00:00,53.28059,6.98661,"William"
 "H_GRONINGEN",,"Circus aeruginosus","Western Marsh Harrier",158,"5336455","NA","Kjell",540,"M",1469,634,585,2014-06-04 21:50:00,9999-12-31 00:00:00,53.295407,6.991777,"Kjell"
 "H_GRONINGEN",,"Circus aeruginosus","Western Marsh Harrier",836,"5325667","NA","Roelof",504,"M",14770,6064,844,2014-07-04 15:00:00,2021-08-27 16:21:00,53.26933247,6.98776603,"Roelof"
 "H_GRONINGEN",,"Circus aeruginosus","Western Marsh Harrier",1321,"5327085","NA","Job",513,"M",15254,6065,879,2016-06-18 07:46:00,2024-06-20 16:13:00,53.231376,7.131125,"Job"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",706,"L904812","URAL",,869,"X",524,703,468,2013-05-30 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"poor functioning after bird has removed antenna"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",717,"L907450","UMAD",,749,"X",525,712,466,2013-06-03 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",715,"L907322","UMAT",,978,"X",526,719,312,2013-06-04 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",708,"L906623","UBAS",,887,"X",527,744,456,2013-05-30 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"poor functioning after bird has removed antenna"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",716,"L907407","USAT",,712,"X",528,753,319,2013-06-10 00:00:00,2016-07-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",704,"L902124","UBAR",,974,"X",529,755,320,2013-05-31 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"poor functioning after bird has removed antenna"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",719,"L909213","UPAK",,792,"X",530,830,451,2013-05-30 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"poor functioning after bird has removed antenna"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",722,"L909887","USAS",,668,"X",531,833,452,2013-06-10 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",707,"L906543","UPAV",,711,"X",532,847,453,2013-05-31 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"poor functioning after bird has removed antenna"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",703,"L901266","UDAC",,1064,"X",533,849,683,2013-06-03 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",714,"L907172","URAM",,918,"X",534,851,454,2013-05-28 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",718,"L909197","UBAU",,957,"X",535,852,719,2013-06-04 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",705,"L902130","UPAC",,788,"X",536,853,865,2013-06-11 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",723,"L916710","UDAR",,734,"X",537,854,684,2013-06-04 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",712,"L907004","UDAD",,752,"X",538,858,455,2013-05-28 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",721,"L909877","UMAF",,746,"X",539,860,693,2013-06-11 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",711,"L906682","URAK",,,"X",540,861,695,2013-05-29 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",710,"L906646","UAAM",,837,"X",541,862,699,2013-06-10 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",720,"L909681","UAAA",,707,"X",542,863,700,2013-06-04 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",709,"L906644","UAAN",,833,"X",543,864,705,2013-06-03 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"poor functioning after bird has removed antenna"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",153,"5331094 ARNHEM","UPAG",,862,"X",544,865,706,2013-06-12 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",713,"L907016","UCAX",,1017,"X",545,866,707,2013-06-12 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",803,"L909346","RZAS",,1011,"M",14721,1400,867,2014-06-12 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",798,"L909341","PGAC",,730,"F",14722,1401,784,2014-06-10 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",799,"L906110","PGAW",,843,"F",14723,1402,785,2014-06-11 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1347,"L912682","RTAN","Zeebrugge",788,"F",15312,1517,11418,2016-05-26 12:00:00,2024-07-26 11:24:00,51.34878164,3.1733501,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1348,"L920598","RUAB","Zeebrugge",767,"F",15306,1519,11419,2016-05-26 12:00:00,2024-07-26 11:17:00,51.34878164,3.1733501,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",801,"L910935","RZAT",,955,"M",14724,4040,1035,2014-06-12 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",808,"L912685","RZAC",,732,"F",14725,4041,1036,2014-06-16 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",804,"L909279","RWAW",,973,"M",14726,4042,1037,2014-06-12 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",796,"L909688","PGAP",,821,"F",14727,4044,1038,2014-06-10 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",810,"L901531","RWAU",,974,"M",14728,4045,1039,2014-06-16 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",809,"L904816","RWAT",,870,"M",14729,4047,1040,2014-06-16 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",792,"L907257","PGAR",,881,"M",14730,4050,1041,2014-06-10 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",787,"L904852","PGAU",,931,"M",14731,5036,916,2014-06-04 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",788,"L901851","TSAV",,889,"M",14732,5037,917,2014-06-06 00:00:00,2016-07-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",789,"L909202","PGAM",,994,"M",14733,5038,502,2014-06-06 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",790,"L916122","PGAD",,669,"F",14734,5039,512,2014-06-06 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",800,"L911715","RWAK",,769,"F",14735,5060,953,2014-06-12 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1110,"L914750","UWAK","Vlissingen",909,"M",15047,5062,954,2015-05-30 11:00:00,2022-06-05 10:49:00,51.44934765,3.68978485,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",806,"L909937","RXAD",,837,"F",14736,5063,955,2014-06-16 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1106,"5508367","blauw 8K","Vlissingen",811,"M",15044,5064,956,2015-05-28 10:00:00,2022-06-05 10:45:00,51.44934765,3.68978485,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",802,"L907424","RXAN",,693,"F",14737,5065,957,2014-06-12 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1107,"5508368","blauw 8C","Vlissingen",645,"F",15045,5066,958,2015-05-28 11:00:00,2022-06-05 10:47:00,51.44934765,3.68978485,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",807,"L907253","RWAF",,855,"M",14738,5067,11189,2014-06-16 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1109,"L912603","blauw 8W","Vlissingen",777,"F",15046,5068,960,2015-05-30 10:00:00,2022-06-05 10:48:00,51.44934765,3.68978485,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1111,"L907132","blauw 83","Vlissingen",999,"F",15048,5069,961,2015-05-30 12:00:00,2022-06-05 10:50:00,51.44934765,3.68978485,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",805,"5420712","F5",,739,"F",14739,5070,962,2014-06-16 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",795,"L909648","PGAB",,991,"M",14740,5071,963,2014-06-10 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",794,"L912674","TRAC",,980,"X",14741,5072,964,2014-06-10 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",793,"L904806","PGAX",,645,"F",14742,5073,965,2014-06-10 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",797,"L911710","PGAN",,844,"F",14743,5076,967,2014-06-10 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",791,"EA672503","PGAA",,789,"F",14744,5077,968,2014-06-10 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1127,"L916310","RPAU",,756,"F",15063,5133,1112,2015-06-03 14:00:00,2022-06-09 13:57:00,51.34928421,3.17416906,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1073,"L909206","KHAW","Vlissingen",868,"M",15009,5134,1113,2015-05-22 17:30:00,2023-05-23 09:11:00,51.44934765,3.68978485,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1075,"L9099374","blauw 7A","Vlissingen",999,"M",15011,5136,11181,2015-05-22 19:30:00,2022-05-23 09:18:00,51.44934765,3.68978485,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1076,"L911863","blauw 7C","Vlissingen",999,"M",15012,5137,11182,2015-05-22 20:30:00,2022-05-23 09:20:00,51.44934765,3.68978485,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1077,"L907235","blauw 7K","Vlissingen",510,"F",15013,5138,11183,2015-05-22 21:30:00,2022-05-23 09:22:00,51.44934765,3.68978485,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1074,"5508290","blauw 6+","Vlissingen",796,"M",15010,5140,11184,2015-05-22 18:30:00,2022-05-23 09:17:00,51.44934765,3.68978485,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1095,"5508341","blauw 7P","Vlissingen",837,"F",15019,5141,11185,2015-05-25 08:00:00,2022-05-27 18:54:00,51.44934765,3.68978485,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1098,"5508353","blauw 75","Vlissingen",700,"F",15022,5142,11186,2015-05-25 10:00:00,2022-05-27 18:58:00,51.44934765,3.68978485,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1096,"5508342","blauw 7R","Vlissingen",702,"F",15020,5146,11187,2015-05-25 08:30:00,2022-05-27 18:56:00,51.44934765,3.68978485,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1097,"L901190","blauw 7S","Vlissingen",724,"F",15021,5147,11188,2015-05-25 09:00:00,2022-05-27 18:57:00,51.44934765,3.68978485,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1099,"5508286","blauw 65","Vlissingen",953,"M",15023,5148,11208,2015-05-25 12:00:00,2022-05-27 18:58:00,51.44934765,3.68978485,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1126,"L916311","RSAM",,999,"F",15062,5179,11318,2015-06-03 13:00:00,2022-06-09 13:56:00,51.34928421,3.17416906,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1164,"L905925","DMAU",,815,"M",15097,5195,11279,2015-06-10 13:00:00,2022-09-01 15:13:00,51.34930986,3.17419474,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1132,"L917800","blauw 8+","Vlissingen",879,"M",15064,5198,11261,2015-06-05 14:00:00,2022-06-09 13:59:00,51.44934765,3.68978485,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1125,"L916309","RSAN",,768,"F",15061,5199,11262,2015-06-03 11:00:00,2022-06-09 13:56:00,51.34928421,3.17416906,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1266,"L908351","blauw HB","Vlissingen",886,"M",15200,5200,11263,2016-05-19 12:00:00,2024-05-22 14:51:00,51.43924273,3.70772124,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1265,"L910466","groen 5N","Vlissingen",797,"X",15199,5201,11264,2016-05-19 12:00:00,2016-05-28 12:00:00,51.43924273,3.70772124,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1607,"5509730","6G","Vlissingen",811,"F",15538,5201,11264,2017-05-23 12:00:00,2024-08-24 09:47:00,51.43931901,3.70714471,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1263,"5468062","oranje 6=","Vlissingen",706,"F",15197,5202,11265,2016-05-19 12:00:00,2024-05-22 14:46:00,51.43924273,3.70772124,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1264,"5423617","wit M8","Vlissingen",999,"F",15198,5205,11266,2016-05-19 12:00:00,2024-05-22 14:48:00,51.43924273,3.70772124,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1261,"L907411","groen 5C","Vlissingen",727,"F",15195,5206,11267,2016-05-19 12:00:00,2024-05-22 14:43:00,51.4493535,3.68931055,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1121,"L916304","RRAA",,972,"M",15057,5213,11271,2015-06-01 14:00:00,2022-06-09 13:53:00,51.34928421,3.17416906,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1133,"L909695","RZAD",,735,"F",15065,5215,11273,2015-06-08 10:00:00,2022-06-09 14:00:00,51.34928421,3.17416906,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1118,"L916302","RZAP",,942,"M",15054,5216,11274,2015-06-01 11:00:00,2022-06-09 13:49:00,51.34942741,3.1745097,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1124,"L916308","RRAK",,926,"M",15060,5219,11275,2015-06-03 10:00:00,2022-06-09 13:55:00,51.34928421,3.17416906,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1123,"L916306","RPAT",,831,"F",15059,5220,11276,2015-06-01 16:00:00,2022-06-09 13:54:00,51.34928421,3.17416906,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1119,"L916303","RZAL",,1012,"M",15055,5221,11277,2015-06-01 12:00:00,2022-06-09 13:50:00,51.34928421,3.17416906,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1269,"5423642","wit N1","Vlissingen",843,"M",15203,5222,11278,2016-05-20 12:00:00,2024-05-22 14:53:00,51.43924273,3.70772124,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1120,"L902498","RSAF",,760,"F",15056,5230,11282,2015-06-01 13:00:00,2022-06-09 13:52:00,51.34928421,3.17416906,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1122,"L916305","RWAP",,979,"M",15058,5231,11283,2015-06-01 15:00:00,2022-06-09 13:54:00,51.34928421,3.17416906,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1117,"L916301","RRAR",,1109,"M",15049,5232,11284,2015-06-01 09:00:00,2022-06-05 10:59:00,51.34928421,3.17416906,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1349,"L920600","RUAG","Zeebrugge",1031,"M",15314,5271,11317,2016-05-26 12:00:00,2024-07-26 11:25:00,51.34878164,3.1733501,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1339,"5424410","E4","Vlissingen",903,"M",15310,5273,11324,2016-05-24 12:00:00,2024-07-26 11:22:00,51.43924273,3.70772124,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1350,"L901928","RTAK","Zeebrugge",1031,"M",15305,5274,11325,2016-05-26 12:00:00,2024-07-26 11:16:00,51.34878164,3.1733501,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1340,"5420613","PF","Vlissingen",763,"F",15308,5275,11326,2016-05-24 12:00:00,2024-07-26 11:21:00,51.43924273,3.70772124,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1351,"L907448","AHOP","Zeebrugge",780,"F",15304,5276,11327,2016-05-27 12:00:00,2024-07-26 11:15:00,51.34878164,3.1733501,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1353,"L911707","AGOK","Zeebrugge",801,"M",15311,5291,11465,2016-06-01 12:00:00,2024-07-26 11:23:00,51.34878164,3.1733501,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1354,"L909718","AHOX","Zeebrugge",885,"M",15313,5296,11410,2016-06-01 12:00:00,2024-07-26 11:25:00,51.34878164,3.1733501,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1355,"L914820","RUAU","Zeebrugge",760,"F",15309,5297,11411,2016-06-01 12:00:00,2024-07-26 11:21:00,51.34878164,3.1733501,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1341,"L912803","59","Vlissingen",760,"M",15271,5298,11412,2016-05-24 12:00:00,2024-06-24 10:06:00,51.44898701,3.68968072,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1346,"L916856","7C","Vlissingen",854,"M",15273,5300,11414,2016-06-07 12:00:00,2024-06-24 10:09:00,51.44898701,3.68968072,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1356,"L906405","ALOS","Zeebrugge",685,"F",15275,5301,11415,2016-06-01 12:00:00,2024-06-24 10:11:00,51.34878164,3.1733501,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1357,"L909972","ALOX","Zeebrugge",699,"F",15288,5304,11416,2016-06-01 12:00:00,2024-07-15 11:39:00,51.34878164,3.1733501,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1342,"5420314","LC","Vlissingen",867,"M",15287,5305,11466,2016-05-24 12:00:00,2024-07-15 11:38:00,51.43924273,3.70772124,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1358,"L901717","ABOX","Zeebrugge",722,"F",15286,5306,11417,2016-06-01 12:00:00,2024-07-15 11:36:00,51.34878164,3.1733501,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1270,"L910332","blauw 91","Vlissingen",883,"M",15204,5315,11529,2016-05-20 12:00:00,2024-05-22 14:53:00,51.43924273,3.70772124,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1352,"L902150","ALOP","Zeebrugge",1054,"M",15284,5317,11530,2016-05-27 12:00:00,2024-07-15 11:33:00,51.34878164,3.1733501,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1378,"L916207","AKOS",,881,"M",15301,5320,11435,2016-06-07 12:00:00,2024-07-25 13:39:00,51.23292344,2.93118801,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1267,"5501141","zwart E2","Vlissingen",877,"M",15201,5325,11436,2016-05-20 12:00:00,2024-05-22 14:52:00,51.43924273,3.70772124,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1359,"L909974","AHOG","Zeebrugge",805,"F",15272,5326,11437,2016-06-01 12:00:00,2024-06-24 10:08:00,51.34878164,3.1733501,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1344,"5361547","LD","Vlissingen",848,"M",15274,5331,11438,2016-05-31 12:00:00,2024-06-24 10:10:00,51.44898701,3.68968072,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1379,"L916201","AJOL",,772,"M",15299,5334,11491,2016-05-31 12:00:00,2024-07-25 13:36:00,51.23292344,2.93118801,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1380,"L920599","RUAW",,730,"F",15300,5335,11467,2016-05-25 12:00:00,2024-07-25 13:38:00,51.23292344,2.93118801,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1262,"5509703","groen 5F","Vlissingen",710,"F",15196,5336,11468,2016-05-19 12:00:00,2024-05-22 14:45:00,51.4493535,3.68931055,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1343,"L906730","54","Vlissingen",830,"M",15285,5337,11469,2016-05-24 12:00:00,2024-07-15 11:35:00,51.44898701,3.68968072,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1268,"L911116","zwart EW","Vlissingen",832,"M",15202,5338,11470,2016-05-20 12:00:00,2016-05-30 12:00:00,51.43924273,3.70772124,"Vlissingen"
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1345,"5465451","CB","Vlissingen",696,"F",15307,5338,11470,2016-05-31 12:00:00,2024-07-26 11:20:00,51.43924273,3.70772124,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1372,"L916206","AHOT","Oostende",705,"F",15283,5339,11471,2016-06-07 12:00:00,2024-07-15 11:14:00,51.23292344,2.93118801,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1377,"L916205","AHOC",,933,"M",15302,5340,11492,2016-06-07 12:00:00,2024-07-25 13:40:00,51.23292344,2.93118801,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1381,"L916203","ALOV",,800,"F",15303,5341,11493,2016-06-02 12:00:00,2024-07-25 13:40:00,51.23292344,2.93118801,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1615,"5519736","J3","Vlissingen",755,"F",15542,5487,11768,2017-05-29 12:00:00,2025-08-24 10:44:00,51.4492158,3.68989275,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1620,"L925727","BFON","Zeebrugge",918,"M",15543,5489,11770,2017-06-07 12:00:00,2025-08-24 10:45:00,51.34774397,3.172733,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1617,"L925726","NNAB","Zeebrugge",928,"M",15544,5492,11772,2017-06-02 12:00:00,2025-08-24 10:46:00,51.34526448,3.17311924,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1622,"5509729","6F","Vlissingen",738,"F",15549,5493,11773,2017-06-08 12:00:00,2025-08-24 10:53:00,51.439105,3.70774553,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1625,"5519664","K4","Vlissingen",887,"M",15550,5494,11774,2017-06-13 12:00:00,2025-08-24 10:54:00,51.44945651,3.68959234,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1623,"5509663","K9","Vlissingen",758,"F",15546,5495,11775,2017-06-08 12:00:00,2025-08-24 10:50:00,51.43939926,3.70753095,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1613,"L905052","H3","Vlissingen",667,"F",15554,5534,11842,2017-05-23 12:00:00,2025-08-25 10:43:00,51.43923876,3.70770261,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1614,"5519735","J2","Vlissingen",683,"F",15552,5535,11879,2017-05-29 12:00:00,2025-08-25 10:27:00,51.43918525,3.70744512,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1716,"L925752","NNAK",,747,"F",15636,5536,11880,2017-05-31 12:00:00,2026-04-10 15:18:00,51.34880509,3.17357361,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1611,"5420250","H6","Vlissingen",724,"M",15553,5537,11843,2017-05-23 12:00:00,2025-08-25 10:28:00,51.43921201,3.70731637,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1609,"5509716","H0","Vlissingen",835,"F",15556,5538,11844,2017-05-23 12:00:00,2025-08-25 10:45:00,51.43939926,3.70705888,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1618,"5519662","K2","Vlissingen",601,"F",15555,5539,11845,2017-06-05 12:00:00,2025-08-25 10:44:00,51.43907825,3.70787427,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1608,"5509702","5E","Vlissingen",885,"F",15551,5540,11846,2017-05-23 12:00:00,2025-08-24 10:55:00,51.43934576,3.70753095,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1605,"5501123","EG","Vlissingen",829,"F",15537,5542,11847,2017-05-19 12:00:00,2025-08-24 09:40:00,51.43923876,3.70744512,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1612,"5519709","HR","Vlissingen",999,"M",15548,5543,11848,2017-05-23 12:00:00,2025-08-24 10:52:00,51.43907825,3.70761678,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1616,"L925751","AXOB","Zeebrugge",831,"F",15545,5544,11849,2017-05-31 12:00:00,2025-08-24 10:47:00,51.34517066,3.17311924,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1606,"5423625","NE","Vlissingen",802,"M",15536,5545,11850,2017-05-19 12:00:00,2025-08-24 09:36:00,51.43933093,3.70729746,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1624,"L917359","BCOG","Zeebrugge",940,"M",15547,5546,11851,2017-06-12 12:00:00,2025-08-24 10:51:00,51.34763675,3.17260426,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1770,"5543131","4=","Vlissingen",903,"M",15682,5547,11852,2018-05-24 12:00:00,2025-06-12 09:54:00,51.44736094,3.69672775,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1621,"L925728","ZFOT","Zeebrugge",716,"F",15539,5548,11853,2017-06-07 12:00:00,2025-08-24 09:49:00,51.34747592,3.17277592,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1619,"5509720","56","Vlissingen",677,"F",15541,5549,11854,2017-06-05 12:00:00,2025-08-24 10:21:00,51.44918906,3.689764,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1610,"5519750","H2","Vlissingen",802,"F",15540,5550,11855,2017-05-23 12:00:00,2025-08-24 09:50:00,51.43913175,3.70778844,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1767,"5543129","42","Vlissingen",821,"M",15685,5707,12024,2018-05-24 12:00:00,2026-06-12 10:20:00,51.45471558,3.68578434,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1768,"5508292","42","Vlissingen",741,"F",15683,5713,12025,2018-05-24 12:00:00,2025-06-12 09:55:00,51.45444147,3.68617058,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1774,"5543138","47","Vlissingen",825,"M",15690,5714,12026,2018-05-29 12:00:00,2025-06-12 10:33:00,51.4495006,3.68938923,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1766,"5543128","5G","Vlissingen",689,"F",15684,5716,12027,2018-05-22 12:00:00,2026-06-12 09:58:00,51.44774876,3.69670105,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1769,"5543130","43","Vlissingen",911,"M",15686,5718,12028,2018-05-24 12:00:00,2025-06-12 10:21:00,51.44761503,3.69694233,
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",706,"L904812","URAL","Kees",869,"X",524,703,468,2013-05-30 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge | Poor tracker functioning after bird removed antenna."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",717,"L907450","UMAD","Billie",749,"X",525,712,466,2013-06-03 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",715,"L907322","UMAT","Harry",978,"X",526,719,312,2013-06-04 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",708,"L906623","UBAS","Mark",887,"X",527,744,456,2013-05-30 00:00:00,2013-06-27 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge | Poor tracker functioning after bird removed antenna. Predated by fox."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",716,"L907407","USAT","Joke",712,"X",528,753,319,2013-06-10 00:00:00,2016-07-01 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",704,"L902124","UBAR","Wouter",974,"X",529,755,320,2013-05-31 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge | Poor tracker functioning after bird removed antenna."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",719,"L909213","UPAK","Chloe",792,"X",530,830,451,2013-05-30 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge | Poor tracker functioning after bird removed antenna."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",722,"L909887","USAS","Sanne",668,"X",531,833,452,2013-06-10 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",707,"L906543","UPAV","Jozsa",711,"X",532,847,453,2013-05-31 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge | Poor tracker functioning after bird removed antenna."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",703,"L901266","UDAC","Hilbran",1064,"X",533,849,683,2013-06-03 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",714,"L907172","URAM","Eric",918,"X",534,851,454,2013-05-28 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",718,"L909197","UBAU","Misja",957,"X",535,852,719,2013-06-04 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",705,"L902130","UPAC","Michelle",788,"X",536,853,865,2013-06-11 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",723,"L916710","UDAR","Kate",734,"X",537,854,684,2013-06-04 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",712,"L907004","UDAD","Jasmin",752,"X",538,858,455,2013-05-28 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",721,"L909877","UMAF","Marieke",746,"X",539,860,693,2013-06-11 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",711,"L906682","URAK","Hans",0,"X",540,861,695,2013-05-29 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",710,"L906646","UAAM","Viki",837,"X",541,862,699,2013-06-10 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",720,"L909681","UAAA","Lies",707,"X",542,863,700,2013-06-04 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",709,"L906644","UAAN","Nico",833,"X",543,864,705,2013-06-03 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge | Poor tracker functioning after bird removed antenna."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",153,"5331094 ARNHEM","UPAG","Alex",862,"X",544,865,706,2013-06-12 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge | No or few tracking data within track session."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",713,"L907016","UCAX","Jules",1017,"X",545,866,707,2013-06-12 00:00:00,9999-12-31 00:00:00,51.339311,3.17913,"APM Terminals, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",803,"L909346","RZAS","Jeroen",1011,"M",14721,1400,867,2014-06-12 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",798,"L909341","PGAC","Yolandi",730,"F",14722,1401,784,2014-06-10 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",799,"L906110","PGAW","Katrien",843,"F",14723,1402,785,2014-06-11 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1347,"L912682","RTAN","Sam",788,"F",15312,1517,11418,2016-05-26 12:00:00,2024-07-26 11:24:00,51.34878164,3.1733501,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1348,"L920598","RUAB","Lena",767,"F",15306,1519,11419,2016-05-26 12:00:00,2024-07-26 11:17:00,51.34878164,3.1733501,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",801,"L910935","RZAT","Steven",955,"M",14724,4040,1035,2014-06-12 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",808,"L912685","RZAC","Marie",732,"F",14725,4041,1036,2014-06-16 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",804,"L909279","RWAW","Bart",973,"M",14726,4042,1037,2014-06-12 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",796,"L909688","PGAP","Evy",821,"F",14727,4044,1038,2014-06-10 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge | Tracker probably not responsive."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",810,"L901531","RWAU","Sjarel",974,"M",14728,4045,1039,2014-06-16 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",809,"L904816","RWAT","Peter",870,"M",14729,4047,1040,2014-06-16 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",792,"L907257","PGAR","Ronny",881,"M",14730,4050,1041,2014-06-10 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",787,"L904852","PGAU","Simon",931,"M",14731,5036,916,2014-06-04 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",788,"L901851","TSAV","Wendt",889,"M",14732,5037,917,2014-06-06 00:00:00,2016-07-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",789,"L909202","PGAM","Eddy",994,"M",14733,5038,502,2014-06-29 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge | No tracking data received."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",790,"L916122","PGAD","Anke",669,"F",14734,5039,512,2014-06-06 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",800,"L911715","RWAK","Yente",769,"F",14735,5060,953,2014-06-12 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1110,"L914750","UWAK","Vincent",909,"M",15047,5062,954,2015-05-30 11:00:00,2022-06-05 10:49:00,51.44934765,3.68978485,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",806,"L909937","RXAD","Ella",837,"F",14736,5063,955,2014-06-16 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1106,"5508367","blauw 8K","Liam",811,"M",15044,5064,956,2015-05-28 10:00:00,2022-06-05 10:45:00,51.44934765,3.68978485,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",802,"L907424","RXAN","Roxanne",693,"F",14737,5065,957,2014-06-12 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1107,"5508368","blauw 8C","Vera",645,"F",15045,5066,958,2015-05-28 11:00:00,2022-06-05 10:47:00,51.44934765,3.68978485,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",807,"L907253","RWAF","Jos",855,"M",14738,5067,11189,2014-06-16 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge | No or few tracking data within track session."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1109,"L912603","blauw 8W",,777,"F",15046,5068,960,2015-05-30 10:00:00,2022-06-05 10:48:00,51.44934765,3.68978485,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1111,"L907132","blauw 83","Lora",999,"F",15048,5069,961,2015-05-30 12:00:00,2022-06-05 10:50:00,51.44934765,3.68978485,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",805,"5420712","F5","Anita",739,"F",14739,5070,962,2014-06-16 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",795,"L909648","PGAB","Ian",991,"M",14740,5071,963,2014-06-10 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",794,"L912674","TRAC","Matt",980,"X",14741,5072,964,2014-06-10 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",793,"L904806","PGAX","Angel",645,"F",14742,5073,965,2014-06-10 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",797,"L911710","PGAN","Annelies",844,"F",14743,5076,967,2014-06-10 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",791,"EA672503","PGAA","Lea",789,"F",14744,5077,968,2014-06-10 00:00:00,2022-08-01 00:00:00,51.339311,3.17913,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1127,"L916310","RPAU","Janis",756,"F",15063,5133,1112,2015-06-03 14:00:00,2022-06-09 13:57:00,51.34928421,3.17416906,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1073,"L909206","KHAW","Roland-Jan",868,"M",15009,5134,1113,2015-05-22 17:30:00,2023-05-23 09:11:00,51.44934765,3.68978485,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1075,"L9099374","blauw 7A",,999,"M",15011,5136,11181,2015-05-22 19:30:00,2022-05-23 09:18:00,51.44934765,3.68978485,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1076,"L911863","blauw 7C","Luan",999,"M",15012,5137,11182,2015-05-22 20:30:00,2022-05-23 09:20:00,51.44934765,3.68978485,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1077,"L907235","blauw 7K","Elinn",510,"F",15013,5138,11183,2015-05-22 21:30:00,2022-05-23 09:22:00,51.44934765,3.68978485,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1074,"5508290","blauw 6+","Sacha",796,"M",15010,5140,11184,2015-05-22 18:30:00,2022-05-23 09:17:00,51.44934765,3.68978485,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1095,"5508341","blauw 7P","Marwa",837,"F",15019,5141,11185,2015-05-25 08:00:00,2022-05-27 18:54:00,51.44934765,3.68978485,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1098,"5508353","blauw 75","Minke",700,"F",15022,5142,11186,2015-05-25 10:00:00,2022-05-27 18:58:00,51.44934765,3.68978485,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1096,"5508342","blauw 7R","Nastazja",702,"F",15020,5146,11187,2015-05-25 08:30:00,2022-05-27 18:56:00,51.44934765,3.68978485,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1097,"L901190","blauw 7S","Carla",724,"F",15021,5147,11188,2015-05-25 09:00:00,2022-05-27 18:57:00,51.44934765,3.68978485,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1099,"5508286","blauw 65","Finn",953,"M",15023,5148,11208,2015-05-25 12:00:00,2022-05-27 18:58:00,51.44934765,3.68978485,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1126,"L916311","RSAM","Kaat",999,"F",15062,5179,11318,2015-06-03 13:00:00,2022-06-09 13:56:00,51.34928421,3.17416906,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1164,"L905925","DMAU","Frederic",815,"M",15097,5195,11279,2015-06-10 13:00:00,2022-09-01 15:13:00,51.34930986,3.17419474,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1132,"L917800","blauw 8+","Frank",879,"M",15064,5198,11261,2015-06-05 14:00:00,2022-06-09 13:59:00,51.44934765,3.68978485,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1125,"L916309","RSAN","Imme",768,"F",15061,5199,11262,2015-06-03 11:00:00,2022-06-09 13:56:00,51.34928421,3.17416906,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1266,"L908351","blauw HB","Carsten",886,"M",15200,5200,11263,2016-05-19 12:00:00,2024-05-22 14:51:00,51.43924273,3.70772124,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1607,"5509730","6G","Lissa",811,"F",15538,5201,11264,2017-05-23 12:00:00,2024-08-24 09:47:00,51.43931901,3.70714471,"Vlissingen | Tracker reused from L910466."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1265,"L910466","groen 5N","Chris",797,"X",15199,5201,11264,2016-05-19 12:00:00,2016-05-23 00:00:00,51.43924273,3.70772124,"Vlissingen | Found dead on 2017-05-23. Tracker reused for 5509730."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1263,"5468062","oranje 6=","Naomi",706,"F",15197,5202,11265,2016-05-19 12:00:00,2024-05-22 14:46:00,51.43924273,3.70772124,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1264,"5423617","wit M8","Jenna",999,"F",15198,5205,11266,2016-05-19 12:00:00,2024-05-22 14:48:00,51.43924273,3.70772124,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1261,"L907411","groen 5C","Annie",727,"F",15195,5206,11267,2016-05-19 12:00:00,2024-05-22 14:43:00,51.4493535,3.68931055,"Vlissingen | No tracking data received."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1121,"L916304","RRAA","Pieter",972,"M",15057,5213,11271,2015-06-01 14:00:00,2022-06-09 13:53:00,51.34928421,3.17416906,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1133,"L909695","RZAD","Luna",735,"F",15065,5215,11273,2015-06-08 10:00:00,2022-06-09 14:00:00,51.34928421,3.17416906,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1118,"L916302","RZAP","Milan",942,"M",15054,5216,11274,2015-06-01 11:00:00,2022-06-09 13:49:00,51.34942741,3.1745097,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1124,"L916308","RRAK","Ricard",926,"M",15060,5219,11275,2015-06-03 10:00:00,2022-06-09 13:55:00,51.34928421,3.17416906,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1123,"L916306","RPAT","Emilie",831,"F",15059,5220,11276,2015-06-01 16:00:00,2022-06-09 13:54:00,51.34928421,3.17416906,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1119,"L916303","RZAL","Andy",1012,"M",15055,5221,11277,2015-06-01 12:00:00,2022-06-09 13:50:00,51.34928421,3.17416906,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1269,"5423642","wit N1","Paco",843,"M",15203,5222,11278,2016-05-20 12:00:00,2024-05-22 14:53:00,51.43924273,3.70772124,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1120,"L902498","RSAF","Agnes",760,"F",15056,5230,11282,2015-06-01 13:00:00,2022-06-09 13:52:00,51.34928421,3.17416906,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1122,"L916305","RWAP","Willy",979,"M",15058,5231,11283,2015-06-01 15:00:00,2022-06-09 13:54:00,51.34928421,3.17416906,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1117,"L916301","RRAR","Kobe",1109,"M",15049,5232,11284,2015-06-01 09:00:00,2022-06-05 10:59:00,51.34928421,3.17416906,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1349,"L920600","RUAG","Joachim",1031,"M",15314,5271,11317,2016-05-26 12:00:00,2024-07-26 11:25:00,51.34878164,3.1733501,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1339,"5424410","E4","Rinse",903,"M",15310,5273,11324,2016-05-24 12:00:00,2024-07-26 11:22:00,51.43924273,3.70772124,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1350,"L901928","RTAK","Dirk",1031,"M",15305,5274,11325,2016-05-26 12:00:00,2024-07-26 11:16:00,51.34878164,3.1733501,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1340,"5420613","PF","Fe",763,"F",15308,5275,11326,2016-05-24 12:00:00,2024-07-26 11:21:00,51.43924273,3.70772124,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1351,"L907448","AHOP","Laura",780,"F",15304,5276,11327,2016-05-27 12:00:00,2024-07-26 11:15:00,51.34878164,3.1733501,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1353,"L911707","AGOK","John",801,"M",15311,5291,11465,2016-06-01 12:00:00,2024-07-26 11:23:00,51.34878164,3.1733501,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1354,"L909718","AHOX","Kristof",885,"M",15313,5296,11410,2016-06-01 12:00:00,2024-07-26 11:25:00,51.34878164,3.1733501,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1355,"L914820","RUAU","Marleen",760,"F",15309,5297,11411,2016-06-01 12:00:00,2024-07-26 11:21:00,51.34878164,3.1733501,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1341,"L912803","59","Huub",760,"M",15271,5298,11412,2016-05-24 12:00:00,2024-06-24 10:06:00,51.44898701,3.68968072,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1346,"L916856","7C","Orval",854,"M",15273,5300,11414,2016-06-07 12:00:00,2024-06-24 10:09:00,51.44898701,3.68968072,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1356,"L906405","ALOS","Inge",685,"F",15275,5301,11415,2016-06-01 12:00:00,2024-06-24 10:11:00,51.34878164,3.1733501,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1357,"L909972","ALOX","Carrie",699,"F",15288,5304,11416,2016-06-01 12:00:00,2024-07-15 11:39:00,51.34878164,3.1733501,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1342,"5420314","LC","Mohamed",867,"M",15287,5305,11466,2016-05-24 12:00:00,2024-07-15 11:38:00,51.43924273,3.70772124,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1358,"L901717","ABOX","Anouka",722,"F",15286,5306,11417,2016-06-01 12:00:00,2024-07-15 11:36:00,51.34878164,3.1733501,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1270,"L910332","blauw 91","Fernand",883,"M",15204,5315,11529,2016-05-20 12:00:00,2024-05-22 14:53:00,51.43924273,3.70772124,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1352,"L902150","ALOP","Glenn",1054,"M",15284,5317,11530,2016-05-27 12:00:00,2024-07-15 11:33:00,51.34878164,3.1733501,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1378,"L916207","AKOS","Romelo",881,"M",15301,5320,11435,2016-06-07 12:00:00,2024-07-25 13:39:00,51.23292344,2.93118801,"Vismijn, Oostende"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1267,"5501141","zwart E2","Jorn",877,"M",15201,5325,11436,2016-05-20 12:00:00,2024-05-22 14:52:00,51.43924273,3.70772124,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1359,"L909974","AHOG","Bernadette",805,"F",15272,5326,11437,2016-06-01 12:00:00,2024-06-24 10:08:00,51.34878164,3.1733501,"Kleine Vlakte, Zeebrugge | No or few tracking data within track session."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1344,"5361547","LD","Robbert",848,"M",15274,5331,11438,2016-05-31 12:00:00,2024-06-24 10:10:00,51.44898701,3.68968072,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1379,"L916201","AJOL","Filip",772,"M",15299,5334,11491,2016-05-31 12:00:00,2024-07-25 13:36:00,51.23292344,2.93118801,"Vismijn, Oostende"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1380,"L920599","RUAW","Renee",730,"F",15300,5335,11467,2016-05-25 12:00:00,2024-07-25 13:38:00,51.23292344,2.93118801,"Vismijn, Oostende"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1262,"5509703","groen 5F","Lara",710,"F",15196,5336,11468,2016-05-19 12:00:00,2024-05-22 14:45:00,51.4493535,3.68931055,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1343,"L906730","54","Faber",830,"M",15285,5337,11469,2016-05-24 12:00:00,2024-07-15 11:35:00,51.44898701,3.68968072,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1345,"5465451","CB","Fay",696,"F",15307,5338,11470,2016-05-31 12:00:00,2024-07-26 11:20:00,51.43924273,3.70772124,"Vlissingen | Tracker reused from L911116."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1268,"L911116","zwart EW","Roy",832,"M",15202,5338,11470,2016-05-20 12:00:00,2016-05-27 16:00:00,51.43924273,3.70772124,"Vlissingen | Tracking considered stopped on 2016-05-27 at 16h. Tracker reused for 5465451."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1372,"L916206","AHOT","Delphine",705,"F",15283,5339,11471,2016-06-07 12:00:00,2024-07-15 11:14:00,51.23292344,2.93118801,"Vismijn, Oostende"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1377,"L916205","AHOC","Noel",933,"M",15302,5340,11492,2016-06-07 12:00:00,2024-07-25 13:40:00,51.23292344,2.93118801,"Vismijn, Oostende"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1381,"L916203","ALOV","Marijke",800,"F",15303,5341,11493,2016-06-02 12:00:00,2024-07-25 13:40:00,51.23292344,2.93118801,"Vismijn, Oostende"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1615,"5519736","J3","Liset",755,"F",15542,5487,11768,2017-05-29 12:00:00,2025-08-24 10:44:00,51.4492158,3.68989275,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1620,"L925727","BFON","Jef",918,"M",15543,5489,11770,2017-06-07 12:00:00,2025-08-24 10:45:00,51.34774397,3.172733,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1617,"L925726","NNAB","Daan",928,"M",15544,5492,11772,2017-06-02 12:00:00,2025-08-24 10:46:00,51.34526448,3.17311924,"Bus, Zeebrugge | No tracking data received."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1622,"5509729","6F","Nina",738,"F",15549,5493,11773,2017-06-08 12:00:00,2025-08-24 10:53:00,51.439105,3.70774553,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1625,"5519664","K4","Tommaso",887,"M",15550,5494,11774,2017-06-13 12:00:00,2025-08-24 10:54:00,51.44945651,3.68959234,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1623,"5509663","K9","Maaike",758,"F",15546,5495,11775,2017-06-08 12:00:00,2025-08-24 10:50:00,51.43939926,3.70753095,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1613,"L905052","H3","Sofia",667,"F",15554,5534,11842,2017-05-23 12:00:00,2025-08-25 10:43:00,51.43923876,3.70770261,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1614,"5519735","J2","Lieke",683,"F",15552,5535,11879,2017-05-29 12:00:00,2025-08-25 10:27:00,51.43918525,3.70744512,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1716,"L925752","NNAK","Elke",747,"F",15636,5536,11880,2017-05-31 12:00:00,2026-04-10 15:18:00,51.34880509,3.17357361,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1611,"5420250","H6","Luis",724,"M",15553,5537,11843,2017-05-23 12:00:00,2025-08-25 10:28:00,51.43921201,3.70731637,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1609,"5509716","H0","Lucia",835,"F",15556,5538,11844,2017-05-23 12:00:00,2025-08-25 10:45:00,51.43939926,3.70705888,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1618,"5519662","K2","Iris",601,"F",15555,5539,11845,2017-06-05 12:00:00,2025-08-25 10:44:00,51.43907825,3.70787427,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1608,"5509702","5E","Coco",885,"F",15551,5540,11846,2017-05-23 12:00:00,2025-08-24 10:55:00,51.43934576,3.70753095,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1605,"5501123","EG","Aurelie",829,"F",15537,5542,11847,2017-05-19 12:00:00,2025-08-24 09:40:00,51.43923876,3.70744512,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1612,"5519709","HR","Mike",999,"M",15548,5543,11848,2017-05-23 12:00:00,2025-08-24 10:52:00,51.43907825,3.70761678,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1616,"L925751","AXOB","Tamara",831,"F",15545,5544,11849,2017-05-31 12:00:00,2025-08-24 10:47:00,51.34517066,3.17311924,"Bus, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1606,"5423625","NE","Sergio",802,"M",15536,5545,11850,2017-05-19 12:00:00,2025-08-24 09:36:00,51.43933093,3.70729746,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1624,"L917359","BCOG","Diederik",940,"M",15547,5546,11851,2017-06-12 12:00:00,2025-08-24 10:51:00,51.34763675,3.17260426,"Kleine Vlakte, Zeebrugge | No or few tracking data within track session."
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1770,"5543131","4=",,903,"M",15682,5547,11852,2018-05-24 12:00:00,2025-06-12 09:54:00,51.44736094,3.69672775,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1621,"L925728","ZFOT","Els",716,"F",15539,5548,11853,2017-06-07 12:00:00,2025-08-24 09:49:00,51.34747592,3.17277592,"Kleine Vlakte, Zeebrugge"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1619,"5509720","56","Fiona",677,"F",15541,5549,11854,2017-06-05 12:00:00,2025-08-24 10:21:00,51.44918906,3.689764,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1610,"5519750","H2","Raissa",802,"F",15540,5550,11855,2017-05-23 12:00:00,2025-08-24 09:50:00,51.43913175,3.70778844,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1767,"5543129","42",,821,"M",15685,5707,12024,2018-05-24 12:00:00,2026-06-12 10:20:00,51.45471558,3.68578434,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1768,"5508292","42",,741,"F",15683,5713,12025,2018-05-24 12:00:00,2025-06-12 09:55:00,51.45444147,3.68617058,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1774,"5543138","47",,825,"M",15690,5714,12026,2018-05-29 12:00:00,2025-06-12 10:33:00,51.4495006,3.68938923,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1766,"5543128","5G",,689,"F",15684,5716,12027,2018-05-22 12:00:00,2026-06-12 09:58:00,51.44774876,3.69670105,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1769,"5543130","43",,911,"M",15686,5718,12028,2018-05-24 12:00:00,2025-06-12 10:21:00,51.44761503,3.69694233,"Vlissingen"
 "LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1776,"L907268","HKAX",,927,"M",15691,5719,12029,2018-05-31 12:00:00,2025-06-12 10:35:00,51.34813163,3.17290306,
 "LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1775,"L926488","DROD",,664,"F",15692,5720,12030,2018-05-31 12:00:00,2025-06-12 10:36:00,51.34826566,3.17311764,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1772,"5543134","45","Vlissingen",929,"M",15688,5721,12031,2018-05-24 12:00:00,2025-06-12 10:31:00,51.44750805,3.69647026,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1771,"5543133","44","Vlissingen",945,"M",15687,5723,12032,2018-05-24 12:00:00,2025-06-12 10:30:00,51.45454175,3.68634224,
-"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1773,"5543137","46","Vlissingen",735,"F",15689,5724,12033,2018-05-29 12:00:00,2025-06-12 10:32:00,51.44752142,3.69655609,
-"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",686,"H173481","none","Mia",785,"F",546,586,184,2013-05-16 19:55:00,9999-12-31 00:00:00,51.276078,3.59748,"Waterland-Oudeman, BE"
-"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",701,"L143451","none","Jozef",512,"M",547,610,467,2013-06-24 10:00:00,9999-12-31 00:00:00,51.276213,3.59542,"Waterland-Oudeman, BE"
-"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",702,"L143457","none","Peter",482,"M",548,623,570,2013-07-22 10:30:00,9999-12-31 00:00:00,51.270609,3.59295,"Waterland-Oudeman, BE"
-"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",1305,"H185298","none","Almut
-",656,"F",15238,630,387,2016-06-03 11:11:00,2024-06-07 21:11:00,51.28661459,3.55570793,"Waterland-Oudeman, BE | Tracker reused from Raymond"
-"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",1105,"L143467","none","Raymond",472,"M",15041,630,387,2015-05-26 09:28:00,2016-03-26 00:00:00,51.28535308,3.56180191,"Waterland-Oudeman, BE | Raymond found dead on 2016-03-31 in Alps, last active day is 2016-03-25. Tracker reused for Almut."
-"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",1224,"L143472","none","Ben",571,"M",15162,6058,782,2016-05-02 12:58:00,9999-12-31 00:00:00,51.27180977,3.6843574,"Waterland-Oudeman, BE"
-"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",1276,"L143473","none","Walter",485,"M",15211,6059,841,2016-06-01 13:36:00,9999-12-31 00:00:00,51.28639987,3.5556221,"Waterland-Oudeman, BE"
-,,"Larus fuscus","Lesser Black-backed Gull",1779,"L901819","DKOK",,978,"M",,,,,,,,
-,,"Larus fuscus","Lesser Black-backed Gull",1777,"5508363","BD","Vlissingen",808,"F",,,,,,,,
-,,"Larus fuscus","Lesser Black-backed Gull",1781,"L926494","DROS",,959,"M",,,,,,,,
-,,"Larus fuscus","Lesser Black-backed Gull",1778,"L915090","49","Vlissingen",949,"M",,,,,,,,
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1772,"5543134","45",,929,"M",15688,5721,12031,2018-05-24 12:00:00,2025-06-12 10:31:00,51.44750805,3.69647026,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1771,"5543133","44",,945,"M",15687,5723,12032,2018-05-24 12:00:00,2025-06-12 10:30:00,51.45454175,3.68634224,"Vlissingen"
+"LBBG_ZEEBRUGGE","Zeebrugge","Larus fuscus","Lesser Black-backed Gull",1773,"5543137","46",,735,"F",15689,5724,12033,2018-05-29 12:00:00,2025-06-12 10:32:00,51.44752142,3.69655609,"Vlissingen"
+"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",686,"H173481","-","Mia",785,"F",546,586,184,2013-05-16 19:55:00,9999-12-31 00:00:00,51.276078,3.59748,"Waterland-Oudeman"
+"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",701,"L143451","-","Jozef",512,"M",547,610,467,2013-06-24 10:00:00,9999-12-31 00:00:00,51.276213,3.59542,"Waterland-Oudeman"
+"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",702,"L143457","-","Peter",482,"M",548,623,570,2013-07-22 10:30:00,9999-12-31 00:00:00,51.270609,3.59295,"Waterland-Oudeman"
+"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",1105,"L143467","-","Raymond",472,"M",15041,630,387,2015-05-26 09:28:00,2016-03-26 00:00:00,51.28535308,3.56180191,"Waterland-Oudeman | Found dead on 2016-03-31 in Alps, last active day is 2016-03-25. Tracker reused for H185298."
+"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",1305,"H185298","-","Almut
+",656,"F",15238,630,387,2016-06-03 11:11:00,2024-06-07 21:11:00,51.28661459,3.55570793,"Waterland-Oudeman | Tracker reused from L143467."
+"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",1224,"L143472","-","Ben",571,"M",15162,6058,782,2016-05-02 12:58:00,9999-12-31 00:00:00,51.27180977,3.6843574,"Waterland-Oudeman"
+"MH_WATERLAND","Waterland","Circus aeruginosus","Western Marsh Harrier",1276,"L143473","-","Walter",485,"M",15211,6059,841,2016-06-01 13:36:00,9999-12-31 00:00:00,51.28639987,3.5556221,"Waterland-Oudeman"
+,,"Larus fuscus","Lesser Black-backed Gull",1778,"L915090","49",,949,"M",,,,,,,,
+,,"Larus fuscus","Lesser Black-backed Gull",1777,"5508363","BD",,808,"F",,,,,,,,
 ,,"Larus fuscus","Lesser Black-backed Gull",1780,"L926492","DVON",,1069,"M",,,,,,,,
+,,"Larus fuscus","Lesser Black-backed Gull",1779,"L901819","DKOK",,978,"M",,,,,,,,
+,,"Larus fuscus","Lesser Black-backed Gull",1781,"L926494","DROS",,959,"M",,,,,,,,
