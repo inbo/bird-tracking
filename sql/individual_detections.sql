@@ -43,12 +43,22 @@ SELECT
   calc.speed AS calc_speed_for_interval,
   calc.direction AS calc_direction
 FROM
-  gps.get_uvagps_track_speed({device_info_serial}, true) calc
-  INNER JOIN gps.ee_tracking_speed_limited t
+  gps.get_uvagps_track_speed_incl_shared({device_info_serial}) calc
+  INNER JOIN
+    (
+      SELECT * FROM gps.ee_tracking_speed_limited WHERE device_info_serial = {device_info_serial}
+      UNION
+      SELECT * FROM gps.ee_shared_tracking_speed_limited WHERE device_info_serial = {device_info_serial}
+    ) t
     ON
       calc.device_info_serial = t.device_info_serial
       AND calc.date_time = t.date_time
-  INNER JOIN gps.ee_track_session_limited s
+  INNER JOIN
+    (
+      SELECT * FROM gps.ee_track_session_limited WHERE device_info_serial = {device_info_serial}
+      UNION
+      SELECT * FROM gps.ee_shared_track_session_limited WHERE device_info_serial = {device_info_serial}
+    ) s
     ON
       t.device_info_serial = s.device_info_serial
       AND t.date_time >= s.start_date
