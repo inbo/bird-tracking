@@ -103,6 +103,7 @@ Get `device_info_serial`s for that project(s). Note that because of the reuse of
 device_info_serials <- individuals %>%
   filter(key_name %in% project_keys) %>%
   distinct(device_info_serial, .keep_all = TRUE) %>%
+  arrange(device_info_serial) %>%
   pull(device_info_serial)
 
 length(device_info_serials)
@@ -130,6 +131,7 @@ Get `device_info_serial`s for that project(s). Note that because of the reuse of
 device_info_serials <- individuals %>%
   filter(key_name %in% project_keys) %>%
   distinct(device_info_serial, .keep_all = TRUE) %>%
+  arrange(device_info_serial) %>%
   pull(device_info_serial)
 
 length(device_info_serials)
@@ -157,6 +159,7 @@ Get `device_info_serial`s for that project(s). Note that because of the reuse of
 device_info_serials <- individuals %>%
   filter(key_name %in% project_keys) %>%
   distinct(device_info_serial, .keep_all = TRUE) %>%
+  arrange(device_info_serial) %>%
   pull(device_info_serial)
 
 length(device_info_serials)
