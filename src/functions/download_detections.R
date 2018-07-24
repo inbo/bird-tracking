@@ -7,6 +7,9 @@ download_detections <- function(device_info_serials, download_directory,
 
   # Loop over device_info_serials
   for (device_info_serial in device_info_serials) {
+    # Define today
+    today = Sys.Date()
+
     # Create file name
     detections_file = file.path(download_directory, paste0(device_info_serial, "_detections.csv"))
 

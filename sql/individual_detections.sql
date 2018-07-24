@@ -67,3 +67,9 @@ FROM
     ON s.ring_number = i.ring_number
   LEFT JOIN gps.ee_species_limited sp
     ON i.species_latin_name = sp.latin_name
+WHERE
+  -- Because some tracking sessions have no meaningfull track_session_end_date,
+  -- we'll use today to exclude erronous records in the future
+  t.date_time <= '{today}'
+ORDER BY
+  t.date_time
