@@ -43,7 +43,8 @@ SELECT
   calc.speed AS calc_speed_for_interval,
   calc.direction AS calc_direction
 FROM
-  gps.get_uvagps_track_speed_incl_shared({device_info_serial}) calc
+  gps.get_uvagps_track_speed_incl_shared({device_info_serial}, false) calc
+  -- false = exclude records with userflag = 1
   INNER JOIN
     (
       SELECT * FROM gps.ee_tracking_speed_limited WHERE device_info_serial = {device_info_serial}
