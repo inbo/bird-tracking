@@ -17,31 +17,21 @@ output:
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-Set locale (so we use UTF-8 character encoding):
-
-```{r}
-# This works on Mac OS X, might not work on other OS
-Sys.setlocale("LC_CTYPE", "en_US.UTF-8")
-```
-
 Load libraries:
 
 ```{r}
 library(tidyverse)
+library(here)
 library(RPostgreSQL)
 library(glue)
 ```
 
-Set file paths (all paths should be relative to this script):
- 
-```{r}
-# SQL
-individuals_sql_file = "../sql/individuals.sql"
-individual_detections_sql_file = "../sql/individual_detections.sql"
+Load custom functions:
 
-# Data
-individuals_file = "../data/interim/individuals.csv"
+```{r}
+source(here("src", "functions", "download_detections.R"))
 ```
+
 
 # Connect to UvA-BiTS database
 
@@ -67,7 +57,7 @@ Load SQL:
 
 ```{r}
 # The SQL below doesn't have any {variables}, but I opted to use glue anyway
-individuals_sql <- glue_sql(read_file(individuals_sql_file), .con = con)
+individuals_sql <- glue_sql(read_file(here("sql", "individuals.sql")), .con = con)
 ```
 
 Run SQL:
@@ -85,7 +75,7 @@ individuals %>% head()
 Save to CSV:
 
 ```{r}
-write.csv(individuals, file = individuals_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(individuals, file = here("data", "interim", "individuals.csv"), na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
 
 # Download WMH detections
@@ -94,7 +84,7 @@ Define dataset properties:
 
 ```{r}
 project_keys = c("MH_WATERLAND")
-download_directory = "../data/interim/wmh"
+download_directory = here("data", "interim", "wmh")
 ```
 
 Get `device_info_serial`s for that project(s). Note that because of the reuse of tags, there might be less `device_info_serials` than bird individuals:
@@ -112,7 +102,6 @@ length(device_info_serials)
 Get detections and write to download directory:
 
 ```{r query_detections}
-source("functions/download_detections.R")
 download_detections(device_info_serials, download_directory, con, FALSE)
 ```
 
@@ -122,7 +111,7 @@ Define dataset properties:
 
 ```{r}
 project_keys = c("H_GRONINGEN")
-download_directory = "../data/interim/wmhnl"
+download_directory = here("data", "interim", "wmhnl")
 ```
 
 Get `device_info_serial`s for that project(s). Note that because of the reuse of tags, there might be less `device_info_serials` than bird individuals:
@@ -140,7 +129,6 @@ length(device_info_serials)
 Get detections and write to download directory:
 
 ```{r query_detections}
-source("functions/download_detections.R")
 download_detections(device_info_serials, download_directory, con, FALSE)
 ```
 
@@ -150,7 +138,7 @@ Define dataset properties:
 
 ```{r}
 project_keys = c("HG_OOSTENDE", "LBBG_ZEEBRUGGE")
-download_directory = "../data/interim/gull"
+download_directory = here("data", "interim", "gull")
 ```
 
 Get `device_info_serial`s for that project(s). Note that because of the reuse of tags, there might be less `device_info_serials` than bird individuals:
@@ -173,6 +161,5 @@ device_info_serials <- device_info_serials[1:4]
 Get detections and write to download directory:
 
 ```{r query_detections}
-source("functions/download_detections.R")
 download_detections(device_info_serials, download_directory, con, FALSE)
 ```
