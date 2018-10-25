@@ -38,4 +38,4 @@ vignettes/*.pdf
 
 # Data
 data/interim/*/*
-data/processed/*
+data/processed/wmh/*

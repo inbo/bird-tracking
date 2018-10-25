@@ -65,6 +65,5 @@ movebank_ref_data <- dbGetQuery(con, sql)
 Save to CSV:
 
 ```{r}
-# Filename will be of form: movebank_reference_data_MH_WATERLAND.csv
-write_csv(movebank_ref_data, path = here("data", "interim", paste0("movebank_ref_data_", project, ".csv")), na = "")
+write_csv(movebank_ref_data, path = here("data", "processed", project, "movebank_ref_data.csv"), na = "")
 ```
