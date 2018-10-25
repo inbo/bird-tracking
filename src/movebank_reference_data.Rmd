@@ -58,12 +58,12 @@ animal_name_in_remarks <- TRUE
 Query data:
 
 ```{r}
-sql <- glue_sql(read_file(here("sql", "movebank_ref_data.sql")), .con = con)
-movebank_ref_data <- dbGetQuery(con, sql)
+sql <- glue_sql(read_file(here("sql", "movebank_reference_data.sql")), .con = con)
+movebank_reference_data <- dbGetQuery(con, sql)
 ```
 
 Save to CSV:
 
 ```{r}
-write_csv(movebank_ref_data, path = here("data", "processed", project, "movebank_ref_data.csv"), na = "")
+write_csv(movebank_reference_data, path = here("data", "processed", project, "movebank_reference_data.csv"), na = "")
 ```
