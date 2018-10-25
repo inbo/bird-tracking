@@ -54,7 +54,7 @@ dwc_mof_tagging <- function(data, metadata) {
       "life_stage" = "life stage",
       "mass" = "weight",
       "colour_ring" = "colour ring",
-      "device_info_serial" = "device serial number",
+      "device_info_serial" = "tracker serial number (device_info_serial)",
       .default = NA_character_,
       .missing = NA_character_
     ),
@@ -78,7 +78,7 @@ dwc_mof_tagging <- function(data, metadata) {
       .missing = NA_character_
     ),
     measurementMethod = recode(type,
-      "individual_sex" = NA_character_,
+      "individual_sex" = "DNA analysis of blood sample",
       "life_stage" = NA_character_,
       "mass" = NA_character_,
       "colour_ring" = NA_character_,

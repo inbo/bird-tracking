@@ -41,7 +41,7 @@ dwc_occurrence_tagging <- function(data, metadata) {
     # occurrenceRemarks
 
     organismID = ring_number,
-    organismName = remarks_individual,
+    organismName = individual_remarks,
 
     samplingProtocol = "https://doi.org/10.1007/s10336-012-0908-1",
     # samplingEffort
