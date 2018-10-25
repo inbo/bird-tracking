@@ -39,8 +39,8 @@ Set file paths (all paths should be relative to this script):
  
 ```{r}
 individuals_and_track_sessions_file = "../data/interim/wmh/individuals_and_track_sessions.csv"
-occurrence_human_obs_file = "../data/processed/wmh/dwc_occurrence_human_obs.csv"
-mof_human_obs_file = "../data/processed/wmh/dwc_mof_human_obs.csv"
+dwc_occurrence_tagging_file = "../data/processed/wmh/dwc_occurrence_tagging.csv"
+dwc_mof_tagging_file = "../data/processed/wmh/dwc_mof_tagging.csv"
 ```
 
 ## Connect to UvA-BiTS database
@@ -63,20 +63,25 @@ con = dbConnect(
 
 ```{r}
 project_keys <- c("MH_WATERLAND")
-datasetID <- "https://doi.org/10.15468/rbguhj"
-datasetName <- "Bird tracking - GPS tracking of Western Marsh Harriers breeding near the Belgium-Netherlands border"
-institutionCode <- "INBO"
-rightsHolder <- "INBO"
-license <- "http://creativecommons.org/publicdomain/zero/1.0/"
-accessRights <- "http://www.inbo.be/en/norms-for-data-use"
-informationWithheld <- "see metadata"
 ```
 
-# Create occurrence core for bird tagging (human observations)
+```{r}
+metadata <- list()
+metadata[["datasetID"]] <- "https://doi.org/10.15468/rbguhj"
+metadata[["datasetName"]] <- "Bird tracking - GPS tracking of Western Marsh Harriers breeding near the Belgium-Netherlands border"
+metadata[["institutionCode"]] <- "INBO"
+metadata[["collectionCode"]] <- "bird-tracking"
+metadata[["rightsHolder"]] <- "INBO"
+metadata[["license"]] <- "http://creativecommons.org/publicdomain/zero/1.0/"
+metadata[["accessRights"]] <- "http://www.inbo.be/en/norms-for-data-use"
+metadata[["informationWithheld"]] <- "see metadata"
+```
+
+# Human observations
 
 ## Get denormalized individuals and track sessions
 
-To create occurrences for the bird capture/tagging with GPS trackers (= `HumanObservation`) and the associated measurements, we query for all bird individuals in a project and their track session information. This view will be used as a base for the Darwin Core mapping:
+To create occurrences for the bird capture/tagging with GPS trackers (= `HumanObservation`) and the associated measurements, we query for all bird individuals in a project and their track session information. The resulting view will be used as a base for the Darwin Core mapping:
 
 ```{r}
 individuals_and_track_sessions_sql <- glue_sql(
@@ -103,84 +108,85 @@ Save results:
 write.csv(individuals_and_track_sessions, file = individuals_and_track_sessions_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
 
-## Term mapping
+## Create occurrence core
 
-Map the source data to [Darwin Core Occurrence](http://rs.gbif.org/core/dwc_occurrence_2015-07-02.xml). The mapping is done in SQL:
+Map the source data to [Darwin Core Occurrence](http://rs.gbif.org/core/dwc_occurrence_2015-07-02.xml). The mapping is done in dplyr with a function:
 
-```{r}
-occurrence_human_obs_sql <- glue_sql(
-  read_file("../sql/dwc_occurrence_human_obs.sql"),
-  .con = con
-)
-```
-
-Show SQL:
-
-```{r}
-occurrence_human_obs_sql
-```
-
-Run SQL:
-
-```{r query_occurrence_human_obs}
-occurrence_human_obs <- dbGetQuery(con, occurrence_human_obs_sql)
+```{r map_dwc_occurrence_tagging}
+source("functions/dwc_occurrence_tagging.R")
+dwc_occurrence_tagging <- dwc_occurrence_tagging(individuals_and_track_sessions, metadata)
 ```
 
 Preview results:
 
 ```{r}
-occurrence_human_obs %>% head()
+dwc_occurrence_tagging %>% head()
 ```
 
 Save results:
 
 ```{r}
-write.csv(occurrence_human_obs, file = occurrence_human_obs_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(dwc_occurrence_tagging, file = dwc_occurrence_tagging_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
 
-# Create measurement or fact extension for bird tagging
+## Create measurement or fact extension
 
-## Term mapping
+Map the source data to [Extended Measurement Or Facts](http://rs.gbif.org/extension/obis/extended_measurement_or_fact.xml). The mapping is done in dplyr with a function:
 
-Map the source data to [Darwin Core Measurement Or Facts](http://rs.gbif.org/extension/dwc/measurements_or_facts.xml). The mapping is done in SQL:
-
-```{r}
-mof_human_obs_sql <- glue_sql(
-  read_file("sql/dwc_mof_human_obs.sql"),
-  .con = con
-)
-```
-
-Show SQL:
-
-```{r}
-mof_human_obs_sql
-```
-
-Run SQL:
-
-```{r query_mof_human_obs}
-mof_human_obs <- dbGetQuery(con, mof_human_obs_sql)
+```{r map_dwc_mof_tagging}
+source("functions/dwc_mof_tagging.R")
+dwc_mof_tagging <- dwc_mof_tagging(individuals_and_track_sessions, metadata)
 ```
 
 Preview results:
 
 ```{r}
-mof_human_obs %>% head()
+dwc_mof_tagging %>% head()
 ```
 
 Save results:
 
 ```{r}
-write.csv(mof_human_obs, file = mof_human_obs_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(dwc_mof_tagging, file = dwc_mof_tagging_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
 
 # Create occurrence core for bird GPS fixes (machine observations)
 
+## Get detections within a track session
+
+To create occurrences for the bird GPS fixes (= `MachineObservation`) and the associated measurements, we query for all GPS fixes within a track session for a single individual. That leaves out test GPS fixes (= outside track session). Since the view makes use of the function `get_uvagps_track_speed(device_info_serial)`, it has to be created for every individual (or more correctly: device). The resulting view will be used as a base for the Darwin Core mapping:
+
 ```{r}
-individuals_and_track_sessions_sql <- glue_sql(
-  read_file("sql/individuals_and_track_sessions.sql"),
-  .con = con
-)
+device_info_serial = 586
 ```
 
+Get and run SQL:
+
+```{r query_individual_detections}
+individual_detections_sql <- glue_sql(
+  read_file("../sql/individual_detections.sql"),
+  .con = con
+)
+individual_detections <- dbGetQuery(con, individual_detections_sql)
+```
+
+## Term mapping
+
+Map the source data to [Darwin Core Occurrence](http://rs.gbif.org/core/dwc_occurrence_2015-07-02.xml). The mapping is done in dplyr with a function:
+
+```{r map_dwc_occurrence_detections}
+source("functions/dwc_occurrence_detections.R")
+dwc_occurrence_detections <- dwc_occurrence_detections(individual_detections, metadata)
+```
+
+Preview results:
+
+```{r}
+dwc_occurrence_detections %>% head()
+```
+
+Save results:
+
+```{r}
+write.csv(dwc_occurrence_detections, file = paste0("../data/processed/wmh/dwc_occurrence_detections_", device_info_serial, ".csv"), na = "", row.names = FALSE, fileEncoding = "UTF-8")
+```

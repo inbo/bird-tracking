@@ -1,0 +1,165 @@
+---
+title: "Download data from UvA-BiTS"
+author:
+- Peter Desmet
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+---
+
+# Setup
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+
+```{r}
+library(tidyverse)
+library(here)
+library(RPostgreSQL)
+library(glue)
+```
+
+Load custom functions:
+
+```{r}
+source(here("src", "functions", "download_detections.R"))
+```
+
+
+# Connect to UvA-BiTS database
+
+Get credentials from config file (not included in this repo) and create a database connection:
+
+```{r connect_to_uvabits}
+uvabits <- config::get("uvabits")
+con = dbConnect(
+  dbDriver("PostgreSQL"),
+  user = uvabits$username,
+  password = uvabits$password,
+  host = uvabits$server,
+  port = uvabits$port,
+  dbname = uvabits$database
+)
+```
+
+# Download individuals
+
+Get data on individuals and their associated track sessions, from all our bird tracking projects combined.
+
+Load SQL:
+
+```{r}
+# The SQL below doesn't have any {variables}, but I opted to use glue anyway
+individuals_sql <- glue_sql(read_file(here("sql", "individuals.sql")), .con = con)
+```
+
+Run SQL:
+
+```{r query_individuals}
+individuals <- dbGetQuery(con, individuals_sql)
+```
+
+Preview data:
+
+```{r}
+individuals %>% head()
+```
+
+Save to CSV:
+
+```{r}
+write.csv(individuals, file = here("data", "interim", "individuals.csv"), na = "", row.names = FALSE, fileEncoding = "UTF-8")
+```
+
+# Download WMH detections
+
+Define dataset properties:
+
+```{r}
+project_keys = c("MH_WATERLAND")
+download_directory = here("data", "interim", "wmh")
+```
+
+Get `device_info_serial`s for that project(s). Note that because of the reuse of tags, there might be less `device_info_serials` than bird individuals:
+
+```{r}
+device_info_serials <- individuals %>%
+  filter(key_name %in% project_keys) %>%
+  distinct(device_info_serial, .keep_all = TRUE) %>%
+  arrange(device_info_serial) %>%
+  pull(device_info_serial)
+
+length(device_info_serials)
+```
+
+Get detections and write to download directory:
+
+```{r query_detections}
+download_detections(device_info_serials, download_directory, con, FALSE)
+```
+
+# Download WMH Groningen detections
+
+Define dataset properties:
+
+```{r}
+project_keys = c("H_GRONINGEN")
+download_directory = here("data", "interim", "wmhnl")
+```
+
+Get `device_info_serial`s for that project(s). Note that because of the reuse of tags, there might be less `device_info_serials` than bird individuals:
+
+```{r}
+device_info_serials <- individuals %>%
+  filter(key_name %in% project_keys) %>%
+  distinct(device_info_serial, .keep_all = TRUE) %>%
+  arrange(device_info_serial) %>%
+  pull(device_info_serial)
+
+length(device_info_serials)
+```
+
+Get detections and write to download directory:
+
+```{r query_detections}
+download_detections(device_info_serials, download_directory, con, FALSE)
+```
+
+# Download gull detections
+
+Define dataset properties:
+
+```{r}
+project_keys = c("HG_OOSTENDE", "LBBG_ZEEBRUGGE")
+download_directory = here("data", "interim", "gull")
+```
+
+Get `device_info_serial`s for that project(s). Note that because of the reuse of tags, there might be less `device_info_serials` than bird individuals:
+
+```{r}
+device_info_serials <- individuals %>%
+  filter(key_name %in% project_keys) %>%
+  distinct(device_info_serial, .keep_all = TRUE) %>%
+  arrange(device_info_serial) %>%
+  pull(device_info_serial)
+
+length(device_info_serials)
+```
+
+```{r}
+# Take subset for now. TODO: remove
+device_info_serials <- device_info_serials[1:4]
+```
+
+Get detections and write to download directory:
+
+```{r query_detections}
+download_detections(device_info_serials, download_directory, con, FALSE)
+```
