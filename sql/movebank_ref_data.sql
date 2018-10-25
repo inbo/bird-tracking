@@ -1,13 +1,19 @@
--- Query created by Peter Desmet (INBO)
+/* Created by Peter Desmet (INBO)
+ *
+ * Query maps UvA-BiTS DB fields to the Movebank standard reference data format
+ * For an overview of Movebank terms, see https://www.movebank.org/node/2381
+ * Order of terms is based on https://www.movebank.org/movebank/Movebank-reference-data-template.xlsx
+ */
 
 SELECT
   s.key_name AS project, -- Not a Movebank field, but included for reference
   s.device_info_serial AS "tag-id", -- device_info_serial more widely used than tracker_id,
   i.ring_number AS "animal-id", -- ring_number more widely used than individual_id
-  i.species_latin_name AS "animal-taxon",
   s.track_session_id AS "deployment-id",
+  i.species_latin_name AS "animal-taxon",
   s.start_date AS "deploy-on-timestamp",
   s.end_date AS "deploy-off-timestamp", -- often set in the future
+  'GPS' AS "sensor-type",
   i.remarks AS "animal-comments",  -- often contains animal name
   -- "animal-death-comments": not consistently available and expressible in DB
   -- "animal-exact-date-of-birth": not available in DB
@@ -42,6 +48,7 @@ SELECT
   -- "duty-cycle": tags do have recording settings, but can change over time and not available in DB
   -- "geolocator-calibration": not applicable
   -- "geolocator-light-threshold": not applicable
+  -- "geolocator-sensor-comments": not applicable
   -- "geolocator-sun-elevation-angle": not applicable
   -- "habitat-according-to": habitat information not available/uploaded to Movebank, could be supported in future
   'provided by the GPS unit' AS "location-accuracy-comments", -- Refers to e.g. h_accuracy recorded by tag
@@ -55,26 +62,26 @@ SELECT
   'University of Amsterdam Bird Tracking System (UvA-BiTS)' AS "tag-manufacturer-name",
   t.mass AS "tag-mass",
   -- "tag-model": not available in DB, firmware version not a good substitute
+  -- "tag-processing-type": not applicable
   -- "tag-production-date": not available in DB, firmware version not a good substitute
-  s.device_info_serial AS "tag-serial-no",
-  'GPS' AS "sensor-type"
+  s.device_info_serial AS "tag-serial-no"
 FROM
   (
     SELECT * FROM gps.ee_individual_limited
     UNION
     SELECT * FROM gps.ee_shared_individual_limited
-  ) i -- individuals
+  ) AS i -- individuals
   LEFT JOIN (
     SELECT * FROM gps.ee_track_session_limited
     UNION
     SELECT * FROM gps.ee_shared_track_session_limited
-  ) s -- track sessions
+  ) AS s -- track sessions
     ON i.individual_id = s.individual_id
-  LEFT JOIN gps.ee_species_limited sp -- species
+  LEFT JOIN gps.ee_species_limited AS sp -- species
     ON i.species_latin_name = sp.latin_name
-  LEFT JOIN gps.ee_tracker_limited t -- trackers
+  LEFT JOIN gps.ee_tracker_limited AS t -- trackers
     ON s.device_info_serial = t.device_info_serial
-  LEFT JOIN gps.ee_project_limited p -- projects
+  LEFT JOIN gps.ee_project_limited AS p -- projects
     ON s.key_name = p.key_name
 WHERE
   p.key_name IN ({projects*})
