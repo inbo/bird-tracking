@@ -52,7 +52,7 @@ projects <- c("MH_WATERLAND")
 animal_life_stage <- "adult" # https://www.movebank.org/node/2381#animal_life_stage
 attachment_type <- "harness" # https://www.movebank.org/node/2381#attachment_type
 manipulation_type <- "none"  # https://www.movebank.org/node/2381#manipulation_type
-parse_study_site <- TRUE
+animal_name_in_remarks <- TRUE
 ```
 
 Query data:

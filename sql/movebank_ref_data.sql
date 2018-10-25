@@ -27,6 +27,10 @@ SELECT
     WHEN i.colour_ring IN ('-', 'NA') THEN NULL -- colour_ring is a required field, so users resort to variations to express no ring
     ELSE i.colour_ring -- colour_ring included here, as it is not included elsewhere. ring_number = animal-id
   END AS "ring-id",
+  CASE
+    WHEN {animal_name_in_remarks} THEN i.remarks -- if OK, get animal nickname from i.remarks
+    ELSE NULL
+  END AS "animal-nickname", -- Not in Movebank-reference-data-template, but is available in Movebank database
   {animal_life_stage} AS "animal-life-stage", -- not available in DB, likely "adult"
   i.mass AS "animal-mass",
   -- "animal-reproductive-condition": not available in DB
