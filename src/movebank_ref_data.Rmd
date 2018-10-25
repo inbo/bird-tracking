@@ -48,7 +48,7 @@ For a project, get data on animals, tags and deployments in the [Movebank refere
 Set values:
 
 ```{r}
-projects <- c("MH_WATERLAND")
+project <- "MH_WATERLAND"
 animal_life_stage <- "adult" # https://www.movebank.org/node/2381#animal_life_stage
 attachment_type <- "harness" # https://www.movebank.org/node/2381#attachment_type
 manipulation_type <- "none"  # https://www.movebank.org/node/2381#manipulation_type
@@ -65,10 +65,6 @@ movebank_ref_data <- dbGetQuery(con, sql)
 Save to CSV:
 
 ```{r}
-# Filename will be of form: movebank_reference_data_HG_OOSTENDE_LBBG_ZEEBRUGGE.csv
-write_csv(movebank_ref_data, path = here("data", "interim", paste0(
-  "movebank_ref_data_",
-  paste(projects, collapse = "_"),
-  ".csv"
-)), na = "")
+# Filename will be of form: movebank_reference_data_MH_WATERLAND.csv
+write_csv(movebank_ref_data, path = here("data", "interim", paste0("movebank_ref_data_", project, ".csv")), na = "")
 ```

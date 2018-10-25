@@ -88,7 +88,7 @@ FROM
   LEFT JOIN gps.ee_project_limited AS p -- projects
     ON s.key_name = p.key_name
 WHERE
-  p.key_name IN ({projects*})
+  p.key_name = {projects}
 ORDER BY
   project,
   "deployment-id"
