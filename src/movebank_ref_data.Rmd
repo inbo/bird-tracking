@@ -1,0 +1,74 @@
+---
+title: "Movebank reference data"
+author: "Peter Desmet"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+---
+
+# Setup
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+
+```{r}
+library(tidyverse)
+library(here)
+library(RPostgreSQL)
+library(glue)
+```
+
+# Connect to UvA-BiTS database
+
+Get credentials from config file (not included in this repo) and create a database connection:
+
+```{r connect_to_uvabits}
+uvabits <- config::get("uvabits")
+con = dbConnect(
+  dbDriver("PostgreSQL"),
+  user = uvabits$username,
+  password = uvabits$password,
+  host = uvabits$server,
+  port = uvabits$port,
+  dbname = uvabits$database
+)
+```
+
+# Query Movebank reference data
+
+For a project, get data on animals, tags and deployments in the [Movebank reference data format](https://www.movebank.org/node/27). Some values have to be defined by the user. See [here](https://www.movebank.org/node/2381#metadata) for information on all reference data terms.
+
+Set values:
+
+```{r}
+projects <- c("MH_WATERLAND")
+animal_life_stage <- "adult" # https://www.movebank.org/node/2381#animal_life_stage
+attachment_type <- "harness" # https://www.movebank.org/node/2381#attachment_type
+manipulation_type <- "none"  # https://www.movebank.org/node/2381#manipulation_type
+parse_study_site <- TRUE
+```
+
+Query data:
+
+```{r}
+sql <- glue_sql(read_file(here("sql", "movebank_ref_data.sql")), .con = con)
+movebank_ref_data <- dbGetQuery(con, sql)
+```
+
+Save to CSV:
+
+```{r}
+# Filename will be of form: movebank_reference_data_HG_OOSTENDE_LBBG_ZEEBRUGGE.csv
+write_csv(movebank_ref_data, path = here("data", "interim", paste0(
+  "movebank_ref_data_",
+  paste(projects, collapse = "_"),
+  ".csv"
+)), na = "")
+```
