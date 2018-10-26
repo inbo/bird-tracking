@@ -1,5 +1,5 @@
 ---
-title: "Movebank reference data"
+title: "Download UvA-BiTS metadata as Movebank reference data"
 author: "Peter Desmet"
 date: "`r Sys.Date()`"
 output:
@@ -41,7 +41,7 @@ con = dbConnect(
 )
 ```
 
-# Query Movebank reference data
+# Download metadata as Movebank reference data
 
 For a project, get data on animals, tags and deployments in the [Movebank reference data format](https://www.movebank.org/node/27). Some values have to be defined by the user. See [here](https://www.movebank.org/node/2381#metadata) for information on all reference data terms.
 

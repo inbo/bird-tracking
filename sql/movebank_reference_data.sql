@@ -1,94 +1,105 @@
 /* Created by Peter Desmet (INBO)
  *
- * Query maps UvA-BiTS DB fields to the Movebank standard reference data format
- * For an overview of Movebank terms, see https://www.movebank.org/node/2381
- * Order of terms is based on https://www.movebank.org/movebank/Movebank-reference-data-template.xlsx
+ * This query maps UvA-BiTS DB fields to Movebank attributes for metadata:
+ * https://www.movebank.org/node/2381#metadata
+ *
+ * Order of terms is based on Movebank standard reference data format template:
+ * https://www.movebank.org/movebank/Movebank-reference-data-template.xlsx
  */
 
 SELECT
-  s.key_name AS project, -- Not a Movebank field, but included for reference
-  s.device_info_serial AS "tag-id", -- device_info_serial more widely used than tracker_id,
-  i.ring_number AS "animal-id", -- ring_number more widely used than individual_id
+  s.key_name AS project,--                          not a Movebank field, but included for reference
+  s.device_info_serial AS "tag-id"--                device_info_serial more widely used than tracker_id,
+  i.ring_number AS "animal-id",--                   ring_number more widely used than individual_id
   s.track_session_id AS "deployment-id",
   i.species_latin_name AS "animal-taxon",
   s.start_date AS "deploy-on-timestamp",
-  s.end_date AS "deploy-off-timestamp", -- often set in the future
+  s.end_date AS "deploy-off-timestamp",--           set in the future for unclosed track sessions
   'GPS' AS "sensor-type",
-  i.remarks AS "animal-comments",  -- often contains animal name
-  -- "animal-death-comments": not consistently available and expressible in DB
-  -- "animal-exact-date-of-birth": not available in DB
-  -- "animal-latest-date-born": not available in DB
+  i.remarks AS "animal-comments",--                 can contain animal name
+-- "animal-death-comments"                          not consistently available and expressible in DB
+-- "animal-exact-date-of-birth"                     not available in DB
+-- "animal-latest-date-born"                        not available in DB
   CASE
-    WHEN i.sex = 'X' THEN NULL -- not possible to express this in Movebank controlled list
+    WHEN i.sex = 'X' THEN NULL--                    not possible to express this in Movebank controlled list
     ELSE lower(i.sex)
   END AS "animal-sex",
-  -- "animal-taxon-detail": not necessary, species_latin_name is expected to be supported in ITIS
+-- "animal-taxon-detail"                            not necessary, species_latin_name is expected to be supported in ITIS
   CASE
-    WHEN i.colour_ring IN ('-', 'NA') THEN NULL -- colour_ring is a required field, so users resort to variations to express no ring
-    ELSE i.colour_ring -- colour_ring included here, as it is not included elsewhere. ring_number = animal-id
+    WHEN i.colour_ring IN ('-', 'NA') THEN NULL--   colour_ring is a required field, so users resort to variations to express no ring
+    ELSE i.colour_ring--                            colour_ring included here, as it is not included elsewhere. ring_number = animal-id
   END AS "ring-id",
   CASE
-    WHEN {animal_name_in_remarks} THEN i.remarks -- if OK, get animal nickname from i.remarks
+    WHEN {animal_name_in_remarks} THEN i.remarks--  if TRUE, get animal nickname from i.remarks
     ELSE NULL
-  END AS "animal-nickname", -- Not in Movebank-reference-data-template, but is available in Movebank database
-  {animal_life_stage} AS "animal-life-stage", -- not available in DB, likely "adult"
+  END AS "animal-nickname",--                       not in Movebank-reference-data-template, but is available in Movebank database
+  {animal_life_stage} AS "animal-life-stage",--     not available in DB: likely "adult"
   i.mass AS "animal-mass",
-  -- "animal-reproductive-condition": not available in DB
-  {attachment_type} AS "attachment-type", -- not available in DB, likely "harness" or "other" (for leg loops)
-  -- "behavior-according-to": behavioral categories not available/uploaded to Movebank, could be supported in future
-  -- "data-processing-software": not applicable, locations are in raw sensor data
-  -- "deploy-off-person": person who removed tag, not available in DB
-  -- "deploy-off-latitude": not available in DB
-  -- "deploy-off-longitude": not available in DB
-  -- "deploy-on-person": person who attached tag, not available in DB
-  -- "deploy-on-latitude": is s.start_latitude, but Movebank term is primarily intended when sensor does not record precise positions
-  -- "deploy-on-longitude": is s.start_longitude, but see s.start_latitude
+-- "animal-reproductive-condition"                  not available in DB
+  {attachment_type} AS "attachment-type",--         not available in DB: likely "harness" or "other" (for leg loops)
+-- "behavior-according-to"                          not available in DB: potentially supported in future
+-- "data-processing-software"                       not applicable: locations are in raw sensor data
+-- "deploy-off-person"                              not available in DB: person who removed tag
+-- "deploy-off-latitude"                            not available in DB
+-- "deploy-off-longitude"                           not available in DB
+-- "deploy-on-person"                               not available in DB: person who attached tag
+-- "deploy-on-latitude"                             is s.start_latitude, but Movebank term is primarily intended when sensor does not record precise positions
+-- "deploy-on-longitude"                            is s.start_longitude, but see s.start_latitude
   s.remarks AS "deployment-comments",
-  -- "deployment-end-comments": s.remarks can contain this type of information, but unstructured, see "deployment-remarks" instead
+-- "deployment-end-comments"                        s.remarks can contain this type of information, but unstructured, see "deployment-remarks" instead
   CASE
-    WHEN lower(s.remarks) LIKE '%dead%' THEN 'dead' -- track session remarks contains word "dead"
-    ELSE NULL -- other values from Movebank controlled list cannot be consistently derived
+    WHEN lower(s.remarks) LIKE '%dead%' THEN 'dead'-- track session remarks contains word "dead"
+    ELSE NULL--                                     other values from Movebank controlled list cannot be consistently derived
   END AS "deployment-end-type",
-  -- "duty-cycle": tags do have recording settings, but can change over time and not available in DB
-  -- "geolocator-calibration": not applicable
-  -- "geolocator-light-threshold": not applicable
-  -- "geolocator-sensor-comments": not applicable
-  -- "geolocator-sun-elevation-angle": not applicable
-  -- "habitat-according-to": habitat information not available/uploaded to Movebank, could be supported in future
-  'provided by the GPS unit' AS "location-accuracy-comments", -- Refers to e.g. h_accuracy recorded by tag
-  -- "manipulation-comments": not available in DB and mostly not applicable
-  {manipulation_type} AS "manipulation-type", -- Not available in DB, likely "none"
-  p.station_name AS "study-site", -- Can be quite broad, but consistently populated in DB
-  'other wireless' AS "tag-readout-method", -- Zigbee two-way radio transceiver via antenna
-  -- "beacon-frequency": not applicable, for radio tags/retrieval beacon
-  -- "tag-comments": s.remarks can contain this type of information, but unstructured, see "deployment-remarks" instead
-  -- "tag-failure-comments": s.remarks can contain this type of information, but unstructured, see "deployment-remarks" instead
+-- "duty-cycle"                                     not available in DB and variable over time
+-- "geolocator-calibration"                         not applicable
+-- "geolocator-light-threshold"                     not applicable
+-- "geolocator-sensor-comments"                     not applicable
+-- "geolocator-sun-elevation-angle"                 not applicable
+-- "habitat-according-to"                           habitat information not available/uploaded to Movebank, potentially supported in future
+  'provided by the GPS unit' AS "location-accuracy-comments",-- refers to e.g. h_accuracy recorded by tag
+-- "manipulation-comments"                          not available in DB and mostly not applicable
+  {manipulation_type} AS "manipulation-type",--     not available in DB: likely "none"
+  p.station_name AS "study-site",--                 can be quite broad, but consistently populated in DB
+  'other wireless' AS "tag-readout-method",--       zigbee two-way radio transceiver via antenna
+-- "beacon-frequency"                               not applicable: for radio tags/retrieval beacon
+-- "tag-comments"                                   s.remarks can contain this type of information, but unstructured, see "deployment-remarks" instead
+-- "tag-failure-comments"                           s.remarks can contain this type of information, but unstructured, see "deployment-remarks" instead
   'University of Amsterdam Bird Tracking System (UvA-BiTS)' AS "tag-manufacturer-name",
   t.mass AS "tag-mass",
-  -- "tag-model": not available in DB, firmware version not a good substitute
-  -- "tag-processing-type": not applicable
-  -- "tag-production-date": not available in DB, firmware version not a good substitute
+-- "tag-model"                                      not available in DB: firmware version not a good substitute
+-- "tag-processing-type"                            not applicable
+-- "tag-production-date"                            not available in DB: firmware version not a good substitute
   s.device_info_serial AS "tag-serial-no"
 FROM
+-- individuals
   (
     SELECT * FROM gps.ee_individual_limited
     UNION
     SELECT * FROM gps.ee_shared_individual_limited
-  ) AS i -- individuals
+  ) AS i
+
+-- track sessions
   LEFT JOIN (
     SELECT * FROM gps.ee_track_session_limited
     UNION
     SELECT * FROM gps.ee_shared_track_session_limited
-  ) AS s -- track sessions
+  ) AS s
     ON i.individual_id = s.individual_id
-  LEFT JOIN gps.ee_species_limited AS sp -- species
+
+-- species
+  LEFT JOIN gps.ee_species_limited AS sp
     ON i.species_latin_name = sp.latin_name
-  LEFT JOIN gps.ee_tracker_limited AS t -- trackers
+
+-- trackers
+  LEFT JOIN gps.ee_tracker_limited AS t
     ON s.device_info_serial = t.device_info_serial
-  LEFT JOIN gps.ee_project_limited AS p -- projects
+
+-- projects
+  LEFT JOIN gps.ee_project_limited AS p
     ON s.key_name = p.key_name
 WHERE
-  p.key_name = {projects}
+  p.key_name = {project}
 ORDER BY
   project,
   "deployment-id"
