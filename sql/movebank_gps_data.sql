@@ -39,7 +39,8 @@ SELECT
     WHEN calc.speed > 30 THEN TRUE--                TO VERIFY: should be average of (i-1) (i+1) speed
     ELSE FALSE
   END AS "algorithm-marked-outlier",
-  t.altitude AS "barometric-height",--              TO VERIFY this is measured as by barometric pressure sensor
+  -- "barometric depth"                             not applicable
+  -- "barometric-height"                            not available in DB: if pressure is measured (special tags) it is not converted to height
   t.pressure/100 AS "barometric-pressure",--        measured in Pascal, converted to HPa
   -- "battery-charge-percent"                       not available in DB
   -- "battery-charging-current"                     not available in DB
@@ -66,7 +67,7 @@ SELECT
     ELSE direction
   END AS "heading",--                               opted to provide direction measured by sensor, as that cannot be calculated (as opposed to calc.direction between fixes)
   -- "height-above-ellipsoid"                       not available in DB
-  -- "height-above-mean-sea-level"                  not available in DB
+  t.altitude AS "height-above-mean-sea-level",--    defined in DB as "Altitude above sea level measured by GPS tag in meters"
   -- "height-raw"                                   not available in DB
   t.latitude AS "latitude",--                       in decimal degrees
   -- "latitude-utm"                                 not applicable
