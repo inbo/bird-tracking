@@ -44,7 +44,7 @@ SELECT
   -- "battery-charge-percent"                       not available in DB
   -- "battery-charging-current"                     not available in DB
   -- "behavioural-classification"                   not available in DB: potentially supported in future
-  t.direction AS "compass-heading",--               TO VERIFY: in degrees from north, heading measured by tag
+  -- "compass-heading"                              not available in DB
   -- "conductivity"                                 not available in DB
   -- "end-timestamp"                                not necessary: single timestamp
   -- "event-comments"                               not necessary
@@ -61,7 +61,10 @@ SELECT
   -- "gsm-signal-strength"                          not available in DB
   calc.speed AS "ground-speed",--                   TO VERIFY in m/s "between consecutive locations" => calc.speed (but to previous fix)
   -- "habitat"                                      not available in DB: potentially supported in future based on Corine land use
-  calc.direction AS "heading",--                    TO VERIFY in degrees from north "from this location to the subsequent location" => calc.direction (but to previous fix)
+  CASE
+    WHEN direction < 0 THEN 360 + direction--       in degrees from north (0-360), so negative values have to be converted (e.g -178 = 182 = almost south)
+    ELSE direction
+  END AS "heading",--                               opted to provide direction measured by sensor, as that cannot be calculated (as opposed to calc.direction between fixes)
   -- "height-above-ellipsoid"                       not available in DB
   -- "height-above-mean-sea-level"                  not available in DB
   -- "height-raw"                                   not available in DB
