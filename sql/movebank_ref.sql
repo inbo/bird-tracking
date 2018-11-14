@@ -26,7 +26,7 @@ SELECT
   END AS "animal-sex",
   -- "animal-taxon-detail"                          not necessary, species_latin_name is expected to be supported in ITIS
   CASE
-    WHEN i.colour_ring IN 
+    WHEN i.colour_ring IN
       ('-', 'NA', 'None', 'none')
     THEN NULL--                                     colour_ring is a required field, so users resort to variations to express no ring
     ELSE i.colour_ring--                            colour_ring included here, as it is not included elsewhere. ring_number = animal-id
@@ -87,19 +87,19 @@ FROM
     UNION
     SELECT * FROM gps.ee_shared_track_session_limited
   ) AS s
-    ON i.individual_id = s.individual_id
+    ON s.individual_id = i.individual_id
 
   -- species
   LEFT JOIN gps.ee_species_limited AS sp
-    ON i.species_latin_name = sp.latin_name
+    ON sp.latin_name = i.species_latin_name
 
   -- trackers
   LEFT JOIN gps.ee_tracker_limited AS t
-    ON s.device_info_serial = t.device_info_serial
+    ON t.device_info_serial = s.device_info_serial
 
   -- projects
   LEFT JOIN gps.ee_project_limited AS p
-    ON s.key_name = p.key_name
+    ON p.key_name = s.key_name
 WHERE
   p.key_name = {project}
 ORDER BY
