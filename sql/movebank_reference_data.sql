@@ -32,7 +32,7 @@ SELECT
     ELSE i.colour_ring--                            colour_ring included here, as it is not included elsewhere. ring_number = animal-id
   END AS "ring-id",
   CASE
-    WHEN {animal_name_in_remarks} THEN i.remarks--  if TRUE, get animal nickname from i.remarks
+    WHEN {bird_remarks_is_nickname} THEN i.remarks--  if TRUE, get animal nickname from i.remarks
     ELSE NULL
   END AS "animal-nickname",--                       not in Movebank-reference-data-template, but is available in Movebank database
   {animal_life_stage} AS "animal-life-stage",--     not available in DB: likely "adult"

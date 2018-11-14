@@ -1,5 +1,5 @@
 ---
-title: "Download UvA-BiTS metadata as Movebank reference data"
+title: "Download UvA-BiTS metadata for a project"
 author: "Peter Desmet"
 date: "`r Sys.Date()`"
 output:
@@ -18,19 +18,49 @@ Load libraries:
 
 ```{r}
 library(tidyverse)
+library(DBI)
 library(here)
 library(glue)
 ```
 
-# Connect to UvA-BiTS database
+## Connect to UvA-BiTS database
 
-Get connection settings from `odbc.ini` (not included in this repo) and connect to database:
+Get connection settings from `config.yml` (not included in this repo) and connect to database:
 
 ```{r connect_to_uvabits}
-con <- dbConnect(odbc::odbc(), "uvabits")
+uvabits <- config::get("uvabits")
+con = dbConnect(
+  RPostgres::Postgres(),
+  host = uvabits$server,
+  port = uvabits$port,
+  user = uvabits$username,
+  password = uvabits$password,
+  dbname = uvabits$database
+)
+
+# The alternative is getting the connection defined in odbc.ini:
+# con <- dbConnect(odbc::odbc(), "uvabits")
 ```
 
-# Download metadata as Movebank reference data
+## Get metadata from all projects
+
+Get data on individuals and their associated track sessions from all our bird tracking projects combined.
+
+Query data:
+
+```{r}
+# The SQL below doesn't have any {variables}, but I opted to use glue anyway
+sql <- glue_sql(read_file(here("sql", "individuals.sql")), .con = con)
+individuals <- dbGetQuery(con, sql)
+```
+
+Save to csv:
+
+```{r}
+write_csv(individuals, path = here("data", "interim", "individuals.csv"), na = "")
+```
+
+## Get metadata in Movebank format for single project
 
 For a project, get data on animals, tags and deployments in the [Movebank reference data format](https://www.movebank.org/node/27). Some values have to be defined by the user. See [here](https://www.movebank.org/node/2381#metadata) for information on all reference data terms.
 
@@ -38,10 +68,10 @@ Set values:
 
 ```{r}
 project <- "MH_WATERLAND"
-animal_life_stage <- "adult" # https://www.movebank.org/node/2381#animal_life_stage
-attachment_type <- "harness" # https://www.movebank.org/node/2381#attachment_type
-manipulation_type <- "none"  # https://www.movebank.org/node/2381#manipulation_type
-animal_name_in_remarks <- TRUE
+animal_life_stage <- "adult"
+attachment_type <- "harness"
+manipulation_type <- "none"
+bird_remarks_is_nickname <- TRUE
 ```
 
 Query data:

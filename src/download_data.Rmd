@@ -11,7 +11,7 @@ output:
     number_sections: true
 ---
 
-# Setup
+## Setup
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
@@ -32,8 +32,7 @@ Load custom functions:
 source(here("src", "functions", "download_detections.R"))
 ```
 
-
-# Connect to UvA-BiTS database
+## Connect to UvA-BiTS database
 
 Get credentials from config file (not included in this repo) and create a database connection:
 
@@ -49,36 +48,7 @@ con = dbConnect(
 )
 ```
 
-# Download individuals
-
-Get data on individuals and their associated track sessions, from all our bird tracking projects combined.
-
-Load SQL:
-
-```{r}
-# The SQL below doesn't have any {variables}, but I opted to use glue anyway
-individuals_sql <- glue_sql(read_file(here("sql", "individuals.sql")), .con = con)
-```
-
-Run SQL:
-
-```{r query_individuals}
-individuals <- dbGetQuery(con, individuals_sql)
-```
-
-Preview data:
-
-```{r}
-individuals %>% head()
-```
-
-Save to CSV:
-
-```{r}
-write.csv(individuals, file = here("data", "interim", "individuals.csv"), na = "", row.names = FALSE, fileEncoding = "UTF-8")
-```
-
-# Download WMH detections
+## Download WMH detections
 
 Define dataset properties:
 
@@ -105,7 +75,7 @@ Get detections and write to download directory:
 download_detections(device_info_serials, download_directory, con, FALSE)
 ```
 
-# Download WMH Groningen detections
+## Download WMH Groningen detections
 
 Define dataset properties:
 
@@ -132,7 +102,7 @@ Get detections and write to download directory:
 download_detections(device_info_serials, download_directory, con, FALSE)
 ```
 
-# Download gull detections
+## Download gull detections
 
 Define dataset properties:
 
