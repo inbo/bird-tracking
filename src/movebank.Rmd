@@ -64,8 +64,8 @@ For a project, get data on animals, tags and deployments in the [Movebank refere
 Query data:
 
 ```{r}
-sql <- glue_sql(read_file(here("sql", "movebank_ref.sql")), .con = con)
-movebank_ref <- dbGetQuery(con, sql)
+ref_sql <- glue_sql(read_file(here("sql", "movebank_ref.sql")), .con = con)
+movebank_ref <- dbGetQuery(con, ref_sql)
 ```
 
 Save to CSV:
@@ -73,15 +73,10 @@ Save to CSV:
 ```{r}
 write_csv(movebank_ref, path = here("data", "movebank", project, "reference_data.csv"), na = "")
 ```
-# Set values
 
-Project:
+## Get gps data
 
-```{r}
-project <- "MH_WATERLAND"
-```
-
-Get `device_info_serial`s for that project(s). Note that because of the reuse of tags, there might be less `device_info_serials` than bird individuals:
+First get all `device_info_serial`s for the project. Note that because of the reuse of tags, there might be less `device_info_serials` than bird individuals:
 
 ```{r}
 device_info_serials <- read_csv(here("data", "interim", "individuals.csv")) %>%
@@ -99,32 +94,14 @@ Load custom function to iterate over device_info_serials:
 source(here("src", "functions", "download_gps.R"))
 ```
 
-## Get GPS data in raw format:
-
-Set download directory and SQL template:
+Load SQL template:
 
 ```{r}
-download_directory = here("data", "interim", project)
-sql <- here("sql", "gps.sql")
+gps_sql <- here("sql", "movebank_gps.sql")
 ```
 
 Query data:
 
 ```{r}
-download_gps(sql, download_directory, device_info_serials, con, FALSE)
-```
-
-## Get GPS data in Movebank format
-
-Set download directory and SQL template:
-
-```{r}
-download_directory = here("data", "movebank", project)
-movebank_sql <- here("sql", "gps_movebank.sql")
-```
-
-Query data:
-
-```{r query_detections}
-download_detections(movebank_sql, download_directory, device_info_serials, con, FALSE)
+download_gps(gps_sql, download_directory, device_info_serials, con, FALSE)
 ```
