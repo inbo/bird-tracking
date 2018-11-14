@@ -26,7 +26,7 @@ SELECT
   END AS "animal-sex",
   -- "animal-taxon-detail"                          not necessary, species_latin_name is expected to be supported in ITIS
   CASE
-    WHEN i.colour_ring IN ('-', 'NA') THEN NULL--   colour_ring is a required field, so users resort to variations to express no ring
+    WHEN i.colour_ring IN ('-', 'NA', 'none') THEN NULL-- colour_ring is a required field, so users resort to variations to express no ring
     ELSE i.colour_ring--                            colour_ring included here, as it is not included elsewhere. ring_number = animal-id
   END AS "ring-id",
   CASE
