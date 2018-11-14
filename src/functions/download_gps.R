@@ -13,7 +13,7 @@ download_gps <- function(sql_file, download_directory,
   # Loop over device_info_serials
   for (device_info_serial in device_info_serials) {
     # Create file name
-    detections_file = file.path(download_directory, paste0(device_info_serial, "_detections.csv"))
+    detections_file = file.path(download_directory, paste0("gps_", device_info_serial, ".csv"))
 
     # Query and download data
     if (file.exists(detections_file) && !overwrite) {
