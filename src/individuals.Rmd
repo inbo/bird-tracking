@@ -1,5 +1,5 @@
 ---
-title: "Download UvA-BiTS metadata for a project"
+title: "Download individuals metadata from UvA-BiTS"
 author: "Peter Desmet"
 date: "`r Sys.Date()`"
 output:
@@ -44,13 +44,12 @@ con = dbConnect(
 
 ## Get metadata from all projects
 
-Get data on individuals and their associated track sessions from all our bird tracking projects combined.
+Get data on individuals and their associated track sessions from all bird tracking projects you have access to.
 
 Query data:
 
 ```{r}
-# The SQL below doesn't have any {variables}, but I opted to use glue anyway
-sql <- glue_sql(read_file(here("sql", "meta.sql")), .con = con)
+sql <- read_file(here("sql", "individuals.sql"))
 metadata <- dbGetQuery(con, sql)
 ```
 
@@ -60,29 +59,3 @@ Save to csv:
 write_csv(metadata, path = here("data", "interim", "individuals.csv"), na = "")
 ```
 
-## Get metadata in Movebank format for single project
-
-For a project, get data on animals, tags and deployments in the [Movebank reference data format](https://www.movebank.org/node/27). Some values have to be defined by the user. See [here](https://www.movebank.org/node/2381#metadata) for information on all reference data terms.
-
-Set values:
-
-```{r}
-project <- "MH_WATERLAND"
-animal_life_stage <- "adult"
-attachment_type <- "harness"
-manipulation_type <- "none"
-bird_remarks_is_nickname <- TRUE
-```
-
-Query data:
-
-```{r}
-movebank_sql <- glue_sql(read_file(here("sql", "meta_movebank.sql")), .con = con)
-movebank_reference_data <- dbGetQuery(con, movebank_sql)
-```
-
-Save to CSV:
-
-```{r}
-write_csv(movebank_reference_data, path = here("data", "movebank", project, "reference_data.csv"), na = "")
-```
