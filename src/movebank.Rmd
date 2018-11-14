@@ -1,5 +1,5 @@
 ---
-title: "Download UvA-BiTS tracking data for an individual"
+title: "Download UvA-BiTS data in Movebank format"
 author: "Peter Desmet"
 date: "`r Sys.Date()`"
 output:
@@ -42,6 +42,37 @@ con = dbConnect(
 # con <- dbConnect(odbc::odbc(), "uvabits")
 ```
 
+## Set project and some values
+
+Some values cannot be automatically assumed for the Movebank format and have to be defined by the user. See [here](https://www.movebank.org/node/2381#metadata) for information on all reference data terms.
+
+Set values:
+
+```{r}
+project <- "MH_WATERLAND"
+download_directory <- here("data", "movebank", project)
+animal_life_stage <- "adult"
+attachment_type <- "harness"
+manipulation_type <- "none"
+bird_remarks_is_nickname <- TRUE
+```
+
+## Get reference data (metadata)
+
+For a project, get data on animals, tags and deployments in the [Movebank reference data format](https://www.movebank.org/node/27).
+
+Query data:
+
+```{r}
+sql <- glue_sql(read_file(here("sql", "movebank_ref.sql")), .con = con)
+movebank_ref <- dbGetQuery(con, sql)
+```
+
+Save to CSV:
+
+```{r}
+write_csv(movebank_ref, path = here("data", "movebank", project, "reference_data.csv"), na = "")
+```
 # Set values
 
 Project:
