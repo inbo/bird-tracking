@@ -50,14 +50,14 @@ Query data:
 
 ```{r}
 # The SQL below doesn't have any {variables}, but I opted to use glue anyway
-sql <- glue_sql(read_file(here("sql", "individuals.sql")), .con = con)
-individuals <- dbGetQuery(con, sql)
+sql <- glue_sql(read_file(here("sql", "meta.sql")), .con = con)
+metadata <- dbGetQuery(con, sql)
 ```
 
 Save to csv:
 
 ```{r}
-write_csv(individuals, path = here("data", "interim", "individuals.csv"), na = "")
+write_csv(metadata, path = here("data", "interim", "individuals.csv"), na = "")
 ```
 
 ## Get metadata in Movebank format for single project
@@ -77,12 +77,12 @@ bird_remarks_is_nickname <- TRUE
 Query data:
 
 ```{r}
-movebank_sql <- glue_sql(read_file(here("sql", "movebank_reference_data.sql")), .con = con)
+movebank_sql <- glue_sql(read_file(here("sql", "meta_movebank.sql")), .con = con)
 movebank_reference_data <- dbGetQuery(con, movebank_sql)
 ```
 
 Save to CSV:
 
 ```{r}
-write_csv(movebank_reference_data, path = here("data", "processed", project, "movebank_reference_data.csv"), na = "")
+write_csv(movebank_reference_data, path = here("data", "movebank", project, "reference_data.csv"), na = "")
 ```

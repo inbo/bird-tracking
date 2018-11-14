@@ -1,4 +1,4 @@
-download_detections <- function(sql_file, download_directory,
+download_gps <- function(sql_file, download_directory,
                                 device_info_serials, connection,
                                 overwrite = FALSE) {
   # Check input arguments

@@ -65,7 +65,7 @@ device_info_serials <- read_csv(here("data", "interim", "individuals.csv")) %>%
 Load custom function to iterate over device_info_serials:
 
 ```{r}
-source(here("src", "functions", "download_detections.R"))
+source(here("src", "functions", "download_gps.R"))
 ```
 
 ## Get GPS data in raw format:
@@ -74,22 +74,22 @@ Set download directory and SQL template:
 
 ```{r}
 download_directory = here("data", "interim", project)
-sql <- here("sql", "individual_detections.sql")
+sql <- here("sql", "gps.sql")
 ```
 
 Query data:
 
 ```{r}
-download_detections(sql, download_directory, device_info_serials, con, FALSE)
+download_gps(sql, download_directory, device_info_serials, con, FALSE)
 ```
 
-## Get GPS data in Movebank format:
+## Get GPS data in Movebank format
 
 Set download directory and SQL template:
 
 ```{r}
-download_directory = here("data", "processed", project)
-movebank_sql <- here("sql", "movebank_gps_data.sql")
+download_directory = here("data", "movebank", project)
+movebank_sql <- here("sql", "gps_movebank.sql")
 ```
 
 Query data:
