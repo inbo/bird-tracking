@@ -63,8 +63,8 @@ SELECT
   calc.speed AS "ground-speed",--                   TO VERIFY in m/s "between consecutive locations" => calc.speed (but to previous fix)
   -- "habitat"                                      not available in DB: potentially supported in future based on Corine land use
   CASE
-    WHEN direction < 0 THEN 360 + direction--       in degrees from north (0-360), so negative values have to be converted (e.g -178 = 182 = almost south)
-    ELSE direction
+    WHEN t.direction < 0 THEN 360 + t.direction--   in degrees from north (0-360), so negative values have to be converted (e.g -178 = 182 = almost south)
+    ELSE t.direction
   END AS "heading",--                               opted to provide direction measured by sensor, as that cannot be calculated (as opposed to calc.direction between fixes)
   -- "height-above-ellipsoid"                       not available in DB
   t.altitude AS "height-above-mean-sea-level",--    defined in DB as "Altitude above sea level measured by GPS tag in meters"
@@ -138,15 +138,14 @@ FROM
     ) AS s
     ON
       t.device_info_serial = s.device_info_serial
-      AND t.date_time >= s.start_date
-      AND t.date_time <= s.end_date
+      AND t.date_time BETWEEN s.start_date AND t.date_time
 
   -- individuals
   LEFT JOIN gps.ee_individual_limited AS i
     ON s.ring_number = i.ring_number
 WHERE
-  -- Because some tracking sessions have no meaningfull track_session_end_date,
-  -- we'll use today's date to exclude erronous records in the future
+  -- Because some tracking sessions have no meaningful track_session_end_date,
+  -- we'll use today's date to exclude erroneous records in the future
   t.date_time <= current_date
 ORDER BY
   t.date_time
