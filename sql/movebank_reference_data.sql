@@ -9,7 +9,7 @@
 
 SELECT
   s.key_name AS project,--                          not a Movebank field, but included for reference
-  s.device_info_serial AS "tag-id"--                device_info_serial more widely used than tracker_id,
+  s.device_info_serial AS "tag-id",--               device_info_serial more widely used than tracker_id,
   i.ring_number AS "animal-id",--                   ring_number more widely used than individual_id
   s.track_session_id AS "deployment-id",
   i.species_latin_name AS "animal-taxon",
@@ -26,7 +26,9 @@ SELECT
   END AS "animal-sex",
   -- "animal-taxon-detail"                          not necessary, species_latin_name is expected to be supported in ITIS
   CASE
-    WHEN i.colour_ring IN ('-', 'NA', 'none') THEN NULL-- colour_ring is a required field, so users resort to variations to express no ring
+    WHEN i.colour_ring IN 
+      ('-', 'NA', 'None', 'none')
+    THEN NULL--                                     colour_ring is a required field, so users resort to variations to express no ring
     ELSE i.colour_ring--                            colour_ring included here, as it is not included elsewhere. ring_number = animal-id
   END AS "ring-id",
   CASE
