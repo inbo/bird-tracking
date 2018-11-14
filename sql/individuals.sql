@@ -12,8 +12,8 @@ SELECT
   s.track_session_id,
   s.device_info_serial,
   s.tracker_id,
-  s.start_date AS track_session_start_date,
-  s.end_date AS track_session_end_date,
+  s.start_date AT TIME ZONE 'utc' AS track_session_start_date,
+  s.end_date AT TIME ZONE 'utc' AS track_session_end_date,
   s.start_latitude AS track_session_start_latitude,
   s.start_longitude AS track_session_start_longitude,
   s.remarks AS track_session_remarks

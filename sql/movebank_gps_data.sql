@@ -106,7 +106,7 @@ SELECT
   -- "tilt-x"                                       not applicable: see acceleration-axes
   -- "tilt-y"                                       not applicable: see acceleration-axes
   -- "tilt-z"                                       not applicable: see acceleration-axes
-  t.date_time AS "timestamp",
+  t.date_time AT TIME ZONE 'utc' AS "timestamp",
   -- "transmission-timestamp"                       not available in DB
   -- "underwater-count"                             not available in DB
   -- "underwater-time"                              not available in DB

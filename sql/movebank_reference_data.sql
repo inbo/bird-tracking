@@ -13,8 +13,8 @@ SELECT
   i.ring_number AS "animal-id",--                   ring_number more widely used than individual_id
   s.track_session_id AS "deployment-id",
   i.species_latin_name AS "animal-taxon",
-  s.start_date AS "deploy-on-timestamp",
-  s.end_date AS "deploy-off-timestamp",--           set in the future for unclosed track sessions
+  s.start_date AT TIME ZONE 'utc' AS "deploy-on-timestamp",
+  s.end_date AT TIME ZONE 'utc' AS "deploy-off-timestamp",-- set in the future for unclosed track sessions
   'GPS' AS "sensor-type",
   i.remarks AS "animal-comments",--                 can contain animal name
   -- "animal-death-comments"                        not consistently available and expressible in DB
