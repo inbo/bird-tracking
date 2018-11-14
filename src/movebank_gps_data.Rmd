@@ -10,8 +10,6 @@ output:
     number_sections: true
 ---
 
-# Setup
-
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
@@ -21,24 +19,15 @@ Load libraries:
 ```{r}
 library(tidyverse)
 library(here)
-library(RPostgreSQL)
 library(glue)
 ```
 
 # Connect to UvA-BiTS database
 
-Get credentials from config file (not included in this repo) and create a database connection:
+Get connection settings from `odbc.ini` (not included in this repo) and connect to database:
 
 ```{r connect_to_uvabits}
-uvabits <- config::get("uvabits")
-con = dbConnect(
-  dbDriver("PostgreSQL"),
-  user = uvabits$username,
-  password = uvabits$password,
-  host = uvabits$server,
-  port = uvabits$port,
-  dbname = uvabits$database
-)
+con <- dbConnect(odbc::odbc(), "uvabits")
 ```
 
 # Download tracking data as Movebank GPS data

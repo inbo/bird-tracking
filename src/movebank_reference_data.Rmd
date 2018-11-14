@@ -24,7 +24,7 @@ library(glue)
 
 # Connect to UvA-BiTS database
 
-Get credentials from config file (not included in this repo) and create a database connection:
+Get connection settings from `odbc.ini` (not included in this repo) and connect to database:
 
 ```{r connect_to_uvabits}
 con <- dbConnect(odbc::odbc(), "uvabits")
