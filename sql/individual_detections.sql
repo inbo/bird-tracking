@@ -71,6 +71,6 @@ FROM
 WHERE
   -- Because some tracking sessions have no meaningfull track_session_end_date,
   -- we'll use today to exclude erronous records in the future
-  t.date_time <= '{today}'
+  t.date_time <= current_date
 ORDER BY
   t.date_time

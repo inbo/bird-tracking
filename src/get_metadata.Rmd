@@ -77,8 +77,8 @@ bird_remarks_is_nickname <- TRUE
 Query data:
 
 ```{r}
-sql <- glue_sql(read_file(here("sql", "movebank_reference_data.sql")), .con = con)
-movebank_reference_data <- dbGetQuery(con, sql)
+movebank_sql <- glue_sql(read_file(here("sql", "movebank_reference_data.sql")), .con = con)
+movebank_reference_data <- dbGetQuery(con, movebank_sql)
 ```
 
 Save to CSV:

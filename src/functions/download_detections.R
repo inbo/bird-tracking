@@ -1,15 +1,17 @@
-download_detections <- function(device_info_serials, download_directory,
-                                connection, overwrite = FALSE) {
+download_detections <- function(sql_file, download_directory,
+                                device_info_serials, connection,
+                                overwrite = FALSE) {
   # Check input arguments
+  if (!file.exists(sql_file)) {
+    stop("No such sql_file: ", sql_file)
+  }
+
   if (!file.exists(download_directory)) {
     stop("No such directory: ", download_directory)
   }
 
   # Loop over device_info_serials
   for (device_info_serial in device_info_serials) {
-    # Define today
-    today = Sys.Date()
-
     # Create file name
     detections_file = file.path(download_directory, paste0(device_info_serial, "_detections.csv"))
 
@@ -18,7 +20,7 @@ download_detections <- function(device_info_serials, download_directory,
       print(paste(device_info_serial, ": ", detections_file, "already exists, skipping download"))
     } else {
       print(paste(device_info_serial, ": downloading data"))
-      individuals_sql <- glue_sql(read_file(individual_detections_sql_file), .con = connection)
+      individuals_sql <- glue_sql(read_file(sql_file), .con = connection)
       detections <- tryCatch({
         dbGetQuery(con, individuals_sql)
       }, error = function(e) {
@@ -30,7 +32,7 @@ download_detections <- function(device_info_serials, download_directory,
         # break loop and don't write to file
         break
       } else {
-        write.csv(detections, file = detections_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+        write_csv(detections, path = detections_file, na = "")
       }
     }
   }

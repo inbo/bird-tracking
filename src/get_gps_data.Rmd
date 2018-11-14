@@ -1,5 +1,5 @@
 ---
-title: "Download UvA-BiTS tracking data as Movebank GPS data"
+title: "Download UvA-BiTS tracking data for an individual"
 author: "Peter Desmet"
 date: "`r Sys.Date()`"
 output:
@@ -18,38 +18,82 @@ Load libraries:
 
 ```{r}
 library(tidyverse)
+library(DBI)
 library(here)
 library(glue)
 ```
 
-# Connect to UvA-BiTS database
+## Connect to UvA-BiTS database
 
-Get connection settings from `odbc.ini` (not included in this repo) and connect to database:
+Get connection settings from `config.yml` (not included in this repo) and connect to database:
 
 ```{r connect_to_uvabits}
-con <- dbConnect(odbc::odbc(), "uvabits")
+uvabits <- config::get("uvabits")
+con = dbConnect(
+  RPostgres::Postgres(),
+  host = uvabits$server,
+  port = uvabits$port,
+  user = uvabits$username,
+  password = uvabits$password,
+  dbname = uvabits$database
+)
+
+# The alternative is getting the connection defined in odbc.ini:
+# con <- dbConnect(odbc::odbc(), "uvabits")
 ```
 
-# Download tracking data as Movebank GPS data
+# Set values
 
-...
-
-Set values:
+Project:
 
 ```{r}
 project <- "MH_WATERLAND"
-device_info_serial <- 586
+```
+
+Get `device_info_serial`s for that project(s). Note that because of the reuse of tags, there might be less `device_info_serials` than bird individuals:
+
+```{r}
+device_info_serials <- read_csv(here("data", "interim", "individuals.csv")) %>%
+  filter(key_name == project) %>%
+  distinct(device_info_serial, .keep_all = TRUE) %>%
+  arrange(device_info_serial) %>%
+  pull(device_info_serial)
+
+# device_info_serials <- 586 # To test with a single value
+```
+
+Load custom function to iterate over device_info_serials:
+
+```{r}
+source(here("src", "functions", "download_detections.R"))
+```
+
+## Get GPS data in raw format:
+
+Set download directory and SQL template:
+
+```{r}
+download_directory = here("data", "interim", project)
+sql <- here("sql", "individual_detections.sql")
 ```
 
 Query data:
 
 ```{r}
-sql <- glue_sql(read_file(here("sql", "movebank_gps_data.sql")), .con = con)
-movebank_gps_data <- dbGetQuery(con, sql)
+download_detections(sql, download_directory, device_info_serials, con, FALSE)
 ```
 
-Save to CSV:
+## Get GPS data in Movebank format:
+
+Set download directory and SQL template:
 
 ```{r}
-write_csv(movebank_gps_data, path = here("data", "processed", project, paste0("movebank_gps_data_", device_info_serial, ".csv")), na = "")
+download_directory = here("data", "processed", project)
+movebank_sql <- here("sql", "movebank_gps_data.sql")
+```
+
+Query data:
+
+```{r query_detections}
+download_detections(movebank_sql, download_directory, device_info_serials, con, FALSE)
 ```
