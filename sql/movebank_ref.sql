@@ -15,7 +15,7 @@ SELECT
   i.species_latin_name AS "animal-taxon",
   s.start_date AT TIME ZONE 'utc' AS "deploy-on-timestamp",
   s.end_date AT TIME ZONE 'utc' AS "deploy-off-timestamp",-- set in the future for unclosed track sessions
-  'GPS' AS "sensor-type",
+  'GPS' AS "tag-type",
   i.remarks AS "animal-comments",--                 can contain animal name
   -- "animal-death-comments"                        not consistently available and expressible in DB
   -- "animal-exact-date-of-birth"                   not available in DB
