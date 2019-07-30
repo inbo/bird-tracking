@@ -24,7 +24,7 @@
 SELECT
   s.key_name AS project,--                          not a Movebank field, but included for reference
   s.device_info_serial AS "tag-id",
-  i.ring_number AS "animal-id",
+  s.ring_number AS "animal-id",
   -- "acceleration-axes"                            not applicable: acceleration might have different timestamp than fix
   -- "acceleration-raw-x"                           not applicable: see acceleration-axes
   -- "acceleration-raw-y"                           not applicable: see acceleration-axes
@@ -117,35 +117,23 @@ SELECT
   -- "waterbird-workshop-deployment-special-event"  not applicable
   -- "waterbird-workshop-migration-state"           not applicable
 FROM
-  -- gps fixes + calculations based on previous fix
-  gps.get_uvagps_track_speed_incl_shared({device_info_serial}, true) calc-- include all, including userflag <> 0
-  INNER JOIN
-    (
-      SELECT * FROM gps.ee_tracking_speed_limited WHERE device_info_serial = {device_info_serial}
-      UNION
-      SELECT * FROM gps.ee_shared_tracking_speed_limited WHERE device_info_serial = {device_info_serial}
-    ) t
-    ON
-      calc.device_info_serial = t.device_info_serial
-      AND calc.date_time = t.date_time
-
   -- track sessions
-  INNER JOIN
-    (
-      SELECT * FROM gps.ee_track_session_limited WHERE device_info_serial = {device_info_serial}
-      UNION
-      SELECT * FROM gps.ee_shared_track_session_limited WHERE device_info_serial = {device_info_serial}
-    ) AS s
-    ON
-      t.device_info_serial = s.device_info_serial
-      AND t.date_time BETWEEN s.start_date AND t.date_time
+  (
+    SELECT * FROM gps.ee_track_session_limited WHERE ring_number = {ring_number}
+    UNION
+    SELECT * FROM gps.ee_shared_track_session_limited WHERE ring_number = {ring_number}
+  ) AS s
 
-  -- individuals
-  LEFT JOIN gps.ee_individual_limited AS i
-    ON s.ring_number = i.ring_number
-WHERE
-  -- Because some tracking sessions have no meaningful track_session_end_date,
-  -- we'll use today's date to exclude erroneous records in the future
-  t.date_time <= current_date
+  -- gps
+  JOIN (
+    SELECT * FROM gps.ee_tracking_speed_limited
+    UNION
+    SELECT * FROM gps.ee_shared_tracking_speed_limited
+  ) AS t
+    ON t.device_info_serial = s.device_info_serial
+    AND t.date_time BETWEEN s.start_date AND s.end_date
+    -- Because some tracking sessions have no meaningful track_session_end_date,
+    -- we'll use today's date to exclude erroneous records in the future
+    AND t.date_time <= current_date
 ORDER BY
   t.date_time

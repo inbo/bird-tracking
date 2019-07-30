@@ -1,6 +1,5 @@
-download_gps <- function(sql_file, download_directory,
-                                device_info_serials, connection,
-                                overwrite = FALSE) {
+download_gps <- function(sql_file, download_directory, ring_numbers,
+                         connection, overwrite = FALSE) {
   # Check input arguments
   if (!file.exists(sql_file)) {
     stop("No such sql_file: ", sql_file)
@@ -10,16 +9,16 @@ download_gps <- function(sql_file, download_directory,
     stop("No such directory: ", download_directory)
   }
 
-  # Loop over device_info_serials
-  for (device_info_serial in device_info_serials) {
+  # Loop over ring_numbers
+  for (ring_number in ring_numbers) {
     # Create file name
-    detections_file = file.path(download_directory, paste0("gps_", device_info_serial, ".csv"))
+    detections_file = file.path(download_directory, paste0("movebank_gps_", ring_number, ".csv"))
 
     # Query and download data
     if (file.exists(detections_file) && !overwrite) {
-      print(paste(device_info_serial, ": ", detections_file, "already exists, skipping download"))
+      print(paste(ring_number, ": ", detections_file, "already exists, skipping download"))
     } else {
-      print(paste(device_info_serial, ": downloading data"))
+      print(paste(ring_number, ": downloading data"))
       individuals_sql <- glue_sql(read_file(sql_file), .con = connection)
       detections <- tryCatch({
         dbGetQuery(con, individuals_sql)
