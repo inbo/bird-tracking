@@ -36,7 +36,7 @@ SELECT
   -- "accelerations-raw"                            not applicable: see acceleration-axes
   -- "activity-count"                               not applicable
   CASE
-    WHEN calc.speed > 30 THEN TRUE--                TO VERIFY: should be average of (i-1) (i+1) speed
+    WHEN t.speed_2d > 30 THEN TRUE--                TO VERIFY: should be average of (i-1) (i+1) speed
     ELSE FALSE
   END AS "algorithm-marked-outlier",
   -- "barometric depth"                             not applicable
