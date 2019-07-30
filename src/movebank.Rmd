@@ -50,6 +50,7 @@ Set values:
 
 ```{r}
 project <- "MH_WATERLAND"
+shared <- FALSE
 download_directory <- here("data", "movebank", project)
 animal_life_stage <- "adult"
 attachment_type <- "harness"
@@ -76,32 +77,31 @@ write_csv(movebank_ref, path = here("data", "movebank", project, "reference_data
 
 ## Get gps data
 
-First get all `device_info_serial`s for the project. Note that because of the reuse of tags, there might be less `device_info_serials` than bird individuals:
+Get all ring numbers for the project. Note that this is a better identifier than `device_info_serial` as it is unique to an individual (and cannot be reused).
 
 ```{r}
-device_info_serials <- read_csv(here("data", "interim", "individuals.csv")) %>%
+ring_numbers <- read_csv(here("data", "interim", "individuals.csv")) %>%
   filter(key_name == project) %>%
-  distinct(device_info_serial, .keep_all = TRUE) %>%
-  arrange(device_info_serial) %>%
-  pull(device_info_serial)
-
-# device_info_serials <- 586 # To test with a single value
+  distinct(ring_number, .keep_all = TRUE) %>%
+  arrange(ring_number) %>%
+  pull(ring_number)
 ```
 
-Load custom function to iterate over device_info_serials:
+Load custom function to iterate over ring numbers:
 
 ```{r}
 source(here("src", "functions", "download_gps.R"))
 ```
 
-Load SQL template:
+Query and save data (one csv file per ringnumber):
 
 ```{r}
-gps_sql <- here("sql", "movebank_gps.sql")
-```
-
-Query data:
-
-```{r}
-download_gps(gps_sql, download_directory, device_info_serials, con, FALSE)
+download_gps(
+  sql_file = here("sql", "movebank_gps.sql"),
+  download_directory = here("data", "processed", project),
+  ring_numbers = ring_numbers,
+  shared = shared,
+  con = con,
+  overwrite = FALSE
+)
 ```

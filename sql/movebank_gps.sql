@@ -117,19 +117,13 @@ SELECT
   -- "waterbird-workshop-deployment-special-event"  not applicable
   -- "waterbird-workshop-migration-state"           not applicable
 FROM
-  -- track sessions
+  -- track session for ring_number
   (
-    SELECT * FROM gps.ee_track_session_limited WHERE ring_number = {ring_number}
-    UNION
-    SELECT * FROM gps.ee_shared_track_session_limited WHERE ring_number = {ring_number}
+    SELECT * FROM gps.{`track_session_table`} WHERE ring_number = {ring_number}
   ) AS s
 
   -- gps
-  JOIN (
-    SELECT * FROM gps.ee_tracking_speed_limited
-    UNION
-    SELECT * FROM gps.ee_shared_tracking_speed_limited
-  ) AS t
+  LEFT JOIN gps.{`tracking_speed_table`} AS t
     ON t.device_info_serial = s.device_info_serial
     AND t.date_time BETWEEN s.start_date AND s.end_date
     -- Because some tracking sessions have no meaningful track_session_end_date,

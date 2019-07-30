@@ -1,5 +1,5 @@
 download_gps <- function(sql_file, download_directory, ring_numbers,
-                         connection, overwrite = FALSE) {
+                         shared = FALSE, connection, overwrite = FALSE) {
   # Check input arguments
   if (!file.exists(sql_file)) {
     stop("No such sql_file: ", sql_file)
@@ -7,6 +7,18 @@ download_gps <- function(sql_file, download_directory, ring_numbers,
 
   if (!file.exists(download_directory)) {
     stop("No such directory: ", download_directory)
+  }
+
+  # Set tables (shared vs non-shared)
+  track_session_table <- if (shared) {
+    "ee_shared_track_session_limited"
+  } else {
+    "ee_track_session_limited"
+  }
+  tracking_speed_table <- if (shared) {
+    "ee_shared_tracking_speed_limited"
+  } else {
+    "ee_tracking_speed_limited"
   }
 
   # Loop over ring_numbers
