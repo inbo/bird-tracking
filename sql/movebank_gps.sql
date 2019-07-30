@@ -83,7 +83,7 @@ SELECT
   -- "magnetic-field-raw-z"                         not available in DB
   CASE
     WHEN t.userflag <> 0 THEN TRUE--                defined in DB as "Data flagged as unacceptable by user if not equal to 0."
-    ELSE NULL--                                     including default values 0
+    ELSE FALSE--                                    including default values 0
   END AS "manually-marked-outlier",
   -- "manually-marked-valid"                        not available in DB: userflag does not allow to explicitly set record as valid
   -- "migration-stage-custom"                       not available in DB
