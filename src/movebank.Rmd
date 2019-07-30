@@ -64,15 +64,15 @@ For a project, get data on animals, tags and deployments in the [Movebank refere
 
 Query data:
 
-```{r}
-ref_sql <- glue_sql(read_file(here("sql", "movebank_ref.sql")), .con = con)
-movebank_ref <- dbGetQuery(con, ref_sql)
+```{r get_ref_data}
+movebank_ref_sql <- glue_sql(read_file(here("sql", "movebank_ref.sql")), .con = con)
+movebank_ref_data <- dbGetQuery(con, movebank_ref_sql)
 ```
 
 Save to CSV:
 
 ```{r}
-write_csv(movebank_ref, path = here("data", "movebank", project, "reference_data.csv"), na = "")
+write_csv(movebank_ref_data, path = here("data", "processed", project, "movebank_ref_data.csv"), na = "")
 ```
 
 ## Get gps data
