@@ -31,9 +31,9 @@ download_gps <- function(sql_file, download_directory, ring_numbers,
       print(paste(ring_number, ": ", detections_file, "already exists, skipping download"))
     } else {
       print(paste(ring_number, ": downloading data"))
-      individuals_sql <- glue_sql(read_file(sql_file), .con = connection)
+      gps_sql <- glue_sql(read_file(sql_file), .con = connection)
       detections <- tryCatch({
-        dbGetQuery(con, individuals_sql)
+        dbGetQuery(con, gps_sql)
       }, error = function(e) {
         return(NA)
       })

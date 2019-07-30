@@ -38,4 +38,4 @@ vignettes/*.pdf
 
 # Data
 data/interim/*/*
-data/processed/*/movebank_gps_*
+data/processed/*/movebank_gps*
