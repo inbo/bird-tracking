@@ -105,3 +105,11 @@ download_gps(
   overwrite = FALSE
 )
 ```
+
+To concatenate all files, use:
+
+```
+awk 'FNR > 1' movebank_gps_*.csv > movebank_gps.csv
+```
+
+And manually add the header back.
