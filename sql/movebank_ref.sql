@@ -65,8 +65,8 @@ SELECT
   s.key_name AS "study-site",--                     project.station_name would have been slightly more human readable, but not accessible for shared projects
   'other wireless' AS "tag-readout-method",--       zigbee two-way radio transceiver via antenna
   -- "beacon-frequency"                             not applicable: for radio tags/retrieval beacon
-  -- "tag-comments"                                 s.remarks can contain this type of information, but unstructured, see "deployment-remarks" instead
-  -- "tag-failure-comments"                         s.remarks can contain this type of information, but unstructured, see "deployment-remarks" instead
+  -- "tag-comments"                                 s.remarks can contain this type of information, but unstructured, see "deployment-comments" instead
+  -- "tag-failure-comments"                         s.remarks can contain this type of information, but unstructured, see "deployment-comments" instead
   'University of Amsterdam Bird Tracking System (UvA-BiTS)' AS "tag-manufacturer-name",
   t.mass AS "tag-mass",
   -- "tag-model"                                    not available in DB: firmware version not a good substitute
@@ -94,7 +94,11 @@ FROM
     ON sp.latin_name = i.species_latin_name
 
   -- trackers
-  LEFT JOIN gps.ee_tracker_limited AS t
+  LEFT JOIN (
+    SELECT * FROM gps.ee_tracker_limited
+    UNION
+    SELECT * FROM gps.ee_shared_tracker_limited
+  ) AS t
     ON t.device_info_serial = s.device_info_serial
 WHERE
   s.key_name = {project}
