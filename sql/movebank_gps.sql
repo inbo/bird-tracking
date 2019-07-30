@@ -60,7 +60,7 @@ SELECT
   -- "gps-vdop"                                     not available in DB
   -- "gsm-mcc-mnc"                                  not available in DB
   -- "gsm-signal-strength"                          not available in DB
-  calc.speed AS "ground-speed",--                   TO VERIFY in m/s "between consecutive locations" => calc.speed (but to previous fix)
+  -- calc.speed AS "ground-speed",--                TO VERIFY in m/s "between consecutive locations" => calc.speed (but to previous fix)
   -- "habitat"                                      not available in DB: potentially supported in future based on Corine land use
   CASE
     WHEN t.direction < 0 THEN 360 + t.direction--   in degrees from north (0-360), so negative values have to be converted (e.g -178 = 182 = almost south)
