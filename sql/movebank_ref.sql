@@ -62,7 +62,7 @@ SELECT
   'provided by the GPS unit' AS "location-accuracy-comments",-- refers to e.g. h_accuracy recorded by tag
   -- "manipulation-comments"                        not available in DB and mostly not applicable
   {manipulation_type} AS "manipulation-type",--     not available in DB: likely "none"
-  p.station_name AS "study-site",--                 can be quite broad, but consistently populated in DB
+  s.key_name AS "study-site",--                     project.station_name would have been slightly more human readable, but not accessible for shared projects
   'other wireless' AS "tag-readout-method",--       zigbee two-way radio transceiver via antenna
   -- "beacon-frequency"                             not applicable: for radio tags/retrieval beacon
   -- "tag-comments"                                 s.remarks can contain this type of information, but unstructured, see "deployment-remarks" instead
@@ -96,12 +96,8 @@ FROM
   -- trackers
   LEFT JOIN gps.ee_tracker_limited AS t
     ON t.device_info_serial = s.device_info_serial
-
-  -- projects
-  LEFT JOIN gps.ee_project_limited AS p
-    ON p.key_name = s.key_name
 WHERE
-  p.key_name = {project}
+  s.key_name = {project}
 ORDER BY
   project,
   "deployment-id"
