@@ -8,12 +8,11 @@
  *
  * The fields from that view that could not be mapped to Movebank are:
  *
- * t.x_speed                                        x speed measured by tag in m/s
- * t.y_speed                                        y speed measured by tag in m/s
- * t.z_speed                                        z speed measured by tag in m/s
+ * t.x_speed                                        x ground speed measured by tag in m/s
+ * t.y_speed                                        y ground speed measured by tag in m/s
+ * t.z_speed                                        z ground speed measured by tag in m/s
  * t.speed_accuracy                                 accuracy measured by tag on those speeds
- * t.speed_3d                                       speed calculated from x_speed, y_speed and z_speed
- * t.speed_2d                                       speed calculated from x_speed and y_speed, not the same as airspeed
+ * t.speed_3d                                       ground speed calculated from x_speed, y_speed and z_speed
  * t.location                                       not useful: postgreSQL geometry
  * t.altitude_agl                                   cannot be mapped: is recorded altitude minus reference digital elevation model
  *
@@ -56,7 +55,7 @@ SELECT
   t.satellites_used AS "gps-satellite-count",
   t.gps_fixtime AS "gps-time-to-fix",--             in seconds
   -- "gps-vdop"                                     not available in DB
-  "ground-speed"                                 TODO!
+  speed_2d as "ground-speed",--                     ground speed calculated from x_speed and y_speed (both measured by tag), in m/s
   -- "gsm-mcc-mnc"                                  not available in DB
   -- "gsm-signal-strength"                          not available in DB
   -- "habitat"                                      not available in DB
