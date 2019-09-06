@@ -56,6 +56,7 @@ animal_life_stage <- "adult"
 attachment_type <- "harness"
 manipulation_type <- "none"
 bird_remarks_is_nickname <- TRUE
+overwrite_files <- TRUE
 ```
 
 ## Get reference data (metadata)
@@ -102,7 +103,7 @@ download_gps(
   ring_numbers = ring_numbers,
   shared = shared,
   con = con,
-  overwrite = FALSE
+  overwrite = overwrite_files
 )
 ```
 
