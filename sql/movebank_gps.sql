@@ -29,10 +29,10 @@ SELECT
   -- "acceleration-raw-x"                           not applicable: see acceleration-axes
   -- "acceleration-raw-y"                           not applicable: see acceleration-axes
   -- "acceleration-raw-z"                           not applicable: see acceleration-axes
+  -- "acceleration-sampling-frequency-per-axis"     not applicable: see acceleration-axes
   -- "acceleration-x"                               not applicable: see acceleration-axes
   -- "acceleration-y"                               not applicable: see acceleration-axes
   -- "acceleration-z"                               not applicable: see acceleration-axes
-  -- "acceleration-sampling-frequency-per-axis"     not applicable: see acceleration-axes
   -- "accelerations-raw"                            not applicable: see acceleration-axes
   -- "activity-count"                               not applicable
   CASE
@@ -45,46 +45,53 @@ SELECT
   -- "battery-charge-percent"                       not available in DB
   -- "battery-charging-current"                     not available in DB
   -- "behavioural-classification"                   not available in DB: potentially supported in future
+  -- "comments"                                     not available in DB
   -- "compass-heading"                              not available in DB
   -- "conductivity"                                 not available in DB
   -- "end-timestamp"                                not necessary: single timestamp
-  -- "event-comments"                               not necessary
-  -- "event-id"                                     not available in DB
+  -- "event-id"                                     not available in DB: no unique detection identifiers in DB
   -- "geolocator-fix-type"                          not applicable
-  -- "gps-fix-type"                                 not available in DB
+  -- "geolocator-rise"                              not applicable
+  -- "geolocator-twilight3"                         not applicable
   t.positiondop AS "gps-dop",
+  -- "gps-fix-type"                                 not available in DB
+  -- "gps-fix-type-raw"                             not available in DB
   -- "gps-hdop"                                     not available in DB
   -- "gps-maximum-signal-strength"                  not available in DB
   t.satellites_used AS "gps-satellite-count",
   t.gps_fixtime AS "gps-time-to-fix",--             in seconds
   -- "gps-vdop"                                     not available in DB
+  "ground-speed"                                 TODO!
   -- "gsm-mcc-mnc"                                  not available in DB
   -- "gsm-signal-strength"                          not available in DB
   -- calc.speed AS "ground-speed",--                TO VERIFY in m/s "between consecutive locations" => calc.speed (but to previous fix)
-  -- "habitat"                                      not available in DB: potentially supported in future based on Corine land use
+  -- "habitat"                                      not available in DB
   CASE
-    WHEN t.direction < 0 THEN 360 + t.direction--   in degrees from north (0-360), so negative values have to be converted (e.g -178 = 182 = almost south)
+    WHEN t.direction < 0 THEN 360 + t.direction--   direction measured by sensor, in degrees from north (0-360), so negative values have to be converted (e.g -178 = 182 = almost south)
     ELSE t.direction
-  END AS "heading",--                               opted to provide direction measured by sensor, as that cannot be calculated (as opposed to calc.direction between fixes)
+  END AS "heading",--
   -- "height-above-ellipsoid"                       not available in DB
   t.altitude AS "height-above-mean-sea-level",--    defined in DB as "Altitude above sea level measured by GPS tag in meters"
   -- "height-raw"                                   not available in DB
-  t.latitude AS "latitude",--                       in decimal degrees
-  -- "latitude-utm"                                 not applicable
+  -- "import-marked-outlier"                        not available in DB: for flagging with *automated* methods outside of Movebank, opted not to calculate as it is always opinionated
+  -- "lat-lower"                                    not applicable
+  -- "lat-upper"                                    not applicable
   -- "light-level"                                  not applicable
   -- "local-timestamp"                              not available in DB: won't calculate either
+  t.latitude AS "location-lat",--                   in decimal degrees
+  t.longitude AS "location-long",--                 in decimal degrees
   t.h_accuracy AS "location-error-numerical",--     in meters, is *horizontal* error
-  -- "location-error-text"                          not applicable
   -- "location-error-percentile"                    not applicable
-  t.longitude AS "longitude",--                     in decimal degrees
-  -- "longitude-utm"                                not applicable
+  -- "location-error-text"                          not applicable
+  -- "long-lower"                                   not applicable
+  -- "long-upper"                                   not applicable
   -- "magnetic-field-raw-x"                         not available in DB
   -- "magnetic-field-raw-y"                         not available in DB
   -- "magnetic-field-raw-z"                         not available in DB
   CASE
     WHEN t.userflag <> 0 THEN TRUE--                defined in DB as "Data flagged as unacceptable by user if not equal to 0."
     ELSE FALSE--                                    including default values 0
-  END AS "manually-marked-outlier",
+  END AS "manually-marked-outlier",--               "may also include outliers identified using other methods": since method for setting userflag is unknown in DB, this fits definition
   -- "manually-marked-valid"                        not available in DB: userflag does not allow to explicitly set record as valid
   -- "migration-stage-custom"                       not available in DB
   -- "migration-stage-standard"                     not available in DB
@@ -95,27 +102,33 @@ SELECT
   -- "raptor-workshop-migration-state"              not applicable
   -- "sampling-frequency"                           not available in DB
   -- "start-timestamp"                              not necessary: single timestamp
-  -- "study-specific-measurement"                   not necessary
-  -- "study-time-zone"                              not available in DB and potentially variable
+  -- "study-specific-measurement"                   not available in DB
+  -- "study-time-zone"                              not available in DB
   -- "tag-technical-specification"                  not necessary
   -- "tag-voltage"                                  not available in DB
-  t.temperature AS "temperature-external",--        in degrees Celcius, not body temperature
+  t.temperature AS "temperature-external",--        in degrees Celcius and is not body temperature
   -- "temperature-max"                              not available in DB
   -- "temperature-min"                              not available in DB
   -- "tilt-angle"                                   not applicable: see acceleration-axes
   -- "tilt-x"                                       not applicable: see acceleration-axes
   -- "tilt-y"                                       not applicable: see acceleration-axes
   -- "tilt-z"                                       not applicable: see acceleration-axes
-  t.date_time AT TIME ZONE 'utc' AS "timestamp",
+  t.date_time AT TIME ZONE 'utc' AS "timestamp",--  date format is yyyy-mm-dd'T'hh:mm:ss'Z'
   -- "transmission-timestamp"                       not available in DB
+  -- "twilight"                                     not applicable
+  -- "twilight-excluded"                            not applicable
+  -- "twilight-inserted"                            not applicable
   -- "underwater-count"                             not available in DB
   -- "underwater-time"                              not available in DB
+  -- "utm-easting"                                  not applicable
+  -- "utm-northing"                                 not applicable
   -- "utm-zone"                                     not applicable
   t.v_accuracy AS "vertical-error-numerical"--      in meters
   -- "visible"                                      not applicable: calculated Movebank value
   -- "waterbird-workshop-behavior"                  not applicable
   -- "waterbird-workshop-deployment-special-event"  not applicable
   -- "waterbird-workshop-migration-state"           not applicable
+  -- "wet-count"                                    not applicable
 FROM
   -- track session for ring_number
   (
