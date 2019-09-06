@@ -3,10 +3,10 @@
  * This query maps UvA-BiTS DB fields to Movebank attributes for data:
  * https://www.movebank.org/node/2381#data (in the order listed there)
  *
- * The main DB table used is gps.ee_tracking_speed_limited with additional
- * calculations provided by the function get_uvagps_track_speed_incl_shared().
+ * It queries detections in ee_(shared_)tracking_speed_limited that fall within
+ * a ee_(shared_)track_session_limited for a specific ring_number.
  *
- * The fields from that table that could not be mapped to Movebank are:
+ * The fields from that view that could not be mapped to Movebank are:
  *
  * t.x_speed                                        x speed measured by tag in m/s
  * t.y_speed                                        y speed measured by tag in m/s
@@ -17,8 +17,6 @@
  * t.location                                       not useful: postgreSQL geometry
  * t.altitude_agl                                   cannot be mapped: is recorded altitude minus reference digital elevation model
  *
- * calc.distance                                    not necessary: can be calculated and calc.speed is included
- * calc.interval                                    not necessary: can be calculated and calc.speed is included
  */
 
 SELECT
@@ -61,7 +59,6 @@ SELECT
   "ground-speed"                                 TODO!
   -- "gsm-mcc-mnc"                                  not available in DB
   -- "gsm-signal-strength"                          not available in DB
-  -- calc.speed AS "ground-speed",--                TO VERIFY in m/s "between consecutive locations" => calc.speed (but to previous fix)
   -- "habitat"                                      not available in DB
   CASE
     WHEN t.direction < 0 THEN 360 + t.direction--   direction measured by sensor, in degrees from north (0-360), so negative values have to be converted (e.g -178 = 182 = almost south)
