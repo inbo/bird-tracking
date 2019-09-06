@@ -35,10 +35,7 @@ SELECT
   -- "acceleration-z"                               not applicable: see acceleration-axes
   -- "accelerations-raw"                            not applicable: see acceleration-axes
   -- "activity-count"                               not applicable
-  CASE
-    WHEN t.speed_2d > 30 THEN TRUE--                TO VERIFY: should be average of (i-1) (i+1) speed
-    ELSE FALSE
-  END AS "algorithm-marked-outlier",
+  -- "algorithm-marked-outlier"                     not applicable: reserved for Movebank filters
   -- "barometric depth"                             not applicable
   -- "barometric-height"                            not available in DB: if pressure is measured (special tags) it is not converted to height
   t.pressure/100 AS "barometric-pressure",--        measured in Pascal, converted to HPa
