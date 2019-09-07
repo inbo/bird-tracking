@@ -106,7 +106,7 @@ SELECT
   -- "tilt-x"                                       not applicable: see acceleration-axes
   -- "tilt-y"                                       not applicable: see acceleration-axes
   -- "tilt-z"                                       not applicable: see acceleration-axes
-  t.date_time AT TIME ZONE 'utc' AS "timestamp",--  date format is yyyy-mm-dd'T'hh:mm:ss'Z'
+  t.date_time AT TIME ZONE 'utc' AS "timestamp",--  date format is yyyy-MM-dd'T'HH:mm:ss'Z'
   -- "transmission-timestamp"                       not available in DB
   -- "twilight"                                     not applicable
   -- "twilight-excluded"                            not applicable
