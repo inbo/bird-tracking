@@ -44,7 +44,7 @@ SELECT
   END AS "animal-nickname",
   CASE
     WHEN i.colour_ring IN
-      ('-', 'NA', 'None', 'none')
+      ('-', 'NA', 'None', 'none', '0000')
     THEN NULL--                                     colour_ring is a required field, so users resort to variations to express no ring
     ELSE i.colour_ring
   END AS "animal-ring-id",--                        opted to include colour_ring here, as it is not included elsewhere. ring_number = animal-id
