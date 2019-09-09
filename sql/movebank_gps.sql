@@ -1,7 +1,7 @@
 /* Created by Peter Desmet (INBO)
  *
  * This query maps UvA-BiTS DB fields to Movebank attributes for data:
- * https://www.movebank.org/node/2381#data (in the order listed there)
+ * https://www.movebank.org/node/2381#data
  *
  * It queries detections in ee_(shared_)tracking_speed_limited that fall within
  * a ee_(shared_)track_session_limited for a specific ring_number.
@@ -15,7 +15,6 @@
  * t.speed_3d                                       ground speed calculated from x_speed, y_speed and z_speed
  * t.location                                       not useful: postgreSQL geometry
  * t.altitude_agl                                   cannot be mapped: is recorded altitude minus reference digital elevation model
- *
  */
 
 SELECT
