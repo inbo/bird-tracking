@@ -65,7 +65,10 @@ SELECT
   -- "deploy-off-latitude"                          not available in DB
   -- "deploy-off-longitude"                         not available in DB
   -- "deploy-off-person"                            not available in DB: person who removed tag
-  s.end_date AT TIME ZONE 'utc' AS "deploy-off-timestamp",-- set in the future for unclosed track sessions
+  CASE
+    WHEN s.end_date = '9999-12-31' THEN NULL--     year 9999 not accepted by Movebank, better to set to undefined
+    ELSE s.end_date AT TIME ZONE 'utc'--            some end_dates will still be set in (near) future
+  END AS "deploy-off-timestamp",
   s.start_latitude AS "deploy-on-latitude",
   s.start_longitude AS "deploy-on-longitude",
   -- "deploy-on-person"                             not available in DB: person who attached tag
