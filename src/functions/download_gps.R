@@ -31,20 +31,13 @@ download_gps <- function(sql_file, download_directory, ring_numbers,
       print(paste(ring_number, ": ", detections_file, "already exists, skipping download"))
     } else {
       print(paste(ring_number, ": downloading data"))
-      gps_sql <- glue_sql(read_file(sql_file), .con = connection)
-      detections <- tryCatch({
-        dbGetQuery(con, gps_sql)
-      }, error = function(e) {
-        return(NA)
-      })
-
-      if (nrow(detections) != 0 && is.na(detections)) {
-        # detections = NA will be the case if there was an error in SQL conn.
-        # break loop and don't write to file
-        break
-      } else {
+      detections_sql <- glue_sql(read_file(sql_file), .con = connection)
+      tryCatch({
+        detections <- dbGetQuery(connection, detections_sql)
         write_csv(detections, path = detections_file, na = "")
-      }
+      }, error = function(e) {
+        stop(e)
+      })
     }
   }
 }
