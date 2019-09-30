@@ -76,7 +76,7 @@ Save to CSV:
 write_csv(movebank_ref_data, path = here("data", "processed", project, "movebank_ref_data.csv"), na = "")
 ```
 
-## Get gps data
+## Get ringnumbers
 
 Get all ring numbers for the project. Note that this is a better identifier than `device_info_serial` as it is unique to an individual (and cannot be reused).
 
@@ -88,18 +88,21 @@ ring_numbers <- read_csv(here("data", "interim", "individuals.csv")) %>%
   pull(ring_number)
 ```
 
-Load custom function to iterate over ring numbers:
+Load custom function to download data (will iterate over ring numbers):
 
 ```{r}
-source(here("src", "functions", "download_gps.R"))
+source(here("src", "functions", "download_data.R"))
 ```
+
+## Get gps data (detections)
 
 Query and save data (one csv file per ringnumber):
 
 ```{r}
-download_gps(
+download_data(
   sql_file = here("sql", "movebank_gps.sql"),
   download_directory = here("data", "processed", project),
+  download_filename = "movebank_gps",
   ring_numbers = ring_numbers,
   shared = shared,
   con = con,
@@ -107,10 +110,11 @@ download_gps(
 )
 ```
 
-To concatenate all files, use:
+Files are uploaded to Movebank separately, but could be concatenated using:
 
 ```
 awk 'FNR > 1' movebank_gps_*.csv > movebank_gps.csv
 ```
 
-And manually add the header back.
+After which the header needs to be added manually.
+
