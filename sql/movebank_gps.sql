@@ -1,12 +1,14 @@
 /* Created by Peter Desmet (INBO)
  *
- * This query retrieves UvA-BiTS gps data in the Movebank gps data format:
- * https://www.movebank.org/node/2381#data
+ * This query retrieves UvA-BiTS gps data in the Movebank data format
+ * (https://www.movebank.org/node/2381#data). It queries detections in
+ * ee_(shared_)tracking_speed_limited that fall within a
+ * ee_(shared_)track_session_limited for a specific ring_number.
  *
- * It queries detections in ee_(shared_)tracking_speed_limited that fall within
- * a ee_(shared_)track_session_limited for a specific ring_number.
+ * Upload to Movebank as:
+ * Tracking data > GPS data > custom GPS data
  *
- * The fields from that view that could not be mapped to Movebank are:
+ * The UvA-BiTS fields that could not be mapped to Movebank are:
  *
  * gps.x_speed                                      x ground speed measured by tag in m/s
  * gps.y_speed                                      y ground speed measured by tag in m/s

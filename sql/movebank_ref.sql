@@ -1,16 +1,18 @@
 /* Created by Peter Desmet (INBO)
  *
  * This query retrieves UvA-BiTS individual, session and tracker data in the
- * Movebank reference data format: https://www.movebank.org/node/2381#metadata
- *
- * Order of terms is based on Movebank standard reference data format template:
- * https://www.movebank.org/movebank/Movebank-reference-data-template.xlsx
- *
+ * Movebank reference data format (https://www.movebank.org/node/2381#metadata).
  * It joins individuals in ee_(shared_)individual_limited and their associated
  * ee_(shared_)track_session_limited, with extra information from
- * ee_(shared_)tracker_limited.
+ * ee_(shared_)tracker_limited. The order of terms is based on the Movebank
+ * standard reference data format template:
+ * https://www.movebank.org/movebank/Movebank-reference-data-template.xlsx
  *
- * The fields from that view that could not be mapped to Movebank are:
+ * Upload to Movebank as:
+ * Reference data > Reference data about animals, tracking tags, or deployments
+ * > Use Movebank standard reference data format
+ *
+ * The UvA-BiTS fields that could not be mapped to Movebank are:
  *
  * ind.individual_id                                internal id, opted to use ring_number instead
  * ind.start_date                                   not relevant
