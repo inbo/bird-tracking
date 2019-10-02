@@ -1,120 +1,169 @@
-/* Created by Peter Desmet (INBO)
- *
- * This query retrieves UvA-BiTS individual, session and tracker data in the
- * Movebank reference data format (https://www.movebank.org/node/2381#metadata).
- * It joins individuals in ee_(shared_)individual_limited and their associated
- * ee_(shared_)track_session_limited, with extra information from
- * ee_(shared_)tracker_limited. The order of terms is based on the Movebank
- * standard reference data format template:
- * https://www.movebank.org/movebank/Movebank-reference-data-template.xlsx
- *
- * Upload to Movebank as:
- * Reference data > Reference data about animals, tracking tags, or deployments
- * > Use Movebank standard reference data format
- *
- * The UvA-BiTS fields that could not be mapped to Movebank are:
- *
- * ind.individual_id                                internal id, opted to use ring_number instead
- * ind.start_date                                   not relevant
- * ind.end_date                                     not relevant
- * ses.project_id                                   internal id, opted to use key_name instead
- * ses.tracker_id / tag.tracker.id                  internal id, opted to use device_info_serial insteal
- * tag.firmware_version                             cannot be mapped
- * tag.start_date                                   not relevant
- * tag.end_date                                     not relevant
- * tag.x_o                                          cannot be mapped: accelerometer calibration
- * tag.x_s                                          cannot be mapped: accelerometer calibration
- * tag.y_o                                          cannot be mapped: accelerometer calibration
- * tag.y_s                                          cannot be mapped: accelerometer calibration
- * tag.z_o                                          cannot be mapped: accelerometer calibration
- * tag.z_s                                          cannot be mapped: accelerometer calibration
- */
+/*
+Created by Peter Desmet (INBO)
+
+This query retrieves UvA-BiTS individual, session and tracker data in the
+Movebank reference data format (https://www.movebank.org/node/2381#metadata).
+It joins individuals in ee_(shared_)individual_limited and their associated
+ee_(shared_)track_session_limited, with extra information from
+ee_(shared_)tracker_limited.
+
+Upload resulting data to Movebank as:
+Reference data > Reference data about animals, tracking tags, or deployments >
+Use Movebank standard reference data format
+
+The UvA-BiTS fields that could not be mapped to Movebank are:
+
+ind.individual_id                       Internal id, opted to use ring_number instead
+ind.start_date                          Not relevant
+ind.end_date                            Not relevant
+ses.project_id                          Internal id, opted to use key_name instead
+ses.tracker_id / tag.tracker.id         Internal id, opted to use device_info_serial instead
+tag.firmware_version                    Cannot be mapped
+tag.start_date                          Not relevant
+tag.end_date                            Not relevant
+tag.x_o                                 Cannot be mapped: accelerometer calibration
+tag.x_s                                 Cannot be mapped: accelerometer calibration
+tag.y_o                                 Cannot be mapped: accelerometer calibration
+tag.y_s                                 Cannot be mapped: accelerometer calibration
+tag.z_o                                 Cannot be mapped: accelerometer calibration
+tag.z_s                                 Cannot be mapped: accelerometer calibration
+*/
 
 SELECT
-  ses.key_name AS project,--                        not a Movebank field, but included for reference
-
-  -- animals
-  ind.remarks AS "animal-comments",--               can contain animal name
-  -- "animal-death-comments"                        not consistently available and expressible in DB
-  -- "animal-earliest-date-born"                    not available in DB
-  -- "animal-exact-date-of-birth"                   not available in DB
-  ind.ring_number AS "animal-id",--                 ring_number is more widely used to refer animal than individual_id
-  -- "animal-latest-date-born"                      not available in DB
+-- PROJECT
+-- project:                             Not a Movebank field, but included for reference
+  ses.key_name AS project,
+  
+-- ANIMALS
+-- animal-comments:                     Will generally only contain animal name
+  ind.remarks AS "animal-comments",
+-- animal-death-comments:               Not consistently available and expressible in DB
+-- animal-earliest-date-born:           Not available in DB
+-- animal-exact-date-of-birth:          Not available in DB
+-- animal-id:                           Set to ring_number, as that is the public identifier used in 
+--                                      UvA-BiTS for animals (and not animal_id)
+  ind.ring_number AS "animal-id",
+-- animal-latest-date-born:             Not available in DB
+-- animal-nickname:                     Not available in DB, but often the value of ind.remarks. 
+--                                      Will be mapped if bird_remarks_is_nickname is set to TRUE.
   CASE
-    WHEN {bird_remarks_is_nickname} THEN ind.remarks--if TRUE, get animal nickname from ind.remarks
+    WHEN {bird_remarks_is_nickname} THEN ind.remarks
     ELSE NULL
   END AS "animal-nickname",
+-- animal-ring-id:                      Opted to include colour_ring here, as it is not included 
+--                                      elsewhere. Since it is a required DB field, users resort to 
+--                                      variations (None, NA) to express no ring: those are set to 
+--                                      NULL.
   CASE
-    WHEN ind.colour_ring IN
-      ('-', 'NA', 'None', 'none', '0000')
-    THEN NULL--                                     colour_ring is a required field, so users resort to variations to express no ring
+    WHEN ind.colour_ring IN ('-', 'NA', 'None', 'none', '0000') THEN NULL
     ELSE ind.colour_ring
-  END AS "animal-ring-id",--                        opted to include colour_ring here, as it is not included elsewhere. ring_number = animal-id
+  END AS "animal-ring-id",
+-- animal-sex:                          Unknown sex cannot be expressed in current Movebank 
+--                                      vocabulary and is set to NULL.
   CASE
-    WHEN ind.sex = 'X' THEN NULL--                  not possible to express this in Movebank controlled list
+    WHEN ind.sex = 'X' THEN NULL
     ELSE lower(ind.sex)
   END AS "animal-sex",
+-- animal-taxon
   ind.species_latin_name AS "animal-taxon",
-  -- "animal-taxon-detail"                          not necessary, species_latin_name is expected to be supported in ITIS
+-- animal-taxon-detail:                 Not necessary, species_latin_name is expected to be 
+--                                      supported in ITIS.
 
-  -- deployments
-  {animal_life_stage} AS "animal-life-stage",--     not available in DB: likely "adult"
+-- DEPLOYMENTS
+-- animal-life-stage:                   Not available in DB, but set via variable. Likely "adult".
+  {animal_life_stage} AS "animal-life-stage",
+-- animal-mass
   ind.mass AS "animal-mass",
-  -- "animal-reproductive-condition"                not available in DB
-  {attachment_type} AS "attachment-type",--         not available in DB: likely "harness" or "other" (for leg loops)
-  -- "behavior-according-to"                        not available in DB
-  -- "data-processing-software"                     not applicable: locations are in raw sensor data
-  -- "deploy-off-latitude"                          not available in DB
-  -- "deploy-off-longitude"                         not available in DB
-  -- "deploy-off-person"                            not available in DB: person who removed tag
+-- animal-reproductive-condition:       Not available in DB
+-- attachment-type:                     Not available in DB, but set via variable. Likely "harness" 
+--                                      or "other" (for leg loops)
+  {attachment_type} AS "attachment-type",
+-- behavior-according-to:               Not available in DB
+-- data-processing-software:            Not applicable, locations are in raw sensor data
+-- deploy-off-latitude:                 Not available in DB, no info on recatch
+-- deploy-off-longitude:                Not available in DB, no info on recatch
+-- deploy-off-person:                   Not available in DB, no info on recatch
+-- deploy-off-timestamp:                End datetime of session, often open. Year 9999 is not 
+--                                      accepted by Movebank and is set to undefined.
   CASE
-    WHEN ses.end_date = '9999-12-31' THEN NULL--    year 9999 not accepted by Movebank, better to set to undefined
-    ELSE ses.end_date AT TIME ZONE 'utc'--          some end_dates will still be set in (near) future
+    WHEN ses.end_date = '9999-12-31' THEN NULL
+    ELSE ses.end_date AT TIME ZONE 'utc'
   END AS "deploy-off-timestamp",
+-- deploy-on-latitude:                  Catch/session start latitude
   ses.start_latitude AS "deploy-on-latitude",
+-- deploy-on-latitude:                  Catch/session start longitude
   ses.start_longitude AS "deploy-on-longitude",
-  -- "deploy-on-person"                             not available in DB: person who attached tag
+-- deploy-on-person:                    Not available in DB
+-- deploy-on-timestamp:                 Catch/session start date
   ses.start_date AT TIME ZONE 'utc' AS "deploy-on-timestamp",
+-- deployment-comments:                 Mapped to session remarks, which contains unstructured info 
+--                                      such as "Waterland-Oudeman | Found dead on 2016-03-31 in 
+--                                      Alps, last active day is 2016-03-25. Tracker reused for 
+--                                      H185298."
   ses.remarks AS "deployment-comments",
-  -- "deployment-end-comments"                      ses.remarks can contain this type of information, but unstructured, see "deployment-remarks" instead
+-- deployment-end-comments:             ses.remarks can contain this info, but too unstructured to 
+--                                      extract consistently
+-- deployment-end-type:                 Only mapped for "dead", i.e. when ses.remarks contains the 
+--                                      word "dead". Other values from Movebank vocab cannot be 
+--                                      consistently derived.
   CASE
-    WHEN lower(ses.remarks) LIKE '%dead%' THEN 'dead'-- track session remarks contains word "dead"
-    ELSE NULL--                                     other values from Movebank controlled list cannot be consistently derived
+    WHEN lower(ses.remarks) LIKE '%dead%' THEN 'dead'
+    ELSE NULL
   END AS "deployment-end-type",
+-- deployment-id:                       Internal ID, not used often, but does define session
   ses.track_session_id AS "deployment-id",
-  -- "duty-cycle"                                   not available in DB and variable over time
-  -- "geolocator-calibration"                       not applicable
-  -- "geolocator-light-threshold"                   not applicable
-  -- "geolocator-sensor-comments"                   not applicable
-  -- "geolocator-sun-elevation-angle"               not applicable
-  -- "habitat-according-to"                         not available in DB
-  'provided by the GPS unit' AS "location-accuracy-comments",-- refers to e.g. h_accuracy recorded by tag
-  -- "manipulation-comments"                        not available in DB and mostly not applicable
-  {manipulation_type} AS "manipulation-type",--     not available in DB: likely "none"
-  ses.key_name AS "study-site",--                   project.station_name would have been slightly more human readable, but not accessible for shared projects
-  'other wireless' AS "tag-readout-method",--       zigbee two-way radio transceiver via antenna
+-- duty-cycle:                          Not available in DB and variable over time
+-- geolocator-calibration:              Not applicable
+-- geolocator-light-threshold:          Not applicable
+-- geolocator-sensor-comments:          Not applicable
+-- geolocator-sun-elevation-angle:      Not applicable
+-- habitat-according-to:                Not available in DB
+-- location-accuracy-comments:          Set to "provided by GPS", refers to e.g. h_accuracy 
+--                                      recorded by tag
+  'provided by the GPS unit' AS "location-accuracy-comments",
+-- manipulation-comments:               Not available in DB and likely not applicable
+-- manipulation_type:                   Not available in DB, but set via variable. Likely "none"
+  {manipulation_type} AS "manipulation-type",
+-- study-site:                          Set to project_key, e.g. MH_WATERLAND. project.station_name 
+--                                      or information in ses.remarks are potentially more precise 
+--                                      or human readable, but are not consistently populated and, 
+--                                      for project.station_name, not accessible for shared projects.
+  ses.key_name AS "study-site",
+-- tag-readout-method:                  Set to "other wireless" as it is zigbee two-way radio 
+--                                      transceiver via antenna
+  'other wireless' AS "tag-readout-method",  
 
-  -- tags
-  -- "beacon-frequency"                             not applicable: for radio tags/retrieval beacon
+-- TAGS
+-- beacon-frequency:                    Not applicable, is for radio tags/retrieval beacon
+-- sensor-type:                         Set to "GPS"
   'GPS' AS "sensor-type",
-  -- "tag-comments"                                 ses.remarks can contain this type of information, but unstructured, see "deployment-comments" instead
-  -- "tag-failure-comments"                         ses.remarks can contain this type of information, but unstructured, see "deployment-comments" instead
-  ses.device_info_serial AS "tag-id",--             device_info_serial more widely used than tracker_id,
+-- tag.comments:                        ses.remarks can contain this info, but too unstructured to 
+--                                      extract consistently
+-- tag-failure-comments:                ses.remarks can contain this info, but too unstructured to 
+--                                      extract consistently
+-- tag-id:                              Set to device_info_serial, as that is the public identifier 
+--                                      used in UvA-BiTS for tags (and not tracker_id)
+  ses.device_info_serial AS "tag-id",
+-- tag-manufacturer-name:               Set to "UvA-BiTS"
   'University of Amsterdam Bird Tracking System (UvA-BiTS)' AS "tag-manufacturer-name",
+-- tag.mass
   tag.mass AS "tag-mass",
-  -- "tag-model"                                    not available in DB: firmware version not a good substitute
-  -- "tag-processing-type"                          not applicable
-  -- "tag-production-date"                          not available in DB: firmware version not a good substitute
+-- tag-model:                           Not available in DB and firmware version is not a good 
+--                                      substitute
+-- tag-processing-type:                 Not applicable
+-- tag-production-date:                 Not available in DB and firmware version is not a good 
+--                                      substitute
+-- tag-serial-no:                       Is device_info_serial
   ses.device_info_serial AS "tag-serial-no"
 FROM
-  -- individuals
+-- INDIVIDUALS
   (
     SELECT * FROM gps.ee_individual_limited
     UNION
     SELECT * FROM gps.ee_shared_individual_limited
   ) AS ind
 
-  -- track sessions
+-- TRACK SESSIONS
   LEFT JOIN (
     SELECT * FROM gps.ee_track_session_limited
     UNION
@@ -122,7 +171,7 @@ FROM
   ) AS ses
     ON ses.individual_id = ind.individual_id
 
-  -- trackers
+-- TRACKERS
   LEFT JOIN (
     SELECT * FROM gps.ee_tracker_limited
     UNION
