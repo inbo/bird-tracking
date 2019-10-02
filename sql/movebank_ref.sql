@@ -145,7 +145,7 @@ SELECT
 --                                      used in UvA-BiTS for tags (and not tracker_id)
   ses.device_info_serial AS "tag-id",
 -- tag-manufacturer-name:               Set to "UvA-BiTS"
-  'University of Amsterdam Bird Tracking System (UvA-BiTS)' AS "tag-manufacturer-name",
+  'UvA-BiTS' AS "tag-manufacturer-name",
 -- tag.mass
   tag.mass AS "tag-mass",
 -- tag-model:                           Not available in DB and firmware version is not a good 
