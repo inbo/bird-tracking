@@ -22,6 +22,17 @@ gps.altitude_agl                        Not relevant: is recorded altitude minus
                                         digital elevation model
 */
 
+-- Get track session information for ring_number
+WITH session(ring_number, device_info_serial, key_name, start_date, end_date) AS (
+  SELECT
+    ring_number,
+    device_info_serial,
+    key_name,
+    start_date,
+    end_date
+  FROM gps.{`track_session_table`}
+  WHERE ring_number = {ring_number}
+)
 
 SELECT
 -- PROJECT
@@ -168,17 +179,13 @@ SELECT
 -- waterbird-workshop-migration-state:  Not applicable
 -- wet-count:                           Not applicable
 FROM
-  -- track session for ring_number
-  (
-    SELECT * FROM gps.{`track_session_table`} WHERE ring_number = {ring_number}
-  ) AS ses
-
-  -- gps
-  LEFT JOIN gps.{`tracking_speed_table`} AS gps
-    ON gps.device_info_serial = ses.device_info_serial
-    AND gps.date_time BETWEEN ses.start_date AND ses.end_date
-    -- Because some tracking sessions have no meaningful track_session_end_date,
-    -- we'll use today's date to exclude erroneous records in the future
-    AND gps.date_time <= current_date
+  gps.{`tracking_speed_table`} AS gps,
+  session AS ses
+WHERE
+  gps.device_info_serial = ses.device_info_serial
+  AND gps.date_time BETWEEN ses.start_date AND ses.end_date
+  -- Because some tracking sessions have no meaningful track_session_end_date,
+  -- we'll use today's date to exclude erroneous records in the future
+  AND gps.date_time <= current_date
 ORDER BY
   gps.date_time
