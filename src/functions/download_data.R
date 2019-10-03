@@ -22,9 +22,9 @@ download_data <- function(sql_file, download_directory,
     "ee_tracking_speed_limited"
   }
   acceleration_table <- if (shared) {
-    "ee_acceleration_limited"
-  } else {
     "ee_shared_acceleration_limited"
+  } else {
+    "ee_acceleration_limited"
   }
 
   # Loop over ring_numbers
