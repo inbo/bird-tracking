@@ -87,7 +87,7 @@ SELECT
 --                                      accepted by Movebank and is set to undefined.
   CASE
     WHEN ses.end_date = '9999-12-31' THEN NULL
-    ELSE ses.end_date AT TIME ZONE 'utc'
+    ELSE to_char(ses.end_date, 'YYYY-MM-DD"T"HH24:MI:SS"Z"')
   END AS "deploy-off-timestamp",
 -- deploy-on-latitude:                  Catch/session start latitude
   ses.start_latitude AS "deploy-on-latitude",
@@ -95,10 +95,10 @@ SELECT
   ses.start_longitude AS "deploy-on-longitude",
 -- deploy-on-person:                    Not available in DB
 -- deploy-on-timestamp:                 Catch/session start date
-  ses.start_date AT TIME ZONE 'utc' AS "deploy-on-timestamp",
 -- deployment-comments:                 Mapped to session remarks, which contains unstructured info 
 --                                      such as "Waterland-Oudeman | Found dead on 2016-03-31 in 
 --                                      Alps, last active day is 2016-03-25. Tracker reused for 
+  to_char(ses.start_date, 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS "deploy-on-timestamp",
 --                                      H185298."
   ses.remarks AS "deployment-comments",
 -- deployment-end-comments:             ses.remarks can contain this info, but too unstructured to 

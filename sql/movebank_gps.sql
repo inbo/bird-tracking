@@ -107,7 +107,6 @@ SELECT
   -- "tilt-x"                                       not applicable: see acceleration-axes
   -- "tilt-y"                                       not applicable: see acceleration-axes
   -- "tilt-z"                                       not applicable: see acceleration-axes
-  gps.date_time AT TIME ZONE 'utc' AS "timestamp",--date format is yyyy-MM-dd'T'HH:mm:ss'Z'
   -- "transmission-timestamp"                       not available in DB
   -- "twilight"                                     not applicable
   -- "twilight-excluded"                            not applicable
@@ -123,6 +122,7 @@ SELECT
   -- "waterbird-workshop-deployment-special-event"  not applicable
   -- "waterbird-workshop-migration-state"           not applicable
   -- "wet-count"                                    not applicable
+  to_char(gps.date_time, 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS "timestamp",
 FROM
   -- track session for ring_number
   (
