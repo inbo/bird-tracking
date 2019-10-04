@@ -16,6 +16,11 @@ download_data <- function(sql_file, download_directory,
   } else {
     "ee_track_session_limited"
   }
+  tracker_table <- if (shared) {
+    "ee_shared_tracker_limited"
+  } else {
+    "ee_tracker_limited"
+  }
   tracking_speed_table <- if (shared) {
     "ee_shared_tracking_speed_limited"
   } else {

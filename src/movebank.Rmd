@@ -110,7 +110,23 @@ download_data(
 )
 ```
 
-Files are uploaded to Movebank separately, but could be concatenated using:
+## Get acceleration data
+
+Query and save data (one csv file per ringnumber):
+
+```{r}
+download_data(
+  sql_file = here("sql", "movebank_acc.sql"),
+  download_directory = here("data", "processed", project),
+  download_filename = "movebank_acc",
+  ring_numbers = ring_numbers,
+  shared = shared,
+  con = con,
+  overwrite = TRUE
+)
+```
+
+Note that files are uploaded to Movebank separately, but these could be concatenated using:
 
 ```
 awk 'FNR > 1' movebank_gps_*.csv > movebank_gps.csv
