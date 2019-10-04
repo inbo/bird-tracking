@@ -23,7 +23,7 @@ gps.altitude_agl                        Not relevant: is recorded altitude minus
 */
 
 -- Get track session information for ring_number
-WITH session(ring_number, device_info_serial, key_name, start_date, end_date) AS (
+WITH session AS (
   SELECT
     ring_number,
     device_info_serial,
