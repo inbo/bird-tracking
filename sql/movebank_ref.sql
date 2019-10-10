@@ -131,7 +131,7 @@ SELECT
   ses.key_name AS "study-site",
 -- tag-readout-method:                  Set to "other wireless" as it is zigbee two-way radio
 --                                      transceiver via antenna
-  'other wireless' AS "tag-readout-method",
+  'other-wireless' AS "tag-readout-method",
 
 -- TAGS
 -- beacon-frequency:                    Not applicable, is for radio tags/retrieval beacon
