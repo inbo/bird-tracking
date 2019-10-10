@@ -13,7 +13,7 @@ The UvA-BiTS fields that could not be mapped to Movebank are:
 
 acc.index                               Not necessary: is converted to milliseconds in timestamp
 
-Note that the table ee_(shared)_acc_start_limited is not used either: it contains timestamps for 
+Note that the table ee_(shared)_acc_start_limited is not used either: it contains timestamps for
 acceleration measurements that do not have an associated GPS fix:
 
 acc_start.device_info_serial            Not necessary
@@ -83,21 +83,21 @@ SELECT
 -- start-timestamp:                     Set to date_time, which indicates the start of a burst
   to_char(acc.date_time, 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS "start-timestamp",
 -- tilt-angle:                          Not available in DB
--- tilt-x:                              Set to measured acceleration minus offset (x_o) divided by 
+-- tilt-x:                              Set to measured acceleration minus offset (x_o) divided by
 --                                      sensitivity (x_s), resulting in value in g forces.
---                                      O and S are recorded for each tag. See 
+--                                      O and S are recorded for each tag. See
 --                                      https://wiki.pubserv.e-ecology.nl/wiki/index.php/DB_Views_2015#Accelerometer_calibration
   (acc.x_acceleration - ses.x_o) / ses.x_s AS "tilt-x",
--- tilt-y:                              Set to measured acceleration minus offset (y_o) divided by 
+-- tilt-y:                              Set to measured acceleration minus offset (y_o) divided by
 --                                      sensitivity (y_s), resulting in value in g forces.
   (acc.y_acceleration - ses.y_o) / ses.y_s AS "tilt-y",
--- tilt-z:                              Set to measured acceleration minus offset (z_o) divided by 
+-- tilt-z:                              Set to measured acceleration minus offset (z_o) divided by
 --                                      sensitivity (z_s), resulting in value in g forces.
   (acc.z_acceleration - ses.z_o) / ses.z_s AS "tilt-z",
 -- timestamp:                           Set to date_time + number of milliseconds since the start of
---                                      a burst, i.e. date_time + 0.05 (a frequency of 20Hz) * 
---                                      index (sorting order) => 2018-07-18T10:45:39.000Z, 
---                                      2018-07-18T10:45:39.050Z, etc. Since index starts at 1, 
+--                                      a burst, i.e. date_time + 0.05 (a frequency of 20Hz) *
+--                                      index (sorting order) => 2018-07-18T10:45:39.000Z,
+--                                      2018-07-18T10:45:39.050Z, etc. Since index starts at 1,
 --                                      we have to substract by 1 to start at 000 milliseconds.
 --                                      Note that the actual frequency is only recorded in
 --                                      ee_(shared_)acc_start_limited, i.e. for acceleration
