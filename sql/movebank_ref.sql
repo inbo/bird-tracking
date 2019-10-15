@@ -30,10 +30,6 @@ tag.z_s                                 Cannot be mapped: accelerometer calibrat
 */
 
 SELECT
--- PROJECT
--- project:                             Not a Movebank field, but included for reference
-  ses.key_name AS project,
-
 -- ANIMALS
 -- animal-comments:                     Set to indivual remarks, which generally only contains
 --                                      animal name
@@ -181,5 +177,4 @@ FROM
 WHERE
   ses.key_name = {project}
 ORDER BY
-  project,
   "deployment-id"

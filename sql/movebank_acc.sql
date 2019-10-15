@@ -16,8 +16,8 @@ acc.index                               Not necessary: is converted to milliseco
 Note that the table ee_(shared)_acc_start_limited is not used either: it contains timestamps for
 acceleration measurements that do not have an associated GPS fix:
 
-acc_start.device_info_serial            Not necessary
-acc_start.date_time                     Not necessary
+acc_start.device_info_serial            Not necessary, same as acc.device_info_serial
+acc_start.date_time                     Not necessary, same as acc.date_time
 acc_start.line_counter                  Not necessary
 acc_start.timesynced                    Not necessary
 acc_start.accii                         Not necessary
@@ -48,10 +48,6 @@ WITH session AS (
 )
 
 SELECT
--- PROJECT
--- project:                             Not a Movebank field, but included for reference
-  ses.key_name AS project,
-
 -- ACCELERATION DATA
 -- tag-id:                              Set to device_info_serial, see movebank_ref data
   ses.device_info_serial AS "tag-id",

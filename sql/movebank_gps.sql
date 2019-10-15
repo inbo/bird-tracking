@@ -35,10 +35,6 @@ WITH session AS (
 )
 
 SELECT
--- PROJECT
--- project:                             Not a Movebank field, but included for reference
-  ses.key_name AS project,
-
 -- GPS DATA
 -- tag-id:                              Set to device_info_serial, see movebank_ref data
   ses.device_info_serial AS "tag-id",
