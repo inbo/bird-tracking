@@ -68,18 +68,17 @@ SELECT
 -- acceleration-raw-z:                  Set to acceleration measured on the z (or heave) axis,
 --                                      range between -2666 and 2666
   acc.z_acceleration AS "acceleration-raw-z",
--- acceleration-sampling-frequency-per-axis: Set to assumed fixed frequency of 20Hz (see timestamp)
-  20 AS "acceleration-sampling-frequency-per-axis",
+-- acceleration-sampling-frequency-per-axis: Not necessary, is apparent from timestamp (20Hz)
 -- acceleration-x:                      Not necessary, can be derived from tilt-x (g forces) * 9.81
 -- acceleration-y:                      Not necessary, can be derived from tilt-y (g forces) * 9.81
 -- acceleration-z:                      Not necessary, can be derived from tilt-z (g forces) * 9.81
 -- accelerations-raw:                   Not necessary, is reserved to store complete bursts, while
 --                                      we have one row per measurement
--- location-lat:                        ...
--- location-long:                       ...
--- gps.h_accuracy                       ...
-
--- sampling-frequency:                  ...
+-- location-lat:                        Not necessary, can be derived by joining with gps data on
+--                                      start-timestamp (will not have match for all)
+-- location-long:                       Not necessary, can be derived by joining with gps data on
+--                                      start-timestamp (will not have match for all)
+-- sampling-frequency:                  Not necessary, is apparent from timestamp (20Hz)
 -- start-timestamp:                     Set to date_time, which indicates the start of a burst
   to_char(acc.date_time, 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS "start-timestamp",
 -- tilt-angle:                          Not available in DB
