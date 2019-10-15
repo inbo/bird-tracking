@@ -76,6 +76,7 @@ SELECT
 --                                      start-timestamp (will not have match for all)
 -- sampling-frequency:                  Not necessary, is apparent from timestamp (20Hz)
 -- start-timestamp:                     Set to date_time, which indicates the start of a burst
+--                                      Format: yyyy-MM-dd'T'HH:mm:ss'Z'
   to_char(acc.date_time, 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS "start-timestamp",
 -- tilt-angle:                          Not available in DB
 -- tilt-x:                              Set to measured acceleration minus offset (x_o) divided by
