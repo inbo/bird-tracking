@@ -49,6 +49,8 @@ WITH session AS (
 
 SELECT
 -- ACCELERATION DATA
+-- sensor-type:                         Included to overwrite default value "Accessory measurements"
+  'Acceleration' AS "sensor-type",
 -- tag-id:                              Set to device_info_serial, see movebank_ref data
   ses.device_info_serial AS "tag-id",
 -- animal-id:                           Set to ring_number, see movebank_ref data
