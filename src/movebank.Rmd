@@ -133,4 +133,3 @@ awk 'FNR > 1' movebank_gps_*.csv > movebank_gps.csv
 ```
 
 After which the header needs to be added manually.
-
