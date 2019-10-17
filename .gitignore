@@ -37,6 +37,6 @@ vignettes/*.pdf
 .DS_Store
 
 # Data
-data/interim/*/*
-data/processed/*/movebank_gps*
-data/processed/*/movebank_acc*
+data/interim/*
+!data/interim/individuals.csv
+data/processed/*
