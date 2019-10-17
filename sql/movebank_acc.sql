@@ -101,7 +101,7 @@ SELECT
 --                                      ee_(shared_)acc_start_limited, i.e. for acceleration
 --                                      measurements without associated gps fixes. It seems to be
 --                                      always 20Hz, so we use that as a constant here.
---                                      Format: yyyy-MM-dd'T'HH:mm:ss.sss'Z'
+--                                      Format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
   to_char(acc.date_time + interval '00:00:00.05' * (index - 1), 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"') AS "timestamp"
 
 FROM
@@ -113,5 +113,7 @@ WHERE
   -- Because some tracking sessions have no meaningful track_session_end_date,
   -- we'll use today's date to exclude erroneous records in the future
   AND acc.date_time <= current_date
+  AND acc.date_time >= {start_date}
+  AND acc.date_time <= {end_date}
 ORDER BY
   "timestamp"

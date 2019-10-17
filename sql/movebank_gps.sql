@@ -183,5 +183,7 @@ WHERE
   -- Because some tracking sessions have no meaningful track_session_end_date,
   -- we'll use today's date to exclude erroneous records in the future
   AND gps.date_time <= current_date
+  AND gps.date_time >= {start_date}
+  AND gps.date_time <= {end_date}
 ORDER BY
   gps.date_time

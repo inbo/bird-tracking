@@ -52,11 +52,13 @@ Set values:
 project <- "MH_WATERLAND"
 shared <- FALSE
 download_directory <- here("data", "movebank", project)
+overwrite_files <- FALSE
 animal_life_stage <- "adult"
 attachment_type <- "harness"
 manipulation_type <- "none"
 bird_remarks_is_nickname <- TRUE
-overwrite_files <- FALSE
+start_date <- "2012-01-01 00:00:00"
+end_date <- "2013-12-31 24:00:00"
 ```
 
 ## Get reference data (metadata)
