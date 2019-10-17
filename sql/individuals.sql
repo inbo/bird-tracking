@@ -35,4 +35,4 @@ FROM
     ON ses.key_name = prj.key_name
 ORDER BY
   ses.key_name,
-  ses.device_info_serial
+  ses.ring_number
