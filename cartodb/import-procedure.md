@@ -1,5 +1,7 @@
 # Procedure to import new tracking data
 
+_DEPRECATED: This workflow is referenced in Stienen et al. 2016 (https://doi.org/10.3897/zookeys.555.6173) but is no longer used. For the current data publication procedure, see https://github.com/inbo/bird-tracking_
+
 1. Upload data to CartoDB (`lifewatch` account)
 2. Rename table to `bird_tracking_new_data`.
 3. Drop unused columns:
