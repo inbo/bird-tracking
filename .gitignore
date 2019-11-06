@@ -37,6 +37,4 @@ vignettes/*.pdf
 .DS_Store
 
 # Data
-data/interim/*
-!data/interim/individuals.csv
 data/processed/*
