@@ -21,8 +21,10 @@ Load libraries:
 ```{r}
 library(tidyverse)
 library(DBI)
+library(RPostgres)
 library(here)
 library(glue)
+# For RPostgres, see https://github.com/r-dbi/RPostgres/issues/181#issuecomment-438700465
 ```
 
 ## Connect to UvA-BiTS database
@@ -32,12 +34,12 @@ Get connection settings from `config.yml` (not included in this repo) and connec
 ```{r connect_to_uvabits}
 uvabits <- config::get("uvabits")
 con = dbConnect(
-  RPostgres::Postgres(),
+  drv = RPostgres::Postgres(),
+  dbname = uvabits$database,
   host = uvabits$server,
   port = uvabits$port,
   user = uvabits$username,
-  password = uvabits$password,
-  dbname = uvabits$database
+  password = uvabits$password
 )
 
 # The alternative is getting the connection defined in odbc.ini:

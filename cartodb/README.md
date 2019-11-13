@@ -1,5 +1,3 @@
 # Accessing the bird tracking data with CartoDB
 
 _DEPRECATED: This page is referenced in Stienen et al. 2016 (https://doi.org/10.3897/zookeys.555.6173) but we no longer advise to query our bird tracking data from CartoDB. We only keep a limited subset of the data on CartoDB for the visualizations on [our blog](https://oscibio.inbo.be/blog/). The code for the visualizations is backed up [here](maps). To get access to the latest bird tracking data, see https://github.com/inbo/bird-tracking. The original version of this page can be found [here](https://github.com/inbo/bird-tracking/blob/f80497eb105eb02d7238b9ae59f2feabe205b4f5/cartodb/README.md)._
-
-
