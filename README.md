@@ -8,18 +8,22 @@ GPS trackers → [UvA-BiTS](http://www.uva-bits.nl/) database → [Script](src/m
 
 ## Published datasets
 
-### Movebank
+### Movebank & Zenodo
 
-- [HG_OOSTENDE](https://www.movebank.org/panel_embedded_movebank_webapp?gwt_fragment=page=studies,path=study986040562) - Herring gulls (Larus argentatus, Laridae) breeding at the southern North Sea coast (Belgium)
-- [LBBG_ZEEBRUGGE](https://www.movebank.org/panel_embedded_movebank_webapp?gwt_fragment=page=studies,path=study985143423) - Lesser black-backed gulls (Larus fuscus, Laridae) breeding at the southern North Sea coast (Belgium and the Netherlands)
-- [MH_WATERLAND](https://www.movebank.org/panel_embedded_movebank_webapp?gwt_fragment=page=studies,path=study604806671) - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding near the Belgium-Netherlands border
-- [MH_ANTWERPEN](https://www.movebank.org/panel_embedded_movebank_webapp?gwt_fragment=page=studies,path=study938783961) - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding at Linkeroever (Belgium)
-- [H_GRONINGEN](https://www.movebank.org/panel_embedded_movebank_webapp?gwt_fragment=page=studies,path=study922263102) - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding in Groningen (the Netherlands)
+Title | Movebank | Zenodo
+--- | --- | ---
+HG_OOSTENDE - Herring gulls (Larus argentatus, Laridae) breeding at the southern North Sea coast (Belgium) | [986040562](https://www.movebank.org/panel_embedded_movebank_webapp?gwt_fragment=page=studies,path=study986040562) | 
+LBBG_ZEEBRUGGE - Lesser black-backed gulls (Larus fuscus, Laridae) breeding at the southern North Sea coast (Belgium and the Netherlands) | [985143423](https://www.movebank.org/panel_embedded_movebank_webapp?gwt_fragment=page=studies,path=study985143423) | 
+MH_WATERLAND - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding near the Belgium-Netherlands border | [604806671](https://www.movebank.org/panel_embedded_movebank_webapp?gwt_fragment=page=studies,path=study604806671) | https://doi.org/10.5281/zenodo.3532940
+MH_ANTWERPEN - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding at Linkeroever (Belgium) | [938783961](https://www.movebank.org/panel_embedded_movebank_webapp?gwt_fragment=page=studies,path=study938783961) | 
+H_GRONINGEN - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding in Groningen (the Netherlands) | [922263102](https://www.movebank.org/panel_embedded_movebank_webapp?gwt_fragment=page=studies,path=study922263102) | 
 
 ### GBIF
 
-- [Bird tracking - GPS tracking of Lesser Black-backed Gulls and Herring Gulls breeding at the southern North Sea coast](https://doi.org/10.15468/02omly) (subset of `HG_OOSTENDE` and `LBBG_ZEEBRUGGE` and described in [Stienen et al. 2016](https://doi.org/10.3897/zookeys.555.6173))
-- [Bird tracking - GPS tracking of Western Marsh Harriers breeding near the Belgium-Netherlands border](https://doi.org/10.15468/rbguhj) (subset of `MH_WATERLAND`)
+Title | GBIF | Remark
+--- | --- | ---
+Bird tracking - GPS tracking of Lesser Black-backed Gulls and Herring Gulls breeding at the southern North Sea coast | https://doi.org/10.15468/02omly | Subset of `HG_OOSTENDE` and `LBBG_ZEEBRUGGE` and described in [Stienen et al. 2016](https://doi.org/10.3897/zookeys.555.6173)
+Bird tracking - GPS tracking of Western Marsh Harriers breeding near the Belgium-Netherlands border | https://doi.org/10.15468/rbguhj | Subset of `MH_WATERLAND`
 
 ## Repo structure
 
