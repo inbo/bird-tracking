@@ -31,7 +31,7 @@ tag.z_s                                 Cannot be mapped: accelerometer calibrat
 
 SELECT
 -- ANIMALS
--- animal-comments:                     Set to indivual remarks, which generally only contains
+-- animal-comments:                     Set to individual remarks, which generally only contains
 --                                      animal name
   ind.remarks AS "animal-comments",
 -- animal-death-comments:               Not available in DB, ses.remarks can contain this info, but
@@ -42,7 +42,7 @@ SELECT
 --                                      UvA-BiTS for animals (and not animal_id)
   ind.ring_number AS "animal-id",
 -- animal-latest-date-born:             Not available in DB
--- animal-nickname:                     Set to indivual remarks if bird_remarks_is_nickname is set
+-- animal-nickname:                     Set to individual remarks if bird_remarks_is_nickname is set
 --                                      to TRUE
   CASE
     WHEN {bird_remarks_is_nickname} THEN ind.remarks
@@ -55,13 +55,13 @@ SELECT
     WHEN ind.colour_ring IN ('-', 'NA', 'None', 'none', '0000') THEN NULL
     ELSE ind.colour_ring
   END AS "animal-ring-id",
--- animal-sex:                          Set to indivual sex. Unknown sex cannot be expressed in
+-- animal-sex:                          Set to individual sex. Unknown sex cannot be expressed in
 --                                      current Movebank vocabulary and is set to NULL.
   CASE
     WHEN ind.sex = 'X' THEN NULL
     ELSE lower(ind.sex)
   END AS "animal-sex",
--- animal-taxon                         Set to indivual species_latin_name
+-- animal-taxon                         Set to individual species_latin_name
   ind.species_latin_name AS "animal-taxon",
 -- animal-taxon-detail:                 Not necessary, species_latin_name is expected to be
 --                                      supported in ITIS.
@@ -69,7 +69,7 @@ SELECT
 -- DEPLOYMENTS
 -- animal-life-stage:                   Set via variable, likely "adult".
   {animal_life_stage} AS "animal-life-stage",
--- animal-mass                          Set to indivual mass
+-- animal-mass                          Set to individual mass
   ind.mass AS "animal-mass",
 -- animal-reproductive-condition:       Not available in DB
 -- attachment-type:                     Set via variable, likely "harness" or "other" (for leg loops)
@@ -80,7 +80,8 @@ SELECT
 -- deploy-off-longitude:                Not available in DB, no info on recatch
 -- deploy-off-person:                   Not available in DB, no info on recatch
 -- deploy-off-timestamp:                Set to session end_date (UTC), often open. Year 9999 is not
---                                      accepted by Movebank and is set to undefined.
+--                                      accepted by Movebank and is set to undefined. Format:
+--                                      yyyy-MM-dd'T'HH:mm:ss'Z'
   CASE
     WHEN ses.end_date = '9999-12-31' THEN NULL
     ELSE to_char(ses.end_date, 'YYYY-MM-DD"T"HH24:MI:SS"Z"')
