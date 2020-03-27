@@ -80,8 +80,8 @@ SELECT
 -- deploy-off-longitude:                Not available in DB, no info on recatch
 -- deploy-off-person:                   Not available in DB, no info on recatch
 -- deploy-off-timestamp:                Set to session end_date (UTC), often open. Year 9999 is not
---                                      accepted by Movebank and is set to undefined. Format:
---                                      yyyy-MM-dd'T'HH:mm:ss'Z'
+--                                      accepted by Movebank and is set to undefined.
+--                                      Format: yyyy-MM-dd'T'HH:mm:ss'Z'
   CASE
     WHEN ses.end_date = '9999-12-31' THEN NULL
     ELSE to_char(ses.end_date, 'YYYY-MM-DD"T"HH24:MI:SS"Z"')
@@ -92,6 +92,7 @@ SELECT
   ses.start_longitude AS "deploy-on-longitude",
 -- deploy-on-person:                    Not available in DB
 -- deploy-on-timestamp:                 Set to catch/session start_date
+--                                      Format: yyyy-MM-dd'T'HH:mm:ss'Z'
   to_char(ses.start_date, 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS "deploy-on-timestamp",
 -- deployment-comments:                 Set to session remarks, which contains unstructured info
 --                                      such as "Waterland-Oudeman | Found dead on 2016-03-31 in
