@@ -1,0 +1,93 @@
+---
+title: "Mark outliers in data in Movebank format"
+author:
+- Tanja Milotic
+- Peter Desmet
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+
+```{r}
+library(tidyverse)
+library(here)
+library(lubridate)
+library(sp)
+library(trip)
+```
+
+```{r}
+speed <- function(x){
+  trip.matrix <- data.matrix(x[,c("location.long","location.lat")], rownames.force = NA) 
+  between.point.distances <- trackDistance(trip.matrix, longlat = TRUE)          
+  x$PointDist <- c(0,between.point.distances) # dist in km
+  x$DateTime <- x$timestamp                                                    
+  x$TimeElapsed <- 0                                                             
+  for (i in 2:NROW(x)){
+    x$TimeElapsed[i] <- difftime(x$DateTime[i], x$DateTime[i-1],                 
+                                 units = "secs")                                                              
+  }
+    (x$PointDist * 1000)/x$TimeElapsed # speed = dist/time in m/s
+}
+```
+
+```{r}
+MH_Waterland_GPS <- read.csv("data/interim/MH_WATERLAND - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding near the Belgium-Netherlands border.csv")
+
+levels <- levels(MH_Waterland_GPS$individual.local.identifier)
+```
+
+```{r}
+# I did not manage to put the iterative speed calculation in 1 function, so I used a stepwise approach
+# select an individual (to reduce calculating time), sort by timestamp and calculate speed
+MH_W1_step1 <- MH_Waterland_GPS %>%
+  filter(MH_Waterland_GPS$individual.local.identifier == levels[1]) %>%
+  mutate(timestamp = as_datetime(timestamp)) %>%
+  arrange(timestamp) 
+MH_W1_step1$speed <- speed(MH_W1_step1)
+```
+
+```{r}
+# create a dataframe for the outliers
+MH_W1_outliers1 <- MH_W1_step1 %>%
+  filter(speed > 30) %>%
+  select(event.id) %>%
+  mutate(removal.round = "step1")
+# filter the outliers from the dataset, sort by timestamp and calculate speed with the remaining observations
+MH_W1_step2 <- MH_W1_step1 %>%
+  filter(speed <= 30 | is.na(speed)) %>%
+  arrange(timestamp)
+MH_W1_step2$speed <- speed(MH_W1_step2)
+MH_W1_outliers2 <- MH_W1_step2 %>%
+  filter(speed > 30) %>%
+  select(event.id) %>%
+  mutate(removal.round = "step2")
+# round 3 of outlier detection
+MH_W1_step3 <- MH_W1_step2 %>%
+  filter(speed <= 30 | is.na(speed)) %>%
+  arrange(timestamp)
+MH_W1_step3$speed <- speed(MH_W1_step3)
+MH_W1_outliers3 <- MH_W1_step3 %>%
+  filter(speed > 30) %>%
+  select(event.id) %>%
+  mutate(removal.round = "step3")
+```
+
+```{r}
+# create a dataframe with all observations marked as outliers and the step in which it was marked
+MH_W1_outliers <- rbind(MH_W1_outliers1, MH_W1_outliers2, MH_W1_outliers3) 
+
+# join the outlier dataframe with the full observations dataframe and mark outliers as 'TRUE' in the 'algorithm.marked.outlier' field
+MH_W1 <- left_join(MH_W1_step1, MH_W1_outliers, by = "event.id") %>%
+  mutate(algorithm.marked.outlier = ifelse(is.na(removal.round), F, T))
+```
