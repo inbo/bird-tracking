@@ -1,5 +1,5 @@
 ---
-title: "Mark outliers in data in Movebank format"
+title: "Mark outliers in Movebank formatted data"
 author:
 - Tanja Milotic
 - Peter Desmet
@@ -26,49 +26,36 @@ library(sp)
 library(trip)
 ```
 
+Set values:
+
 ```{r}
-MH_Waterland_GPS <- read_csv(here::here("data", "processed", "MH_WATERLAND", "gps", "movebank_gps_H173481.csv"))
+project <- "MH_WATERLAND"
 ```
 
+Load custom function to mark outliers:
+
 ```{r}
+source(here::here("src", "functions", "mark_outliers.R"))
 ```
 
-```{r}
-# Calculate speed
-MH_W1_step1 <- calc_speed(MH_Waterland_GPS)
-```
+Process files:
 
 ```{r}
-# create a dataframe for the outliers
-MH_W1_outliers1 <- MH_W1_step1 %>%
-  filter(speed > 30) %>%
-  select(timestamp) %>%
-  mutate(removal_round = "step1")
-# filter the outliers from the dataset, sort by timestamp and calculate speed with the remaining observations
-MH_W1_step2 <- MH_W1_step1 %>%
-  filter(speed <= 30 | is.na(speed)) %>%
-  arrange(timestamp)
-MH_W1_step2 <- calc_speed(MH_W1_step2)
-MH_W1_outliers2 <- MH_W1_step2 %>%
-  filter(speed > 30) %>%
-  select(timestamp) %>%
-  mutate(removal_round = "step2")
-# round 3 of outlier detection
-MH_W1_step3 <- MH_W1_step2 %>%
-  filter(speed <= 30 | is.na(speed)) %>%
-  arrange(timestamp)
-MH_W1_step3 <- calc_speed(MH_W1_step3)
-MH_W1_outliers3 <- MH_W1_step3 %>%
-  filter(speed > 30) %>%
-  select(timestamp) %>%
-  mutate(removal_round = "step3")
-```
-
-```{r}
-# create a dataframe with all observations marked as outliers and the step in which it was marked
-MH_W1_outliers <- rbind(MH_W1_outliers1, MH_W1_outliers2, MH_W1_outliers3) 
-
-# join the outlier dataframe with the full observations dataframe and mark outliers as 'TRUE' in the 'algorithm.marked.outlier' field
-MH_W1 <- left_join(MH_W1_step1, MH_W1_outliers, by = "timestamp") %>%
-  mutate(algorithm.marked.outlier = if_else(is.na(removal_round), FALSE, TRUE))
+files <- list.files(here::here("data", "processed", project, "gps"), full.names = TRUE)
+for (file in files) {
+  data <- read_csv(file, col_types = cols(
+    timestamp = col_datetime(),
+    `location-lat` = col_double(),
+    `location-long` = col_double(),
+    .default = col_character() # Don't interpret/alter the other columns
+  ))
+  print(file)
+  
+  # Mark outliers when speed is above 30 m/s
+  processed_data <- mark_outliers(data, max_speed = 30, max_runs = 10)
+  
+  # Change output dir
+  file <- str_replace(file, "/gps", "/gps_outliers")
+  write_csv(processed_data, file, na = "")
+}
 ```
