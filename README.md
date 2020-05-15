@@ -19,6 +19,8 @@ MH_ANTWERPEN - Western marsh harriers (Circus aeruginosus, Accipitridae) breedin
 H_GRONINGEN - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding in Groningen (the Netherlands) | [922263102](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study922263102) | https://doi.org/10.5281/zenodo.3552507
 O_WESTERSCHELDE - Eurasian oystercatchers (Haematopus ostralegus, Haematopodidae) breeding in East Flanders (Belgium) | [1099562810](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1099562810) | https://doi.org/10.5281/zenodo.3734898
 
+Steps to upload data to Zenodo are described [here](https://github.com/inbo/bird-tracking/issues/131).
+
 ### GBIF
 
 Title | GBIF | Remark
