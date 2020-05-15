@@ -1,0 +1,61 @@
+---
+title: "Mark outliers in Movebank formatted data"
+author:
+- Tanja Milotic
+- Peter Desmet
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+
+```{r}
+library(tidyverse)
+library(here)
+library(lubridate)
+library(sp)
+library(trip)
+```
+
+Set values:
+
+```{r}
+project <- "MH_WATERLAND"
+```
+
+Load custom function to mark outliers:
+
+```{r}
+source(here::here("src", "functions", "mark_outliers.R"))
+```
+
+Process files:
+
+```{r}
+files <- list.files(here::here("data", "processed", project, "gps"), full.names = TRUE)
+for (file in files) {
+  data <- read_csv(file, col_types = cols(
+    timestamp = col_datetime(),
+    `location-lat` = col_double(),
+    `location-long` = col_double(),
+    .default = col_character() # Don't interpret/alter the other columns
+  ))
+  print(file)
+  
+  # Mark outliers when speed is above 30 m/s
+  processed_data <- mark_outliers(data, max_speed = 30, max_runs = 10)
+  
+  # Change output dir
+  file <- str_replace(file, "/gps", "/gps_outliers")
+  write_csv(processed_data, file, na = "")
+}
+```
