@@ -81,13 +81,14 @@ Save to CSV:
 write_csv(movebank_ref_data, path = here("data", "processed", project, "movebank_ref_data.csv"), na = "")
 ```
 
-## Get ringnumbers
+## Get ring numbers
 
-Get all ring numbers for the project. Note that this is a better identifier than `device_info_serial` as it is unique to an individual (and cannot be reused).
+Get individuals with track sessions starting before the `end_date` (avoids unnecessary downloads for individuals with later tracking sessions) by ring number. Note that ring number is a better identifier than `device_info_serial` as it is unique to an individual (and cannot be reused).
 
 ```{r}
 ring_numbers <- read_csv(here("data", "interim", "individuals.csv")) %>%
   filter(key_name == project) %>%
+  filter(track_session_start_date <= end_date) %>%
   distinct(ring_number, .keep_all = TRUE) %>%
   arrange(ring_number) %>%
   pull(ring_number)
