@@ -136,7 +136,7 @@ download_data(
 
 For smaller projects (e.g. MH_ANTWERPEN), files can be uploaded to Movebank as they are queried here: per individual (encompassing all years). To update the dataset on Movebank, just query all years again and replace the file on Movebank.
 
-For larger projects (e.g. HG_OOSTENDE), it is better to upload per year, as data won't change for previous years. This can be done by using the `start_date`/`end_date` filters above and concatenating the resulting individual files. To update the dataset on Movebank, start from the last uploaded year (as it might contain new records), replace that one on Movebank, and add the new years as new files. The maximum upload limit per file is around 1 GB, so large files might need to be broken up (especially acceleration data).
+For larger projects (e.g. HG_OOSTENDE), it is better to upload per year, as data won't change for previous years. This can be done by using the `start_date`/`end_date` filters above and concatenating the resulting individual files. To update the dataset on Movebank, start from the last uploaded year (as it might contain new records), replace that one on Movebank, and add the new years as new files. The maximum upload limit per file is around 1.2 GB, so large files might need to be broken up (especially acceleration data).
 
 To concatenate files, use:
 
