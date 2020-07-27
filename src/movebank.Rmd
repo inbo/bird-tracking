@@ -132,6 +132,10 @@ download_data(
 )
 ```
 
+## Outlier detection
+
+After download, run `outliers.Rmd` to mark outliers based on speed.
+
 ## Upload to Movebank
 
 For smaller projects (e.g. MH_ANTWERPEN), files can be uploaded to Movebank as they are queried here: per individual (encompassing all years). To update the dataset on Movebank, just query all years again and replace the file on Movebank.
