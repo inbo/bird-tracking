@@ -47,7 +47,9 @@ WITH session AS (
   WHERE ring_number = {ring_number}
 )
 
-SELECT
+SELECT DISTINCT
+-- We use distinct because at least for H907928 there were duplicate rows (same timestamps and values).
+
 -- ACCELERATION DATA
 -- sensor-type:                         Included to overwrite default value "Accessory measurements"
   'Acceleration' AS "sensor-type",
