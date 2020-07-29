@@ -2,7 +2,7 @@
 #' `TRUE` if the speed between point `i` and `i-1` is above `max_speed`.
 #' `max_runs` indicates how often this process is repeated: recalculating speed
 #' after removing those already marked as outliers.
-mark_outliers <- function(x, max_speed = 30, max_runs = 3) {
+mark_outliers <- function(x, max_speed = 30, max_runs = 5) {
   outliers <- c()
   gps_speed <- x
   run <- 0
