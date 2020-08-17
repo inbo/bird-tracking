@@ -145,10 +145,14 @@ For larger projects (e.g. HG_OOSTENDE), it is better to upload per year, as data
 To concatenate files, use:
 
 ```
-awk 'FNR > 1' movebank_gps_*.csv > ../movebank_gps.csv
+awk 'FNR > 1' gps_outliers/movebank_gps_*.csv > movebank_gps_yyyy_nh.csv
 ```
 
-After which the header needs to be added manually.
+After which the header needs to be added with:
+
+```
+cat movebank_gps_headers_outliers.csv movebank_gps_yyyy_nh.csv > movebank_gps_yyyy.csv
+```
 
 ## Upload to Zenodo
 
