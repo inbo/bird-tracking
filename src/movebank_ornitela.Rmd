@@ -25,6 +25,7 @@ library(here)
 
 ```{r}
 metadata <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=0&single=true&output=csv")
+metadata_colnames <- colnames(metadata)
 ```
 
 ## Set project and some values
@@ -35,90 +36,90 @@ Set values:
 
 ```{r}
 project_id <- "DELTATRACK"
-animal_life_stage <- "adult"
 attachment_type <- "harness"
 manipulation_type <- "none"
-bird_remarks_is_nickname <- TRUE
 ```
 
 ## Get reference data (metadata)
 
 For a project, get data on animals, tags and deployments in the [Movebank reference data format](https://www.movebank.org/node/27).
 
-Filter data:
-
-```{r}
-movebank_ref_data <-
-  metadata %>%
-  filter(project == project_id)
-colnames(movebank_ref_data) <- str_c("orn_", colnames(movebank_ref_data)) # Add orn_ to colnames
-```
-
 Map data:
 
 ```{r get_ref_data}
 movebank_ref_data <-
-  movebank_ref_data %>%
+  metadata %>%
+  filter(project == project_id) %>%
   mutate(
-"animal-comments" = "",
+# animal-comments TODO
 # animal-death-comments
 # animal-earliest-date-born
 # animal-exact-date-of-birth
-"animal-id" = "",
+"animal-id" = metal_ring,
 # animal-latest-date-born
-"animal-nickname" = "",
-"animal-ring-id" = "",
-"animal-sex" = "",
-"animal-taxon" = "",
+"animal-nickname" = if_else(
+  !str_detect(name, "OT-"), # Exclude names that are the default tag name
+  name,
+  NA_character_
+),
+"animal-ring-id" = colour_ring,
+"animal-sex" = recode(sex,
+  "F" = "f",
+  "M" = "m"
+),
+"animal-taxon" = scientific_name,
 # animal-taxon-detail
-"animal-life-stage" = "",
-"animal-mass" = "",
+"animal-life-stage" = recode(age,
+  "A" = "adult"
+),
+"animal-mass" = weight,
 # animal-reproductive-condition
-"attachment-type" = "",
+"attachment-type" = attachment_type,
 # behavior-according-to
 # data-processing-software
 # deploy-off-latitude
 # deploy-off-longitude
 # deploy-off-person
-"deploy-off-timestamp" = "",
-"deploy-on-latitude" = "",
-"deploy-on-longitude" = "",
+# deploy-off-timestamp TODO
+# deploy-on-latitude TODO
+# deploy-on-longitud TODO
 # deploy-on-person
-"deploy-on-timestamp" = "",
-"deployment-comments" = "",
+"deploy-on-timestamp" = as.POSIXct(paste(release_date, time_released), format="%Y-%m-%d %H:%M:%S"), # TODO: is this UTC?
+# deployment-comments TODO
 # deployment-end-comments
-"deployment-end-type" = "",
-"deployment-id" = "",
+# deployment-end-type TODO
+# deployment-id TODO
 # duty-cycle
 # geolocator-calibration
 # geolocator-light-threshold
 # geolocator-sensor-comments
 # geolocator-sun-elevation-angle
 # habitat-according-to
-"location-accuracy-comments" = "",
+# location-accuracy-comments TODO
 # manipulation-comments
-"manipulation-type" = "",
-"study-site" = "",
-"tag-readout-method" = "",
+"manipulation-type" = manipulation_type,
+"study-site" = location,
+"tag-readout-method" = "phone network",
 # beacon-frequency
-"sensor-type" = "",
+"sensor-type" = "GPS",
 # tag-comments
 # tag-failure-comments
-"tag-id" = "",
-"tag-manufacturer-name" = "",
-"tag-mass" = "",
+"tag-id" = serial_number,
+"tag-manufacturer-name" = "Ornitela",
+# tag-mass TODO
 # tag-processing-type
 # tag-production-date
-"tag-serial-no" = "",
+"tag-serial-no" = serial_number,
 )
 ```
 
-Remove original columns:
+Remove original columns and sort by tag_id:
 
 ```{r}
 movebank_ref_data <-
   movebank_ref_data %>%
-  select(!starts_with("orn_")) 
+  select(!one_of(metadata_colnames)) %>%
+  arrange(tag_id)
 ```
 
 Save to CSV:
