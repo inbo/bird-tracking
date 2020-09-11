@@ -88,7 +88,7 @@ SELECT
   END AS "deploy-off-timestamp",
 -- deploy-on-latitude:                  Set to catch/session start_latitude
   ses.start_latitude AS "deploy-on-latitude",
--- deploy-on-latitude:                  Set to catch/session start_longitude
+-- deploy-on-longitude:                 Set to catch/session start_longitude
   ses.start_longitude AS "deploy-on-longitude",
 -- deploy-on-person:                    Not available in DB
 -- deploy-on-timestamp:                 Set to catch/session start_date
@@ -135,7 +135,7 @@ SELECT
 -- beacon-frequency:                    Not applicable, is for radio tags/retrieval beacon
 -- sensor-type:                         Set to "GPS"
   'GPS' AS "sensor-type",
--- tag.comments:                        Not available in DB, ses.remarks can contain this info, but
+-- tag-comments:                        Not available in DB, ses.remarks can contain this info, but
 --                                      it is too unstructured to extract consistently
 -- tag-failure-comments:                Not available in DB, ses.remarks can contain this info, but
 --                                      it is too unstructured to extract consistently
