@@ -47,7 +47,7 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 ├── src
 │   ├── functions       : Custom functions used in scripts
 │   ├── individuals.Rmd : Script to get information on individuals
-│   ├── movebank.Rmd    : Script to get data for a specific project in Movebank format
+│   ├── movebank_uvabits.Rmd : Script to get data for a specific UvA-BiTS project in Movebank format
 │   └── outliers.Rmd    : Script to mark outliers based on high speeds
 │
 ├── sql
