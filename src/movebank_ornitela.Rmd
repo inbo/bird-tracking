@@ -1,0 +1,136 @@
+---
+title: "Download Ornitela data in Movebank format"
+author: "Peter Desmet"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+
+```{r}
+library(tidyverse)
+library(here)
+```
+
+## Get Ornitela tag and bird information from spreadsheet
+
+```{r}
+metadata <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=0&single=true&output=csv")
+```
+
+## Set project and some values
+
+Some values cannot be automatically assumed for the Movebank format and have to be defined by the user. See [here](https://www.movebank.org/node/2381#metadata) for information on all reference data terms.
+
+Set values:
+
+```{r}
+project_id <- "DELTATRACK"
+animal_life_stage <- "adult"
+attachment_type <- "harness"
+manipulation_type <- "none"
+bird_remarks_is_nickname <- TRUE
+```
+
+## Get reference data (metadata)
+
+For a project, get data on animals, tags and deployments in the [Movebank reference data format](https://www.movebank.org/node/27).
+
+Filter data:
+
+```{r}
+movebank_ref_data <-
+  metadata %>%
+  filter(project == project_id)
+colnames(movebank_ref_data) <- str_c("orn_", colnames(movebank_ref_data)) # Add orn_ to colnames
+```
+
+Map data:
+
+```{r get_ref_data}
+movebank_ref_data <-
+  movebank_ref_data %>%
+  mutate(
+"animal-comments" = "",
+# animal-death-comments
+# animal-earliest-date-born
+# animal-exact-date-of-birth
+"animal-id" = "",
+# animal-latest-date-born
+"animal-nickname" = "",
+"animal-ring-id" = "",
+"animal-sex" = "",
+"animal-taxon" = "",
+# animal-taxon-detail
+"animal-life-stage" = "",
+"animal-mass" = "",
+# animal-reproductive-condition
+"attachment-type" = "",
+# behavior-according-to
+# data-processing-software
+# deploy-off-latitude
+# deploy-off-longitude
+# deploy-off-person
+"deploy-off-timestamp" = "",
+"deploy-on-latitude" = "",
+"deploy-on-longitude" = "",
+# deploy-on-person
+"deploy-on-timestamp" = "",
+"deployment-comments" = "",
+# deployment-end-comments
+"deployment-end-type" = "",
+"deployment-id" = "",
+# duty-cycle
+# geolocator-calibration
+# geolocator-light-threshold
+# geolocator-sensor-comments
+# geolocator-sun-elevation-angle
+# habitat-according-to
+"location-accuracy-comments" = "",
+# manipulation-comments
+"manipulation-type" = "",
+"study-site" = "",
+"tag-readout-method" = "",
+# beacon-frequency
+"sensor-type" = "",
+# tag-comments
+# tag-failure-comments
+"tag-id" = "",
+"tag-manufacturer-name" = "",
+"tag-mass" = "",
+# tag-processing-type
+# tag-production-date
+"tag-serial-no" = "",
+)
+```
+
+Remove original columns:
+
+```{r}
+movebank_ref_data <-
+  movebank_ref_data %>%
+  select(!starts_with("orn_")) 
+```
+
+Save to CSV:
+
+```{r}
+write_csv(movebank_ref_data, path = here("data", "processed", project_id, "movebank_ref_data.csv"), na = "")
+```
+
+## Get gps data (detections)
+
+Done via live feed.
+
+## Get acceleration data
+
+Done via live feed.
