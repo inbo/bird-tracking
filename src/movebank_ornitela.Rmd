@@ -37,7 +37,6 @@ Set values:
 ```{r}
 project_id <- "DELTATRACK"
 attachment_type <- "harness"
-manipulation_type <- "none"
 ```
 
 ## Get reference data (metadata)
@@ -77,7 +76,7 @@ movebank_ref_data <-
     ),
     `animal-mass` = bird_weight,
     # animal-reproductive-condition
-    `attachment-type` = attachment_type,
+    `attachment-type` = "harness",
     # behavior-according-to
     # data-processing-software
     # deploy-off-latitude
@@ -107,7 +106,10 @@ movebank_ref_data <-
     # habitat-according-to
     `location-accuracy-comments` = NA_character_, # NOT USED, there is no location-error-numerical/vertical-error-numerical in the gps data
     # manipulation-comments
-    `manipulation-type` = manipulation_type,
+    `manipulation-type` = case_when(
+      release_location == "VOC_OST" ~ "other", # Hatched from egg at location and fed
+      TRUE ~ "none"
+    ),
     `study-site` = project_id,
     `tag-readout-method` = "phone network",
     # beacon-frequency
