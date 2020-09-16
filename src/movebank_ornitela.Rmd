@@ -40,16 +40,16 @@ project_id <- "DELTATRACK"
 
 For a project, get data on animals, tags and deployments in the [Movebank reference data format](https://www.movebank.org/node/27).
 
-Map data. Fields indicated with `NOT AVAILABLE` are not available in Ornitela metadata, but included to have the same columns as in [UvA-BiTS reference data](../sql/movebank_ref.sql):
+Note: [UvA-BiTS reference data](../sql/movebank_ref.sql) has some fields that are not available in the Ornitela metadata. These are indicated with `NOT AVAILABLE` below and are not included in `movebank_ref_data.csv`, as their empty values would lead to import errors in Movebank. Since UvA-BiTS has more fields, use `bind_rows(uvabits_project_metadata, ornitela_project_metadata)` (UvA-BiTS first) to have all columns in the right order when you want to combine metadata.
+
+Map data:
 
 ```{r get_ref_data}
-# 
-
 movebank_ref_data <-
   metadata %>%
   filter(project == project_id) %>%
   mutate(
-    `animal-comments` = NA_character_, # NOT USED
+    # animal-comments: NOT AVAILABLE
     # animal-death-comments
     # animal-earliest-date-born
     # animal-exact-date-of-birth
@@ -82,8 +82,8 @@ movebank_ref_data <-
       as.POSIXct(paste(track_session_end_date, "18:00:00"), tz = "UTC", format = "%Y-%m-%d %H:%M:%S"),
       "%Y-%m-%dT%H:%M:%SZ"
     ),
-    `deploy-on-latitude` = NA_real_, # NOT USED
-    `deploy-on-longitude` = NA_real_, # NOT USED
+    # deploy-on-latitude: NOT AVAILABLE
+    # deploy-on-longitude: NOT AVAILABLE
     # deploy-on-person
     `deploy-on-timestamp` = format(
       as.POSIXct(paste(release_date, "18:00:00"), tz = "UTC", format = "%Y-%m-%d %H:%M:%S"),
@@ -98,14 +98,14 @@ movebank_ref_data <-
       !str_detect(track_session_remarks, "dead") ~ "dead",
       TRUE ~ NA_character_
     ),
-    `deployment-id` = NA_integer_, # NOT USED
+    # deployment-id: NOT AVAILABLE
     # duty-cycle
     # geolocator-calibration
     # geolocator-light-threshold
     # geolocator-sensor-comments
     # geolocator-sun-elevation-angle
     # habitat-according-to
-    `location-accuracy-comments` = NA_character_, # NOT USED, there is no location-error-numerical/vertical-error-numerical in the gps data
+    # location-accuracy-comments: NOT AVAILABLE, there is no location-error-numerical/vertical-error-numerical in the gps data
     # manipulation-comments
     `manipulation-type` = case_when(
       release_location == "VOC_OST" ~ "other", # Hatched from egg at location and fed
