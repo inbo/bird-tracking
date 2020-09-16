@@ -58,10 +58,9 @@ movebank_ref_data <-
     # animal-exact-date-of-birth
     `animal-id` = metal_ring,
     # animal-latest-date-born
-    `animal-nickname` = if_else(
-      !str_detect(bird_name, "OT-"), # Exclude names that are the default tag name
-      bird_name,
-      NA_character_
+    `animal-nickname` = case_when(
+      str_detect(bird_name, "OT-") ~ NA_character_, # Exclude names that are the default tag name
+      TRUE ~ bird_name
     ),
     `animal-ring-id` = colour_ring,
     `animal-sex` = recode(sex,
@@ -87,15 +86,14 @@ movebank_ref_data <-
     `deploy-on-longitude` = NA_real_, # NOT USED
     # deploy-on-person
     `deploy-on-timestamp` = as.POSIXct(paste(release_date, "18:00:00"), format="%Y-%m-%d %H:%M:%S"),
-    `deployment-comments` = paste0(
-      release_location,
-      if_else(!is.na(track_session_remarks), paste0(" | ", track_session_remarks), "")
+    `deployment-comments` = case_when(
+      !is.na(track_session_remarks) ~ paste(release_location, track_session_remarks, sep = " | "),
+      TRUE ~ release_location
     ),
     # deployment-end-comments
-    `deployment-end-type` = if_else(
-      !str_detect(track_session_remarks, "dead"),
-      "dead",
-      NA_character_
+    `deployment-end-type` = case_when(
+      !str_detect(track_session_remarks, "dead") ~ "dead",
+      TRUE ~ NA_character_
     ),
     `deployment-id` = NA_integer_, # NOT USED
     # duty-cycle
@@ -122,14 +120,7 @@ movebank_ref_data <-
     # tag-processing-type
     # tag-production-date
     `tag-serial-no` = serial_number,
-)
-```
-
-Remove original columns and sort by tag_id:
-
-```{r}
-movebank_ref_data <-
-  movebank_ref_data %>%
+  )  %>%
   select(!one_of(metadata_colnames)) %>%
   arrange("tag-id")
 ```
