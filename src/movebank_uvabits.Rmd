@@ -14,8 +14,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-Note: run `individuals.Rmd` first to get the latest individuals data.
-
 Load libraries:
 
 ```{r}
@@ -83,15 +81,15 @@ write_csv(movebank_ref_data, path = here("data", "processed", project_id, "moveb
 
 ## Get ring numbers
 
-Get individuals with track sessions starting before the `end_date` (avoids unnecessary downloads for individuals with later tracking sessions) by ring number. Note that ring number is a better identifier than `device_info_serial` as it is unique to an individual (and cannot be reused).
+Get individuals with track sessions starting before the `end_date` (avoids unnecessary downloads for individuals with later tracking sessions) by ring number (stored as `animal-id`). Note that ring number is a better identifier than `tag-id` as it is unique to an individual (and cannot be reused).
 
 ```{r}
-ring_numbers <- read_csv(here("data", "interim", "individuals.csv")) %>%
-  filter(key_name == project) %>%
-  filter(track_session_start_date <= end_date) %>%
-  distinct(ring_number, .keep_all = TRUE) %>%
-  arrange(ring_number) %>%
-  pull(ring_number)
+ring_numbers <- movebank_ref_data %>%
+  filter(`study-site` == project_id) %>%
+  filter(`deploy-on-timestamp` <= end_date) %>%
+  distinct(`animal-id`, .keep_all = TRUE) %>%
+  arrange(`animal-id`) %>%
+  pull(`animal-id`)
 ```
 
 Load custom function to download data (will iterate over ring numbers):
