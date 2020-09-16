@@ -177,6 +177,6 @@ FROM
   ) AS tag
     ON tag.device_info_serial = ses.device_info_serial
 WHERE
-  ses.key_name = {project}
+  ses.key_name = {project_id}
 ORDER BY
   "deployment-id"

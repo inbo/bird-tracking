@@ -29,7 +29,7 @@ library(trip)
 Set values:
 
 ```{r}
-project <- "MH_WATERLAND"
+project_id <- "MH_WATERLAND"
 ```
 
 Load custom function to mark outliers:
@@ -41,7 +41,7 @@ source(here::here("src", "functions", "mark_outliers.R"))
 Process files:
 
 ```{r}
-files <- list.files(here::here("data", "processed", project, "gps"), full.names = TRUE)
+files <- list.files(here::here("data", "processed", project_id, "gps"), full.names = TRUE)
 for (file in files) {
   data <- read_csv(file, col_types = cols(
     timestamp = col_datetime(),

@@ -53,7 +53,7 @@ Some values cannot be automatically assumed for the Movebank format and have to 
 Set values:
 
 ```{r}
-project <- "MH_WATERLAND"
+project_id <- "MH_WATERLAND"
 shared <- FALSE
 overwrite_files <- FALSE
 animal_life_stage <- "adult"
@@ -78,7 +78,7 @@ movebank_ref_data <- dbGetQuery(con, movebank_ref_sql)
 Save to CSV:
 
 ```{r}
-write_csv(movebank_ref_data, path = here("data", "processed", project, "movebank_ref_data.csv"), na = "")
+write_csv(movebank_ref_data, path = here("data", "processed", project_id, "movebank_ref_data.csv"), na = "")
 ```
 
 ## Get ring numbers
@@ -107,7 +107,7 @@ Query and save data (one csv file per ringnumber):
 ```{r}
 download_data(
   sql_file = here("sql", "movebank_gps.sql"),
-  download_directory = here("data", "processed", project, "gps"),
+  download_directory = here("data", "processed", project_id, "gps"),
   download_filename = "movebank_gps",
   ring_numbers = ring_numbers,
   shared = shared,
@@ -123,7 +123,7 @@ Query and save data (one csv file per ringnumber):
 ```{r}
 download_data(
   sql_file = here("sql", "movebank_acc.sql"),
-  download_directory = here("data", "processed", project, "acc"),
+  download_directory = here("data", "processed", project_id, "acc"),
   download_filename = "movebank_acc",
   ring_numbers = ring_numbers,
   shared = shared,
