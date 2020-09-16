@@ -28,15 +28,12 @@ metadata <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jO
 metadata_colnames <- colnames(metadata)
 ```
 
-## Set project and some values
+## Set project
 
-Some values cannot be automatically assumed for the Movebank format and have to be defined by the user. See [here](https://www.movebank.org/node/2381#metadata) for information on all reference data terms.
-
-Set values:
+Set project:
 
 ```{r}
 project_id <- "DELTATRACK"
-attachment_type <- "harness"
 ```
 
 ## Get reference data (metadata)

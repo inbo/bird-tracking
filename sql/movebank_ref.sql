@@ -72,8 +72,8 @@ SELECT
 -- animal-mass                          Set to individual mass
   ind.mass AS "animal-mass",
 -- animal-reproductive-condition:       Not available in DB
--- attachment-type:                     Set via variable, likely "harness" or "other" (for leg loops)
-  {attachment_type} AS "attachment-type",
+-- attachment-type:                     Set to "harness"
+  'harness' AS "attachment-type",
 -- behavior-according-to:               Not available in DB
 -- data-processing-software:            Not applicable, locations are in raw sensor data
 -- deploy-off-latitude:                 Not available in DB, no info on recatch

@@ -55,7 +55,6 @@ project_id <- "MH_WATERLAND"
 shared <- FALSE
 overwrite_files <- FALSE
 animal_life_stage <- "adult"
-attachment_type <- "harness"
 manipulation_type <- "none"
 bird_remarks_is_nickname <- TRUE
 start_date <- "2012-01-01 00:00:00"
