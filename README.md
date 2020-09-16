@@ -46,20 +46,17 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 |
 ├── src
 │   ├── functions       : Custom functions used in scripts
-│   ├── individuals.Rmd : Script to get information on individuals
 │   ├── movebank_ornitela.Rmd : Script to get data for a specific Ornitela project in Movebank format
 │   ├── movebank_uvabits.Rmd : Script to get data for a specific UvA-BiTS project in Movebank format
 │   └── outliers.Rmd    : Script to mark outliers based on high speeds
 │
 ├── sql
-│   ├── individuals.sql : Query to get individuals and tracking sessions
 │   ├── movebank_ref.sql: Query to get reference data in Movebank format
 │   ├── movebank_gps.sql: Query to get gps data in Movebank format
 │   └── movebank_acc.sql: Query to get acceleration data in Movebank format
 │
 └── data
-    ├── interim         : Intermediate data GENERATED
-    └── processed       : Data that can be uploaded to Movebank GENERATED IGNORED
+    └── processed       : Data that can be uploaded to Movebank GENERATED IGNORED (reference data is versioned)
 ```
 
 ## Contributors
