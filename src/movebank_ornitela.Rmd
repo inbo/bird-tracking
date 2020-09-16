@@ -44,72 +44,82 @@ manipulation_type <- "none"
 
 For a project, get data on animals, tags and deployments in the [Movebank reference data format](https://www.movebank.org/node/27).
 
-Map data:
+Map data. Fields indicated with `NOT AVAILABLE` are not available in Ornitela metadata, but included to have the same columns as in [UvA-BiTS reference data](../sql/movebank_ref.sql):
 
 ```{r get_ref_data}
+# 
+
 movebank_ref_data <-
   metadata %>%
   filter(project == project_id) %>%
   mutate(
-# animal-comments TODO
-# animal-death-comments
-# animal-earliest-date-born
-# animal-exact-date-of-birth
-"animal-id" = metal_ring,
-# animal-latest-date-born
-"animal-nickname" = if_else(
-  !str_detect(name, "OT-"), # Exclude names that are the default tag name
-  name,
-  NA_character_
-),
-"animal-ring-id" = colour_ring,
-"animal-sex" = recode(sex,
-  "F" = "f",
-  "M" = "m"
-),
-"animal-taxon" = scientific_name,
-# animal-taxon-detail
-"animal-life-stage" = recode(age,
-  "A" = "adult"
-),
-"animal-mass" = weight,
-# animal-reproductive-condition
-"attachment-type" = attachment_type,
-# behavior-according-to
-# data-processing-software
-# deploy-off-latitude
-# deploy-off-longitude
-# deploy-off-person
-# deploy-off-timestamp TODO
-# deploy-on-latitude TODO
-# deploy-on-longitud TODO
-# deploy-on-person
-"deploy-on-timestamp" = as.POSIXct(paste(release_date, time_released), format="%Y-%m-%d %H:%M:%S"), # TODO: is this UTC?
-# deployment-comments TODO
-# deployment-end-comments
-# deployment-end-type TODO
-# deployment-id TODO
-# duty-cycle
-# geolocator-calibration
-# geolocator-light-threshold
-# geolocator-sensor-comments
-# geolocator-sun-elevation-angle
-# habitat-according-to
-# location-accuracy-comments TODO
-# manipulation-comments
-"manipulation-type" = manipulation_type,
-"study-site" = location,
-"tag-readout-method" = "phone network",
-# beacon-frequency
-"sensor-type" = "GPS",
-# tag-comments
-# tag-failure-comments
-"tag-id" = serial_number,
-"tag-manufacturer-name" = "Ornitela",
-# tag-mass TODO
-# tag-processing-type
-# tag-production-date
-"tag-serial-no" = serial_number,
+    `animal-comments` = NA_character_, # NOT USED
+    # animal-death-comments
+    # animal-earliest-date-born
+    # animal-exact-date-of-birth
+    `animal-id` = metal_ring,
+    # animal-latest-date-born
+    `animal-nickname` = if_else(
+      !str_detect(bird_name, "OT-"), # Exclude names that are the default tag name
+      bird_name,
+      NA_character_
+    ),
+    `animal-ring-id` = colour_ring,
+    `animal-sex` = recode(sex,
+      "F" = "f",
+      "M" = "m"
+    ),
+    `animal-taxon` = scientific_name,
+    # animal-taxon-detail
+    `animal-life-stage` = recode(age,
+      "A" = "adult",
+      "J" = "juvenile"
+    ),
+    `animal-mass` = bird_weight,
+    # animal-reproductive-condition
+    `attachment-type` = attachment_type,
+    # behavior-according-to
+    # data-processing-software
+    # deploy-off-latitude
+    # deploy-off-longitude
+    # deploy-off-person
+    `deploy-off-timestamp` = as.POSIXct(track_session_end_date),
+    `deploy-on-latitude` = NA_real_, # NOT USED
+    `deploy-on-longitude` = NA_real_, # NOT USED
+    # deploy-on-person
+    `deploy-on-timestamp` = as.POSIXct(paste(release_date, "18:00:00"), format="%Y-%m-%d %H:%M:%S"),
+    `deployment-comments` = paste0(
+      release_location,
+      if_else(!is.na(track_session_remarks), paste0(" | ", track_session_remarks), "")
+    ),
+    # deployment-end-comments
+    `deployment-end-type` = if_else(
+      !str_detect(track_session_remarks, "dead"),
+      "dead",
+      NA_character_
+    ),
+    `deployment-id` = NA_integer_, # NOT USED
+    # duty-cycle
+    # geolocator-calibration
+    # geolocator-light-threshold
+    # geolocator-sensor-comments
+    # geolocator-sun-elevation-angle
+    # habitat-according-to
+    `location-accuracy-comments` = NA_character_, # NOT USED, there is no location-error-numerical/vertical-error-numerical in the gps data
+    # manipulation-comments
+    `manipulation-type` = manipulation_type,
+    `study-site` = project_id,
+    `tag-readout-method` = "phone network",
+    # beacon-frequency
+    `sensor-type` = "GPS",
+    # tag-comments
+    # tag-failure-comments
+    `tag-id` = serial_number,
+    `tag-manufacturer-name` = "Ornitela",
+    `tag-mass` = tag_weight,
+    # tag-processing-type
+    # tag-production-date
+    `tag-serial-no` = serial_number,
 )
 ```
 
@@ -119,7 +129,7 @@ Remove original columns and sort by tag_id:
 movebank_ref_data <-
   movebank_ref_data %>%
   select(!one_of(metadata_colnames)) %>%
-  arrange(tag_id)
+  arrange("tag-id")
 ```
 
 Save to CSV:
@@ -134,4 +144,4 @@ Done via live feed.
 
 ## Get acceleration data
 
-Done via live feed.
+Not implemented yet.
