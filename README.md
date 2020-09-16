@@ -4,7 +4,17 @@ This repository contains the functionality to standardize data from the LifeWatc
 
 ## Workflow
 
-GPS trackers → [UvA-BiTS](http://www.uva-bits.nl/) database → [Script](src/movebank.Rmd) to query data in the [Movebank data format](https://www.movebank.org/node/2381) (defined in [SQL](sql)) → Generated files that can be uploaded to Movebank
+### UvA-BiTS
+
+- **Reference data**: [UvA-BiTS](http://www.uva-bits.nl/) database → [Script](src/movebank_uvabits.Rmd) to query data in the [Movebank data format](https://www.movebank.org/node/2381) (defined in [SQL](sql)) → Generated file that can be uploaded to Movebank
+- **GPS data**: same as reference data
+- **Accerelation data**: same as reference data
+
+### Ornitela
+
+- **Reference data**: Spreadsheet → [Script](src/movebank_ornitela.Rmd) to query  data in the [Movebank data format](https://www.movebank.org/node/2381) (defined as `dplyr::mutate()`) → Generated file that can be uploaded to Movebank
+- **GPS data**: [Ornitela](https://www.ornitela.com/) database → Live feed to Movebank by associating a selection of tags to a study
+- **Acceleration data**: not yet defined
 
 ## Published datasets
 
