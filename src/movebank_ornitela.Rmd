@@ -86,7 +86,7 @@ movebank_ref_data <-
     # deploy-on-longitude: NOT AVAILABLE
     # deploy-on-person
     `deploy-on-timestamp` = format(
-      as.POSIXct(paste(release_date, "18:00:00"), tz = "UTC", format = "%Y-%m-%d %H:%M:%S"),
+      as.POSIXct(paste(track_session_start_date, "18:00:00"), tz = "UTC", format = "%Y-%m-%d %H:%M:%S"),
       "%Y-%m-%dT%H:%M:%SZ"
     ),
     `deployment-comments` = case_when(
