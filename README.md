@@ -16,18 +16,22 @@ This repository contains the functionality to standardize data from the LifeWatc
 - **GPS data**: [Ornitela](https://www.ornitela.com/) database → Live feed to Movebank by associating a selection of tags to a study
 - **Acceleration data**: not yet defined
 
-## Published datasets
+## Datasets
 
 ### Movebank & Zenodo
 
 Title | Movebank | Zenodo | Status
 --- | --- | --- | ---
+DELTATRACK - Herring gulls (Larus argentatus, Laridae) and Lesser black-backed gulls (Larus fuscus, Laridae) breeding at Neeltje Jans (Netherlands) | [1258895879](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1258895879) |  | active
+H_GRONINGEN - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding in Groningen (the Netherlands) | [922263102](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study922263102) | [DOI](https://doi.org/10.5281/zenodo.3552507) | stopped in 2018, described in [Milotic et al. 2020](https://doi.org/10.3897/zookeys.947.52570)
 HG_OOSTENDE - Herring gulls (Larus argentatus, Laridae) breeding at the southern North Sea coast (Belgium) | [986040562](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study986040562) | [DOI](https://doi.org/10.5281/zenodo.3541811) | active
+LBBG_JUVENILE - Juvenile lesser black-backed gulls (Larus fuscus, Laridae) hatched in Zeebrugge (Belgium) | [1259686571](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1259686571) |  | active
 LBBG_ZEEBRUGGE - Lesser black-backed gulls (Larus fuscus, Laridae) breeding at the southern North Sea coast (Belgium and the Netherlands) | [985143423](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study985143423) | [DOI](https://doi.org/10.5281/zenodo.3540799) | active
-MH_WATERLAND - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding near the Belgium-Netherlands border | [604806671](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study604806671) | [DOI](https://doi.org/10.5281/zenodo.3532940) | stopped in 2018, described in [Milotic et al. 2020](https://doi.org/10.3897/zookeys.947.52570) 
-MH_ANTWERPEN - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding near Antwerp (Belgium) | [938783961](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study938783961) | [DOI](https://doi.org/10.5281/zenodo.3550093) | active, described in [Milotic et al. 2020](https://doi.org/10.3897/zookeys.947.52570) 
-H_GRONINGEN - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding in Groningen (the Netherlands) | [922263102](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study922263102) | [DOI](https://doi.org/10.5281/zenodo.3552507) | stopped in 2018, described in [Milotic et al. 2020](https://doi.org/10.3897/zookeys.947.52570) 
+MH_ANTWERPEN - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding near Antwerp (Belgium) | [938783961](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study938783961) | [DOI](https://doi.org/10.5281/zenodo.3550093) | active, described in [Milotic et al. 2020](https://doi.org/10.3897/zookeys.947.52570)
+MH_WATERLAND - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding near the Belgium-Netherlands border | [604806671](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study604806671) | [DOI](https://doi.org/10.5281/zenodo.3532940) | stopped in 2018, described in [Milotic et al. 2020](https://doi.org/10.3897/zookeys.947.52570)
 O_WESTERSCHELDE - Eurasian oystercatchers (Haematopus ostralegus, Haematopodidae) breeding in East Flanders (Belgium) | [1099562810](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1099562810) | [DOI](https://doi.org/10.5281/zenodo.3734898) | active
+
+
 
 Steps to upload data to Zenodo are described [here](https://github.com/inbo/bird-tracking/issues/131).
 
