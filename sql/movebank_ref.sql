@@ -106,6 +106,7 @@ SELECT
 --                                      consistently derived.
   CASE
     WHEN lower(ses.remarks) LIKE '%dead%' THEN 'dead'
+    WHEN lower(ses.remarks) LIKE '%defect%' THEN 'equipment failure'
     ELSE NULL
   END AS "deployment-end-type",
 -- deployment-id:                       Set to internal session track_session_id
