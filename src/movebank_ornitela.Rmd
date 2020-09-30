@@ -138,7 +138,26 @@ write_csv(movebank_ref_data, path = here("data", "processed", project_id, "moveb
 
 ## Get gps data (detections)
 
-Done via live feed.
+Done via live feed. Important notes when comparing number of records:
+
+```R
+ornitela_export %>%
+  # Exclude records with lat/long = 0: these are not fed to Movebank
+  filter(satcount != 0) %>%
+  # Exclude duplicated timestamps: these are not fed to Movebank
+  distinct(device_id, UTC_datetime, .keep_all = TRUE) %>%
+  # Use the same cutoff date
+  filter(UTC_datetime <= as.POSIXct("YYYY-MM-DD 23:59:59")
+  
+EQUALS
+
+# Select "Include undeployed locations" when exporting
+movebank_export %>%
+  # Exclude SMS records
+  filter(`orn:transmission-protocol` == "GPRS")
+  # Use the same cutoff date
+  filter(timestamp <= as.POSIXct("YYYY-MM-DD 23:59:59")
+```
 
 ## Get acceleration data
 
