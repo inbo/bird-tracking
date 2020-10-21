@@ -33,7 +33,7 @@ metadata_colnames <- colnames(metadata)
 Set project:
 
 ```{r}
-project_id <- "DELTATRACK"
+project_id <- "LBBG_JUVENILE"
 ```
 
 ## Get reference data (metadata)
@@ -95,8 +95,8 @@ movebank_ref_data <-
     ),
     # deployment-end-comments
     `deployment-end-type` = case_when(
-      !str_detect(track_session_remarks, "dead") ~ "dead",
-      !str_detect(track_session_remarks, "defect") ~ "equipment failure",
+      str_detect(track_session_remarks, "dead") ~ "dead",
+      str_detect(track_session_remarks, "defect") ~ "equipment failure",
       TRUE ~ NA_character_
     ),
     # deployment-id: NOT AVAILABLE
@@ -125,9 +125,9 @@ movebank_ref_data <-
     # tag-processing-type
     # tag-production-date
     `tag-serial-no` = serial_number,
-  )  %>%
+  ) %>%
   select(!one_of(metadata_colnames)) %>%
-  arrange("tag-id")
+  arrange(`tag-id`)
 ```
 
 Save to CSV:
