@@ -21,12 +21,6 @@ ses.tracker_id / tag.tracker.id         Internal id, opted to use device_info_se
 tag.firmware_version                    Cannot be mapped
 tag.start_date                          Not relevant
 tag.end_date                            Not relevant
-tag.x_o                                 Cannot be mapped: accelerometer calibration
-tag.x_s                                 Cannot be mapped: accelerometer calibration
-tag.y_o                                 Cannot be mapped: accelerometer calibration
-tag.y_s                                 Cannot be mapped: accelerometer calibration
-tag.z_o                                 Cannot be mapped: accelerometer calibration
-tag.z_s                                 Cannot be mapped: accelerometer calibration
 */
 
 SELECT
