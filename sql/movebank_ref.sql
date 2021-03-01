@@ -49,10 +49,9 @@ SELECT
     WHEN ind.colour_ring IN ('-', 'NA', 'None', 'none', '0000') THEN NULL
     ELSE ind.colour_ring
   END AS "animal-ring-id",
--- animal-sex:                          Set to individual sex. Unknown sex cannot be expressed in
---                                      current Movebank vocabulary and is set to NULL.
+-- animal-sex:                          Set to individual sex. Movebank uses "u" for unknown.
   CASE
-    WHEN ind.sex = 'X' THEN NULL
+    WHEN ind.sex = 'X' THEN 'u'
     ELSE lower(ind.sex)
   END AS "animal-sex",
 -- animal-taxon                         Set to individual species_latin_name
