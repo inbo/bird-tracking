@@ -1,0 +1,145 @@
+---
+title: "Download Digitanimal data in Movebank format"
+author: "Peter Desmet"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+
+```{r}
+library(tidyverse)
+library(here)
+```
+
+## Get Digitanimal tag and animal information from spreadsheet
+
+```{r}
+metadata <- read_csv("TODO")
+metadata_colnames <- colnames(metadata)
+```
+
+## Set project
+
+Set project:
+
+```{r}
+project_id <- "BE_GRAZERS"
+```
+
+## Get reference data (metadata)
+
+For a project, get data on animals, tags and deployments in the [Movebank reference data format](https://www.movebank.org/node/27).
+
+TODO: Note: [UvA-BiTS reference data](../sql/movebank_ref.sql) has some fields that are not available in the Ornitela metadata. These are indicated with `NOT AVAILABLE` below and are not included in `movebank_ref_data.csv`, as their empty values would lead to import errors in Movebank. Since UvA-BiTS has more fields, use `bind_rows(uvabits_project_metadata, ornitela_project_metadata)` (UvA-BiTS first) to have all columns in the right order when you want to combine metadata.
+
+Map data:
+
+```{r get_ref_data}
+movebank_ref_data <-
+  metadata %>%
+  filter(project == project_id) %>%
+  mutate(
+    # animal-comments: NOT AVAILABLE
+    # animal-death-comments
+    # animal-earliest-date-born
+    # animal-exact-date-of-birth
+    `animal-id` = metal_ring,
+    # animal-latest-date-born
+    `animal-nickname` = case_when(
+      str_detect(bird_name, "OT-") ~ NA_character_, # Exclude names that are the default tag name
+      TRUE ~ bird_name
+    ),
+    `animal-ring-id` = colour_ring,
+    `animal-sex` = recode(sex,
+      "F" = "f",
+      "M" = "m"
+    ),
+    `animal-taxon` = scientific_name,
+    # animal-taxon-detail
+    `animal-life-stage` = recode(age,
+      "A" = "adult",
+      "J" = "juvenile"
+    ),
+    `animal-mass` = bird_weight,
+    # animal-reproductive-condition
+    `attachment-type` = "harness",
+    # behavior-according-to
+    # data-processing-software
+    # deploy-off-latitude
+    # deploy-off-longitude
+    # deploy-off-person
+    `deploy-off-timestamp` = format(
+      as.POSIXct(track_session_end_date, tz = "UTC", format = "%Y-%m-%d %H:%M:%S"),
+      "%Y-%m-%dT%H:%M:%SZ"
+    ),
+    # deploy-on-latitude: NOT AVAILABLE
+    # deploy-on-longitude: NOT AVAILABLE
+    # deploy-on-person
+    `deploy-on-timestamp` = format(
+      as.POSIXct(track_session_start_date, tz = "UTC", format = "%Y-%m-%d %H:%M:%S"),
+      "%Y-%m-%dT%H:%M:%SZ"
+    ),
+    `deployment-comments` = case_when(
+      !is.na(track_session_remarks) ~ paste(release_location, track_session_remarks, sep = " | "),
+      TRUE ~ release_location
+    ),
+    # deployment-end-comments
+    `deployment-end-type` = case_when(
+      str_detect(track_session_remarks, "dead") ~ "dead",
+      str_detect(track_session_remarks, "defect") ~ "equipment failure",
+      TRUE ~ NA_character_
+    ),
+    # deployment-id: NOT AVAILABLE
+    # duty-cycle
+    # geolocator-calibration
+    # geolocator-light-threshold
+    # geolocator-sensor-comments
+    # geolocator-sun-elevation-angle
+    # habitat-according-to
+    # location-accuracy-comments: NOT AVAILABLE, there is no location-error-numerical/vertical-error-numerical in the gps data
+    # manipulation-comments
+    `manipulation-type` = case_when(
+      release_location == "VOC_OST" ~ "manipulated other",
+      # Birds from VOC were hatched from egg, placed in a controlled environment and subjected to behavioural studies
+      TRUE ~ "none"
+    ),
+    `study-site` = project_id,
+    `tag-readout-method` = "phone network",
+    # beacon-frequency
+    `sensor-type` = "GPS",
+    # tag-comments
+    # tag-failure-comments
+    `tag-id` = serial_number,
+    `tag-manufacturer-name` = "Ornitela",
+    `tag-mass` = tag_weight,
+    # tag-processing-type
+    # tag-production-date
+    `tag-serial-no` = serial_number,
+  ) %>%
+  select(!one_of(metadata_colnames)) %>%
+  arrange(`tag-id`)
+```
+
+Save to CSV:
+
+```{r}
+write_csv(movebank_ref_data, path = here("data", "processed", project_id, "movebank_ref_data.csv"), na = "")
+```
+
+## Get gps data (detections)
+
+TODO
+
+## Get acceleration data
+
+Not implemented yet.
