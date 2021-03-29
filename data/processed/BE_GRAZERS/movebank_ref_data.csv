@@ -1,0 +1,26 @@
+animal-id,animal-sex,animal-taxon,animal-life-stage,attachment-type,deploy-off-timestamp,deploy-on-timestamp,deployment-comments,deployment-end-type,manipulation-type,study-site,tag-readout-method,sensor-type,tag-id,tag-manufacturer-name,tag-mass
+6,f,Bos taurus,adult,harness,,2021-02-10T00:00:00Z,,,confined,Zwin Kleine vlakte,satellite,GPS,AL124,Digitanimal,275
+7,f,Bos taurus,adult,harness,,2021-02-10T00:00:00Z,,,confined,Zwin Far West,satellite,GPS,AL126,Digitanimal,275
+4,f,Equus caballus,adult,harness,,2020-07-05T00:00:00Z,,,confined,Hochterbampt,satellite,GPS,AL131,Digitanimal,275
+3,f,Bos taurus,adult,harness,,2020-07-05T00:00:00Z,,,confined,Hochterbampt,satellite,GPS,AL132,Digitanimal,275
+10,f,Bos taurus,adult,harness,,2021-05-01T00:00:00Z,,,confined,Westhoek,satellite,GPS,AN785,Digitanimal,275
+11,f,Equus caballus,adult,harness,,2021-05-01T00:00:00Z,,,confined,Westhoek,satellite,GPS,AN786,Digitanimal,275
+12,m,Equus caballus,adult,harness,,2021-05-01T00:00:00Z,,,confined,Westhoek,satellite,GPS,AN787,Digitanimal,275
+13,m,Equus caballus,adult,harness,,2021-05-01T00:00:00Z,,,confined,Westhoek,satellite,GPS,AN788,Digitanimal,275
+14,m,Equus caballus,adult,harness,,2021-05-01T00:00:00Z,,,confined,Westhoek,satellite,GPS,AN789,Digitanimal,275
+16,m,Equus caballus,adult,harness,,2021-04-01T00:00:00Z,,,confined,Kikbeekbron,satellite,GPS,AN790,Digitanimal,275
+17,m,Equus caballus,adult,harness,,2021-04-01T00:00:00Z,,,confined,Kikbeekbron,satellite,GPS,AN791,Digitanimal,275
+18,f,Bos taurus,adult,harness,,2021-03-15T00:00:00Z,,,confined,Ziepbeek,satellite,GPS,AN792,Digitanimal,275
+19,f,Bos taurus,adult,harness,,2021-03-15T00:00:00Z,,,confined,Ziepbeek,satellite,GPS,AN793,Digitanimal,275
+20,f,Bos taurus,adult,harness,,2021-03-15T00:00:00Z,,,confined,Ziepbeek,satellite,GPS,AN794,Digitanimal,275
+15,m,Equus asinus,adult,harness,,2021-02-12T00:00:00Z,,,confined,Houtsaegerduinen,satellite,GPS,AN795,Digitanimal,275
+21,f,Bos taurus,adult,harness,,2021-03-15T00:00:00Z,,,confined,Ziepbeek,satellite,GPS,AN796,Digitanimal,275
+22,m,Bos taurus,adult,harness,,2021-04-01T00:00:00Z,,,confined,Demerbroeken,satellite,GPS,AP503,Digitanimal,275
+23,m,Bos taurus,adult,harness,,2021-04-01T00:00:00Z,,,confined,Demerbroeken,satellite,GPS,AP504,Digitanimal,275
+24,f,Bos taurus,adult,harness,,2021-04-01T00:00:00Z,,,confined,Demerbroeken,satellite,GPS,AP505,Digitanimal,275
+25,f,Bos taurus,adult,harness,,2021-04-01T00:00:00Z,,,confined,Demerbroeken,satellite,GPS,AP506,Digitanimal,275
+8,f,Bos taurus,adult,harness,,2021-06-01T00:00:00Z,,,confined,Zwin schorre,satellite,GPS,AP512,Digitanimal,275
+9,f,Bos taurus,adult,harness,,2021-06-01T00:00:00Z,,,confined,Zwin schorre,satellite,GPS,AP513,Digitanimal,275
+1,f,Bos taurus,adult,harness,,2021-03-09T00:00:00Z,,,confined,Bos 't Ename,satellite,GPS,AP514,Digitanimal,275
+5,f,Equus caballus,adult,harness,,2021-03-12T00:00:00Z,,,confined,Hochterbampt,satellite,GPS,AP515,Digitanimal,275
+2,m,Equus caballus,adult,harness,,2021-03-09T00:00:00Z,,,confined,Bos 't Ename,satellite,GPS,AP520,Digitanimal,275
