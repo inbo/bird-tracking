@@ -21,7 +21,7 @@ library(tidyverse)
 library(here)
 ```
 
-## Get Ornitela tag and bird information from spreadsheet
+## Get Ornitela tag and animal information from spreadsheet
 
 ```{r}
 metadata <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=0&single=true&output=csv")
@@ -56,8 +56,8 @@ movebank_ref_data <-
     `animal-id` = metal_ring,
     # animal-latest-date-born
     `animal-nickname` = case_when(
-      str_detect(bird_name, "OT-") ~ NA_character_, # Exclude names that are the default tag name
-      TRUE ~ bird_name
+      str_detect(animal_name, "OT-") ~ NA_character_, # Exclude names that are the default tag name
+      TRUE ~ animal_name
     ),
     `animal-ring-id` = colour_ring,
     `animal-sex` = recode(sex,
@@ -70,7 +70,7 @@ movebank_ref_data <-
       "A" = "adult",
       "J" = "juvenile"
     ),
-    `animal-mass` = bird_weight,
+    `animal-mass` = animal_weight,
     # animal-reproductive-condition
     `attachment-type` = "harness",
     # behavior-according-to
@@ -133,7 +133,7 @@ movebank_ref_data <-
 Save to CSV:
 
 ```{r}
-write_csv(movebank_ref_data, path = here("data", "processed", project_id, "movebank_ref_data.csv"), na = "")
+write_csv(movebank_ref_data, file = here("data", "processed", project_id, "movebank_ref_data.csv"), na = "")
 ```
 
 ## Get gps data (detections)
