@@ -1,6 +1,6 @@
 # Bird tracking
 
-This repository contains the functionality to standardize data from the LifeWatch [GPS tracking network for large birds](http://lifewatch.be/en/gps-tracking-network-large-birds) so these can be published on [Movebank](https://www.movebank.org/).
+This repository contains functionality to standardize animal tracking data so these can be published on [Movebank](https://www.movebank.org/). Most data are collected through the LifeWatch [GPS tracking network for large birds](http://lifewatch.be/en/gps-tracking-network-large-birds).
 
 ## Workflow
 
@@ -16,12 +16,19 @@ This repository contains the functionality to standardize data from the LifeWatc
 - **GPS data**: [Ornitela](https://www.ornitela.com/) database → Live feed to Movebank by associating a selection of tags to a study
 - **Acceleration data**: not yet defined
 
+### Digitanimal
+
+- **Reference data**: Spreadsheet → [Script](src/movebank_digitanimal.Rmd) to query  data in the [Movebank data format](https://www.movebank.org/node/2381) (defined as `dplyr::mutate()`) → Generated file that can be uploaded to Movebank
+- **GPS data**: not yet defined
+- **Acceleration data**: not applicable
+
 ## Datasets
 
 ### Movebank & Zenodo
 
 Title | Movebank | Zenodo | Status
 --- | --- | --- | ---
+BE_GRAZERS - Conservation grazing by livestock (Bos taurus, Equus caballus, Equus asinus) in nature reserves in Flanders (Belgium) | [1455026441](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1455026441) |  | active
 BOP_RODENT - Rodent specialized birds of prey (Circus, Asio, Buteo) in Flanders (Belgium) | [1278021460](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1278021460) |  | active
 DELTATRACK - Herring gulls (Larus argentatus, Laridae) and Lesser black-backed gulls (Larus fuscus, Laridae) breeding at Neeltje Jans (Netherlands) | [1258895879](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1258895879) |  | active
 H_GRONINGEN - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding in Groningen (the Netherlands) | [922263102](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study922263102) | [DOI](https://doi.org/10.5281/zenodo.3552507) | stopped in 2018, described in [Milotic et al. 2020](https://doi.org/10.3897/zookeys.947.52570)
@@ -32,16 +39,14 @@ MH_ANTWERPEN - Western marsh harriers (Circus aeruginosus, Accipitridae) breedin
 MH_WATERLAND - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding near the Belgium-Netherlands border | [604806671](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study604806671) | [DOI](https://doi.org/10.5281/zenodo.3532940) | stopped in 2018, described in [Milotic et al. 2020](https://doi.org/10.3897/zookeys.947.52570)
 O_WESTERSCHELDE - Eurasian oystercatchers (Haematopus ostralegus, Haematopodidae) breeding in East Flanders (Belgium) | [1099562810](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1099562810) | [DOI](https://doi.org/10.5281/zenodo.3734898) | active
 
-
-
 Steps to upload data to Zenodo are described [here](https://github.com/inbo/bird-tracking/issues/131).
 
 ### GBIF
 
-Title | GBIF | Remark
+Title | GBIF | Remark
 --- | --- | ---
-Bird tracking - GPS tracking of Lesser Black-backed Gulls and Herring Gulls breeding at the southern North Sea coast | [DOI](https://doi.org/10.15468/02omly) | Subset of `HG_OOSTENDE` and `LBBG_ZEEBRUGGE`, described in [Stienen et al. 2016](https://doi.org/10.3897/zookeys.555.6173)
-Bird tracking - GPS tracking of Western Marsh Harriers breeding near the Belgium-Netherlands border | [DOI](https://doi.org/10.15468/rbguhj) | Subset of `MH_WATERLAND`
+Bird tracking - GPS tracking of Lesser Black-backed Gulls and Herring Gulls breeding at the southern North Sea coast | [DOI](https://doi.org/10.15468/02omly) | Subset of `HG_OOSTENDE` and `LBBG_ZEEBRUGGE`, described in [Stienen et al. 2016](https://doi.org/10.3897/zookeys.555.6173)
+Bird tracking - GPS tracking of Western Marsh Harriers breeding near the Belgium-Netherlands border | [DOI](https://doi.org/10.15468/rbguhj) | Subset of `MH_WATERLAND`
 
 ## Repo structure
 
@@ -61,8 +66,9 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 |
 ├── src
 │   ├── functions       : Custom functions used in scripts
-│   ├── movebank_ornitela.Rmd : Script to get data for a specific Ornitela project in Movebank format
-│   ├── movebank_uvabits.Rmd : Script to get data for a specific UvA-BiTS project in Movebank format
+│   ├── movebank_uvabits.Rmd : Script to export UvA-BiTS data in Movebank format
+│   ├── movebank_ornitela.Rmd : Script to export Ornitela data in Movebank format
+│   ├── movebank_digitanimal.Rmd : Script to export Digitanimal data in Movebank format
 │   └── outliers.Rmd    : Script to mark outliers based on high speeds
 │
 ├── sql
