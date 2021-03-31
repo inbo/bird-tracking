@@ -28,7 +28,7 @@ This repository contains functionality to standardize animal tracking data so th
 
 Title | Movebank | Zenodo | Status
 --- | --- | --- | ---
-BE_GRAZERS - Conservation grazing by livestock (Bos taurus, Equus caballus, Equus asinus) in nature reserves in Flanders (Belgium) | [1455026441](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1455026441) |  | active
+BE_GRAZERS - Conservation grazing by livestock (Bos taurus, Equus asinus, Equus caballus, Ovis aries) in nature reserves in Flanders (Belgium) | [1455026441](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1455026441) |  | active
 BOP_RODENT - Rodent specialized birds of prey (Circus, Asio, Buteo) in Flanders (Belgium) | [1278021460](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1278021460) |  | active
 DELTATRACK - Herring gulls (Larus argentatus, Laridae) and Lesser black-backed gulls (Larus fuscus, Laridae) breeding at Neeltje Jans (Netherlands) | [1258895879](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1258895879) |  | active
 H_GRONINGEN - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding in Groningen (the Netherlands) | [922263102](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study922263102) | [DOI](https://doi.org/10.5281/zenodo.3552507) | stopped in 2018, described in [Milotic et al. 2020](https://doi.org/10.3897/zookeys.947.52570)
