@@ -63,7 +63,7 @@ movebank_ref_data <-
     ),
     `animal-taxon` = scientific_name,
     # animal-taxon-detail
-    `animal-life-stage` = "adult", # TODO
+    `animal-life-stage` = "adult",
     # animal-mass`: NOT AVAILABLE
     # animal-reproductive-condition
     `attachment-type` = "harness",
