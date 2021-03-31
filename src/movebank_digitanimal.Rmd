@@ -101,7 +101,7 @@ movebank_ref_data <-
     # manipulation-comments
     `manipulation-type` = "confined",
     `study-site` = release_location, # For birds this is indicated in deployment-comments
-    `tag-readout-method` = "satellite", # TODO
+    `tag-readout-method` = "other wireless",
     # beacon-frequency
     `sensor-type` = "GPS",
     # tag-comments
