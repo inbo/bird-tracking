@@ -86,8 +86,8 @@ movebank_ref_data <-
     `deployment-comments` = track_session_remarks,
     # deployment-end-comments
     `deployment-end-type` = case_when(
-      str_detect(track_session_remarks, "dead") ~ "dead",
-      str_detect(track_session_remarks, "defect") ~ "equipment failure",
+      str_detect(str_to_lower(track_session_remarks), "dead") ~ "dead",
+      str_detect(str_to_lower(track_session_remarks), "defect") ~ "equipment failure",
       TRUE ~ NA_character_
     ),
     # deployment-id: NOT AVAILABLE
