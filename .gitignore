@@ -39,3 +39,4 @@ vignettes/*.pdf
 # Data
 data/processed/*/*
 !data/processed/*/movebank_ref_data.csv
+!data/processed/*/datapackage.json
