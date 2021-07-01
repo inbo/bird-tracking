@@ -133,7 +133,7 @@ movebank_ref_data <-
 Save to CSV:
 
 ```{r}
-write_csv(movebank_ref_data, path = here("data", "processed", project_id, "movebank_ref_data.csv"), na = "")
+write_csv(movebank_ref_data, file = here("data", "processed", project_id, "movebank_ref_data.csv"), na = "")
 ```
 
 ## Get gps data (detections)

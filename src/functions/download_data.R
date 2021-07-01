@@ -45,7 +45,7 @@ download_data <- function(sql_file, download_directory,
       data_sql <- glue_sql(read_file(sql_file), .con = connection)
       tryCatch({
         data <- dbGetQuery(connection, data_sql)
-        write_csv(data, path = data_file, na = "")
+        write_csv(data, file = data_file, na = "")
       }, error = function(e) {
         stop(e)
       })
