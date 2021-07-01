@@ -420,6 +420,163 @@
           }
         ]
       }
+    },
+    {
+      "name": "acceleration",
+      "path": [
+        "MH_ANTWERPEN-acceleration-2018.csv",
+        "MH_ANTWERPEN-acceleration-2019.csv",
+        "MH_ANTWERPEN-acceleration-2020.csv"
+      ],
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "event-id",
+            "title": "event ID",
+            "description": "An identifier for the set of values associated with each event, i.e. sensor measurement. A unique event ID is assigned to every time-location or other time-measurement record in Movebank. If multiple measurements are included within a single row of a data file, they will share an event ID. If users import the same sensor measurement to Movebank multiple times, a separate event ID will be assigned to each. Example: '6340565'; Units: none; Entity described: event",
+            "type": "integer",
+            "format": "default",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000103/2/"
+          },
+          {
+            "name": "visible",
+            "title": "visible",
+            "description": "Determines whether an event is visible on the Movebank map. Values are calculated automatically, with TRUE indicating the event has not been flagged as an outlier by 'algorithm marked outlier', 'import marked outlier' or 'manually marked outlier', or that the user has overridden the results of these outlier attributes using 'manually marked valid' = TRUE. Allowed values are TRUE or FALSE. Units: none; Entity described: event",
+            "type": "boolean",
+            "format": "default",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000209/2/"
+          },
+          {
+            "name": "timestamp",
+            "title": "timestamp",
+            "description": "The date and time corresponding to a sensor measurement or an estimate derived from sensor measurements. Example: '2008-08-14 18:31:00.000'; Format: yyyy-MM-dd HH:mm:ss.SSS; Units: UTC or GPS time; Entity described: event",
+            "type": "datetime",
+            "format": "%Y-%m-%d %H:%M:%S.%f",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000200/2/"
+          },
+          {
+            "name": "acceleration-raw-x",
+            "title": "acceleration raw x",
+            "description": "Raw acceleration values provided by the tag for the X axis. Range and units may vary by provider, tag, and orientation of the sensor on the animal. Example: '0.556641'; Units: not defined; Entity described: event",
+            "type": "number",
+            "format": "default",
+            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000002/2/"
+          },
+          {
+            "name": "acceleration-raw-y",
+            "title": "acceleration raw y",
+            "description": "Raw acceleration values provided by the tag for the Y axis. Range and units may vary by provider, tag, and orientation of the sensor on the animal. Example: '0.09375'; Units: not defined; Entity described: event",
+            "type": "number",
+            "format": "default",
+            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000003/2/"
+          },
+          {
+            "name": "acceleration-raw-z",
+            "title": "acceleration raw z",
+            "description": "Raw acceleration values provided by the tag for the Z axis. Range and units may vary by provider, tag, and orientation of the sensor on the animal. Example: '-0.84375'; Units: not defined; Entity described: event",
+            "type": "number",
+            "format": "default",
+            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000004/2/"
+          },
+          {
+            "name": "eobs:start-timestamp",
+            "title": "eobs start timestamp",
+            "description": "The date and time of day when the acceleration burst belonging to this line begins. The exact time of the first sample is a little later (up to 1 second) for older e-obs tags, especially when the ACC-pinger is enabled (4 pings before the start of each ACC burst) (definition from 'e-obs GPS-acceleration-tags application note: How to use the acceleration sensor, interpret, analyse its data and how to get values in m/s^2', 2011). Example: '2011-01-03 13:45:00.000'; Format: yyyy-MM-dd HH:mm:ss.SSS; Units: GPS time; Entity described: event",
+            "type": "datetime",
+            "format": "%Y-%m-%d %H:%M:%S.%f",
+            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000097/2/"
+          },
+          {
+            "name": "start-timestamp",
+            "title": "start timestamp",
+            "description": "The date and time when the sampling interval or burst began. Example: '2011-01-03 13:45:00.000'; Format: yyyy-MM-dd HH:mm:ss.SSS; Units: UTC or GPS time; Entity described: event",
+            "type": "datetime",
+            "format": "%Y-%m-%d %H:%M:%S.%f",
+            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000171/2/"
+          },
+          {
+            "name": "tilt-x",
+            "title": "tilt x",
+            "description": "Tilt provided by the accelerometer for the X axis. Example: '0'; Units: g forces (1 g = 9.8 m s^-2); Entity described: event",
+            "type": "number",
+            "format": "default",
+            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000197/2/"
+          },
+          {
+            "name": "tilt-y",
+            "title": "tilt y",
+            "description": "Tilt provided by the accelerometer for the Y axis. Example: '0'; Units: g forces (1 g = 9.8 m s^-2); Entity described: event",
+            "type": "number",
+            "format": "default",
+            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000198/2/"
+          },
+          {
+            "name": "tilt-z",
+            "title": "tilt z",
+            "description": "Tilt provided by the accelerometer for the Z axis. Example: '1'; Units: g forces (1 g = 9.8 m s^-2); Entity described: event",
+            "type": "number",
+            "format": "default",
+            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000199/2/"
+          },
+          {
+            "name": "sensor-type",
+            "title": "sensor type",
+            "description": "The type of sensor with which data were collected. All sensors are associated with a tag id, and tags can contain multiple sensor types. Each event record in Movebank is assigned one sensor type. If values from multiple sensors are reported in a single event, the primary sensor is used. Values are chosen from a controlled list: acceleration = The sensor collects acceleration data; accessory measurements = The sensor collects accessory measurements, such as battery voltage; Argos Doppler shift = The sensor uses Argos Doppler shift to determine position; barometer = The sensor records air or water pressure; bird ring = The animal is identified by a band or ring that has a unique identifier; GPS = The sensor uses GPS to determine location; magnetometer = The sensor records the magnetic field; natural mark = The animal is identified by a unique natural marking; orientation = Quaternion components describing the orientation of the tag are derived from accelerometer and gyroscope measurements; radio transmitter = The sensor is a classical radio transmitter; solar geolocator = The sensor collects light levels, which are used to determine position (for processed locations); solar geolocator raw = The sensor collects light levels, which are used to determine position (for raw light-level measurements); solar geolocator twilight = The sensor collects light levels, which are used to determine position (for twilights calculated from light-level measurements). Format: controlled list; Units: none; Entity described: event",
+            "type": "string",
+            "format": "default",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000170/2/"
+          },
+          {
+            "name": "individual-taxon-canonical-name",
+            "title": "animal taxon",
+            "description": "The scientific name of the species on which the tag was deployed, as defined by the Integrated Taxonomic Information System (ITIS, www.itis.gov). If the species name can not be provided, this should be the lowest level taxonomic rank that can be determined and that is used in the ITIS taxonomy. Additional information can be provided using the term 'taxon detail'. Example: 'Buteo swainsoni'; Format: controlled list; Units: none; Entity described: individual",
+            "type": "string",
+            "format": "default",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000024/2/"
+          },
+          {
+            "name": "tag-local-identifier",
+            "title": "tag ID",
+            "description": "A unique identifier for the tag, provided by the data owner. If the data owner does not provide a tag ID, an internal Movebank tag identifier may sometimes be shown. Example: '2342'; Units: none; Entity described: tag",
+            "type": "string",
+            "format": "default",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000181/2/"
+          },
+          {
+            "name": "individual-local-identifier",
+            "title": "animal ID",
+            "description": "An individual identifier for the animal, provided by the data owner. If the data owner does not provide an Animal ID, an internal Movebank animal identifier is sometimes shown. Example: '91876A, Gary'; Units: none; Entity described: individual",
+            "type": "string",
+            "format": "default",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000016/2/"
+          },
+          {
+            "name": "study-name",
+            "title": "study name",
+            "description": "The name of the study in Movebank. Example: 'Coyotes, Kays and Bogan, Albany NY'; Units: none; Entity described: study (event)",
+            "type": "string",
+            "format": "default",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000173/2/"
+          }
+        ],
+        "primaryKey": "event-id",
+        "foreignKeys": [
+          {
+            "fields": [
+              "tag-local-identifier",
+              "individual-local-identifier"
+            ],
+            "reference": {
+              "resource": "reference-data",
+              "fields": [
+                "tag-id",
+                "animal-id"
+              ]
+            }
+          }
+        ]
+      }
     }
   ]
 }
