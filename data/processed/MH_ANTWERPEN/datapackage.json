@@ -299,6 +299,14 @@
             "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000121/2/"
           },
           {
+            "name": "gps:vdop",
+            "title": "GPS VDOP",
+            "description": "Vertical dilution of precision provided by the GPS. Example: '1.9'; Units: unitless; Entity described: event",
+            "type": "number",
+            "format": "default",
+            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000122/2/"
+          },
+          {
             "name": "ground-speed",
             "title": "ground speed",
             "description": "The estimated ground speed provided by the sensor or calculated between consecutive locations. Example: '7.22'; Units: m/s; Entity described: event",
@@ -321,6 +329,14 @@
             "type": "number",
             "format": "default",
             "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000131/2/"
+          },
+          {
+            "name": "import-marked-outlier",
+            "title": "import marked outlier",
+            "description": "Identifies events as outliers. Typically used to import a record of outliers that were identified by the data provider or owner with automated methods outside of Movebank. Outliers have the value TRUE. Units: none; Entity described: event",
+            "type": "boolean",
+            "format": "default",
+            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000133/2/"
           },
           {
             "name": "location-error-numerical",
