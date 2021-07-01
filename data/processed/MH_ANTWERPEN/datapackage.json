@@ -4,7 +4,7 @@
   "resources": [
     {
       "name": "reference-data",
-      "path": "https://zenodo.org/record/3540800/files/LBBG_ZEEBRUGGE-reference-data.csv",
+      "path": "MH_ANTWERPEN-reference-data.csv",
       "profile": "tabular-data-resource",
       "schema": {
         "fields": [
@@ -210,7 +210,11 @@
     },
     {
       "name": "gps",
-      "path": "https://zenodo.org/record/3540800/files/LBBG_ZEEBRUGGE-gps-2013.csv",
+      "path": [
+        "MH_ANTWERPEN-gps-2018.csv",
+        "MH_ANTWERPEN-gps-2019.csv",
+        "MH_ANTWERPEN-gps-2020.csv"
+      ],
       "profile": "tabular-data-resource",
       "schema": {
         "fields": [
