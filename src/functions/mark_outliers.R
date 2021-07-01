@@ -7,7 +7,11 @@ mark_outliers <- function(x, max_speed = 30, max_runs = 5) {
   gps_speed <- x
   run <- 0
 
-  if (nrow(x) > 0) {
+  if (nrow(x) == 0) {
+    message("No data.")
+  } else if (nrow(x) == 1) {
+    message("1 record.")
+  } else {
     for (i in 1:max_runs) {
       run <- run + 1
       # Calculate speed (see function below)
@@ -26,8 +30,6 @@ mark_outliers <- function(x, max_speed = 30, max_runs = 5) {
       }
     }
     message(paste(length(outliers), "outliers found using", run, "runs."))
-  } else {
-    message("No data.")
   }
 
   # Add import-marked-outlier column
@@ -38,7 +40,7 @@ mark_outliers <- function(x, max_speed = 30, max_runs = 5) {
   return(x)
 }
 
-#' Returns gps data with column `speed`  in m/s between point `i` and `i-1`,
+#' Returns gps data with column `speed` in m/s between point `i` and `i-1`,
 #' using the trip package.
 calc_speed <- function(x, timestamp = "timestamp", lat = "location-lat",
                        lon = "location-long") {
