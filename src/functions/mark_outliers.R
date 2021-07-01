@@ -10,7 +10,7 @@ mark_outliers <- function(x, max_speed = 30, max_runs = 5) {
   if (nrow(x) == 0) {
     message("No data.")
   } else if (nrow(x) == 1) {
-    message("1 record.")
+    message("No calculation because one record.")
   } else {
     for (i in 1:max_runs) {
       run <- run + 1
