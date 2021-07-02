@@ -297,14 +297,6 @@
             "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000121/2/"
           },
           {
-            "name": "gps:vdop",
-            "title": "GPS VDOP",
-            "description": "Vertical dilution of precision provided by the GPS. Example: '1.9'; Units: unitless; Entity described: event",
-            "type": "number",
-            "format": "default",
-            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000122/2/"
-          },
-          {
             "name": "ground-speed",
             "title": "ground speed",
             "description": "The estimated ground speed provided by the sensor or calculated between consecutive locations. Example: '7.22'; Units: m/s; Entity described: event",
@@ -474,14 +466,6 @@
             "type": "number",
             "format": "default",
             "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000004/2/"
-          },
-          {
-            "name": "eobs:start-timestamp",
-            "title": "eobs start timestamp",
-            "description": "The date and time of day when the acceleration burst belonging to this line begins. The exact time of the first sample is a little later (up to 1 second) for older e-obs tags, especially when the ACC-pinger is enabled (4 pings before the start of each ACC burst) (definition from 'e-obs GPS-acceleration-tags application note: How to use the acceleration sensor, interpret, analyse its data and how to get values in m/s^2', 2011). Example: '2011-01-03 13:45:00.000'; Format: yyyy-MM-dd HH:mm:ss.SSS; Units: GPS time; Entity described: event",
-            "type": "datetime",
-            "format": "%Y-%m-%d %H:%M:%S.%f",
-            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000097/2/"
           },
           {
             "name": "start-timestamp",
