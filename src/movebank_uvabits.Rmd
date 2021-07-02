@@ -68,14 +68,14 @@ For a project, get data on animals, tags and deployments in the [Movebank refere
 Query data:
 
 ```{r get_ref_data}
-movebank_ref_sql <- glue_sql(read_file(here("sql", "movebank_ref.sql")), .con = con)
+movebank_ref_sql <- glue_sql(read_file(here::here("sql", "movebank_ref.sql")), .con = con)
 movebank_ref_data <- dbGetQuery(con, movebank_ref_sql)
 ```
 
 Save to CSV:
 
 ```{r}
-write_csv(movebank_ref_data, file = here("data", "processed", project_id, "movebank_ref_data.csv"), na = "")
+write_csv(movebank_ref_data, file = here::here("data", "processed", project_id, "movebank_ref_data.csv"), na = "")
 ```
 
 ## Get ring numbers
@@ -94,7 +94,7 @@ ring_numbers <- movebank_ref_data %>%
 Load custom function to download data (will iterate over ring numbers):
 
 ```{r}
-source(here("src", "functions", "download_data.R"))
+source(here::here("src", "functions", "download_data.R"))
 ```
 
 ## Get gps data (detections)
@@ -103,8 +103,8 @@ Query and save data (one csv file per ringnumber):
 
 ```{r}
 download_data(
-  sql_file = here("sql", "movebank_gps.sql"),
-  download_directory = here("data", "processed", project_id, "gps"),
+  sql_file = here::here("sql", "movebank_gps.sql"),
+  download_directory = here::here("data", "processed", project_id, "gps"),
   download_filename = "movebank_gps",
   ring_numbers = ring_numbers,
   shared = shared,
@@ -119,8 +119,8 @@ Query and save data (one csv file per ringnumber):
 
 ```{r}
 download_data(
-  sql_file = here("sql", "movebank_acc.sql"),
-  download_directory = here("data", "processed", project_id, "acc"),
+  sql_file = here::here("sql", "movebank_acc.sql"),
+  download_directory = here::here("data", "processed", project_id, "acc"),
   download_filename = "movebank_acc",
   ring_numbers = ring_numbers,
   shared = shared,
