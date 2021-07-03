@@ -211,7 +211,14 @@
     {
       "name": "gps",
       "path": [
-        "https://zenodo.org/record/3959038/files/HG_OOSTENDE-gps-2014.csv.zip"
+        "HG_OOSTENDE-gps-2013.csv.gz",
+        "HG_OOSTENDE-gps-2014.csv.gz",
+        "HG_OOSTENDE-gps-2015.csv.gz",
+        "HG_OOSTENDE-gps-2016.csv.gz",
+        "HG_OOSTENDE-gps-2017.csv.gz",
+        "HG_OOSTENDE-gps-2018.csv.gz",
+        "HG_OOSTENDE-gps-2019.csv.gz",
+        "HG_OOSTENDE-gps-2020.csv.gz"
       ],
       "profile": "tabular-data-resource",
       "schema": {
@@ -414,7 +421,14 @@
     {
       "name": "acceleration",
       "path": [
-        "https://zenodo.org/record/3959038/files/HG_OOSTENDE-acceleration-2014.csv.zip"
+        "HG_OOSTENDE-acceleration-2013.csv.gz",
+        "HG_OOSTENDE-acceleration-2014.csv.gz",
+        "HG_OOSTENDE-acceleration-2015.csv.gz",
+        "HG_OOSTENDE-acceleration-2016.csv.gz",
+        "HG_OOSTENDE-acceleration-2017.csv.gz",
+        "HG_OOSTENDE-acceleration-2018.csv.gz",
+        "HG_OOSTENDE-acceleration-2019.csv.gz",
+        "HG_OOSTENDE-acceleration-2020.csv.gz"
       ],
       "profile": "tabular-data-resource",
       "schema": {
