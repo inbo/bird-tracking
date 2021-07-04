@@ -1,10 +1,10 @@
 {
-  "id": "https://doi.org/10.5281/zenodo.5061303",
+  "id": "https://doi.org/10.5281/zenodo.5068540",
   "profile": "tabular-data-package",
   "resources": [
     {
       "name": "reference-data",
-      "path": "HG_OOSTENDE-reference-data.csv",
+      "path": "LBBG_ZEEBRUGGE-reference-data.csv",
       "profile": "tabular-data-resource",
       "schema": {
         "fields": [
@@ -211,14 +211,14 @@
     {
       "name": "gps",
       "path": [
-        "HG_OOSTENDE-gps-2013.csv.gz",
-        "HG_OOSTENDE-gps-2014.csv.gz",
-        "HG_OOSTENDE-gps-2015.csv.gz",
-        "HG_OOSTENDE-gps-2016.csv.gz",
-        "HG_OOSTENDE-gps-2017.csv.gz",
-        "HG_OOSTENDE-gps-2018.csv.gz",
-        "HG_OOSTENDE-gps-2019.csv.gz",
-        "HG_OOSTENDE-gps-2020.csv.gz"
+        "LBBG_ZEEBRUGGE-gps-2013.csv.gz",
+        "LBBG_ZEEBRUGGE-gps-2014.csv.gz",
+        "LBBG_ZEEBRUGGE-gps-2015.csv.gz",
+        "LBBG_ZEEBRUGGE-gps-2016.csv.gz",
+        "LBBG_ZEEBRUGGE-gps-2017.csv.gz",
+        "LBBG_ZEEBRUGGE-gps-2018.csv.gz",
+        "LBBG_ZEEBRUGGE-gps-2019.csv.gz",
+        "LBBG_ZEEBRUGGE-gps-2020.csv.gz"
       ],
       "profile": "tabular-data-resource",
       "schema": {
@@ -421,14 +421,14 @@
     {
       "name": "acceleration",
       "path": [
-        "HG_OOSTENDE-acceleration-2013.csv.gz",
-        "HG_OOSTENDE-acceleration-2014.csv.gz",
-        "HG_OOSTENDE-acceleration-2015.csv.gz",
-        "HG_OOSTENDE-acceleration-2016.csv.gz",
-        "HG_OOSTENDE-acceleration-2017.csv.gz",
-        "HG_OOSTENDE-acceleration-2018.csv.gz",
-        "HG_OOSTENDE-acceleration-2019.csv.gz",
-        "HG_OOSTENDE-acceleration-2020.csv.gz"
+        "LBBG_ZEEBRUGGE-acceleration-2013.csv.gz",
+        "LBBG_ZEEBRUGGE-acceleration-2014.csv.gz",
+        "LBBG_ZEEBRUGGE-acceleration-2015.csv.gz",
+        "LBBG_ZEEBRUGGE-acceleration-2016.csv.gz",
+        "LBBG_ZEEBRUGGE-acceleration-2017.csv.gz",
+        "LBBG_ZEEBRUGGE-acceleration-2018.csv.gz",
+        "LBBG_ZEEBRUGGE-acceleration-2019.csv.gz",
+        "LBBG_ZEEBRUGGE-acceleration-2020.csv.gz"
       ],
       "profile": "tabular-data-resource",
       "schema": {
