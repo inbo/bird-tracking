@@ -262,12 +262,36 @@
             "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000145/2/"
           },
           {
+            "name": "algorithm-marked-outlier",
+            "title": "algorithm marked outlier",
+            "description": "Identifies events marked as outliers using a user-selected filter algorithm in Movebank. Outliers have the value TRUE. Units: none; Entity described: event",
+            "type": "boolean",
+            "format": "default",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000011/2/"
+          },
+          {
+            "name": "bar:barometric-height",
+            "title": "barometric height",
+            "description": "Altitude estimated by a barometric pressure sensor on the tag. Example: '179'; Units: m; Entity described: event",
+            "type": "number",
+            "format": "default",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000054/2/"
+          },
+          {
             "name": "bar:barometric-pressure",
             "title": "barometric pressure",
             "description": "The barometric air or water pressure. Example: '32536.0'; Units: mbar (hPa); Entity described: event",
             "type": "number",
             "format": "default",
             "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000055/2/"
+          },
+          {
+            "name": "compass-heading",
+            "title": "compass heading",
+            "description": "The tilt-compensated horizontal compass heading. Example: '62'; Units: degrees clockwise from magnetic north; Entity described: event",
+            "type": "number",
+            "format": "default",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000070/2/"
           },
           {
             "name": "external-temperature",
@@ -300,6 +324,14 @@
             "type": "number",
             "format": "default",
             "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000121/2/"
+          },
+          {
+            "name": "gps:vdop",
+            "title": "GPS VDOP",
+            "description": "Vertical dilution of precision provided by the GPS. Example: '1.9'; Units: unitless; Entity described: event",
+            "type": "number",
+            "format": "default",
+            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000122/2/"
           },
           {
             "name": "ground-speed",
