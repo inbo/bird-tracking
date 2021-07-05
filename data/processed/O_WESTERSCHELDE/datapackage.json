@@ -1,10 +1,10 @@
 {
-  "id": "https://doi.org/10.5281/zenodo.5068905",
+  "id": "https://doi.org/10.5281/zenodo.5070086",
   "profile": "tabular-data-package",
   "resources": [
     {
       "name": "reference-data",
-      "path": "H_GRONINGEN-reference-data.csv",
+      "path": "O_WESTERSCHELDE-reference-data.csv",
       "profile": "tabular-data-resource",
       "schema": {
         "fields": [
@@ -211,13 +211,9 @@
     {
       "name": "gps",
       "path": [
-        "H_GRONINGEN-gps-2012.csv",
-        "H_GRONINGEN-gps-2013.csv",
-        "H_GRONINGEN-gps-2014.csv",
-        "H_GRONINGEN-gps-2015.csv",
-        "H_GRONINGEN-gps-2016.csv",
-        "H_GRONINGEN-gps-2017.csv",
-        "H_GRONINGEN-gps-2018.csv"
+        "O_WESTERSCHELDE-gps-2018.csv",
+        "O_WESTERSCHELDE-gps-2019.csv",
+        "O_WESTERSCHELDE-gps-2020.csv"
       ],
       "profile": "tabular-data-resource",
       "schema": {
@@ -303,14 +299,6 @@
             "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000121/2/"
           },
           {
-            "name": "gps:vdop",
-            "title": "GPS VDOP",
-            "description": "Vertical dilution of precision provided by the GPS. Example: '1.9'; Units: unitless; Entity described: event",
-            "type": "number",
-            "format": "default",
-            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000122/2/"
-          },
-          {
             "name": "ground-speed",
             "title": "ground speed",
             "description": "The estimated ground speed provided by the sensor or calculated between consecutive locations. Example: '7.22'; Units: m/s; Entity described: event",
@@ -333,14 +321,6 @@
             "type": "number",
             "format": "default",
             "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000131/2/"
-          },
-          {
-            "name": "import-marked-outlier",
-            "title": "import marked outlier",
-            "description": "Identifies events as outliers. Typically used to import a record of outliers that were identified by the data provider or owner with automated methods outside of Movebank. Outliers have the value TRUE. Units: none; Entity described: event",
-            "type": "boolean",
-            "format": "default",
-            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000133/2/"
           },
           {
             "name": "location-error-numerical",
@@ -428,13 +408,9 @@
     {
       "name": "acceleration",
       "path": [
-        "H_GRONINGEN-acceleration-2012.csv",
-        "H_GRONINGEN-acceleration-2013.csv",
-        "H_GRONINGEN-acceleration-2014.csv",
-        "H_GRONINGEN-acceleration-2015.csv",
-        "H_GRONINGEN-acceleration-2016.csv",
-        "H_GRONINGEN-acceleration-2017.csv",
-        "H_GRONINGEN-acceleration-2018.csv"
+        "O_WESTERSCHELDE-acceleration-2018.csv",
+        "O_WESTERSCHELDE-acceleration-2019.csv",
+        "O_WESTERSCHELDE-acceleration-2020.csv"
       ],
       "profile": "tabular-data-resource",
       "schema": {
@@ -486,14 +462,6 @@
             "type": "number",
             "format": "default",
             "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000004/2/"
-          },
-          {
-            "name": "eobs:start-timestamp",
-            "title": "eobs start timestamp",
-            "description": "The date and time of day when the acceleration burst belonging to this line begins. The exact time of the first sample is a little later (up to 1 second) for older e-obs tags, especially when the ACC-pinger is enabled (4 pings before the start of each ACC burst) (definition from 'e-obs GPS-acceleration-tags application note: How to use the acceleration sensor, interpret, analyse its data and how to get values in m/s^2', 2011). Example: '2011-01-03 13:45:00.000'; Format: yyyy-MM-dd HH:mm:ss.SSS; Units: GPS time; Entity described: event",
-            "type": "datetime",
-            "format": "%Y-%m-%d %H:%M:%S.%f",
-            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000097/2/"
           },
           {
             "name": "start-timestamp",
