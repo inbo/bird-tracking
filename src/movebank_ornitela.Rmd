@@ -56,8 +56,8 @@ movebank_ref_data <-
     `animal-id` = metal_ring,
     # animal-latest-date-born
     `animal-nickname` = case_when(
-      str_detect(bird_name, "OT-") ~ NA_character_, # Exclude names that are the default tag name
-      TRUE ~ bird_name
+      str_detect(animal_name, "OT-") ~ NA_character_, # Exclude names that are the default tag name
+      TRUE ~ animal_name
     ),
     `animal-ring-id` = colour_ring,
     `animal-sex` = recode(sex,
@@ -70,7 +70,7 @@ movebank_ref_data <-
       "A" = "adult",
       "J" = "juvenile"
     ),
-    `animal-mass` = bird_weight,
+    `animal-mass` = animal_weight,
     # animal-reproductive-condition
     `attachment-type` = "harness",
     # behavior-according-to
