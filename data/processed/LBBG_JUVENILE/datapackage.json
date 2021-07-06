@@ -1,10 +1,10 @@
 {
-  "id": "https://doi.org/10.5281/zenodo.5068540",
+  "id": "https://doi.org/10.5281/zenodo.5075869",
   "profile": "tabular-data-package",
   "resources": [
     {
       "name": "reference-data",
-      "path": "LBBG_ZEEBRUGGE-reference-data.csv",
+      "path": "LBBG_JUVENILE-reference-data.csv",
       "profile": "tabular-data-resource",
       "schema": {
         "fields": [
@@ -48,14 +48,6 @@
             "type": "datetime",
             "format": "%Y-%m-%d %H:%M:%S.%f",
             "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000077/2/"
-          },
-          {
-            "name": "animal-comments",
-            "title": "animal comments",
-            "description": "Additional information about the animal that is not described by other reference data terms. Example: 'sibling of #1423'; Units: none; Entity described: individual",
-            "type": "string",
-            "format": "default",
-            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000012/2/"
           },
           {
             "name": "animal-life-stage",
@@ -106,22 +98,6 @@
             "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000052/2/"
           },
           {
-            "name": "deploy-on-latitude",
-            "title": "deploy on latitude",
-            "description": "The geographic latitude of the location where the animal was released (intended primarily for instances in which the animal release and tag retrieval locations have higher accuracy than those derived from sensor data). Example: '27.3516'; Units: decimal degrees, WGS84 reference system; Entity described: deployment",
-            "type": "number",
-            "format": "default",
-            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000078/2/"
-          },
-          {
-            "name": "deploy-on-longitude",
-            "title": "deploy on longitude",
-            "description": "The geographic longitude of the location where the animal was released (intended primarily for instances in which the animal release and tag retrieval locations have higher accuracy than those derived from sensor data). Example: '-97.3321'; Units: decimal degrees, WGS84 reference system; Entity described: deployment",
-            "type": "number",
-            "format": "default",
-            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000079/2/"
-          },
-          {
             "name": "deployment-comments",
             "title": "deployment comments",
             "description": "Additional information about the tag deployment that is not described by other reference data terms. Example: 'body length 154 cm; condition good'; Units: none; Entity described: deployment",
@@ -136,22 +112,6 @@
             "type": "string",
             "format": "default",
             "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000084/2/"
-          },
-          {
-            "name": "deployment-id",
-            "title": "deployment ID",
-            "description": "A unique identifier for the deployment of a tag on animal, provided by the data owner. If the data owner does not provide a Deployment ID, an internal Movebank deployment identifier may sometimes be shown. Example: 'Jane-Tag42'; Units: none; Entity described: deployment",
-            "type": "string",
-            "format": "default",
-            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000085/2/"
-          },
-          {
-            "name": "location-accuracy-comments",
-            "title": "location accuracy comments",
-            "description": "Comments about the values provided in 'location error text', 'location error numerical', 'vertical error numerical', 'lat lower', 'lat upper', 'long lower' and/or 'long upper'. The percentile uncertainty can be provided using 'location error percentile'. Example: '1 standard deviation errors, assuming normal distribution, provided by the GPS unit'; Units: none; Entity described: deployment",
-            "type": "string",
-            "format": "default",
-            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000141/2/"
           },
           {
             "name": "manipulation-type",
@@ -211,14 +171,7 @@
     {
       "name": "gps",
       "path": [
-        "LBBG_ZEEBRUGGE-gps-2013.csv.gz",
-        "LBBG_ZEEBRUGGE-gps-2014.csv.gz",
-        "LBBG_ZEEBRUGGE-gps-2015.csv.gz",
-        "LBBG_ZEEBRUGGE-gps-2016.csv.gz",
-        "LBBG_ZEEBRUGGE-gps-2017.csv.gz",
-        "LBBG_ZEEBRUGGE-gps-2018.csv.gz",
-        "LBBG_ZEEBRUGGE-gps-2019.csv.gz",
-        "LBBG_ZEEBRUGGE-gps-2020.csv.gz"
+        "LBBG_JUVENILE-gps-2020.csv"
       ],
       "profile": "tabular-data-resource",
       "schema": {
@@ -264,12 +217,52 @@
             "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000145/2/"
           },
           {
-            "name": "bar:barometric-pressure",
-            "title": "barometric pressure",
-            "description": "The barometric air or water pressure. Example: '32536.0'; Units: mbar (hPa); Entity described: event",
+            "name": "acceleration-raw-x",
+            "title": "acceleration raw x",
+            "description": "Raw acceleration values provided by the tag for the X axis. Range and units may vary by provider, tag, and orientation of the sensor on the animal. Example: '0.556641'; Units: not defined; Entity described: event",
             "type": "number",
             "format": "default",
-            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000055/2/"
+            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000002/2/"
+          },
+          {
+            "name": "acceleration-raw-y",
+            "title": "acceleration raw y",
+            "description": "Raw acceleration values provided by the tag for the Y axis. Range and units may vary by provider, tag, and orientation of the sensor on the animal. Example: '0.09375'; Units: not defined; Entity described: event",
+            "type": "number",
+            "format": "default",
+            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000003/2/"
+          },
+          {
+            "name": "acceleration-raw-z",
+            "title": "acceleration raw z",
+            "description": "Raw acceleration values provided by the tag for the Z axis. Range and units may vary by provider, tag, and orientation of the sensor on the animal. Example: '-0.84375'; Units: not defined; Entity described: event",
+            "type": "number",
+            "format": "default",
+            "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000004/2/"
+          },
+          {
+            "name": "bar:barometric-height",
+            "title": "barometric height",
+            "description": "Altitude estimated by a barometric pressure sensor on the tag. Example: '179'; Units: m; Entity described: event",
+            "type": "number",
+            "format": "default",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000054/2/"
+          },
+          {
+            "name": "battery-charge-percent",
+            "title": "battery charge percent",
+            "description": "The battery charge as a percentage of full charge. Example: '25'; Units: none (percent); Entity described: event",
+            "type": "number",
+            "format": "default",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000063/2/"
+          },
+          {
+            "name": "battery-charging-current",
+            "title": "battery charging current",
+            "description": "The battery charging current reported by the tag. Example: '0'; Units: milliamperes (mA); Entity described: event",
+            "type": "number",
+            "format": "default",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000064/2/"
           },
           {
             "name": "external-temperature",
@@ -280,12 +273,12 @@
             "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000104/2/"
           },
           {
-            "name": "gps:dop",
-            "title": "GPS DOP",
-            "description": "Dilution of precision provided by the GPS. Example: '1.8'; Units: unitless; Entity described: event",
+            "name": "gps:hdop",
+            "title": "GPS HDOP",
+            "description": "Horizontal dilution of precision provided by the GPS. Example: '1.2'; Units: unitless; Entity described: event",
             "type": "number",
             "format": "default",
-            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000115/2/"
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000118/2/"
           },
           {
             "name": "gps:satellite-count",
@@ -336,44 +329,52 @@
             "rdfType": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000133/2/"
           },
           {
-            "name": "location-error-numerical",
-            "title": "location error numerical",
-            "description": "An estimate of the horizontal error of the location including only numbers. (If the error estimates include non-numerical characters such as '>' use 'location error text'.) These values can be described using 'location error percentile' and 'location accuracy comments'. Example: '50'; Units: m; Entity described: event",
+            "name": "gls:light-level",
+            "title": "light level",
+            "description": "Light-level values measured by a solar geolocator. Best practice is to define values in the reference data. Example: '28'; Units: not defined; Entity described: event",
             "type": "number",
             "format": "default",
-            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000142/2/"
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000139/2/"
           },
           {
-            "name": "manually-marked-outlier",
-            "title": "manually marked outlier",
-            "description": "Identifies events flagged manually as outliers, typically using the Event Editor in Movebank, and may also include outliers identified using other methods. Outliers have the value TRUE. Units: none; Entity described: event",
-            "type": "boolean",
-            "format": "default",
-            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000156/2/"
-          },
-          {
-            "name": "vertical-error-numerical",
-            "title": "vertical error numerical",
-            "description": "An estimate of the vertical error of the location. These values can be described using 'location error percentile' and 'location accuracy comments'. Example: '12'; Units: m; Entity described: event",
+            "name": "mag:magnetic-field-raw-x",
+            "title": "magnetic field raw x",
+            "description": "Raw magnetic field values provided by the tag for the X axis. May include an unknown offset. Range and units may vary by provider, tag, and orientation of the sensor on the animal. Example: '-0.5197'; Units: not defined; Entity described: event",
             "type": "number",
             "format": "default",
-            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000208/2/"
-          },
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000151/2/"
           },
           {
+            "name": "mag:magnetic-field-raw-y",
+            "title": "magnetic field raw y",
+            "description": "Raw magnetic field values provided by the tag for the Y axis. May include an unknown offset. Range and units may vary by provider, tag, and orientation of the sensor on the animal. Example: '-0.993'; Units: not defined; Entity described: event",
             "type": "number",
             "format": "default",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000152/2/"
           },
           {
+            "name": "mag:magnetic-field-raw-z",
+            "title": "magnetic field raw z",
+            "description": "Raw magnetic field values provided by the tag for the Z axis. May include an unknown offset. Range and units may vary by provider, tag, and orientation of the sensor on the animal. Example: '-0.8857'; Units: not defined; Entity described: event",
             "type": "number",
             "format": "default",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000153/2/"
           },
           {
+            "name": "orn:transmission-protocol",
+            "title": "Ornitela transmission protocol",
+            "description": "The way in which the data from Ornitela tags were transmitted. Allowed values are SMS or GPRS. Format: controlled list; Entity described: event",
+            "type": "string",
             "format": "default",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000163/3/"
           },
           {
+            "name": "tag-voltage",
+            "title": "tag voltage",
+            "description": "The voltage as reported by the tag. Example: '2895'; Units: mV; Entity described: event",
             "type": "number",
             "format": "default",
+            "rdfType": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000191/2/"
           },
           {
             "name": "sensor-type",
