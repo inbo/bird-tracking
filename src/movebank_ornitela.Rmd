@@ -62,7 +62,8 @@ movebank_ref_data <-
     `animal-ring-id` = colour_ring,
     `animal-sex` = recode(sex,
       "F" = "f",
-      "M" = "m"
+      "M" = "m",
+      "U" = "u"
     ),
     `animal-taxon` = scientific_name,
     # animal-taxon-detail
