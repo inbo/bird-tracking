@@ -110,7 +110,7 @@ movebank_ref_data <-
     # location-accuracy-comments: NOT AVAILABLE, there is no location-error-numerical/vertical-error-numerical in the gps data
     # manipulation-comments
     `manipulation-type` = case_when(
-      release_location == "VOC_OST" ~ "manipulated other",
+      str_detect(release_location, "VOC") ~ "manipulated other",
       # Birds from VOC were hatched from egg, placed in a controlled environment and subjected to behavioural studies
       TRUE ~ "none"
     ),
