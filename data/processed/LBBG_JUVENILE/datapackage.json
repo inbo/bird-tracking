@@ -171,7 +171,7 @@
     {
       "name": "gps",
       "path": [
-        "LBBG_JUVENILE-gps-2020.csv"
+        "LBBG_JUVENILE-gps-2020.csv.gz"
       ],
       "profile": "tabular-data-resource",
       "schema": {
