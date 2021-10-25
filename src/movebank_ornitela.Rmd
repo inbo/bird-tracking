@@ -63,7 +63,7 @@ movebank_ref_data <-
     `animal-sex` = recode(sex,
       "F" = "f",
       "M" = "m",
-      "U" = "u",
+      "X" = "u",
       .missing = NA_character_
     ),
     `animal-taxon` = scientific_name,
