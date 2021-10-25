@@ -61,7 +61,11 @@ SELECT
 
 -- DEPLOYMENTS
 -- animal-life-stage:                   Set via variable, likely "adult".
-  {animal_life_stage} AS "animal-life-stage",
+  CASE
+    WHEN lower(ses.remarks) LIKE '%life_stage%' THEN
+      split_part(substring(ses.remarks from '%#"life_stage: [a-z]+#"%' for '#'), ': ', 2)
+    ELSE {animal_life_stage}
+  END AS "animal-life-stage",
 -- animal-mass                          Set to individual mass
   ind.mass::text AS "animal-mass",
 -- animal-reproductive-condition:       Not available in DB
