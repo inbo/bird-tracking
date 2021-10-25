@@ -64,7 +64,7 @@ movebank_ref_data <-
       "F" = "f",
       "M" = "m",
       "X" = "u",
-      .missing = NA_character_
+      .missing = "u"
     ),
     `animal-taxon` = scientific_name,
     # animal-taxon-detail
