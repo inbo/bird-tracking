@@ -63,7 +63,7 @@ SELECT
 -- animal-life-stage:                   Set via variable, likely "adult".
   {animal_life_stage} AS "animal-life-stage",
 -- animal-mass                          Set to individual mass
-  ind.mass AS "animal-mass",
+  ind.mass::text AS "animal-mass",
 -- animal-reproductive-condition:       Not available in DB
 -- attachment-type:                     Set to "harness"
   'harness' AS "attachment-type",
@@ -80,9 +80,9 @@ SELECT
     ELSE to_char(ses.end_date, 'YYYY-MM-DD"T"HH24:MI:SS"Z"')
   END AS "deploy-off-timestamp",
 -- deploy-on-latitude:                  Set to catch/session start_latitude
-  ses.start_latitude AS "deploy-on-latitude",
+  ses.start_latitude::text AS "deploy-on-latitude",
 -- deploy-on-longitude:                 Set to catch/session start_longitude
-  ses.start_longitude AS "deploy-on-longitude",
+  ses.start_longitude::text AS "deploy-on-longitude",
 -- deploy-on-person:                    Not available in DB
 -- deploy-on-timestamp:                 Set to catch/session start_date
 --                                      Format: yyyy-MM-dd'T'HH:mm:ss'Z'
@@ -140,7 +140,7 @@ SELECT
 -- tag-manufacturer-name:               Set to "UvA-BiTS"
   'UvA-BiTS' AS "tag-manufacturer-name",
 -- tag.mass
-  tag.mass AS "tag-mass",
+  tag.mass::text AS "tag-mass",
 -- tag-model:                           Not available in DB and firmware version is not a good
 --                                      substitute
 -- tag-processing-type:                 Not applicable
