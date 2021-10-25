@@ -63,7 +63,8 @@ movebank_ref_data <-
     `animal-sex` = recode(sex,
       "F" = "f",
       "M" = "m",
-      "U" = "u"
+      "U" = "u",
+      .missing = NA_character_
     ),
     `animal-taxon` = scientific_name,
     # animal-taxon-detail
@@ -98,6 +99,7 @@ movebank_ref_data <-
     `deployment-end-type` = case_when(
       str_detect(track_session_remarks, "dead") ~ "dead",
       str_detect(track_session_remarks, "defect") ~ "equipment failure",
+      str_detect(track_session_remarks, "malfunction") ~ "equipment failure",
       TRUE ~ NA_character_
     ),
     # deployment-id: NOT AVAILABLE
