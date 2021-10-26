@@ -24,6 +24,7 @@ library(here)
 library(lubridate)
 library(sp)
 library(trip)
+library(geosphere)
 ```
 
 Set values:
@@ -51,8 +52,13 @@ for (file in files) {
   ))
   print(file)
   
-  # Mark outliers when speed is above 30 m/s
-  processed_data <- mark_outliers(data, max_speed = 30, max_runs = 10)
+  # Mark outliers when speed is above 35 m/s or at a sharp angle at 30 m/s
+  processed_data <- mark_outliers(
+    data,
+    max_speed = 30,
+    min_angle_above_speed = c(15, 30),
+    max_runs = 10
+  )
   
   # Change output dir
   file <- str_replace(file, "/gps", "/gps_outliers")
