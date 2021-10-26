@@ -80,7 +80,7 @@ SELECT
 --                                      accepted by Movebank and is set to undefined.
 --                                      Format: yyyy-MM-dd'T'HH:mm:ss'Z'
   CASE
-    WHEN ses.end_date = '9999-12-31' THEN NULL
+    WHEN ses.end_date > current_date THEN NULL
     ELSE to_char(ses.end_date, 'YYYY-MM-DD"T"HH24:MI:SS"Z"')
   END AS "deploy-off-timestamp",
 -- deploy-on-latitude:                  Set to catch/session start_latitude
