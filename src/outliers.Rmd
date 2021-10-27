@@ -52,11 +52,11 @@ for (file in files) {
   ))
   print(file)
   
-  # Mark outliers when speed is above 35 m/s or at a sharp angle at 30 m/s
+  # Mark outliers when speed is above 35 m/s or at a sharp angle at 15 m/s
   processed_data <- mark_outliers(
     data,
-    max_speed = 30,
-    min_angle_above_speed = c(15, 30),
+    max_speed = 35,
+    min_angle_above_speed = c(30, 15),
     max_runs = 10
   )
   
