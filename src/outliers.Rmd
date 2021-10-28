@@ -55,7 +55,7 @@ for (file in files) {
   # Mark outliers when speed is above 35 m/s or at a sharp angle at 15 m/s
   processed_data <- mark_outliers(
     data,
-    max_speed = 35,
+    max_speed = 45,
     min_angle_above_speed = c(30, 15),
     max_runs = 10
   )
