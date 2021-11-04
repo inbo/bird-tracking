@@ -115,6 +115,6 @@ WHERE
   -- we'll use today's date to exclude erroneous records in the future
   AND acc.date_time <= current_date
   AND acc.date_time >= {start_date}
-  AND acc.date_time <= {end_date}
+  AND acc.date_time < {end_date}
 ORDER BY
   "timestamp"

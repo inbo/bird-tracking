@@ -184,7 +184,7 @@ WHERE
   -- we'll use today's date to exclude erroneous records in the future
   AND gps.date_time <= current_date
   AND gps.date_time >= {start_date}
-  AND gps.date_time <= {end_date}
+  AND gps.date_time < {end_date}
   AND gps.latitude IS NOT NULL
   AND gps.longitude IS NOT NULL
 ORDER BY
