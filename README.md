@@ -71,7 +71,7 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 │   └── movebank_acc.sql: Query to get acceleration data in Movebank format
 │
 └── data
-    └── processed       : Data that can be uploaded to Movebank GENERATED IGNORED (reference data is versioned)
+    └── processed       : Data that can be uploaded to Movebank GENERATED, large files IGNORED
 ```
 
 ## Contributors
