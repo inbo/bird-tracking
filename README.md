@@ -30,9 +30,12 @@ LBBG_JUVENILE - Juvenile lesser black-backed gulls (Larus fuscus, Laridae) hatch
 LBBG_ZEEBRUGGE - Lesser black-backed gulls (Larus fuscus, Laridae) breeding at the southern North Sea coast (Belgium and the Netherlands) | [985143423](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study985143423) | [DOI](https://doi.org/10.5281/zenodo.3540799) | active
 MH_ANTWERPEN - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding near Antwerp (Belgium) | [938783961](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study938783961) | [DOI](https://doi.org/10.5281/zenodo.3550093) | active, described in [Milotic et al. 2020](https://doi.org/10.3897/zookeys.947.52570)
 MH_WATERLAND - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding near the Belgium-Netherlands border | [604806671](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study604806671) | [DOI](https://doi.org/10.5281/zenodo.3532940) | stopped in 2018, described in [Milotic et al. 2020](https://doi.org/10.3897/zookeys.947.52570)
+O_AMELAND - Eurasian oystercatchers (Haematopus ostralegus, Haematopodidae) breeding on Ameland (the Netherlands) | [1605803389](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1605803389) | | stopped in 2013
+O_ASSEN - Eurasian oystercatchers (Haematopus ostralegus, Haematopodidae) breeding in Assen (the Netherlands) | [1605797471](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1605797471) | | stopped in 2019
+O_BALGZAND - Eurasian oystercatchers (Haematopus ostralegus, Haematopodidae) wintering on Balgzand (the Netherlands) | [1605798640](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1605798640) | | stopped in 2014
+O_SCHIERMONNIKOOG - Eurasian oystercatchers (Haematopus ostralegus, Haematopodidae) breeding on Schiermonnikoog (the Netherlands) | [1605799506](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1605799506) | | stopped in 2014
+O_VLIELAND - Eurasian oystercatchers (Haematopus ostralegus, Haematopodidae) breeding and wintering on Vlieland (the Netherlands) | [1605802367](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1605802367) | | stopped in 2021
 O_WESTERSCHELDE - Eurasian oystercatchers (Haematopus ostralegus, Haematopodidae) breeding in East Flanders (Belgium) | [1099562810](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1099562810) | [DOI](https://doi.org/10.5281/zenodo.3734898) | active
-
-
 
 Steps to upload data to Zenodo are described [here](https://github.com/inbo/bird-tracking/issues/131).
 
