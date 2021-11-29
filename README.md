@@ -23,6 +23,7 @@ This repository contains the functionality to standardize data from the LifeWatc
 Title | Movebank | Zenodo | Status
 --- | --- | --- | ---
 BOP_RODENT - Rodent specialized birds of prey (Circus, Asio, Buteo) in Flanders (Belgium) | [1278021460](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1278021460) |  | active
+CURLEW_VLAANDEREN - Eurasian curlews (Numenius arquata, Scolopacidae) breeding in Flanders (Belgium) | [1841091905](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1841091905) |  | active
 DELTATRACK - Herring gulls (Larus argentatus, Laridae) and Lesser black-backed gulls (Larus fuscus, Laridae) breeding at Neeltje Jans (Netherlands) | [1258895879](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1258895879) |  | active
 H_GRONINGEN - Western marsh harriers (Circus aeruginosus, Accipitridae) breeding in Groningen (the Netherlands) | [922263102](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study922263102) | [DOI](https://doi.org/10.5281/zenodo.3552507) | stopped in 2018, described in [Milotic et al. 2020](https://doi.org/10.3897/zookeys.947.52570)
 HG_OOSTENDE - Herring gulls (Larus argentatus, Laridae) breeding at the southern North Sea coast (Belgium) | [986040562](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study986040562) | [DOI](https://doi.org/10.5281/zenodo.3541811) | active
