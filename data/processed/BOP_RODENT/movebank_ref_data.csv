@@ -1,12 +1,19 @@
 animal-id,animal-nickname,animal-ring-id,animal-sex,animal-taxon,animal-life-stage,animal-mass,attachment-type,deploy-off-timestamp,deploy-on-timestamp,deployment-comments,deployment-end-type,manipulation-type,study-site,tag-readout-method,sensor-type,tag-id,tag-manufacturer-name,tag-mass,tag-serial-no
-L177870,Lily,,f,Circus cyaneus,adult,500,harness,,2020-03-18T06:00:00Z,"Bassevelde, Knokstraat | wing_length: 378 | claw_length: -/63 | moult_score: 0",,none,BOP_RODENT,phone network,GPS,193185,Ornitela,10,193185
-E456565,Eveline,Y*V|7,f,Circus pygargus,adult,380,harness,,2020-06-19T06:00:00Z,"West-Vleteren, Abdij | wing_length: 360 | wing_span: 1094 | claw_length: 53/- | moult_score: 16",,none,BOP_RODENT,phone network,GPS,193683,Ornitela,10,193683
-E186488,Wim,Y*VL,m,Circus pygargus,adult,245,harness,,2020-07-15T06:00:00Z,"West-Vleteren, Abdij | wing_length: 373 | wing_span: 1075 | claw_length: 48/54 | tail_length: 219 | moult_score: 4",,none,BOP_RODENT,phone network,GPS,193949,Ornitela,10,193949
-,,,,,,,harness,,,,,none,BOP_RODENT,phone network,GPS,193980,Ornitela,15,193980
-,,,,,,,harness,,,,,none,BOP_RODENT,phone network,GPS,200085,Ornitela,10,200085
+L177870,Lily,,f,Circus cyaneus,adult,500,harness,2021-02-03T12:00:00Z,2020-03-18T06:00:00Z,"Bassevelde, Knokstraat | wing_length: 378 | claw_length: -/63 | moult_score: 0 | Tracker defective.",equipment failure,none,BOP_RODENT,phone network,GPS,193185,Ornitela,10,193185
+E456565,Eveline,Y*V|7,f,Circus pygargus,adult,380,harness,,2020-06-19T06:00:00Z,"West-Vleteren, Abdij | wing_length: 360 | wing_span: 1094 | claw_length: 53/- | moult_score: 16 | Tracker defective.",equipment failure,none,BOP_RODENT,phone network,GPS,193683,Ornitela,10,193683
+E186488,Wim,Y*VL,m,Circus pygargus,adult,245,harness,,2020-07-15T06:00:00Z,"West-Vleteren, Abdij | wing_length: 373 | wing_span: 1075 | claw_length: 48/54 | tail_length: 219 | moult_score: 4 | Assumed dead in Morocco.",dead,none,BOP_RODENT,phone network,GPS,193949,Ornitela,10,193949
+L174747,Jeroen,,m,Circus aeruginosus,adult,506,harness,,2021-06-15T20:00:00Z,"Sint-Laureins, Draaiput",,none,BOP_RODENT,phone network,GPS,193980,Ornitela,15,193980
+L178485,Lia,,f,Circus cyaneus,adult,533,harness,,2020-11-23T20:00:00Z,"Meldert, plateau",,none,BOP_RODENT,phone network,GPS,200085,Ornitela,10,200085
 L177802,Tonio,,m,Circus aeruginosus,adult,540,harness,,2020-06-21T06:00:00Z,"Lillo, Galgenschoor | wing_length: 396 | wing_span: 1260 | claw_length: -/69 | tail_length: 223 | moult_score: 1",,none,BOP_RODENT,phone network,GPS,200570,Ornitela,15,200570
 Arnhem 3806.696,Monnik,Y*1|C,m,Circus pygargus,adult,240,harness,,2020-07-08T06:00:00Z,"West-Vleteren, Abdij | wing_length: 348 | wing_span: 1080 | claw_length: 49/63 | tail_length: 207 | moult_score: 2",,none,BOP_RODENT,phone network,GPS,202039,Ornitela,10,202039
 E448932,Arnold,Y*V2,m,Circus pygargus,adult,250,harness,,2020-07-08T06:00:00Z,"West-Vleteren, Abdij | wing_length: 355 | wing_span: 1073 | claw_length: 51/64 | tail_length: 212 | moult_score: 10",,none,BOP_RODENT,phone network,GPS,202040,Ornitela,10,202040
-H197182,Jenny,,f,Asio flammeus,adult,353,harness,,2020-06-15T06:00:00Z,"Lampernisse, Visserstraat | wing_length: 312 | wing_span: 950 | tail_length: 143 | moult_score: 8",,none,BOP_RODENT,phone network,GPS,202041,Ornitela,10,202041
-H197179,Dieter,,m,Asio flammeus,adult,310,harness,,2020-06-05T06:00:00Z,"Lampernisse, Visserstraat | wing_length: 308 | wing_span: 1015 | tail_length: 167 | moult_score: 0",,none,BOP_RODENT,phone network,GPS,202042,Ornitela,10,202042
-,,,,,,,harness,,,,,none,BOP_RODENT,phone network,GPS,202056,Ornitela,15,202056
+H197182,Jenny,,f,Asio flammeus,adult,353,harness,,2020-06-15T06:00:00Z,"Lampernisse, Visserstraat | wing_length: 312 | wing_span: 950 | tail_length: 143 | moult_score: 8 | Tracker defective.",equipment failure,none,BOP_RODENT,phone network,GPS,202041,Ornitela,10,202041
+H197179,Dieter,,m,Asio flammeus,adult,310,harness,2020-10-24T06:00:00Z,2020-06-05T06:00:00Z,"Lampernisse, Visserstraat | wing_length: 308 | wing_span: 1015 | tail_length: 167 | moult_score: 0 | Found dead.",dead,none,BOP_RODENT,phone network,GPS,202042,Ornitela,10,202042
+L177819,M,,m,Circus aeruginosus,adult,510,harness,2021-08-08T12:00:00Z,2021-07-19T18:00:00Z,"Lillo, Galgenschoor | Found dead in Doel (BE), trichonomiasis.",dead,none,BOP_RODENT,phone network,GPS,202056,Ornitela,15,202056
+H200701,,,f,Asio flammeus,adult,420,harness,,2020-11-03T23:00:00Z,Waterland-Oudeman | Found dead in Simonszand (NL).,dead,none,BOP_RODENT,phone network,GPS,203242,Ornitela,10,203242
+E464102,Ebe,,m,Circus cyaneus,juvenile,380,harness,,2021-03-22T21:00:00Z,"Honsem, plateau",,none,BOP_RODENT,phone network,GPS,210196,Ornitela,10,210196
+E464103,Raven,,m,Circus cyaneus,juvenile,337,harness,,2021-03-24T21:00:00Z,"Boutersem, plateau",,none,BOP_RODENT,phone network,GPS,210198,Ornitela,10,210198
+L177811,Alina,,f,Circus cyaneus,juvenile,500,harness,,2021-03-02T19:00:00Z,"Laar, Brakouter",,none,BOP_RODENT,phone network,GPS,210200,Ornitela,10,210200
+L177820,Farouk,,m,Circus aeruginosus,juvenile,530,harness,,2021-07-23T18:00:00Z,"Lillo, Galgenschoor",,none,BOP_RODENT,phone network,GPS,210208,Ornitela,15,210208
+H200707,,,m,Buteo buteo,adult,880,harness,,2021-07-20T18:00:00Z,"Lillo, Galgenschoor",,none,BOP_RODENT,phone network,GPS,211049,Ornitela,15,211049
+H200704,Roger,,m,Buteo buteo,adult,899,harness,,2021-06-02T18:00:00Z,"Gent, Kloosterbos",,none,BOP_RODENT,phone network,GPS,211051,Ornitela,15,211051
