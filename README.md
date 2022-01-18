@@ -29,7 +29,7 @@ Steps to upload data to Zenodo are described [here](https://github.com/inbo/bird
 
 ### GBIF
 
-Title | Remark | GBIF
+Title | Remark | GBIF
 --- | --- | ---
 Bird tracking - GPS tracking of Lesser Black-backed Gulls and Herring Gulls breeding at the southern North Sea coast | Subset of `HG_OOSTENDE` and `LBBG_ZEEBRUGGE`, described in [Stienen et al. 2016](https://doi.org/10.3897/zookeys.555.6173) | [DOI](https://doi.org/10.15468/02omly)
 Bird tracking - GPS tracking of Western Marsh Harriers breeding near the Belgium-Netherlands border | Subset of `MH_WATERLAND` | [DOI](https://doi.org/10.15468/rbguhj)
@@ -47,6 +47,12 @@ Bird tracking - GPS tracking of Western Marsh Harriers breeding near the Belgium
 - **Reference data**: Spreadsheet → [Script](src/movebank_ornitela.Rmd) to query  data in the [Movebank data format](https://www.movebank.org/node/2381) (defined as `dplyr::mutate()`) → Generated file that can be uploaded to Movebank
 - **GPS data**: [Ornitela](https://www.ornitela.com/) database → Live feed to Movebank by associating a selection of tags to a study
 - **Acceleration data**: not yet defined
+
+### Zenodo
+
+1. Download reference data from Movebank, as well as GPS and acceleration data per year.
+2. Create `datapackage.json` file using [script](src/movebank_frictionless.Rmd).
+3. Deposit on Zenodo and document with metadata.
 
 ## Repo structure
 

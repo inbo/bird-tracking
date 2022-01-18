@@ -20,7 +20,7 @@ Load libraries:
 library(magrittr)
 library(here)
 library(frictionless)
-library(movepub)
+library(movepub) # devtools::install_github("inbo/movepub")
 ```
 
 ## Set project and years
