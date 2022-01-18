@@ -1,0 +1,61 @@
+---
+title: "Create a Frictionless Data Package from Movebank data"
+author: "Peter Desmet"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+
+```{r}
+library(magrittr)
+library(here)
+library(frictionless)
+library(movepub)
+```
+
+## Set project and years
+
+```{r}
+project_id <- "O_ASSEN"
+start_year <- 2018
+end_year <- 2019
+```
+
+Create file paths:
+
+```{r}
+dir <- here::here("data", "processed", project_id)
+ref_data <- here::here(dir, paste0(project_id, "-reference-data.csv"))
+gps_data <- here::here(dir, paste0(project_id, "-gps-", start_year:end_year, ".csv.gz"))
+acc_data <- here::here(dir, paste0(project_id, "-acceleration-", start_year:end_year, ".csv.gz"))
+```
+
+## Create data package
+
+Create data package and add resources:
+
+```{r}
+dataset <-
+  create_package() %>%
+  add_movebank_resource("reference-data", ref_data) %>%
+  add_movebank_resource("gps", gps_data) %>%
+  add_movebank_resource("acceleration", acc_data)
+```
+
+## Write data package to same directory
+
+This won't overwrite any existing files, except `datapackage.json`:
+
+```{r}
+write_package(dataset, dir)
+```
