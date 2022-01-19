@@ -29,6 +29,7 @@ library(movepub) # devtools::install_github("inbo/movepub")
 
 ```{r}
 project_id <- "O_WESTERSCHELDE"
+versioned_doi <- "https://doi.org/10.5281/zenodo.5070086"
 start_year <- 2018
 end_year <- 2020
 ```
@@ -42,16 +43,18 @@ gps_data <- here::here(dir, paste0(project_id, "-gps-", start_year:end_year, ".c
 acc_data <- here::here(dir, paste0(project_id, "-acceleration-", start_year:end_year, ".csv.gz"))
 ```
 
-## Create data package
+## Create and write Data Package
 
-Create data package and add resources:
+Create Data Package, add resources and write to disk
 
 ```{r}
 dataset <-
   create_package() %>%
-  add_movebank_resource("reference-data", ref_data) %>%
-  add_movebank_resource("gps", gps_data) %>%
-  add_movebank_resource("acceleration", acc_data)
+  append(c(id = versioned_doi), after = 0) %>%
+  add_movebank_resource("reference-data", ref_data, keys = TRUE) %>%
+  add_movebank_resource("gps", gps_data, keys = TRUE) %>%
+  add_movebank_resource("acceleration", acc_data, keys = TRUE)
+write_package(dataset, dir)
 ```
 
 ## Validate data package
