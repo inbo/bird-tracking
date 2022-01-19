@@ -29,7 +29,7 @@ library(movepub) # devtools::install_github("inbo/movepub")
 
 ```{r}
 project_id <- "O_WESTERSCHELDE"
-versioned_doi <- "https://doi.org/10.5281/zenodo.5070086"
+versioned_doi <- "https://doi.org/10.5281/zenodo.5879096"
 start_year <- 2018
 end_year <- 2020
 ```
