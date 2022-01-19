@@ -36,23 +36,9 @@ Bird tracking - GPS tracking of Western Marsh Harriers breeding near the Belgium
 
 ## Workflow
 
-### UvA-BiTS
-
-- **Reference data**: [UvA-BiTS](http://www.uva-bits.nl/) database → [Script](src/movebank_uvabits.Rmd) to query data in the [Movebank data format](https://www.movebank.org/node/2381) (defined in [SQL](sql)) → Generated file that can be uploaded to Movebank
-- **GPS data**: same as reference data
-- **Accerelation data**: same as reference data
-
-### Ornitela
-
-- **Reference data**: Spreadsheet → [Script](src/movebank_ornitela.Rmd) to query  data in the [Movebank data format](https://www.movebank.org/node/2381) (defined as `dplyr::mutate()`) → Generated file that can be uploaded to Movebank
-- **GPS data**: [Ornitela](https://www.ornitela.com/) database → Live feed to Movebank by associating a selection of tags to a study
-- **Acceleration data**: not yet defined
-
-### Zenodo
-
-1. Download reference data from Movebank, as well as GPS and acceleration data per year.
-2. Create `datapackage.json` file using [script](src/movebank_frictionless.Rmd).
-3. Deposit on Zenodo and document with metadata.
+- [Prepare Uva-BiTS data for Movebank upload](src/movebank_uvabits.Rmd)
+- [Prepare Ornitela data for Movebank upload](src/movebank_ornitela.Rmd)
+- [Prepare Movebank data for Zenodo upload (make frictionless)](src/movebank_frictionless.Rmd)
 
 ## Repo structure
 
@@ -72,8 +58,9 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 |
 ├── src
 │   ├── functions       : Custom functions used in scripts
-│   ├── movebank_ornitela.Rmd : Script to get data for a specific Ornitela project in Movebank format
-│   ├── movebank_uvabits.Rmd : Script to get data for a specific UvA-BiTS project in Movebank format
+│   ├── movebank_ornitela.Rmd : Script to prepare Uva-BiTS data for Movebank upload
+│   ├── movebank_uvabits.Rmd : Script to prepare Ornitela data for Movebank upload
+│   ├── movebank_frictionless.Rmd : Script to prepare Movebank data for Zenodo upload (make frictionless)
 │   └── outliers.Rmd    : Script to mark outliers based on high speeds
 │
 ├── sql

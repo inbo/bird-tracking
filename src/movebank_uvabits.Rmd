@@ -1,14 +1,12 @@
 ---
-title: "Download UvA-BiTS data in Movebank format"
+title: "Prepare Uva-BiTS data for Movebank upload"
 author: "Peter Desmet"
 date: "`r Sys.Date()`"
 output:
-  html_document:
-    toc: true
-    toc_depth: 3
-    toc_float: true
-    number_sections: true
+  html_document
 ---
+
+This script prepares [UvA-BiTS](http://www.uva-bits.nl/) bird tracking data for upload to [Movebank](https://www.movebank.org/). For a project, it downloads **reference, GPS and acceleration data** from UvA-BiTS and transforms these to the [Movebank data format](https://www.movebank.org/node/2381) using [SQL](sql). See the steps at the end of this document to check for outliers and to concatenate files before upload.
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
@@ -61,7 +59,7 @@ start_date <- "2012-01-01 00:00:00"
 end_date <- "2013-12-31 24:00:00"
 ```
 
-## Get reference data (metadata)
+## Get reference data
 
 For a project, get data on animals, tags and deployments in the [Movebank reference data format](https://www.movebank.org/node/27).
 
@@ -97,7 +95,7 @@ Load custom function to download data (will iterate over ring numbers):
 source(here::here("src", "functions", "download_data.R"))
 ```
 
-## Get gps data (detections)
+## Get GPS data
 
 Query and save data (one csv file per ringnumber):
 
@@ -150,7 +148,3 @@ After which the header needs to be added with:
 ```
 cat movebank_gps_headers_outliers.csv movebank_gps_yyyy_nh.csv > movebank_gps_yyyy.csv
 ```
-
-## Upload to Zenodo
-
-Steps to upload data to Zenodo are described [here](https://github.com/inbo/bird-tracking/issues/131).
