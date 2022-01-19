@@ -30,7 +30,7 @@ library(geosphere)
 Set values:
 
 ```{r}
-project_id <- "MH_WATERLAND"
+project_id <- "O_WESTERSCHELDE"
 ```
 
 Load custom function to mark outliers:

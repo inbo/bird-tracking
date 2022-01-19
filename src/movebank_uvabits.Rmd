@@ -49,14 +49,14 @@ Some values cannot be automatically assumed for the Movebank format and have to 
 Set values:
 
 ```{r}
-project_id <- "MH_WATERLAND"
+project_id <- "O_WESTERSCHELDE"
 shared <- FALSE
 overwrite_files <- FALSE
 animal_life_stage <- "adult"
 manipulation_type <- "none"
 bird_remarks_is_nickname <- TRUE
-start_date <- "2012-01-01 00:00:00"
-end_date <- "2013-12-31 24:00:00"
+start_date <- "2019-01-01 00:00:00"
+end_date <- "2019-12-31 24:00:00"
 ```
 
 ## Get reference data

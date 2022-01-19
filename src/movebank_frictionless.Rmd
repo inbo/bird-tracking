@@ -28,9 +28,9 @@ library(movepub) # devtools::install_github("inbo/movepub")
 ## Set project and years
 
 ```{r}
-project_id <- "O_ASSEN"
+project_id <- "O_WESTERSCHELDE"
 start_year <- 2018
-end_year <- 2019
+end_year <- 2020
 ```
 
 Create file paths:
@@ -54,10 +54,10 @@ dataset <-
   add_movebank_resource("acceleration", acc_data)
 ```
 
-## Write data package to same directory
+## Validate data package
 
-This won't overwrite any existing files, except `datapackage.json`:
+Make sure to validate the Data Package using [frictionless-py](https://github.com/frictionlessdata/frictionless-py) from the terminal, using:
 
-```{r}
-write_package(dataset, dir)
+```
+frictionless validate datapackage.json
 ```
