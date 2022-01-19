@@ -201,18 +201,12 @@
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000189/2/"
           }
         ],
-        "primaryKey": [
-          "tag-id",
-          "animal-id"
-        ]
+        "primaryKey": ["tag-id", "animal-id"]
       }
     },
     {
       "name": "gps",
-      "path": [
-        "O_ASSEN-gps-2018.csv.gz",
-        "O_ASSEN-gps-2019.csv.gz"
-      ],
+      "path": ["O_ASSEN-gps-2018.csv.gz", "O_ASSEN-gps-2019.csv.gz"],
       "profile": "tabular-data-resource",
       "schema": {
         "fields": [
@@ -396,16 +390,10 @@
         "primaryKey": "event-id",
         "foreignKeys": [
           {
-            "fields": [
-              "tag-local-identifier",
-              "individual-local-identifier"
-            ],
+            "fields": ["tag-local-identifier", "individual-local-identifier"],
             "reference": {
               "resource": "reference-data",
-              "fields": [
-                "tag-id",
-                "animal-id"
-              ]
+              "fields": ["tag-id", "animal-id"]
             }
           }
         ]
@@ -413,10 +401,7 @@
     },
     {
       "name": "acceleration",
-      "path": [
-        "O_ASSEN-acceleration-2018.csv.gz",
-        "O_ASSEN-acceleration-2019.csv.gz"
-      ],
+      "path": ["O_ASSEN-acceleration-2018.csv.gz", "O_ASSEN-acceleration-2019.csv.gz"],
       "profile": "tabular-data-resource",
       "schema": {
         "fields": [
@@ -544,16 +529,10 @@
         "primaryKey": "event-id",
         "foreignKeys": [
           {
-            "fields": [
-              "tag-local-identifier",
-              "individual-local-identifier"
-            ],
+            "fields": ["tag-local-identifier", "individual-local-identifier"],
             "reference": {
               "resource": "reference-data",
-              "fields": [
-                "tag-id",
-                "animal-id"
-              ]
+              "fields": ["tag-id", "animal-id"]
             }
           }
         ]
