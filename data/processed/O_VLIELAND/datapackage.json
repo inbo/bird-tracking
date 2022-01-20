@@ -1,10 +1,10 @@
 {
-  "id": "https://doi.org/10.5281/zenodo.5653478",
+  "id": "https://doi.org/10.5281/zenodo.5653891",
   "profile": "tabular-data-package",
   "resources": [
     {
       "name": "reference-data",
-      "path": "O_SCHIERMONNIKOOG-reference-data.csv",
+      "path": "O_VLIELAND-reference-data.csv",
       "profile": "tabular-data-resource",
       "format": "csv",
       "mediatype": "text/csv",
@@ -108,6 +108,14 @@
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000052/3/"
           },
           {
+            "name": "behavior-according-to",
+            "title": "behaviour according to",
+            "description": "A description of behavioral categories contained in the event data and/or how they were derived. Example: 'Behavior was derived using acceleration data and an automated algorithm calibrated using field observations.'; Units: none; Entity described: deployment",
+            "type": "string",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000066/2/"
+          },
+          {
             "name": "deploy-on-latitude",
             "title": "deploy on latitude",
             "description": "The geographic latitude of the location where the animal was released. Intended primarily for cases in which the animal release location has higher accuracy than that derived from sensor data. Example: '27.3516'; Units: decimal degrees, WGS84 reference system; Entity described: deployment",
@@ -209,7 +217,7 @@
     },
     {
       "name": "gps",
-      "path": ["O_SCHIERMONNIKOOG-gps-2008.csv.gz", "O_SCHIERMONNIKOOG-gps-2009.csv.gz", "O_SCHIERMONNIKOOG-gps-2010.csv.gz", "O_SCHIERMONNIKOOG-gps-2011.csv.gz", "O_SCHIERMONNIKOOG-gps-2012.csv.gz", "O_SCHIERMONNIKOOG-gps-2013.csv.gz", "O_SCHIERMONNIKOOG-gps-2014.csv.gz"],
+      "path": ["O_VLIELAND-gps-2016.csv.gz", "O_VLIELAND-gps-2017.csv.gz", "O_VLIELAND-gps-2018.csv.gz", "O_VLIELAND-gps-2019.csv.gz", "O_VLIELAND-gps-2020.csv.gz", "O_VLIELAND-gps-2021.csv.gz"],
       "profile": "tabular-data-resource",
       "format": "gz",
       "mediatype": "text/csv",
@@ -407,7 +415,7 @@
     },
     {
       "name": "acceleration",
-      "path": ["O_SCHIERMONNIKOOG-acceleration-2008.csv.gz", "O_SCHIERMONNIKOOG-acceleration-2009.csv.gz", "O_SCHIERMONNIKOOG-acceleration-2010.csv.gz", "O_SCHIERMONNIKOOG-acceleration-2011.csv.gz", "O_SCHIERMONNIKOOG-acceleration-2012.csv.gz", "O_SCHIERMONNIKOOG-acceleration-2013.csv.gz", "O_SCHIERMONNIKOOG-acceleration-2014.csv.gz"],
+      "path": ["O_VLIELAND-acceleration-2016.csv.gz", "O_VLIELAND-acceleration-2017.csv.gz", "O_VLIELAND-acceleration-2018.csv.gz", "O_VLIELAND-acceleration-2019.csv.gz", "O_VLIELAND-acceleration-2020.csv.gz", "O_VLIELAND-acceleration-2021.csv.gz"],
       "profile": "tabular-data-resource",
       "format": "gz",
       "mediatype": "text/csv",
@@ -493,6 +501,100 @@
             "type": "number",
             "format": "default",
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000199/2/"
+          },
+          {
+            "name": "sensor-type",
+            "title": "sensor type",
+            "description": "The type of sensor with which data were collected. All sensors are associated with a tag id, and tags can contain multiple sensor types. Each event record in Movebank is assigned one sensor type. If values from multiple sensors are reported in a single event, the primary sensor is used. Values are chosen from a controlled list: acceleration = The sensor collects acceleration data; accessory measurements = The sensor collects accessory measurements, such as battery voltage; acoustic telemetry = The sensor transmits an acoustic signal that is detected by receivers to determine location; Argos Doppler shift = The sensor uses Argos Doppler shift to determine location; barometer = The sensor records air or water pressure; bird ring = The animal is identified by a band or ring that has a unique identifier; GPS = The sensor uses GPS to determine location; magnetometer = The sensor records the magnetic field; natural mark = The animal is identified by a unique natural marking; orientation = Quaternion components describing the orientation of the tag are derived from accelerometer and gyroscope measurements; radio transmitter = The sensor transmits a radio signal that is detected by receivers to determine location; solar geolocator = The sensor collects light levels, which are used to determine position (for processed locations); solar geolocator raw = The sensor collects light levels, which are used to determine position (for raw light-level measurements); solar geolocator twilight = The sensor collects light levels, which are used to determine position (for twilights calculated from light-level measurements). Format: controlled list; Entity described: event",
+            "type": "string",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000170/3/"
+          },
+          {
+            "name": "individual-taxon-canonical-name",
+            "title": "individual taxon canonical name",
+            "description": "The scientific name of the species on which the tag was deployed, as defined by the Integrated Taxonomic Information System (ITIS, www.itis.gov). If the species name can not be provided, this should be the lowest level taxonomic rank that can be determined and that is used in the ITIS taxonomy. Additional information can be provided using the term 'taxon detail'. Format: controlled list; Entity described: individual",
+            "type": "string",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000135/3/"
+          },
+          {
+            "name": "tag-local-identifier",
+            "title": "tag local identifier",
+            "description": "A unique identifier for the tag, provided by the data owner. If the data owner does not provide a tag ID, an internal Movebank tag identifier may sometimes be shown. Example: '2342'; Units: none; Entity described: tag",
+            "type": "string",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000182/3/"
+          },
+          {
+            "name": "individual-local-identifier",
+            "title": "individual local identifier",
+            "description": "An individual identifier for the animal, provided by the data owner. If the data owner does not provide an Animal ID, an internal Movebank animal identifier is sometimes shown. Example: '91876A, Gary'; Units: none; Entity described: individual",
+            "type": "string",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000134/2/"
+          },
+          {
+            "name": "study-name",
+            "title": "study name",
+            "description": "The name of the study in Movebank. Example: 'Coyotes, Kays and Bogan, Albany NY'; Units: none; Entity described: study (event)",
+            "type": "string",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000173/2/"
+          }
+        ],
+        "primaryKey": "event-id",
+        "foreignKeys": [
+          {
+            "fields": ["tag-local-identifier", "individual-local-identifier"],
+            "reference": {
+              "resource": "reference-data",
+              "fields": ["tag-id", "animal-id"]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "accessory-measurements",
+      "path": ["O_VLIELAND-accessory-measurements-2016.csv.gz", "O_VLIELAND-accessory-measurements-2017.csv.gz", "O_VLIELAND-accessory-measurements-2018.csv.gz", "O_VLIELAND-accessory-measurements-2019.csv.gz", "O_VLIELAND-accessory-measurements-2020.csv.gz", "O_VLIELAND-accessory-measurements-2021.csv.gz"],
+      "profile": "tabular-data-resource",
+      "format": "gz",
+      "mediatype": "text/csv",
+      "encoding": "UTF-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "event-id",
+            "title": "event ID",
+            "description": "An identifier for the set of values associated with each event, i.e. sensor measurement. A unique event ID is assigned to every time-location or other time-measurement record in Movebank. If multiple measurements are included within a single row of a data file, they will share an event ID. If users import the same sensor measurement to Movebank multiple times, a separate event ID will be assigned to each. Example: '6340565'; Units: none; Entity described: event",
+            "type": "integer",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000103/2/"
+          },
+          {
+            "name": "visible",
+            "title": "visible",
+            "description": "Determines whether an event is visible on the Movebank map. Values are calculated automatically, with TRUE indicating the event has not been flagged as an outlier by 'algorithm marked outlier', 'import marked outlier' or 'manually marked outlier', or that the user has overridden the results of these outlier attributes using 'manually marked valid' = TRUE. Allowed values are TRUE or FALSE. Units: none; Entity described: event",
+            "type": "boolean",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000209/2/"
+          },
+          {
+            "name": "timestamp",
+            "title": "timestamp",
+            "description": "The date and time corresponding to a sensor measurement or an estimate derived from sensor measurements. Example: '2008-08-14 18:31:00.000'; Format: yyyy-MM-dd HH:mm:ss.SSS; Units: UTC or GPS time; Entity described: event",
+            "type": "datetime",
+            "format": "%Y-%m-%d %H:%M:%S.%f",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000200/2/"
+          },
+          {
+            "name": "behavioural-classification",
+            "title": "behavioural classification",
+            "description": "Behavioural classifications assigned to the animal by the data owner. The method for defining and assigning these classifications are unique to the study and can be described using 'behaviour according to'. Recommended best practice is to use a controlled list. Example: 'roosting, foraging, running'; Units: none; Entity described: event",
+            "type": "string",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000067/2/"
           },
           {
             "name": "sensor-type",
