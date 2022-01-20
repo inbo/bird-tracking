@@ -219,7 +219,7 @@
       "name": "gps",
       "path": ["O_VLIELAND-gps-2016.csv.gz", "O_VLIELAND-gps-2017.csv.gz", "O_VLIELAND-gps-2018.csv.gz", "O_VLIELAND-gps-2019.csv.gz", "O_VLIELAND-gps-2020.csv.gz", "O_VLIELAND-gps-2021.csv.gz"],
       "profile": "tabular-data-resource",
-      "format": "gz",
+      "format": "csv",
       "mediatype": "text/csv",
       "encoding": "UTF-8",
       "schema": {
@@ -417,7 +417,7 @@
       "name": "acceleration",
       "path": ["O_VLIELAND-acceleration-2016.csv.gz", "O_VLIELAND-acceleration-2017.csv.gz", "O_VLIELAND-acceleration-2018.csv.gz", "O_VLIELAND-acceleration-2019.csv.gz", "O_VLIELAND-acceleration-2020.csv.gz", "O_VLIELAND-acceleration-2021.csv.gz"],
       "profile": "tabular-data-resource",
-      "format": "gz",
+      "format": "csv",
       "mediatype": "text/csv",
       "encoding": "UTF-8",
       "schema": {
@@ -559,7 +559,7 @@
       "name": "accessory-measurements",
       "path": ["O_VLIELAND-accessory-measurements-2016.csv.gz", "O_VLIELAND-accessory-measurements-2017.csv.gz", "O_VLIELAND-accessory-measurements-2018.csv.gz", "O_VLIELAND-accessory-measurements-2019.csv.gz", "O_VLIELAND-accessory-measurements-2020.csv.gz", "O_VLIELAND-accessory-measurements-2021.csv.gz"],
       "profile": "tabular-data-resource",
-      "format": "gz",
+      "format": "csv",
       "mediatype": "text/csv",
       "encoding": "UTF-8",
       "schema": {
