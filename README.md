@@ -42,7 +42,7 @@ Bird tracking - GPS tracking of Western Marsh Harriers breeding near the Belgium
 
 ## Repo structure
 
-The repository structure is based on [Cookiecutter Data Science](http://drivendata.github.io/cookiecutter-data-science/). Files and directories indicated with `GENERATED` should not be edited manually, those with `IGNORED` are ignored by git and will not appear on GitHub, and those with `DEPRECATED` are no longer maintained.
+The repository structure is based on [Cookiecutter Data Science](http://drivendata.github.io/cookiecutter-data-science/). Files and directories indicated with `GENERATED` should not be edited manually, those with `IGNORED` are ignored by git and will not appear on GitHub.
 
 ```
 ├── README.md           : Description of this repository
@@ -50,12 +50,6 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 ├── bird-tracking.Rproj : RStudio project file
 ├── .gitignore          : Files and directories to be ignored by git
 │
-├── cartodb             : Documentation for gps tracking data on CartoDB, see
-|                         https://inbo.carto.com/u/lifewatch/ DEPRECATED
-|
-├── explorer            : Source code for an online exploratory tool, see 
-|                         https://oscibio.inbo.be/blog/bird-tracking-explorer/ DEPRECATED
-|
 ├── src
 │   ├── functions       : Custom functions used in scripts
 │   ├── movebank_ornitela.Rmd : Script to prepare Uva-BiTS data for Movebank upload
@@ -71,6 +65,8 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 └── data
     └── processed       : Data that can be uploaded to Movebank GENERATED, large files IGNORED
 ```
+
+The repository used to include SQL and CSS for [CartoDB maps](https://oscibio.inbo.be/blog/?category=cartodb) and the source code for a [bird tracking explorer](https://oscibio.inbo.be/blog/bird-tracking-explorer/). These are accessible in the [version history](https://github.com/inbo/bird-tracking/tree/carto) of this repository.
 
 ## Contributors
 
