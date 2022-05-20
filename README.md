@@ -4,10 +4,8 @@ This repository contains the functionality to standardize data from the LifeWatc
 
 ## Datasets
 
-### Movebank & Zenodo
-
-Title | System | Started | Ended | Movebank | Zenodo
---- | --- | --- | --- | --- | ---
+Title | System | Started | Ended | Movebank | Zenodo | GBIF
+--- | --- | --- | --- | --- | --- | ---
 BOP_RODENT - Rodent specialized birds of prey (Circus, Asio, Buteo) in Flanders (Belgium) | Ornitela | 2020 | active | [1278021460](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1278021460) | [DOI](https://doi.org/10.5281/zenodo.5735405)
 CURLEW_VLAANDEREN - Eurasian curlews (Numenius arquata, Scolopacidae) breeding in Flanders (Belgium) | Ornitela | 2020 | active | [1841091905](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1841091905) | [DOI](https://doi.org/10.5281/zenodo.5779130)
 DELTATRACK - Herring gulls (Larus argentatus, Laridae) and Lesser black-backed gulls (Larus fuscus, Laridae) breeding at Neeltje Jans (Netherlands) | Ornitela | 2020 | active | [1258895879](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1258895879) | 
@@ -23,11 +21,11 @@ O_ASSEN - Eurasian oystercatchers (Haematopus ostralegus, Haematopodidae) breedi
 O_BALGZAND - Eurasian oystercatchers (Haematopus ostralegus, Haematopodidae) wintering on Balgzand (the Netherlands) | UvA-BiTS | 2010 | 2014 | [1605798640](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1605798640) | [DOI](https://doi.org/10.5281/zenodo.5653441)
 O_SCHIERMONNIKOOG - Eurasian oystercatchers (Haematopus ostralegus, Haematopodidae) breeding on Schiermonnikoog (the Netherlands) | UvA-BiTS | 2008 | 2014 | [1605799506](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1605799506) | [DOI](https://doi.org/10.5281/zenodo.5653477)
 O_VLIELAND - Eurasian oystercatchers (Haematopus ostralegus, Haematopodidae) breeding and wintering on Vlieland (the Netherlands) | UvA-BiTS | 2016 | 2021 | [1605802367](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1605802367) | [DOI](https://doi.org/10.5281/zenodo.5653890)
-O_WESTERSCHELDE - Eurasian oystercatchers (Haematopus ostralegus, Haematopodidae) breeding in East Flanders (Belgium) | UvA-BiTS | 2018 | 2020 | [1099562810](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1099562810) | [DOI](https://doi.org/10.5281/zenodo.3734898)
+O_WESTERSCHELDE - Eurasian oystercatchers (Haematopus ostralegus, Haematopodidae) breeding in East Flanders (Belgium) | UvA-BiTS | 2018 | 2020 | [1099562810](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1099562810) | [DOI](https://doi.org/10.5281/zenodo.3734898) | [GBIF](https://www.gbif.org/dataset/20bbd36e-d1a1-4169-8663-59feaa2641c0)
 
 Steps to upload data to Zenodo are described [here](https://github.com/inbo/bird-tracking/issues/131).
 
-### GBIF
+Before we adopted the workflow to publish on Movebank and Zenodo, two datasets were published on GBIF as source datasets:
 
 Title | Remark | GBIF
 --- | --- | ---
