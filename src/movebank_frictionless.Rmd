@@ -51,9 +51,9 @@ Create Data Package, add resources and write to disk
 dataset <-
   create_package() %>%
   append(c(id = versioned_doi), after = 0) %>%
-  add_movebank_resource("reference-data", ref_data, keys = TRUE) %>%
-  add_movebank_resource("gps", gps_data, keys = TRUE) %>%
-  add_movebank_resource("acceleration", acc_data, keys = TRUE)
+  movepub::add_resource("reference-data", ref_data, keys = TRUE) %>%
+  movepub::add_resource("gps", gps_data, keys = TRUE) %>%
+  movepub::add_resource("acceleration", acc_data, keys = TRUE)
 write_package(dataset, dir)
 ```
 
