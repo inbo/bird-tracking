@@ -1,11 +1,14 @@
 {
-  "id": "https://doi.org/10.5281/zenodo.5068540",
+  "id": "https://doi.org/10.5281/zenodo.6579497",
   "profile": "tabular-data-package",
   "resources": [
     {
       "name": "reference-data",
       "path": "LBBG_ZEEBRUGGE-reference-data.csv",
       "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "UTF-8",
       "schema": {
         "fields": [
           {
@@ -27,11 +30,10 @@
           {
             "name": "animal-taxon",
             "title": "animal taxon",
-            "description": "The scientific name of the species on which the tag was deployed, as defined by the Integrated Taxonomic Information System (ITIS, www.itis.gov). If the species name can not be provided, this should be the lowest level taxonomic rank that can be determined and that is used in the ITIS taxonomy. Additional information can be provided using the term 'taxon detail'. Example: 'Buteo swainsoni'; Format: controlled list; Units: none; Entity described: individual",
+            "description": "The scientific name of the species on which the tag was deployed, as defined by the Integrated Taxonomic Information System (ITIS, www.itis.gov). If the species name can not be provided, this should be the lowest level taxonomic rank that can be determined and that is used in the ITIS taxonomy. Additional information can be provided using the term 'taxon detail'. Format: controlled list; Entity described: individual",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000024/2/"
-            
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000024/3/"
           },
           {
             "name": "deploy-on-date",
@@ -44,10 +46,10 @@
           {
             "name": "deploy-off-date",
             "title": "deploy off timestamp",
-            "description": "The timestamp when the tag deployment ended. Example: '2009-10-01 12:00:00.000'; Format: yyyy-MM-dd HH:mm:ss.SSS; Units: UTC or GPS time; Entity described: deployment",
+            "description": "The timestamp when the tag deployment ended, as defined by the data owner. Example: '2009-10-01 12:00:00.000'; Format: yyyy-MM-dd HH:mm:ss.SSS; Units: UTC or GPS time; Entity described: deployment",
             "type": "datetime",
             "format": "%Y-%m-%d %H:%M:%S.%f",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000077/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000077/3/"
           },
           {
             "name": "animal-comments",
@@ -92,34 +94,34 @@
           {
             "name": "animal-sex",
             "title": "animal sex",
-            "description": "The sex of the animal. Allowed values are m = male; f = female. Format: controlled list; Units: none; Entity described: individual",
+            "description": "The sex of the animal. Allowed values are m = male; f = female; u = unknown. Format: controlled list; Entity described: individual",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000023/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000023/3/"
           },
           {
             "name": "attachment-type",
             "title": "attachment type",
-            "description": "The way a tag is attached to an animal. Values are chosen from a controlled list: collar = The tag is attached by a collar around the animal's neck; glue = The tag is attached to the animal using glue; harness = The tag is attached to the animal using a harness; implant = The tag is placed under the skin of the animal; tape = The tag is attached to the animal using tape; other = user specified. Format: controlled list; Units: none; Entity described: deployment",
+            "description": "The way a tag is attached to an animal. Values are chosen from a controlled list: collar = The tag is attached by a collar around the animal's neck; fin mount = The tag is attached to the animal's fin; glue = The tag is attached to the animal using glue; harness = The tag is attached to the animal using a harness; implant = The tag is placed under the skin of the animal; tape = The tag is attached to the animal using tape; other = user specified. Format: controlled list; Entity described: deployment",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000052/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000052/3/"
           },
           {
             "name": "deploy-on-latitude",
             "title": "deploy on latitude",
-            "description": "The geographic latitude of the location where the animal was released (intended primarily for instances in which the animal release and tag retrieval locations have higher accuracy than those derived from sensor data). Example: '27.3516'; Units: decimal degrees, WGS84 reference system; Entity described: deployment",
+            "description": "The geographic latitude of the location where the animal was released. Intended primarily for cases in which the animal release location has higher accuracy than that derived from sensor data. Example: '27.3516'; Units: decimal degrees, WGS84 reference system; Entity described: deployment",
             "type": "number",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000078/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000078/3/"
           },
           {
             "name": "deploy-on-longitude",
             "title": "deploy on longitude",
-            "description": "The geographic longitude of the location where the animal was released (intended primarily for instances in which the animal release and tag retrieval locations have higher accuracy than those derived from sensor data). Example: '-97.3321'; Units: decimal degrees, WGS84 reference system; Entity described: deployment",
+            "description": "The geographic longitude of the location where the animal was released. Intended primarily for cases in which the animal release location has higher accuracy than that derived from sensor data. Example: '-97.3321'; Units: decimal degrees, WGS84 reference system; Entity described: deployment",
             "type": "number",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000079/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000079/3/"
           },
           {
             "name": "deployment-comments",
@@ -132,10 +134,10 @@
           {
             "name": "deployment-end-type",
             "title": "deployment end type",
-            "description": "A categorical classification of the tag deployment end, from a controlled list: captured = The tag remained on the animal but the animal was captured or confined; dead = The deployment ended with the death of the animal that was carrying the tag; equipment failure = The tag stopped working; fall off = The attachment of the tag to the animal failed, and it fell of accidentally; other = other; released = The tag remained on the animal but the animal was released from captivity or confinement; removal = The tag was purposefully removed from the animal; unknown = The deployment ended by an unknown cause. Format: controlled list; Units: none; Entity described: deployment",
+            "description": "A categorical classification of the tag deployment end, from a controlled list: captured = The tag remained on the animal but the animal was captured or confined; dead = The deployment ended with the death of the animal that was carrying the tag; equipment failure = The tag stopped working; fall off = The attachment of the tag to the animal failed, and it fell of accidentally; other = other; released = The tag remained on the animal but the animal was released from captivity or confinement; removal = The tag was purposefully removed from the animal; unknown = The deployment ended by an unknown cause. Format: controlled list; Entity described: deployment",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000084/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000084/3/"
           },
           {
             "name": "deployment-id",
@@ -156,10 +158,10 @@
           {
             "name": "manipulation-type",
             "title": "manipulation type",
-            "description": "The way in which the animal was manipulated during the deployment. Values are chosen from a controlled list: confined = The animal's movement was restricted to within a defined area; none = The animal received no treatment other than the tag attachment; relocated = The animal was released from a site other than the one at which it was captured; manipulated other = The animal was manipulated in some other way, such as a physiological manipulation. Format: controlled list; Units: none; Entity described: deployment",
+            "description": "The way in which the animal was manipulated during the deployment. Additional information can be provided using 'manipulation comments'. Values are chosen from a controlled list: confined = The animal's movement was restricted to within a defined area; none = The animal received no treatment other than the tag attachment; relocated = The animal was released from a site other than the one at which it was captured; manipulated other = The animal was manipulated in some other way, such as a physiological manipulation. Format: controlled list; Entity described: deployment",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000155/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000155/3/"
           },
           {
             "name": "study-site",
@@ -167,7 +169,7 @@
             "description": "A location such as the deployment site or colony, or a location-related group such as the herd or pack name. Example: 'Pickerel Island North'; Units: none; Entity described: deployment",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": ""
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000175/2/"
           },
           {
             "name": "tag-manufacturer-name",
@@ -175,7 +177,7 @@
             "description": "The company or person that produced the tag. Example: 'Holohil'; Units: none; Entity described: tag",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000175/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000183/2/"
           },
           {
             "name": "tag-mass",
@@ -188,10 +190,10 @@
           {
             "name": "tag-readout-method",
             "title": "tag readout method",
-            "description": "The way the data are received from the tag. Values are chosen from a controlled list: satellite = Data are transferred via satellite; phone network = Data are transferred via a phone network, such as GSM or AMPS; other wireless = Data are transferred via another form of wireless data transfer, such as a VHF transmitter/receiver; tag retrieval = The tag must be physically retrieved in order to obtain the data. Format: controlled list; Units: none; Entity described: deployment",
+            "description": "The way the data are received from the tag. Values are chosen from a controlled list: satellite = Data are transferred via satellite; phone network = Data are transferred via a phone network, such as GSM or AMPS; other wireless = Data are transferred via another form of wireless data transfer, such as a VHF transmitter/receiver; tag retrieval = The tag must be physically retrieved in order to obtain the data. Format: controlled list; Entity described: deployment",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000188/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000188/3/"
           },
           {
             "name": "tag-serial-no",
@@ -202,25 +204,16 @@
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000189/2/"
           }
         ],
-        "primaryKey": [
-          "tag-id",
-          "animal-id"
-        ]
+        "primaryKey": ["animal-id", "tag-id"]
       }
     },
     {
       "name": "gps",
-      "path": [
-        "LBBG_ZEEBRUGGE-gps-2013.csv.gz",
-        "LBBG_ZEEBRUGGE-gps-2014.csv.gz",
-        "LBBG_ZEEBRUGGE-gps-2015.csv.gz",
-        "LBBG_ZEEBRUGGE-gps-2016.csv.gz",
-        "LBBG_ZEEBRUGGE-gps-2017.csv.gz",
-        "LBBG_ZEEBRUGGE-gps-2018.csv.gz",
-        "LBBG_ZEEBRUGGE-gps-2019.csv.gz",
-        "LBBG_ZEEBRUGGE-gps-2020.csv.gz"
-      ],
+      "path": ["LBBG_ZEEBRUGGE-gps-2013.csv.gz", "LBBG_ZEEBRUGGE-gps-2014.csv.gz", "LBBG_ZEEBRUGGE-gps-2015.csv.gz", "LBBG_ZEEBRUGGE-gps-2016.csv.gz", "LBBG_ZEEBRUGGE-gps-2017.csv.gz", "LBBG_ZEEBRUGGE-gps-2018.csv.gz", "LBBG_ZEEBRUGGE-gps-2019.csv.gz", "LBBG_ZEEBRUGGE-gps-2020.csv.gz", "LBBG_ZEEBRUGGE-gps-2021.csv.gz"],
       "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "UTF-8",
       "schema": {
         "fields": [
           {
@@ -258,10 +251,10 @@
           {
             "name": "location-lat",
             "title": "location lat",
-            "description": "The geographic longitude of the location as estimated by the sensor. Positive values are east of the Greenwich Meridian, negative values are west of it. Example: '-41.0982423'; Units: decimal degrees, WGS84 reference system; Entity described: event",
+            "description": "The geographic latitude of the location as estimated by the sensor. Positive values are east of the Greenwich Meridian, negative values are west of it. Example: '-41.0982423'; Units: decimal degrees, WGS84 reference system; Entity described: event",
             "type": "number",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000145/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000145/3/"
           },
           {
             "name": "bar:barometric-pressure",
@@ -333,7 +326,7 @@
             "description": "Identifies events as outliers. Typically used to import a record of outliers that were identified by the data provider or owner with automated methods outside of Movebank. Outliers have the value TRUE. Units: none; Entity described: event",
             "type": "boolean",
             "format": "default",
-            "skos:exactMatch": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000133/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000133/2/"
           },
           {
             "name": "location-error-numerical",
@@ -362,34 +355,34 @@
           {
             "name": "sensor-type",
             "title": "sensor type",
-            "description": "The type of sensor with which data were collected. All sensors are associated with a tag id, and tags can contain multiple sensor types. Each event record in Movebank is assigned one sensor type. If values from multiple sensors are reported in a single event, the primary sensor is used. Values are chosen from a controlled list: acceleration = The sensor collects acceleration data; accessory measurements = The sensor collects accessory measurements, such as battery voltage; Argos Doppler shift = The sensor uses Argos Doppler shift to determine position; barometer = The sensor records air or water pressure; bird ring = The animal is identified by a band or ring that has a unique identifier; GPS = The sensor uses GPS to determine location; magnetometer = The sensor records the magnetic field; natural mark = The animal is identified by a unique natural marking; orientation = Quaternion components describing the orientation of the tag are derived from accelerometer and gyroscope measurements; radio transmitter = The sensor is a classical radio transmitter; solar geolocator = The sensor collects light levels, which are used to determine position (for processed locations); solar geolocator raw = The sensor collects light levels, which are used to determine position (for raw light-level measurements); solar geolocator twilight = The sensor collects light levels, which are used to determine position (for twilights calculated from light-level measurements). Format: controlled list; Units: none; Entity described: event",
+            "description": "The type of sensor with which data were collected. All sensors are associated with a tag id, and tags can contain multiple sensor types. Each event record in Movebank is assigned one sensor type. If values from multiple sensors are reported in a single event, the primary sensor is used. Values are chosen from a controlled list: acceleration = The sensor collects acceleration data; accessory measurements = The sensor collects accessory measurements, such as battery voltage; acoustic telemetry = The sensor transmits an acoustic signal that is detected by receivers to determine location; Argos Doppler shift = The sensor uses Argos Doppler shift to determine location; barometer = The sensor records air or water pressure; bird ring = The animal is identified by a band or ring that has a unique identifier; GPS = The sensor uses GPS to determine location; magnetometer = The sensor records the magnetic field; natural mark = The animal is identified by a unique natural marking; orientation = Quaternion components describing the orientation of the tag are derived from accelerometer and gyroscope measurements; radio transmitter = The sensor transmits a radio signal that is detected by receivers to determine location; solar geolocator = The sensor collects light levels, which are used to determine position (for processed locations); solar geolocator raw = The sensor collects light levels, which are used to determine position (for raw light-level measurements); solar geolocator twilight = The sensor collects light levels, which are used to determine position (for twilights calculated from light-level measurements). Format: controlled list; Entity described: event",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000170/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000170/3/"
           },
           {
             "name": "individual-taxon-canonical-name",
-            "title": "animal taxon",
-            "description": "The scientific name of the species on which the tag was deployed, as defined by the Integrated Taxonomic Information System (ITIS, www.itis.gov). If the species name can not be provided, this should be the lowest level taxonomic rank that can be determined and that is used in the ITIS taxonomy. Additional information can be provided using the term 'taxon detail'. Example: 'Buteo swainsoni'; Format: controlled list; Units: none; Entity described: individual",
+            "title": "individual taxon canonical name",
+            "description": "The scientific name of the species on which the tag was deployed, as defined by the Integrated Taxonomic Information System (ITIS, www.itis.gov). If the species name can not be provided, this should be the lowest level taxonomic rank that can be determined and that is used in the ITIS taxonomy. Additional information can be provided using the term 'taxon detail'. Format: controlled list; Entity described: individual",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000024/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000135/3/"
           },
           {
             "name": "tag-local-identifier",
-            "title": "tag ID",
+            "title": "tag local identifier",
             "description": "A unique identifier for the tag, provided by the data owner. If the data owner does not provide a tag ID, an internal Movebank tag identifier may sometimes be shown. Example: '2342'; Units: none; Entity described: tag",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000181/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000182/3/"
           },
           {
             "name": "individual-local-identifier",
-            "title": "animal ID",
+            "title": "individual local identifier",
             "description": "An individual identifier for the animal, provided by the data owner. If the data owner does not provide an Animal ID, an internal Movebank animal identifier is sometimes shown. Example: '91876A, Gary'; Units: none; Entity described: individual",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000016/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000134/2/"
           },
           {
             "name": "study-name",
@@ -403,16 +396,10 @@
         "primaryKey": "event-id",
         "foreignKeys": [
           {
-            "fields": [
-              "tag-local-identifier",
-              "individual-local-identifier"
-            ],
+            "fields": ["individual-local-identifier", "tag-local-identifier"],
             "reference": {
               "resource": "reference-data",
-              "fields": [
-                "tag-id",
-                "animal-id"
-              ]
+              "fields": ["animal-id", "tag-id"]
             }
           }
         ]
@@ -420,17 +407,11 @@
     },
     {
       "name": "acceleration",
-      "path": [
-        "LBBG_ZEEBRUGGE-acceleration-2013.csv.gz",
-        "LBBG_ZEEBRUGGE-acceleration-2014.csv.gz",
-        "LBBG_ZEEBRUGGE-acceleration-2015.csv.gz",
-        "LBBG_ZEEBRUGGE-acceleration-2016.csv.gz",
-        "LBBG_ZEEBRUGGE-acceleration-2017.csv.gz",
-        "LBBG_ZEEBRUGGE-acceleration-2018.csv.gz",
-        "LBBG_ZEEBRUGGE-acceleration-2019.csv.gz",
-        "LBBG_ZEEBRUGGE-acceleration-2020.csv.gz"
-      ],
+      "path": ["LBBG_ZEEBRUGGE-acceleration-2013.csv.gz", "LBBG_ZEEBRUGGE-acceleration-2014.csv.gz", "LBBG_ZEEBRUGGE-acceleration-2015.csv.gz", "LBBG_ZEEBRUGGE-acceleration-2016.csv.gz", "LBBG_ZEEBRUGGE-acceleration-2017.csv.gz", "LBBG_ZEEBRUGGE-acceleration-2018.csv.gz", "LBBG_ZEEBRUGGE-acceleration-2019.csv.gz", "LBBG_ZEEBRUGGE-acceleration-2020.csv.gz", "LBBG_ZEEBRUGGE-acceleration-2021.csv.gz"],
       "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "UTF-8",
       "schema": {
         "fields": [
           {
@@ -463,7 +444,7 @@
             "description": "Raw acceleration values provided by the tag for the X axis. Range and units may vary by provider, tag, and orientation of the sensor on the animal. Example: '0.556641'; Units: not defined; Entity described: event",
             "type": "number",
             "format": "default",
-            "skos:exactMatch": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000002/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000002/2/"
           },
           {
             "name": "acceleration-raw-y",
@@ -471,7 +452,7 @@
             "description": "Raw acceleration values provided by the tag for the Y axis. Range and units may vary by provider, tag, and orientation of the sensor on the animal. Example: '0.09375'; Units: not defined; Entity described: event",
             "type": "number",
             "format": "default",
-            "skos:exactMatch": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000003/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000003/2/"
           },
           {
             "name": "acceleration-raw-z",
@@ -479,7 +460,7 @@
             "description": "Raw acceleration values provided by the tag for the Z axis. Range and units may vary by provider, tag, and orientation of the sensor on the animal. Example: '-0.84375'; Units: not defined; Entity described: event",
             "type": "number",
             "format": "default",
-            "skos:exactMatch": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000004/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000004/2/"
           },
           {
             "name": "start-timestamp",
@@ -487,7 +468,7 @@
             "description": "The date and time when the sampling interval or burst began. Example: '2011-01-03 13:45:00.000'; Format: yyyy-MM-dd HH:mm:ss.SSS; Units: UTC or GPS time; Entity described: event",
             "type": "datetime",
             "format": "%Y-%m-%d %H:%M:%S.%f",
-            "skos:exactMatch": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000171/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000171/2/"
           },
           {
             "name": "tilt-x",
@@ -495,7 +476,7 @@
             "description": "Tilt provided by the accelerometer for the X axis. Example: '0'; Units: g forces (1 g = 9.8 m s^-2); Entity described: event",
             "type": "number",
             "format": "default",
-            "skos:exactMatch": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000197/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000197/2/"
           },
           {
             "name": "tilt-y",
@@ -503,7 +484,7 @@
             "description": "Tilt provided by the accelerometer for the Y axis. Example: '0'; Units: g forces (1 g = 9.8 m s^-2); Entity described: event",
             "type": "number",
             "format": "default",
-            "skos:exactMatch": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000198/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000198/2/"
           },
           {
             "name": "tilt-z",
@@ -511,39 +492,39 @@
             "description": "Tilt provided by the accelerometer for the Z axis. Example: '1'; Units: g forces (1 g = 9.8 m s^-2); Entity described: event",
             "type": "number",
             "format": "default",
-            "skos:exactMatch": "https://vocab.nerc.ac.uk/collection/MVB/current/MVB000199/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000199/2/"
           },
           {
             "name": "sensor-type",
             "title": "sensor type",
-            "description": "The type of sensor with which data were collected. All sensors are associated with a tag id, and tags can contain multiple sensor types. Each event record in Movebank is assigned one sensor type. If values from multiple sensors are reported in a single event, the primary sensor is used. Values are chosen from a controlled list: acceleration = The sensor collects acceleration data; accessory measurements = The sensor collects accessory measurements, such as battery voltage; Argos Doppler shift = The sensor uses Argos Doppler shift to determine position; barometer = The sensor records air or water pressure; bird ring = The animal is identified by a band or ring that has a unique identifier; GPS = The sensor uses GPS to determine location; magnetometer = The sensor records the magnetic field; natural mark = The animal is identified by a unique natural marking; orientation = Quaternion components describing the orientation of the tag are derived from accelerometer and gyroscope measurements; radio transmitter = The sensor is a classical radio transmitter; solar geolocator = The sensor collects light levels, which are used to determine position (for processed locations); solar geolocator raw = The sensor collects light levels, which are used to determine position (for raw light-level measurements); solar geolocator twilight = The sensor collects light levels, which are used to determine position (for twilights calculated from light-level measurements). Format: controlled list; Units: none; Entity described: event",
+            "description": "The type of sensor with which data were collected. All sensors are associated with a tag id, and tags can contain multiple sensor types. Each event record in Movebank is assigned one sensor type. If values from multiple sensors are reported in a single event, the primary sensor is used. Values are chosen from a controlled list: acceleration = The sensor collects acceleration data; accessory measurements = The sensor collects accessory measurements, such as battery voltage; acoustic telemetry = The sensor transmits an acoustic signal that is detected by receivers to determine location; Argos Doppler shift = The sensor uses Argos Doppler shift to determine location; barometer = The sensor records air or water pressure; bird ring = The animal is identified by a band or ring that has a unique identifier; GPS = The sensor uses GPS to determine location; magnetometer = The sensor records the magnetic field; natural mark = The animal is identified by a unique natural marking; orientation = Quaternion components describing the orientation of the tag are derived from accelerometer and gyroscope measurements; radio transmitter = The sensor transmits a radio signal that is detected by receivers to determine location; solar geolocator = The sensor collects light levels, which are used to determine position (for processed locations); solar geolocator raw = The sensor collects light levels, which are used to determine position (for raw light-level measurements); solar geolocator twilight = The sensor collects light levels, which are used to determine position (for twilights calculated from light-level measurements). Format: controlled list; Entity described: event",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000170/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000170/3/"
           },
           {
             "name": "individual-taxon-canonical-name",
-            "title": "animal taxon",
-            "description": "The scientific name of the species on which the tag was deployed, as defined by the Integrated Taxonomic Information System (ITIS, www.itis.gov). If the species name can not be provided, this should be the lowest level taxonomic rank that can be determined and that is used in the ITIS taxonomy. Additional information can be provided using the term 'taxon detail'. Example: 'Buteo swainsoni'; Format: controlled list; Units: none; Entity described: individual",
+            "title": "individual taxon canonical name",
+            "description": "The scientific name of the species on which the tag was deployed, as defined by the Integrated Taxonomic Information System (ITIS, www.itis.gov). If the species name can not be provided, this should be the lowest level taxonomic rank that can be determined and that is used in the ITIS taxonomy. Additional information can be provided using the term 'taxon detail'. Format: controlled list; Entity described: individual",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000024/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000135/3/"
           },
           {
             "name": "tag-local-identifier",
-            "title": "tag ID",
+            "title": "tag local identifier",
             "description": "A unique identifier for the tag, provided by the data owner. If the data owner does not provide a tag ID, an internal Movebank tag identifier may sometimes be shown. Example: '2342'; Units: none; Entity described: tag",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000181/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000182/3/"
           },
           {
             "name": "individual-local-identifier",
-            "title": "animal ID",
+            "title": "individual local identifier",
             "description": "An individual identifier for the animal, provided by the data owner. If the data owner does not provide an Animal ID, an internal Movebank animal identifier is sometimes shown. Example: '91876A, Gary'; Units: none; Entity described: individual",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000016/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000134/2/"
           },
           {
             "name": "study-name",
@@ -557,16 +538,10 @@
         "primaryKey": "event-id",
         "foreignKeys": [
           {
-            "fields": [
-              "tag-local-identifier",
-              "individual-local-identifier"
-            ],
+            "fields": ["individual-local-identifier", "tag-local-identifier"],
             "reference": {
               "resource": "reference-data",
-              "fields": [
-                "tag-id",
-                "animal-id"
-              ]
+              "fields": ["animal-id", "tag-id"]
             }
           }
         ]
