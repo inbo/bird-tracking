@@ -146,5 +146,5 @@ awk 'FNR > 1' gps_outliers/movebank_gps_*.csv > movebank_gps_yyyy_nh.csv
 After which the header needs to be added with:
 
 ```
-cat movebank_gps_headers_outliers.csv movebank_gps_yyyy_nh.csv > movebank_gps_yyyy.csv
+cat movebank_gps_outliers_headers.csv movebank_gps_yyyy_nh.csv > movebank_gps_yyyy.csv
 ```
