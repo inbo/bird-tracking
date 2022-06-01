@@ -1,5 +1,5 @@
 {
-  "id": "https://doi.org/10.5281/zenodo.5653442",
+  "id": "https://doi.org/10.5281/zenodo.6603023",
   "profile": "tabular-data-package",
   "resources": [
     {
@@ -204,14 +204,14 @@
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000189/2/"
           }
         ],
-        "primaryKey": ["tag-id", "animal-id"]
+        "primaryKey": ["animal-id", "tag-id"]
       }
     },
     {
       "name": "gps",
       "path": ["O_BALGZAND-gps-2010.csv.gz", "O_BALGZAND-gps-2011.csv.gz", "O_BALGZAND-gps-2012.csv.gz", "O_BALGZAND-gps-2013.csv.gz", "O_BALGZAND-gps-2014.csv.gz"],
       "profile": "tabular-data-resource",
-      "format": "gz",
+      "format": "csv",
       "mediatype": "text/csv",
       "encoding": "UTF-8",
       "schema": {
@@ -396,10 +396,10 @@
         "primaryKey": "event-id",
         "foreignKeys": [
           {
-            "fields": ["tag-local-identifier", "individual-local-identifier"],
+            "fields": ["individual-local-identifier", "tag-local-identifier"],
             "reference": {
               "resource": "reference-data",
-              "fields": ["tag-id", "animal-id"]
+              "fields": ["animal-id", "tag-id"]
             }
           }
         ]
@@ -409,7 +409,7 @@
       "name": "acceleration",
       "path": ["O_BALGZAND-acceleration-2010.csv.gz", "O_BALGZAND-acceleration-2011.csv.gz", "O_BALGZAND-acceleration-2012.csv.gz", "O_BALGZAND-acceleration-2013.csv.gz", "O_BALGZAND-acceleration-2014.csv.gz"],
       "profile": "tabular-data-resource",
-      "format": "gz",
+      "format": "csv",
       "mediatype": "text/csv",
       "encoding": "UTF-8",
       "schema": {
@@ -538,10 +538,10 @@
         "primaryKey": "event-id",
         "foreignKeys": [
           {
-            "fields": ["tag-local-identifier", "individual-local-identifier"],
+            "fields": ["individual-local-identifier", "tag-local-identifier"],
             "reference": {
               "resource": "reference-data",
-              "fields": ["tag-id", "animal-id"]
+              "fields": ["animal-id", "tag-id"]
             }
           }
         ]
