@@ -25,12 +25,7 @@ O_WESTERSCHELDE - Eurasian oystercatchers (Haematopus ostralegus, Haematopodidae
 
 Steps to upload data to Zenodo are described [here](https://github.com/inbo/bird-tracking/issues/131).
 
-Before we adopted the workflow to publish on Movebank and Zenodo, two datasets were published on GBIF as source datasets:
-
-Title | Remark | GBIF
---- | --- | ---
-Bird tracking - GPS tracking of Lesser Black-backed Gulls and Herring Gulls breeding at the southern North Sea coast | Subset of `HG_OOSTENDE` and `LBBG_ZEEBRUGGE`, described in [Stienen et al. 2016](https://doi.org/10.3897/zookeys.555.6173) | [DOI](https://doi.org/10.15468/02omly)
-Bird tracking - GPS tracking of Western Marsh Harriers breeding near the Belgium-Netherlands border | Subset of `MH_WATERLAND` | [DOI](https://doi.org/10.15468/rbguhj)
+Before we adopted the workflow to publish on Movebank and Zenodo, two datasets were published on GBIF as source datasets (https://doi.org/10.15468/02omly and https://doi.org/10.15468/rbguhj). Those have since been deleted, since these are better represented by the datasets listed above (`HG_OOSTENDE`, `LBBG_ZEEBRUGGE` and `MH_WATERLAND`).
 
 ## Workflow
 
