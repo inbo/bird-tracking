@@ -1,11 +1,14 @@
 {
-  "id": "https://doi.org/10.5281/zenodo.5658639",
+  "id": "https://doi.org/10.5281/zenodo.6656937",
   "profile": "tabular-data-package",
   "resources": [
     {
       "name": "reference-data",
       "path": "O_AMELAND-reference-data.csv",
       "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "UTF-8",
       "schema": {
         "fields": [
           {
@@ -201,21 +204,16 @@
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000189/2/"
           }
         ],
-        "primaryKey": [
-          "tag-id",
-          "animal-id"
-        ]
+        "primaryKey": ["animal-id", "tag-id"]
       }
     },
     {
       "name": "gps",
-      "path": [
-        "O_AMELAND-gps-2010.csv.gz",
-        "O_AMELAND-gps-2011.csv.gz",
-        "O_AMELAND-gps-2012.csv.gz",
-        "O_AMELAND-gps-2013.csv.gz"
-      ],
+      "path": ["O_AMELAND-gps-2010.csv.gz", "O_AMELAND-gps-2011.csv.gz", "O_AMELAND-gps-2012.csv.gz", "O_AMELAND-gps-2013.csv.gz"],
       "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "UTF-8",
       "schema": {
         "fields": [
           {
@@ -398,16 +396,10 @@
         "primaryKey": "event-id",
         "foreignKeys": [
           {
-            "fields": [
-              "tag-local-identifier",
-              "individual-local-identifier"
-            ],
+            "fields": ["individual-local-identifier", "tag-local-identifier"],
             "reference": {
               "resource": "reference-data",
-              "fields": [
-                "tag-id",
-                "animal-id"
-              ]
+              "fields": ["animal-id", "tag-id"]
             }
           }
         ]
@@ -415,13 +407,11 @@
     },
     {
       "name": "acceleration",
-      "path": [
-        "O_AMELAND-acceleration-2010.csv.gz",
-        "O_AMELAND-acceleration-2011.csv.gz",
-        "O_AMELAND-acceleration-2012.csv.gz",
-        "O_AMELAND-acceleration-2013.csv.gz"
-      ],
+      "path": ["O_AMELAND-acceleration-2010.csv.gz", "O_AMELAND-acceleration-2011.csv.gz", "O_AMELAND-acceleration-2012.csv.gz", "O_AMELAND-acceleration-2013.csv.gz"],
       "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "UTF-8",
       "schema": {
         "fields": [
           {
@@ -548,16 +538,10 @@
         "primaryKey": "event-id",
         "foreignKeys": [
           {
-            "fields": [
-              "tag-local-identifier",
-              "individual-local-identifier"
-            ],
+            "fields": ["individual-local-identifier", "tag-local-identifier"],
             "reference": {
               "resource": "reference-data",
-              "fields": [
-                "tag-id",
-                "animal-id"
-              ]
+              "fields": ["animal-id", "tag-id"]
             }
           }
         ]
