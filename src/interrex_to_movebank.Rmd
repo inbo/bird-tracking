@@ -1,12 +1,12 @@
 ---
-title: "Prepare Ornitela (meta)data for Movebank upload"
+title: "Prepare Interrex (meta)data for Movebank upload"
 author: "Peter Desmet"
 date: "`r Sys.Date()`"
 output:
   html_document
 ---
 
-This script prepares [Ornitela](https://www.ornitela.com/) bird tracking data for upload to [Movebank](https://www.movebank.org/) For a project, it downloads **reference data** from a Google spreadsheet where these data are maintained and transforms these to the [Movebank data format](https://www.movebank.org/node/2381) using `dplyr::mutate()` (see below). **GPS data** are automatically synced with Movebank (see `Live Feeds` in a Movebank study). This is not yet implemented for **acceleration data** which are currently not uploaded.
+This script prepares [Interrex](http://interrex-tracking.com/) bird tracking data for upload to [Movebank](https://www.movebank.org/) For a project, it downloads **reference data** from a Google spreadsheet where these data are maintained and transforms these to the [Movebank data format](https://www.movebank.org/node/2381) using `dplyr::mutate()` (see below). **GPS data** are automatically synced with Movebank (see `Live Feeds` in a Movebank study).
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
@@ -19,10 +19,10 @@ library(tidyverse)
 library(here)
 ```
 
-## Get Ornitela tag and bird information from spreadsheet
+## Get Interrex tag and bird information from spreadsheet
 
 ```{r}
-metadata <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=0&single=true&output=csv")
+metadata <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSJAdGCKUnFn_9TuTN5RFs2V7wdRytJ-TgePX-eVH6mALcupdF0VqDQ6MJVBDxJG1cjRWv7fu30jzNq/pub?gid=0&single=true&output=csv")
 metadata_colnames <- colnames(metadata)
 ```
 
@@ -31,14 +31,14 @@ metadata_colnames <- colnames(metadata)
 Set project:
 
 ```{r}
-project_id <- "LBBG_JUVENILE"
+project_id <- "HG_JUVENILE"
 ```
 
 ## Get reference data (metadata)
 
 For a project, get data on animals, tags and deployments in the [Movebank reference data format](https://www.movebank.org/node/27).
 
-Note: [UvA-BiTS reference data](../sql/movebank_ref.sql) has some fields that are not available in the Ornitela metadata. These are indicated with `NOT AVAILABLE` below and are not included in `movebank_ref_data.csv`, as their empty values would lead to import errors in Movebank. Since UvA-BiTS has more fields, use `bind_rows(uvabits_project_metadata, ornitela_project_metadata)` (UvA-BiTS first) to have all columns in the right order when you want to combine metadata.
+Note: [UvA-BiTS reference data](../sql/movebank_ref.sql) has some fields that are not available in the Interrex metadata. These are indicated with `NOT AVAILABLE` below and are not included in `movebank_ref_data.csv`, as their empty values would lead to import errors in Movebank. Since UvA-BiTS has more fields, use `bind_rows(uvabits_project_metadata, interrex_project_metadata)` (UvA-BiTS first) to have all columns in the right order when you want to combine metadata.
 
 Map data:
 
@@ -53,10 +53,7 @@ movebank_ref_data <-
     # animal-exact-date-of-birth
     `animal-id` = metal_ring,
     # animal-latest-date-born
-    `animal-nickname` = case_when(
-      str_detect(animal_name, "OT-") ~ NA_character_, # Exclude names that are the default tag name
-      TRUE ~ animal_name
-    ),
+    `animal-nickname` = animal_name,
     `animal-ring-id` = colour_ring,
     `animal-sex` = recode(sex,
       "F" = "f",
@@ -82,8 +79,14 @@ movebank_ref_data <-
       as.POSIXct(track_session_end_date, tz = "UTC", format = "%Y-%m-%d %H:%M:%S"),
       "%Y-%m-%dT%H:%M:%SZ"
     ),
-    # deploy-on-latitude: NOT AVAILABLE
-    # deploy-on-longitude: NOT AVAILABLE
+    `deploy-on-latitude` = case_when(
+      str_detect(release_location, "IJzermonding") ~ 51.153,
+      TRUE ~ NA_real_
+    ),
+    `deploy-on-longitude` = case_when(
+      str_detect(release_location, "IJzermonding") ~ 2.725,
+      TRUE ~ NA_real_
+    ),
     # deploy-on-person
     `deploy-on-timestamp` = format(
       as.POSIXct(track_session_start_date, tz = "UTC", format = "%Y-%m-%d %H:%M:%S"),
@@ -110,8 +113,8 @@ movebank_ref_data <-
     # location-accuracy-comments: NOT AVAILABLE, there is no location-error-numerical/vertical-error-numerical in the gps data
     # manipulation-comments
     `manipulation-type` = case_when(
-      str_detect(track_session_remarks, "VOC") ~ "manipulated other",
-      # Birds from VOC were hatched from egg or raised as chicks
+      project == "HG_JUVENILE" ~ "manipulated other",
+      # Birds from HG_JUVENILE were hatched from egg or raised as chicks
       # e.g. placed in controlled environment and subjected to behavioural studies
       TRUE ~ "none"
     ),
@@ -122,7 +125,7 @@ movebank_ref_data <-
     # tag-comments
     # tag-failure-comments
     `tag-id` = serial_number,
-    `tag-manufacturer-name` = "Ornitela",
+    `tag-manufacturer-name` = "Interrex",
     `tag-mass` = tag_weight,
     # tag-processing-type
     # tag-production-date
@@ -140,27 +143,8 @@ write_csv(movebank_ref_data, file = here("data", "processed", project_id, "moveb
 
 ## Get gps data (detections)
 
-Done via live feed. Important notes when comparing number of records:
-
-```R
-ornitela_export %>%
-  # Exclude records with lat/long = 0: these are not fed to Movebank
-  filter(satcount != 0) %>%
-  # Exclude duplicated timestamps: these are not fed to Movebank
-  distinct(device_id, UTC_datetime, .keep_all = TRUE) %>%
-  # Use the same cutoff date
-  filter(UTC_datetime <= as.POSIXct("YYYY-MM-DD 23:59:59")
-  
-EQUALS
-
-# Select "Include undeployed locations" when exporting
-movebank_export %>%
-  # Exclude SMS records
-  filter(`orn:transmission-protocol` == "GPRS")
-  # Use the same cutoff date
-  filter(timestamp <= as.POSIXct("YYYY-MM-DD 23:59:59")
-```
+Done via live feed.
 
 ## Get acceleration data
 
-Not implemented yet.
+Not applicable.
