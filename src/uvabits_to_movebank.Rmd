@@ -1,5 +1,5 @@
 ---
-title: "Prepare Uva-BiTS data for Movebank upload"
+title: "Prepare Uva-BiTS (meta)data for Movebank upload"
 author: "Peter Desmet"
 date: "`r Sys.Date()`"
 output:
@@ -66,7 +66,7 @@ For a project, get data on animals, tags and deployments in the [Movebank refere
 Query data:
 
 ```{r get_ref_data}
-movebank_ref_sql <- glue_sql(read_file(here::here("sql", "movebank_ref.sql")), .con = con)
+movebank_ref_sql <- glue_sql(read_file(here::here("sql", "uvabits_to_movebank_ref.sql")), .con = con)
 movebank_ref_data <- dbGetQuery(con, movebank_ref_sql)
 ```
 
@@ -101,7 +101,7 @@ Query and save data (one csv file per ringnumber):
 
 ```{r}
 download_data(
-  sql_file = here::here("sql", "movebank_gps.sql"),
+  sql_file = here::here("sql", "uvabits_to_movebank_gps.sql"),
   download_directory = here::here("data", "processed", project_id, "gps"),
   download_filename = "movebank_gps",
   ring_numbers = ring_numbers,
@@ -117,7 +117,7 @@ Query and save data (one csv file per ringnumber):
 
 ```{r}
 download_data(
-  sql_file = here::here("sql", "movebank_acc.sql"),
+  sql_file = here::here("sql", "uvabits_to_movebank_acc.sql"),
   download_directory = here::here("data", "processed", project_id, "acc"),
   download_filename = "movebank_acc",
   ring_numbers = ring_numbers,

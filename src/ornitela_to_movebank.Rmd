@@ -1,5 +1,5 @@
 ---
-title: "Prepare Ornitela data for Movebank upload"
+title: "Prepare Ornitela (meta)data for Movebank upload"
 author: "Peter Desmet"
 date: "`r Sys.Date()`"
 output:

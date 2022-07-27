@@ -29,9 +29,9 @@ Before we adopted the workflow to publish on Movebank and Zenodo, two datasets w
 
 ## Workflow
 
-- [Prepare Uva-BiTS data for Movebank upload](src/movebank_uvabits.Rmd)
-- [Prepare Ornitela data for Movebank upload](src/movebank_ornitela.Rmd)
-- [Prepare Movebank data for Zenodo upload (make frictionless)](src/movebank_frictionless.Rmd)
+- [Prepare Uva-BiTS (meta)data for Movebank upload](src/uvabits_to_movebank.Rmd)
+- [Prepare Ornitela (meta)data for Movebank upload](src/ornitela_to_movebank.Rmd)
+- [Prepare Movebank data for Zenodo upload (make frictionless)](src/movebank_to_frictionless.Rmd)
 
 ## Repo structure
 
@@ -43,17 +43,10 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 ├── bird-tracking.Rproj : RStudio project file
 ├── .gitignore          : Files and directories to be ignored by git
 │
-├── src
-│   ├── functions       : Custom functions used in scripts
-│   ├── movebank_ornitela.Rmd : Script to prepare Uva-BiTS data for Movebank upload
-│   ├── movebank_uvabits.Rmd : Script to prepare Ornitela data for Movebank upload
-│   ├── movebank_frictionless.Rmd : Script to prepare Movebank data for Zenodo upload (make frictionless)
-│   └── outliers.Rmd    : Script to mark outliers based on high speeds
-│
-├── sql
-│   ├── movebank_ref.sql: Query to get reference data in Movebank format
-│   ├── movebank_gps.sql: Query to get gps data in Movebank format
-│   └── movebank_acc.sql: Query to get acceleration data in Movebank format
+├── src                 : Scripts to process tracking data for Movebank
+│   └── functions       : Custom functions used in scripts
+|
+├── sql                 : Queries to transform tracking data to Movebank format
 │
 └── data
     └── processed       : Data that can be uploaded to Movebank GENERATED, large files IGNORED
