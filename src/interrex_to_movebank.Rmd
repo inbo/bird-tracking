@@ -80,11 +80,11 @@ movebank_ref_data <-
       "%Y-%m-%dT%H:%M:%SZ"
     ),
     `deploy-on-latitude` = case_when(
-      str_detect(release_location, "IJzermonding") ~ 51.153,
+      str_detect(release_location, "IJzermonding slikken") ~ 51.15146,
       TRUE ~ NA_real_
     ),
     `deploy-on-longitude` = case_when(
-      str_detect(release_location, "IJzermonding") ~ 2.725,
+      str_detect(release_location, "IJzermonding slikken") ~ 2.73127,
       TRUE ~ NA_real_
     ),
     # deploy-on-person
