@@ -46,6 +46,7 @@ Map data:
 movebank_ref_data <-
   metadata %>%
   filter(project == project_id) %>%
+  filter(!is.na(colour_ring)) %>%
   mutate(
     # animal-comments: NOT AVAILABLE
     # animal-death-comments
