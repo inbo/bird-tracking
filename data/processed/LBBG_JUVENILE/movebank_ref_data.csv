@@ -9,7 +9,7 @@ L930231,,K.LOT,f,Larus fuscus,juvenile,655,harness,,2020-09-11T12:00:00Z,"OOST_V
 L930066,,K.AOZ,u,Larus fuscus,juvenile,662,harness,,2020-07-10T18:00:00Z,ZEEB_BUS,,none,LBBG_JUVENILE,phone network,GPS,193966,Ornitela,15,193966
 L930055,,KBO.V,u,Larus fuscus,juvenile,912,harness,,2020-07-10T18:00:00Z,ZEEB_BUS,,none,LBBG_JUVENILE,phone network,GPS,193967,Ornitela,15,193967
 L930053,,K.POL,u,Larus fuscus,juvenile,814,harness,2020-08-24T00:00:00Z,2020-07-10T18:00:00Z,ZEEB_BUS | Dead. Tracker reused for L930245.,,none,LBBG_JUVENILE,phone network,GPS,193968,Ornitela,15,193968
-L930245,,KV.OB,m,Larus fuscus,juvenile,914,harness,,2020-09-11T12:00:00Z,"OOST_VOC | Tracker reused from L930053, brought to VOC on 2020-09-04.",,manipulated other,LBBG_JUVENILE,phone network,GPS,193968,Ornitela,15,193968
+L930245,,KV.OB,m,Larus fuscus,juvenile,914,harness,2020-09-16T00:00:00Z,2020-09-11T12:00:00Z,"OOST_VOC | Tracker reused from L930053, brought to VOC on 2020-09-04.",,manipulated other,LBBG_JUVENILE,phone network,GPS,193968,Ornitela,15,193968
 L930081,,K.SOT,u,Larus fuscus,juvenile,661,harness,,2020-07-10T18:00:00Z,ZEEB_BUS,,none,LBBG_JUVENILE,phone network,GPS,193969,Ornitela,15,193969
 L930158,,KBO.C,u,Larus fuscus,juvenile,873,harness,,2020-07-10T18:00:00Z,ZEEB_BUS,,none,LBBG_JUVENILE,phone network,GPS,193970,Ornitela,15,193970
 L930157,,KVOT,u,Larus fuscus,juvenile,680,harness,,2020-07-10T18:00:00Z,ZEEB_BUS,,none,LBBG_JUVENILE,phone network,GPS,193971,Ornitela,15,193971
@@ -60,7 +60,7 @@ L929451,,,u,Larus fuscus,juvenile,,harness,,2021-08-08T18:00:00Z,RAVERSIJDE,,non
 L929459,,,u,Larus fuscus,juvenile,,harness,,2021-08-08T18:00:00Z,RAVERSIJDE,,none,LBBG_JUVENILE,phone network,GPS,210186,Ornitela,15,210186
 L933030,,,u,Larus fuscus,juvenile,,harness,,2021-08-08T18:00:00Z,RAVERSIJDE,,none,LBBG_JUVENILE,phone network,GPS,210187,Ornitela,15,210187
 H911430,,,u,Larus argentatus,juvenile,,harness,,2021-08-08T18:00:00Z,RAVERSIJDE,,none,LBBG_JUVENILE,phone network,GPS,210188,Ornitela,15,210188
-L929942,,,u,Larus fuscus,juvenile,,harness,,2021-08-08T18:00:00Z,RAVERSIJDE,,none,LBBG_JUVENILE,phone network,GPS,210189,Ornitela,15,210189
+L929942,,,u,Larus fuscus,juvenile,,harness,2021-09-24T00:00:00Z,2021-08-08T18:00:00Z,"RAVERSIJDE | Bird dead, tracker recovered.",dead,none,LBBG_JUVENILE,phone network,GPS,210189,Ornitela,15,210189
 L929464,,,u,Larus fuscus,juvenile,,harness,,2021-08-08T18:00:00Z,RAVERSIJDE,,none,LBBG_JUVENILE,phone network,GPS,210190,Ornitela,15,210190
 L929936,,,u,Larus fuscus,juvenile,,harness,,2021-08-08T18:00:00Z,RAVERSIJDE,,none,LBBG_JUVENILE,phone network,GPS,210191,Ornitela,15,210191
 H911436,,,u,Larus argentatus,juvenile,,harness,,2021-08-08T18:00:00Z,RAVERSIJDE,,none,LBBG_JUVENILE,phone network,GPS,210192,Ornitela,15,210192
