@@ -31,7 +31,7 @@ metadata_colnames <- colnames(metadata)
 Set project:
 
 ```{r}
-project_id <- "LBBG_ADULT"
+project_id <- "LBBG_JUVENILE"
 ```
 
 ## Get reference data (metadata)
