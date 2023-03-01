@@ -44,11 +44,11 @@ Process files:
 ```{r}
 files <- list.files(here::here("data", "processed", project_id, "gps"), full.names = TRUE)
 for (file in files) {
-  data <- read_csv(file, col_types = cols(
-    timestamp = col_datetime(),
-    `location-lat` = col_double(),
-    `location-long` = col_double(),
-    .default = col_character() # Don't interpret/alter the other columns
+  data <- readr::read_csv(file, col_types = readr::cols(
+    timestamp = readr::col_datetime(),
+    `location-lat` = readr::col_double(),
+    `location-long` = readr::col_double(),
+    .default = readr::col_character() # Don't interpret/alter the other columns
   ))
   print(file)
   
@@ -61,7 +61,7 @@ for (file in files) {
   )
   
   # Change output dir
-  file <- str_replace(file, "/gps", "/gps_outliers")
-  write_csv(processed_data, file, na = "")
+  file <- stringr::str_replace(file, "/gps", "/gps_outliers")
+  readr::write_csv(processed_data, file, na = "")
 }
 ```

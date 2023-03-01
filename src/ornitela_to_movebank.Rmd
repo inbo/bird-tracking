@@ -22,7 +22,7 @@ library(here)
 ## Get Ornitela tag and bird information from spreadsheet
 
 ```{r}
-metadata <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=0&single=true&output=csv")
+metadata <- readr::read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=0&single=true&output=csv")
 metadata_colnames <- colnames(metadata)
 ```
 
@@ -45,20 +45,20 @@ Map data:
 ```{r get_ref_data}
 movebank_ref_data <-
   metadata %>%
-  filter(project == project_id) %>%
   mutate(
+  dplyr::filter(project == project_id) %>%
     # animal-comments: NOT AVAILABLE
     # animal-death-comments
     # animal-earliest-date-born
     # animal-exact-date-of-birth
     `animal-id` = metal_ring,
     # animal-latest-date-born
-    `animal-nickname` = case_when(
+    `animal-nickname` = dplyr::case_when(
       str_detect(animal_name, "OT-") ~ NA_character_, # Exclude names that are the default tag name
       TRUE ~ animal_name
     ),
     `animal-ring-id` = colour_ring,
-    `animal-sex` = recode(sex,
+    `animal-sex` = dplyr::recode(sex,
       "F" = "f",
       "M" = "m",
       "X" = "u",
@@ -66,7 +66,7 @@ movebank_ref_data <-
     ),
     `animal-taxon` = scientific_name,
     # animal-taxon-detail
-    `animal-life-stage` = recode(age,
+    `animal-life-stage` = dplyr::recode(age,
       "A" = "adult",
       "J" = "juvenile"
     ),
@@ -94,11 +94,11 @@ movebank_ref_data <-
       TRUE ~ release_location
     ),
     # deployment-end-comments
-    `deployment-end-type` = case_when(
-      str_detect(tolower(track_session_remarks), "dead") ~ "dead",
-      str_detect(tolower(track_session_remarks), "predated") ~ "dead",
-      str_detect(tolower(track_session_remarks), "defect") ~ "equipment failure",
-      str_detect(tolower(track_session_remarks), "malfunction") ~ "equipment failure",
+    `deployment-end-type` = dplyr::case_when(
+      stringr::str_detect(tolower(track_session_remarks), "dead") ~ "dead",
+      stringr::str_detect(tolower(track_session_remarks), "predated") ~ "dead",
+      stringr::str_detect(tolower(track_session_remarks), "defect") ~ "equipment failure",
+      stringr::str_detect(tolower(track_session_remarks), "malfunction") ~ "equipment failure",
       TRUE ~ NA_character_
     ),
     # deployment-id: NOT AVAILABLE
@@ -110,8 +110,8 @@ movebank_ref_data <-
     # habitat-according-to
     # location-accuracy-comments: NOT AVAILABLE, there is no location-error-numerical/vertical-error-numerical in the gps data
     # manipulation-comments
-    `manipulation-type` = case_when(
-      str_detect(track_session_remarks, "VOC") ~ "manipulated other",
+    `manipulation-type` = dplyr::case_when(
+      stringr::str_detect(track_session_remarks, "VOC") ~ "manipulated other",
       # Birds from VOC were hatched from egg or raised as chicks
       # e.g. placed in controlled environment and subjected to behavioural studies
       TRUE ~ "none"
@@ -130,13 +130,13 @@ movebank_ref_data <-
     `tag-serial-no` = serial_number,
   ) %>%
   select(!one_of(metadata_colnames)) %>%
-  arrange(`tag-id`)
+  dplyr::arrange(`tag-id`)
 ```
 
 Save to CSV:
 
 ```{r}
-write_csv(movebank_ref_data, file = here("data", "processed", project_id, "movebank_ref_data.csv"), na = "")
+readr::write_csv(movebank_ref_data, file = here::here("data", "processed", project_id, "movebank_ref_data.csv"), na = "")
 ```
 
 ## Get gps data (detections)
@@ -146,20 +146,20 @@ Done via live feed. Important notes when comparing number of records:
 ```R
 ornitela_export %>%
   # Exclude records with lat/long = 0: these are not fed to Movebank
-  filter(satcount != 0) %>%
+  dplyr::filter(satcount != 0) %>%
   # Exclude duplicated timestamps: these are not fed to Movebank
-  distinct(device_id, UTC_datetime, .keep_all = TRUE) %>%
+  dplyr::distinct(device_id, UTC_datetime, .keep_all = TRUE) %>%
   # Use the same cutoff date
-  filter(UTC_datetime <= as.POSIXct("YYYY-MM-DD 23:59:59")
+  dplyr::filter(UTC_datetime <= as.POSIXct("YYYY-MM-DD 23:59:59")
   
 EQUALS
 
 # Select "Include undeployed locations" when exporting
 movebank_export %>%
   # Exclude SMS records
-  filter(`orn:transmission-protocol` == "GPRS")
+  dplyr::filter(`orn:transmission-protocol` == "GPRS")
   # Use the same cutoff date
-  filter(timestamp <= as.POSIXct("YYYY-MM-DD 23:59:59")
+  dplyr::filter(timestamp <= as.POSIXct("YYYY-MM-DD 23:59:59")
 ```
 
 ## Get acceleration data

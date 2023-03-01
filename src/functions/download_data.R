@@ -42,10 +42,10 @@ download_data <- function(sql_file, download_directory,
       print(paste(ring_number, ": ", data_file, "already exists, skipping download"))
     } else {
       print(paste(ring_number, ": downloading data"))
-      data_sql <- glue_sql(read_file(sql_file), .con = connection)
+      data_sql <- glue::glue_sql(readr::read_file(sql_file), .con = connection)
       tryCatch({
-        data <- dbGetQuery(connection, data_sql)
-        write_csv(data, file = data_file, na = "")
+        data <- DBI::dbGetQuery(connection, data_sql)
+        readr::write_csv(data, file = data_file, na = "")
       }, error = function(e) {
         stop(e)
       })

@@ -29,7 +29,7 @@ Get connection settings from `config.yml` (not included in this repo) and connec
 
 ```{r connect_to_uvabits}
 uvabits <- config::get("uvabits")
-con = dbConnect(
+con = DBI::dbConnect(
   drv = RPostgres::Postgres(),
   dbname = uvabits$database,
   host = uvabits$server,
@@ -39,7 +39,7 @@ con = dbConnect(
 )
 
 # The alternative is getting the connection defined in odbc.ini:
-# con <- dbConnect(odbc::odbc(), "uvabits")
+# con <- DBI::dbConnect(odbc::odbc(), "uvabits")
 ```
 
 ## Set project and some values
@@ -66,14 +66,14 @@ For a project, get data on animals, tags and deployments in the [Movebank refere
 Query data:
 
 ```{r get_ref_data}
-movebank_ref_sql <- glue_sql(read_file(here::here("sql", "uvabits_to_movebank_ref.sql")), .con = con)
-movebank_ref_data <- dbGetQuery(con, movebank_ref_sql)
+movebank_ref_sql <- glue::glue_sql(readr::read_file(here::here("sql", "uvabits_to_movebank_ref.sql")), .con = con)
+movebank_ref_data <- DBI::dbGetQuery(con, movebank_ref_sql)
 ```
 
 Save to CSV:
 
 ```{r}
-write_csv(movebank_ref_data, file = here::here("data", "processed", project_id, "movebank_ref_data.csv"), na = "")
+readr::write_csv(movebank_ref_data, file = here::here("data", "processed", project_id, "movebank_ref_data.csv"), na = "")
 ```
 
 ## Get ring numbers
@@ -82,11 +82,11 @@ Get individuals with track sessions starting before the `end_date` (avoids unnec
 
 ```{r}
 ring_numbers <- movebank_ref_data %>%
-  filter(`study-site` == project_id) %>%
-  filter(`deploy-on-timestamp` <= end_date) %>%
-  distinct(`animal-id`, .keep_all = TRUE) %>%
-  arrange(`animal-id`) %>%
-  pull(`animal-id`)
+  dplyr::filter(`study-site` == project_id) %>%
+  dplyr::filter(`deploy-on-timestamp` <= end_date) %>%
+  dplyr::distinct(`animal-id`, .keep_all = TRUE) %>%
+  dplyr::arrange(`animal-id`) %>%
+  dplyr::pull(`animal-id`)
 ```
 
 Load custom function to download data (will iterate over ring numbers):
