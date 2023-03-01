@@ -77,6 +77,7 @@ SELECT
 --                                      start-timestamp (will not have match for all)
 -- location-long:                       Not necessary, can be derived by joining with gps data on
 --                                      start-timestamp (will not have match for all)
+-- odba:                                Not available in DB
 -- sampling-frequency:                  Not necessary, is apparent from timestamp (20Hz)
 -- start-timestamp:                     Set to date_time, which indicates the start of a burst
 --                                      Format: yyyy-MM-dd'T'HH:mm:ss'Z'
@@ -104,6 +105,7 @@ SELECT
 --                                      always 20Hz, so we use that as a constant here.
 --                                      Format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
   to_char(acc.date_time + interval '00:00:00.05' * (index - 1), 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"') AS "timestamp"
+-- vedba:                               Not available in DB
 
 FROM
   gps.{`acceleration_table`} AS acc,
