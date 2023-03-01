@@ -47,6 +47,15 @@ movebank_ref_data <-
   metadata %>%
   dplyr::filter(project == project_id) %>%
   dplyr::filter(!is.na(colour_ring)) %>%
+  tidyr::unite(
+    comments,
+    release_location,
+    animal_measurements,
+    track_session_remarks,
+    sep = " | ",
+    remove = FALSE,
+    na.rm = TRUE
+  ) %>%
   dplyr::mutate(
     # animal-comments: NOT AVAILABLE
     # animal-death-comments
@@ -93,10 +102,7 @@ movebank_ref_data <-
       as.POSIXct(track_session_start_date, tz = "UTC", format = "%Y-%m-%d %H:%M:%S"),
       "%Y-%m-%dT%H:%M:%SZ"
     ),
-    `deployment-comments` = case_when(
-      !is.na(track_session_remarks) ~ paste(release_location, track_session_remarks, sep = " | "),
-      TRUE ~ release_location
-    ),
+    `deployment-comments` = comments,
     # deployment-end-comments
     `deployment-end-type` = dplyr::case_when(
       stringr::str_detect(tolower(track_session_remarks), "dead") ~ "dead",
@@ -132,8 +138,8 @@ movebank_ref_data <-
     # tag-processing-type
     # tag-production-date
     `tag-serial-no` = serial_number,
+    .keep = "none"
   ) %>%
-  select(!one_of(metadata_colnames)) %>%
   dplyr::arrange(`tag-id`)
 ```
 
