@@ -111,7 +111,7 @@ SELECT
 --                                     "[^\|]+" = value (anything but |)
 --                                     " *\| *" = " | " zero or 1 times
 --                                     The closing " | " is removed by regexp_replace().
-  regexp_replace(substring(ses.remarks from '(?:(?:[a-z_]+: *[^\|]+)(?: *\| *)?)+'), ' *\| *$', '') AS "deployment-on-measurements",
+  regexp_replace(substring(ses.remarks from '(?:(?:[a-z_]+: *[^\|]+)(?: *\| *)?)+'), ' *\| *$', '') AS "deploy-on-measurements",
 -- deploy-on-person:                    Not available in DB
 -- deploy-on-sampling:                  Not available in DB
 -- deploy-on-timestamp:                 Set to catch/session start_date
