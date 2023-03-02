@@ -118,11 +118,10 @@ SELECT
 --                                      Format: yyyy-MM-dd'T'HH:mm:ss'Z'
   to_char(ses.start_date, 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS "deploy-on-timestamp",
 
--- deployment-comments:                 Set to session remarks, which contains unstructured info
---                                      such as "Waterland-Oudeman | Found dead on 2016-03-31 in
---                                      Alps, last active day is 2016-03-25. Tracker reused for
---                                      H185298."
-  ses.remarks AS "deployment-comments",
+-- deployment-comments:                 Set to end of ses.remarks (ending with .) moving up until
+--                                      until a vertical pipe (|) is encountered. This is expected
+--                                      to contain unstructured remarks.
+  trim(substring(ses.remarks from '[^\|]+\.$')) AS "deployment-comments",
 -- deployment-end-comments:             Not available in DB: ses.remarks can contain this info, but
 --                                      it is too unstructured to extract consistently
 -- deployment-end-type:                 Set to "dead" (only) when session remarks contains the word
