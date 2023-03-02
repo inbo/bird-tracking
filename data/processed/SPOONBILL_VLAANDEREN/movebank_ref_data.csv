@@ -1,6 +1,6 @@
-animal-id,animal-nickname,animal-ring-id,animal-sex,animal-taxon,animal-life-stage,animal-mass,attachment-type,deploy-off-timestamp,deploy-on-timestamp,deployment-comments,deployment-end-type,manipulation-type,study-site,tag-readout-method,sensor-type,tag-id,tag-manufacturer-name,tag-mass,tag-serial-no
-B6927,Jef,W-NBNB,u,Platalea leucorodia,juvenile,1327,harness,,2022-05-26T22:00:00Z,Verrebroekse Plassen | age: 1cy,,none,SPOONBILL_VLAANDEREN,phone network,GPS,223474,Ornitela,25,223474
-B6918,Wout,,u,Platalea leucorodia,juvenile,1480,harness,,2022-07-07T22:00:00Z,Verrebroekse Plassen | age: 1cy,,none,SPOONBILL_VLAANDEREN,phone network,GPS,223475,Ornitela,25,223475
-Y0089,Fons,W-NBV2,u,Platalea leucorodia,juvenile,1495,harness,,2022-06-22T22:00:00Z,Doelpolder Noord | age: 1cy,,none,SPOONBILL_VLAANDEREN,phone network,GPS,223476,Ornitela,25,223476
-B6926,Geert,W-NB49,u,Platalea leucorodia,juvenile,1596,harness,,2022-05-26T22:00:00Z,Verrebroekse Plassen | age: 1cy,,none,SPOONBILL_VLAANDEREN,phone network,GPS,223477,Ornitela,25,223477
-Y0095,Kobe,W-NBPN,u,Platalea leucorodia,juvenile,1595,harness,,2022-07-07T22:00:00Z,Verrebroekse Plassen | age: 1cy,,none,SPOONBILL_VLAANDEREN,phone network,GPS,223478,Ornitela,25,223478
+animal-id,animal-nickname,animal-ring-id,animal-sex,animal-taxon,alt-project-id,animal-life-stage,animal-mass,attachment-type,deploy-off-timestamp,deploy-on-measurements,deploy-on-timestamp,deployment-comments,deployment-end-type,manipulation-type,study-site,tag-readout-method,sensor-type,tag-id,tag-manufacturer-name,tag-mass,tag-serial-no
+B6927,Jef,W-NBNB,u,Platalea leucorodia,SPOONBILL_VLAANDEREN,juvenile,1327,harness,,,2022-05-26T22:00:00Z,age: 1cy,,none,Verrebroekse Plassen,phone network,GPS,223474,Ornitela,25,223474
+B6918,Wout,,u,Platalea leucorodia,SPOONBILL_VLAANDEREN,juvenile,1480,harness,,,2022-07-07T22:00:00Z,age: 1cy,,none,Verrebroekse Plassen,phone network,GPS,223475,Ornitela,25,223475
+Y0089,Fons,W-NBV2,u,Platalea leucorodia,SPOONBILL_VLAANDEREN,juvenile,1495,harness,,,2022-06-22T22:00:00Z,age: 1cy,,none,Doelpolder Noord,phone network,GPS,223476,Ornitela,25,223476
+B6926,Geert,W-NB49,u,Platalea leucorodia,SPOONBILL_VLAANDEREN,juvenile,1596,harness,,,2022-05-26T22:00:00Z,age: 1cy,,none,Verrebroekse Plassen,phone network,GPS,223477,Ornitela,25,223477
+Y0095,Kobe,W-NBPN,u,Platalea leucorodia,SPOONBILL_VLAANDEREN,juvenile,1595,harness,,,2022-07-07T22:00:00Z,age: 1cy,,none,Verrebroekse Plassen,phone network,GPS,223478,Ornitela,25,223478

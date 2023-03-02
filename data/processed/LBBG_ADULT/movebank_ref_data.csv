@@ -1,20 +1,20 @@
-animal-id,animal-nickname,animal-ring-id,animal-sex,animal-taxon,animal-life-stage,animal-mass,attachment-type,deploy-off-timestamp,deploy-on-timestamp,deployment-comments,deployment-end-type,manipulation-type,study-site,tag-readout-method,sensor-type,tag-id,tag-manufacturer-name,tag-mass,tag-serial-no
-L917691,,B-TPOM,u,Larus fuscus,adult,910,harness,2022-06-10T18:00:00Z,2022-06-01T18:00:00Z,ZEEB_BUS | Tracker recovered.,,none,LBBG_ADULT,phone network,GPS,222825,Ornitela,15,222825
-L930262,,B-TTOZ,u,Larus fuscus,adult,921,harness,2022-06-09T18:00:00Z,2022-05-30T18:00:00Z,ZEEB_BUS | Tracker recovered.,,none,LBBG_ADULT,phone network,GPS,222826,Ornitela,15,222826
-L930646,,B-TDOZ,u,Larus fuscus,adult,851,harness,,2022-06-03T18:00:00Z,ZEEB_BUS,,none,LBBG_ADULT,phone network,GPS,222827,Ornitela,15,222827
-L907124,,B-TWOA,u,Larus fuscus,adult,921,harness,,2022-06-03T18:00:00Z,ZEEB_BUS,,none,LBBG_ADULT,phone network,GPS,222828,Ornitela,15,222828
-L922941,,B-TROC,u,Larus fuscus,adult,997,harness,2022-08-31T09:30:00Z,2022-05-30T18:00:00Z,ZEEB_BUS | Bird found dead.,dead,none,LBBG_ADULT,phone network,GPS,222829,Ornitela,15,222829
-L926220,,B-TAOM,u,Larus fuscus,adult,849,harness,,2022-06-06T18:00:00Z,ZEEB_BUS,,none,LBBG_ADULT,phone network,GPS,222830,Ornitela,15,222830
-L933187,,B-TCOP,u,Larus fuscus,adult,959,harness,,2022-06-03T18:00:00Z,ZEEB_BUS,,none,LBBG_ADULT,phone network,GPS,222831,Ornitela,15,222831
-L930681,,B-RAOB,u,Larus fuscus,adult,953,harness,,2022-05-30T18:00:00Z,ZEEB_BUS,,none,LBBG_ADULT,phone network,GPS,222832,Ornitela,15,222832
-L930275,,B-TZOH,u,Larus fuscus,adult,854,harness,,2022-06-10T18:00:00Z,ZEEB_BUS,,none,LBBG_ADULT,phone network,GPS,222833,Ornitela,15,222833
-L930348,,B-TFOJ,u,Larus fuscus,adult,827,harness,,2022-06-01T18:00:00Z,ZEEB_BUS,,none,LBBG_ADULT,phone network,GPS,222834,Ornitela,15,222834
-L933331,,B-TROW,u,Larus fuscus,adult,955,harness,,2022-05-30T18:00:00Z,ZEEB_BUS,,none,LBBG_ADULT,phone network,GPS,222836,Ornitela,15,222836
-L933190,,B-TWOU,u,Larus fuscus,adult,978,harness,2022-06-18T18:00:00Z,2022-06-03T18:00:00Z,ZEEB_BUS | Bird dead.,dead,none,LBBG_ADULT,phone network,GPS,222837,Ornitela,15,222837
-L914456,,B-TPOP,u,Larus fuscus,adult,987,harness,,2022-06-01T18:00:00Z,ZEEB_BUS,,none,LBBG_ADULT,phone network,GPS,222838,Ornitela,15,222838
-L929989,,B-TWOB,u,Larus fuscus,adult,1014,harness,,2022-06-06T18:00:00Z,ZEEB_BUS,,none,LBBG_ADULT,phone network,GPS,222839,Ornitela,15,222839
-L916399,,B-TKOU,u,Larus fuscus,adult,910,harness,,2022-06-01T18:00:00Z,ZEEB_BUS,,none,LBBG_ADULT,phone network,GPS,222840,Ornitela,15,222840
-L926202,,B-THOP,u,Larus fuscus,adult,925,harness,,2022-06-03T18:00:00Z,ZEEB_BUS,,none,LBBG_ADULT,phone network,GPS,222841,Ornitela,15,222841
-L914472,,B-THOC,u,Larus fuscus,adult,964,harness,,2022-06-07T18:00:00Z,ZEEB_BUS,,none,LBBG_ADULT,phone network,GPS,222842,Ornitela,15,222842
-L930271,,B-TLOK,u,Larus fuscus,adult,892,harness,,2022-05-30T18:00:00Z,ZEEB_BUS,,none,LBBG_ADULT,phone network,GPS,222843,Ornitela,15,222843
-L933326,,B-TPOL,u,Larus fuscus,adult,872,harness,,2022-05-30T18:00:00Z,ZEEB_BUS,,none,LBBG_ADULT,phone network,GPS,222844,Ornitela,15,222844
+animal-id,animal-nickname,animal-ring-id,animal-sex,animal-taxon,alt-project-id,animal-life-stage,animal-mass,attachment-type,deploy-off-timestamp,deploy-on-measurements,deploy-on-timestamp,deployment-comments,deployment-end-type,manipulation-type,study-site,tag-readout-method,sensor-type,tag-id,tag-manufacturer-name,tag-mass,tag-serial-no
+L917691,,B-TPOM,u,Larus fuscus,LBBG_ADULT,adult,910,harness,2022-06-10T18:00:00Z,,2022-06-01T18:00:00Z,Tracker recovered.,,none,ZEEB_BUS,phone network,GPS,222825,Ornitela,15,222825
+L930262,,B-TTOZ,u,Larus fuscus,LBBG_ADULT,adult,921,harness,2022-06-09T18:00:00Z,,2022-05-30T18:00:00Z,Tracker recovered.,,none,ZEEB_BUS,phone network,GPS,222826,Ornitela,15,222826
+L930646,,B-TDOZ,u,Larus fuscus,LBBG_ADULT,adult,851,harness,,,2022-06-03T18:00:00Z,,,none,ZEEB_BUS,phone network,GPS,222827,Ornitela,15,222827
+L907124,,B-TWOA,u,Larus fuscus,LBBG_ADULT,adult,921,harness,,,2022-06-03T18:00:00Z,,,none,ZEEB_BUS,phone network,GPS,222828,Ornitela,15,222828
+L922941,,B-TROC,u,Larus fuscus,LBBG_ADULT,adult,997,harness,2022-08-31T09:30:00Z,,2022-05-30T18:00:00Z,Bird found dead.,dead,none,ZEEB_BUS,phone network,GPS,222829,Ornitela,15,222829
+L926220,,B-TAOM,u,Larus fuscus,LBBG_ADULT,adult,849,harness,,,2022-06-06T18:00:00Z,,,none,ZEEB_BUS,phone network,GPS,222830,Ornitela,15,222830
+L933187,,B-TCOP,u,Larus fuscus,LBBG_ADULT,adult,959,harness,,,2022-06-03T18:00:00Z,,,none,ZEEB_BUS,phone network,GPS,222831,Ornitela,15,222831
+L930681,,B-RAOB,u,Larus fuscus,LBBG_ADULT,adult,953,harness,,,2022-05-30T18:00:00Z,,,none,ZEEB_BUS,phone network,GPS,222832,Ornitela,15,222832
+L930275,,B-TZOH,u,Larus fuscus,LBBG_ADULT,adult,854,harness,,,2022-06-10T18:00:00Z,,,none,ZEEB_BUS,phone network,GPS,222833,Ornitela,15,222833
+L930348,,B-TFOJ,u,Larus fuscus,LBBG_ADULT,adult,827,harness,,,2022-06-01T18:00:00Z,,,none,ZEEB_BUS,phone network,GPS,222834,Ornitela,15,222834
+L933331,,B-TROW,u,Larus fuscus,LBBG_ADULT,adult,955,harness,,,2022-05-30T18:00:00Z,,,none,ZEEB_BUS,phone network,GPS,222836,Ornitela,15,222836
+L933190,,B-TWOU,u,Larus fuscus,LBBG_ADULT,adult,978,harness,2022-06-18T18:00:00Z,,2022-06-03T18:00:00Z,Bird dead.,dead,none,ZEEB_BUS,phone network,GPS,222837,Ornitela,15,222837
+L914456,,B-TPOP,u,Larus fuscus,LBBG_ADULT,adult,987,harness,,,2022-06-01T18:00:00Z,,,none,ZEEB_BUS,phone network,GPS,222838,Ornitela,15,222838
+L929989,,B-TWOB,u,Larus fuscus,LBBG_ADULT,adult,1014,harness,,,2022-06-06T18:00:00Z,,,none,ZEEB_BUS,phone network,GPS,222839,Ornitela,15,222839
+L916399,,B-TKOU,u,Larus fuscus,LBBG_ADULT,adult,910,harness,,,2022-06-01T18:00:00Z,,,none,ZEEB_BUS,phone network,GPS,222840,Ornitela,15,222840
+L926202,,B-THOP,u,Larus fuscus,LBBG_ADULT,adult,925,harness,,,2022-06-03T18:00:00Z,,,none,ZEEB_BUS,phone network,GPS,222841,Ornitela,15,222841
+L914472,,B-THOC,u,Larus fuscus,LBBG_ADULT,adult,964,harness,,,2022-06-07T18:00:00Z,,,none,ZEEB_BUS,phone network,GPS,222842,Ornitela,15,222842
+L930271,,B-TLOK,u,Larus fuscus,LBBG_ADULT,adult,892,harness,,,2022-05-30T18:00:00Z,,,none,ZEEB_BUS,phone network,GPS,222843,Ornitela,15,222843
+L933326,,B-TPOL,u,Larus fuscus,LBBG_ADULT,adult,872,harness,,,2022-05-30T18:00:00Z,,,none,ZEEB_BUS,phone network,GPS,222844,Ornitela,15,222844

@@ -70,11 +70,12 @@ SELECT
 --                                      supported in ITIS.
 
 -- DEPLOYMENTS
--- alt-project-id:                      ???
--- animal-life-stage:                   Set via variable, likely "adult".
+-- alt-project-id:
+  ses.key_name AS "alt-project-id",
+-- animal-life-stage:                   Set via variable or get via lifestage: value in ses.remarks.
   CASE
-    WHEN lower(ses.remarks) LIKE '%life_stage%' THEN
-      split_part(substring(ses.remarks from '%#"life_stage: [a-z]+#"%' for '#'), ': ', 2)
+    WHEN ses.remarks LIKE '%life_stage%' THEN
+      split_part(substring(ses.remarks, 'life_stage: [a-z]+'), ': ', 2)
     ELSE {animal_life_stage}
   END AS "animal-life-stage",
 -- animal-mass                          Set to individual mass
@@ -105,18 +106,22 @@ SELECT
   ses.start_latitude::text AS "deploy-on-latitude",
 -- deploy-on-longitude:                 Set to catch/session start_longitude
   ses.start_longitude::text AS "deploy-on-longitude",
--- deploy-on-measurements:              ???
+-- deploy-on-measurements:              Set to "key: value"" pairs in ses.remarks.
+--                                     "[a-z_]: *" = "key: "
+--                                     "[^\|]+" = value (anything but |)
+--                                     " *\| *" = " | " zero or 1 times
+--                                     The closing " | " is removed by regexp_replace().
+  regexp_replace(substring(ses.remarks from '(?:(?:[a-z_]+: *[^\|]+)(?: *\| *)?)+'), ' *\| *$', '') AS "deploy-on-measurements",
 -- deploy-on-person:                    Not available in DB
 -- deploy-on-sampling:                  Not available in DB
 -- deploy-on-timestamp:                 Set to catch/session start_date
 --                                      Format: yyyy-MM-dd'T'HH:mm:ss'Z'
   to_char(ses.start_date, 'YYYY-MM-DD"T"HH24:MI:SS"Z"') AS "deploy-on-timestamp",
 
--- deployment-comments:                 Set to session remarks, which contains unstructured info
---                                      such as "Waterland-Oudeman | Found dead on 2016-03-31 in
---                                      Alps, last active day is 2016-03-25. Tracker reused for
---                                      H185298."
-  ses.remarks AS "deployment-comments",
+-- deployment-comments:                 Set to end of ses.remarks (ending with .) moving up until
+--                                      until a vertical pipe (|) is encountered. This is expected
+--                                      to contain unstructured remarks.
+  trim(substring(ses.remarks from '[^\|]+\.$')) AS "deployment-comments",
 -- deployment-end-comments:             Not available in DB: ses.remarks can contain this info, but
 --                                      it is too unstructured to extract consistently
 -- deployment-end-type:                 Set to "dead" (only) when session remarks contains the word
@@ -145,13 +150,12 @@ SELECT
   {manipulation_type} AS "manipulation-type",
 -- outlier-comments:                    "import-marked-outliers" can be set with outliers.Rmd,
 --                                      but opted not to include here as it might not be applied.
--- study-site:                          Set to project_key, e.g. MH_WATERLAND + first element in
---                                      ses.remarks. project.station_name is potentially more
---                                      precise or human readable, but not consistently populated
---                                      and not accessible for shared projects.
-  ses.key_name AS "study-site",
+-- study-site:                          Set to start of ses.remarks (starting with capital letter)
+--                                      until a space is encountered. This is expected to be the
+--                                      release location.
+  substring(ses.remarks from '^[A-Z][^ ]+') AS "study-site",
 -- tag-firmware:
---  tag.firmware_version AS "tag-firmware",
+  tag.firmware_version AS "tag-firmware",
 -- tag-readout-method:                  Set to "other wireless" as it is zigbee two-way radio
 --                                      transceiver via antenna
   'other wireless' AS "tag-readout-method",
