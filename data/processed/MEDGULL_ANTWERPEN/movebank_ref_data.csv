@@ -1,15 +1,15 @@
-animal-id,animal-nickname,animal-ring-id,animal-sex,animal-taxon,animal-life-stage,animal-mass,attachment-type,deploy-off-timestamp,deploy-on-timestamp,deployment-comments,deployment-end-type,manipulation-type,study-site,tag-readout-method,sensor-type,tag-id,tag-manufacturer-name,tag-mass,tag-serial-no
-E933878,Renaud,W-300K,m,Ichthyaetus melanocephalus,adult,,harness,,2021-05-20T18:00:00Z,Doelpolder Noord,,none,MEDGULL_ANTWERPEN,phone network,GPS,210194,Ornitela,10,210194
-E923804,Bram,W-301K,m,Ichthyaetus melanocephalus,adult,,harness,2022-06-02T18:00:00Z,2021-05-20T18:00:00Z,Doelpolder Noord | No movement recorded since 2022-06-02.,,none,MEDGULL_ANTWERPEN,phone network,GPS,210195,Ornitela,10,210195
-E950887,Prosper,W-302K,m,Ichthyaetus melanocephalus,adult,,harness,,2021-05-20T18:00:00Z,Doelpolder Noord,,none,MEDGULL_ANTWERPEN,phone network,GPS,210197,Ornitela,10,210197
-E946923,Kamiel,,m,Ichthyaetus melanocephalus,adult,318,harness,,2021-06-11T18:00:00Z,Doel,,none,MEDGULL_ANTWERPEN,phone network,GPS,212926,Ornitela,10,212926
-E951719,Ludo,W-306K,m,Ichthyaetus melanocephalus,adult,341,harness,,2022-05-11T18:00:00Z,Doelpolder Noord,,none,MEDGULL_ANTWERPEN,phone network,GPS,222846,Ornitela,10,222846
-E912901,Lyndon,W-308K,m,Ichthyaetus melanocephalus,adult,338,harness,,2022-05-11T18:00:00Z,Doelpolder Noord,,none,MEDGULL_ANTWERPEN,phone network,GPS,222847,Ornitela,10,222847
-E927146,Guido,W-303K,m,Ichthyaetus melanocephalus,adult,332,harness,2022-08-31T18:00:00Z,2022-05-11T18:00:00Z,Doelpolder Noord | Bird found dead.,dead,none,MEDGULL_ANTWERPEN,phone network,GPS,222848,Ornitela,10,222848
-E904300,Jos,W-311K,m,Ichthyaetus melanocephalus,adult,340,harness,,2022-05-17T18:00:00Z,Verrebroekse Plassen,,none,MEDGULL_ANTWERPEN,phone network,GPS,222849,Ornitela,10,222849
-E948726,Geert,W-34RH,m,Ichthyaetus melanocephalus,adult,338,harness,,2022-05-11T18:00:00Z,Doelpolder Noord,,none,MEDGULL_ANTWERPEN,phone network,GPS,222850,Ornitela,10,222850
-E951720,Ewenn,W-309K,m,Ichthyaetus melanocephalus,adult,363,harness,,2022-05-11T18:00:00Z,Doelpolder Noord,,none,MEDGULL_ANTWERPEN,phone network,GPS,222851,Ornitela,10,222851
-3742069,Carlos,W-305K,m,Ichthyaetus melanocephalus,adult,327,harness,,2022-05-11T18:00:00Z,Doelpolder Noord,,none,MEDGULL_ANTWERPEN,phone network,GPS,222852,Ornitela,10,222852
-E951915,Martin,W-312K,m,Ichthyaetus melanocephalus,adult,322,harness,,2022-05-17T18:00:00Z,Verrebroekse Plassen,,none,MEDGULL_ANTWERPEN,phone network,GPS,222853,Ornitela,10,222853
-E939429,Edwin,W-310K,m,Ichthyaetus melanocephalus,adult,327,harness,,2022-05-17T18:00:00Z,Verrebroekse Plassen,,none,MEDGULL_ANTWERPEN,phone network,GPS,222854,Ornitela,10,222854
-E948150,Eric,W-304K,m,Ichthyaetus melanocephalus,adult,345,harness,,2022-05-11T18:00:00Z,Doelpolder Noord,,none,MEDGULL_ANTWERPEN,phone network,GPS,222855,Ornitela,10,222855
+animal-id,animal-nickname,animal-ring-id,animal-sex,animal-taxon,alt-project-id,animal-life-stage,animal-mass,attachment-type,deploy-off-timestamp,deploy-on-measurements,deploy-on-timestamp,deployment-comments,deployment-end-type,manipulation-type,study-site,tag-readout-method,sensor-type,tag-id,tag-manufacturer-name,tag-mass,tag-serial-no
+E933878,Renaud,W-300K,m,Ichthyaetus melanocephalus,MEDGULL_ANTWERPEN,adult,,harness,,,2021-05-20T18:00:00Z,,,none,Doelpolder Noord,phone network,GPS,210194,Ornitela,10,210194
+E923804,Bram,W-301K,m,Ichthyaetus melanocephalus,MEDGULL_ANTWERPEN,adult,,harness,2022-06-02T18:00:00Z,,2021-05-20T18:00:00Z,No movement recorded since 2022-06-02.,,none,Doelpolder Noord,phone network,GPS,210195,Ornitela,10,210195
+E950887,Prosper,W-302K,m,Ichthyaetus melanocephalus,MEDGULL_ANTWERPEN,adult,,harness,,,2021-05-20T18:00:00Z,,,none,Doelpolder Noord,phone network,GPS,210197,Ornitela,10,210197
+E946923,Kamiel,,m,Ichthyaetus melanocephalus,MEDGULL_ANTWERPEN,adult,318,harness,,,2021-06-11T18:00:00Z,,,none,Doel,phone network,GPS,212926,Ornitela,10,212926
+E951719,Ludo,W-306K,m,Ichthyaetus melanocephalus,MEDGULL_ANTWERPEN,adult,341,harness,,,2022-05-11T18:00:00Z,,,none,Doelpolder Noord,phone network,GPS,222846,Ornitela,10,222846
+E912901,Lyndon,W-308K,m,Ichthyaetus melanocephalus,MEDGULL_ANTWERPEN,adult,338,harness,,,2022-05-11T18:00:00Z,,,none,Doelpolder Noord,phone network,GPS,222847,Ornitela,10,222847
+E927146,Guido,W-303K,m,Ichthyaetus melanocephalus,MEDGULL_ANTWERPEN,adult,332,harness,2022-08-31T18:00:00Z,,2022-05-11T18:00:00Z,Bird found dead.,dead,none,Doelpolder Noord,phone network,GPS,222848,Ornitela,10,222848
+E904300,Jos,W-311K,m,Ichthyaetus melanocephalus,MEDGULL_ANTWERPEN,adult,340,harness,,,2022-05-17T18:00:00Z,,,none,Verrebroekse Plassen,phone network,GPS,222849,Ornitela,10,222849
+E948726,Geert,W-34RH,m,Ichthyaetus melanocephalus,MEDGULL_ANTWERPEN,adult,338,harness,,,2022-05-11T18:00:00Z,,,none,Doelpolder Noord,phone network,GPS,222850,Ornitela,10,222850
+E951720,Ewenn,W-309K,m,Ichthyaetus melanocephalus,MEDGULL_ANTWERPEN,adult,363,harness,,,2022-05-11T18:00:00Z,,,none,Doelpolder Noord,phone network,GPS,222851,Ornitela,10,222851
+3742069,Carlos,W-305K,m,Ichthyaetus melanocephalus,MEDGULL_ANTWERPEN,adult,327,harness,,,2022-05-11T18:00:00Z,,,none,Doelpolder Noord,phone network,GPS,222852,Ornitela,10,222852
+E951915,Martin,W-312K,m,Ichthyaetus melanocephalus,MEDGULL_ANTWERPEN,adult,322,harness,,,2022-05-17T18:00:00Z,,,none,Verrebroekse Plassen,phone network,GPS,222853,Ornitela,10,222853
+E939429,Edwin,W-310K,m,Ichthyaetus melanocephalus,MEDGULL_ANTWERPEN,adult,327,harness,,,2022-05-17T18:00:00Z,,,none,Verrebroekse Plassen,phone network,GPS,222854,Ornitela,10,222854
+E948150,Eric,W-304K,m,Ichthyaetus melanocephalus,MEDGULL_ANTWERPEN,adult,345,harness,,,2022-05-11T18:00:00Z,,,none,Doelpolder Noord,phone network,GPS,222855,Ornitela,10,222855

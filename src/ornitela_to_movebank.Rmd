@@ -46,22 +46,9 @@ Map data:
 movebank_ref_data <-
   metadata %>%
   dplyr::filter(project == project_id) %>%
-  tidyr::unite(
-    comments,
-    release_location,
-    animal_measurements,
-    track_session_remarks,
-    sep = " | ",
-    remove = FALSE,
-    na.rm = TRUE
-  ) %>%
   dplyr::mutate(
     # animal-comments: NOT AVAILABLE
-    # animal-death-comments
-    # animal-earliest-date-born
-    # animal-exact-date-of-birth
     `animal-id` = metal_ring,
-    # animal-latest-date-born
     `animal-nickname` = dplyr::case_when(
       str_detect(animal_name, "OT-") ~ NA_character_, # Exclude names that are the default tag name
       TRUE ~ animal_name
@@ -74,32 +61,25 @@ movebank_ref_data <-
       .missing = "u"
     ),
     `animal-taxon` = scientific_name,
-    # animal-taxon-detail
+    `alt-project-id` = project_id,
     `animal-life-stage` = dplyr::recode(age,
       "A" = "adult",
       "J" = "juvenile"
     ),
     `animal-mass` = animal_weight,
-    # animal-reproductive-condition
     `attachment-type` = "harness",
-    # behavior-according-to
-    # data-processing-software
-    # deploy-off-latitude
-    # deploy-off-longitude
-    # deploy-off-person
     `deploy-off-timestamp` = format(
       as.POSIXct(track_session_end_date, tz = "UTC", format = "%Y-%m-%d %H:%M:%S"),
       "%Y-%m-%dT%H:%M:%SZ"
     ),
     # deploy-on-latitude: NOT AVAILABLE
     # deploy-on-longitude: NOT AVAILABLE
-    # deploy-on-person
+    `deploy-on-measurements` = animal_measurements,
     `deploy-on-timestamp` = format(
       as.POSIXct(track_session_start_date, tz = "UTC", format = "%Y-%m-%d %H:%M:%S"),
       "%Y-%m-%dT%H:%M:%SZ"
     ),
-    `deployment-comments` = comments,
-    # deployment-end-comments
+    `deployment-comments` = track_session_remarks,
     `deployment-end-type` = dplyr::case_when(
       stringr::str_detect(tolower(track_session_remarks), "dead") ~ "dead",
       stringr::str_detect(tolower(track_session_remarks), "predated") ~ "dead",
@@ -108,31 +88,19 @@ movebank_ref_data <-
       TRUE ~ NA_character_
     ),
     # deployment-id: NOT AVAILABLE
-    # duty-cycle
-    # geolocator-calibration
-    # geolocator-light-threshold
-    # geolocator-sensor-comments
-    # geolocator-sun-elevation-angle
-    # habitat-according-to
     # location-accuracy-comments: NOT AVAILABLE, there is no location-error-numerical/vertical-error-numerical in the gps data
-    # manipulation-comments
     `manipulation-type` = dplyr::case_when(
       stringr::str_detect(track_session_remarks, "VOC") ~ "manipulated other",
       # Birds from VOC were hatched from egg or raised as chicks
       # e.g. placed in controlled environment and subjected to behavioural studies
       TRUE ~ "none"
     ),
-    `study-site` = project_id,
+    `study-site` = release_location,
     `tag-readout-method` = "phone network",
-    # beacon-frequency
     `sensor-type` = "GPS",
-    # tag-comments
-    # tag-failure-comments
     `tag-id` = serial_number,
     `tag-manufacturer-name` = "Ornitela",
     `tag-mass` = tag_weight,
-    # tag-processing-type
-    # tag-production-date
     `tag-serial-no` = serial_number,
     .keep = "none"
   ) %>%
