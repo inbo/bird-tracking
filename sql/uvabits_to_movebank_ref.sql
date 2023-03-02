@@ -71,10 +71,10 @@ SELECT
 
 -- DEPLOYMENTS
 -- alt-project-id:                      ???
--- animal-life-stage:                   Set via variable, likely "adult".
+-- animal-life-stage:                   Set via variable or get via lifestage: value in ses.remarks.
   CASE
-    WHEN lower(ses.remarks) LIKE '%life_stage%' THEN
-      split_part(substring(ses.remarks from '%#"life_stage: [a-z]+#"%' for '#'), ': ', 2)
+    WHEN ses.remarks LIKE '%life_stage%' THEN
+      split_part(substring(ses.remarks, 'life_stage: [a-z]+'), ': ', 2)
     ELSE {animal_life_stage}
   END AS "animal-life-stage",
 -- animal-mass                          Set to individual mass
