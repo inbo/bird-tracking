@@ -70,7 +70,8 @@ SELECT
 --                                      supported in ITIS.
 
 -- DEPLOYMENTS
--- alt-project-id:                      ???
+-- alt-project-id:
+  ses.key_name AS "alt-project-id",
 -- animal-life-stage:                   Set via variable or get via lifestage: value in ses.remarks.
   CASE
     WHEN ses.remarks LIKE '%life_stage%' THEN
