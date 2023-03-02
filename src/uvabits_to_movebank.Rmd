@@ -76,6 +76,28 @@ Save to CSV:
 readr::write_csv(movebank_ref_data, file = here::here("data", "processed", project_id, "movebank_ref_data.csv"), na = "")
 ```
 
+### Note on track session remarks
+
+Text in `track_session.remarks` is parsed to different Movebank fields using regular expressions and should follow a certain format:
+
+```
+Waterland-Oudeman | wing_length: 385 | tarsus_length: 71 | Tracker reused from L143467, assumed dead.
+
+# Release location only
+Waterland-Oudeman
+
+# Measurements only
+wing_length: 385 | tarsus_length: 71
+
+# Remarks only
+ | Tracker reused from L143467, assumed dead.
+```
+
+- `study-site` = `Waterland-Oudeman` (the release location). Write at start of `remarks`. Start with capital letter, don't use spaces.
+- `deploy-on-measurements` = `wing_length: 385 | tarsus_length: 71`. Write as `key_name: value` pairs, where `key_name` is lower snake_case and pairs are separated by ` | `.
+- `deployment-comments` = `Tracker reused from L143467, assumed dead.`. Write at end of `remarks` and end with `.`. Don't use `:`.
+- `deployment-end-type` = `dead`. The words `dead`, `defect`, `malfunction` in `remarks` are used to map to specific types.
+
 ## Get ring numbers
 
 Get individuals with track sessions starting before the `end_date` (avoids unnecessary downloads for individuals with later tracking sessions) by ring number (stored as `animal-id`). Note that ring number is a better identifier than `tag-id` as it is unique to an individual (and cannot be reused).
