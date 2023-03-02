@@ -146,11 +146,10 @@ SELECT
   {manipulation_type} AS "manipulation-type",
 -- outlier-comments:                    "import-marked-outliers" can be set with outliers.Rmd,
 --                                      but opted not to include here as it might not be applied.
--- study-site:                          Set to project_key, e.g. MH_WATERLAND + first element in
---                                      ses.remarks. project.station_name is potentially more
---                                      precise or human readable, but not consistently populated
---                                      and not accessible for shared projects.
-  ses.key_name AS "study-site",
+-- study-site:                          Set to start of ses.remarks (starting with capital letter)
+--                                      until a space is encountered. This is expected to be the
+--                                      release location.
+  substring(ses.remarks from '^[A-Z][^ ]+') AS "study-site",
 -- tag-firmware:
   tag.firmware_version AS "tag-firmware",
 -- tag-readout-method:                  Set to "other wireless" as it is zigbee two-way radio
