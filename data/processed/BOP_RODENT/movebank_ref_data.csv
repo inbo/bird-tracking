@@ -14,6 +14,23 @@ H200701,,,f,Asio flammeus,BOP_RODENT,adult,420,harness,2020-12-06T08:00:00Z,wing
 E464102,Ebe,,m,Circus cyaneus,BOP_RODENT,juvenile,380,harness,,wing_length: 346 | wing_span: 1036,2021-03-22T21:00:00Z,,,none,"Honsem, plateau",phone network,GPS,210196,Ornitela,10,210196
 E464103,Raven,,m,Circus cyaneus,BOP_RODENT,juvenile,337,harness,,wing_length: 337 | wing_span: 1014,2021-03-24T21:00:00Z,,,none,"Boutersem, plateau",phone network,GPS,210198,Ornitela,10,210198
 L177811,Alina,,f,Circus cyaneus,BOP_RODENT,juvenile,500,harness,,wing_length: 371,2021-03-02T19:00:00Z,,,none,"Laar, Brakouter",phone network,GPS,210200,Ornitela,10,210200
+L177822,Dora,,f,Circus cyaneus,BOP_RODENT,juvenile,550,harness,,wing_length: 380,2021-12-16T22:00:00Z,,,none,"Landsdijk, Bloksheule",phone network,GPS,210202,Ornitela,10,210202
+H200726,Anny,,f,Circus aeruginosus,BOP_RODENT,adult,750,harness,,,2022-05-30T22:00:00Z,,,none,Lillo,phone network,GPS,210204,Ornitela,15,210204
+L177824,Frank,,m,Circus aeruginosus,BOP_RODENT,adult,570,harness,,,2022-05-30T22:00:00Z,,,none,Lillo,phone network,GPS,210205,Ornitela,15,210205
+H183710,Rozie,,f,Circus aeruginosus,BOP_RODENT,adult,733,harness,,age: 2cy,2022-08-11T22:00:00Z,,,none,Koekelare,phone network,GPS,210206,Ornitela,15,210206
+L177825,Laurens,,m,Circus aeruginosus,BOP_RODENT,adult,540,harness,,,2022-06-02T22:00:00Z,,,none,Lillo,phone network,GPS,210207,Ornitela,15,210207
 L177820,Farouk,,m,Circus aeruginosus,BOP_RODENT,juvenile,530,harness,,wing_length: 311 | claw_length: 72,2021-07-23T18:00:00Z,,,none,"Lillo, Galgenschoor",phone network,GPS,210208,Ornitela,15,210208
+H200725,Doornzele,,m,Buteo buteo,BOP_RODENT,adult,800,harness,,,2022-03-23T22:00:00Z,,,none,Doornzele,phone network,GPS,211048,Ornitela,25,211048
 H200707,,,m,Buteo buteo,BOP_RODENT,adult,880,harness,,wing_length: 391 | wing_span: 1242 | claw_length: 69,2021-07-20T18:00:00Z,,,none,"Lillo, Galgenschoor",phone network,GPS,211049,Ornitela,15,211049
+H200724,Doel,,f,Buteo buteo,BOP_RODENT,adult,1100,harness,,,2022-03-22T22:00:00Z,,,none,Doel,phone network,GPS,211050,Ornitela,25,211050
 H200704,Roger,,m,Buteo buteo,BOP_RODENT,adult,899,harness,,wing_length: 407 | wing_span: 899 | moult_score: 0,2021-06-02T18:00:00Z,,,none,"Gent, Kloosterbos",phone network,GPS,211051,Ornitela,15,211051
+H200723,Beer,,m,Buteo buteo,BOP_RODENT,adult,850,harness,,,2022-03-22T22:00:00Z,,,none,Kallo,phone network,GPS,211052,Ornitela,25,211052
+E464107,Karel,,m,Circus cyaneus,BOP_RODENT,juvenile,400,harness,,,2021-12-21T22:00:00Z,,,none,"Landsdijk, Bloksheule",phone network,GPS,212925,Ornitela,10,212925
+E464108,Arne,,m,Circus cyaneus,BOP_RODENT,adult,350,harness,,wing_length: 311 | age: 2cy,2022-01-10T22:00:00Z,,,none,"Landsdijk, Bloksheule",phone network,GPS,212928,Ornitela,10,212928
+E491304,Sandrine,Y-V.Z,f,Circus pygargus,BOP_RODENT,adult,333,harness,,,2022-07-27T22:00:00Z,,,none,Moeren,phone network,GPS,213911,Ornitela,10,213911
+E464112,Charlie,,m,Circus cyaneus,BOP_RODENT,adult,4045,harness,,wing_length: 331 | age: 3cy,2022-12-17T22:00:00Z,,,none,"Jabbeke, Legeweg",phone network,GPS,213913,Ornitela,10,213913
+E459160,Jelle,Y-V.A,m,Circus pygargus,BOP_RODENT,adult,252,harness,,age: 3cy,2022-07-12T22:00:00Z,,,none,Bulskamp,phone network,GPS,224079,Ornitela,10,224079
+E464110,Mia,Y-V.U,f,Circus pygargus,BOP_RODENT,adult,296,harness,,,2022-07-15T22:00:00Z,,,none,Proven,phone network,GPS,224080,Ornitela,10,224080
+E491305,Arry,,m,Circus pygargus,BOP_RODENT,adult,315,harness,,,2022-07-27T22:00:00Z,,,none,Moeren,phone network,GPS,224081,Ornitela,10,224081
+E404978,Madeleine,Y-V.T,f,Circus pygargus,BOP_RODENT,adult,335,harness,,,2022-07-10T22:00:00Z,,,none,Bulskamp,phone network,GPS,224082,Ornitela,10,224082
+H209700,Trees,,f,Circus aeruginosus,BOP_RODENT,adult,804,harness,,wing_length: 406 | age: 2cy,2023-03-21T22:00:00Z,,,none,"Woumen, Blankaart",phone network,GPS,230618,Ornitela,15,230618
