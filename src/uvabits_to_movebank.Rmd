@@ -18,6 +18,7 @@ Load libraries:
 library(tidyverse)
 library(DBI)
 library(RPostgres)
+library(config)
 library(here)
 library(glue)
 # For RPostgres, see https://github.com/r-dbi/RPostgres/issues/181#issuecomment-438700465
@@ -104,7 +105,7 @@ Get individuals with track sessions starting before the `end_date` (avoids unnec
 
 ```{r}
 ring_numbers <- movebank_ref_data %>%
-  dplyr::filter(`study-site` == project_id) %>%
+  dplyr::filter(`alt-project-id` == project_id) %>%
   dplyr::filter(`deploy-on-timestamp` <= end_date) %>%
   dplyr::distinct(`animal-id`, .keep_all = TRUE) %>%
   dplyr::arrange(`animal-id`) %>%
