@@ -46,7 +46,7 @@ animal-id,animal-nickname,animal-ring-id,animal-sex,animal-taxon,alt-project-id,
 6210273,Timo,8|L,m,Larus argentatus,DELTATRACK,adult,1035,harness,2020-07-17T00:00:00Z,,2020-05-28T18:00:00Z,Tracker lost on 2019-07-17 and found on Banjaardstrand (NL) on 2019-07-18.,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201134,Ornitela,20,201134
 6210254,Floor,N.6|2,m,Larus argentatus,DELTATRACK,adult,975,harness,2021-01-12T00:00:00Z,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201135,Ornitela,20,201135
 6210197,Pim,N.6|V,m,Larus argentatus,DELTATRACK,adult,1030,harness,2020-10-05T00:00:00Z,,2020-05-20T18:00:00Z,Accelerometer failure since 2020-09-12.,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201136,Ornitela,20,201136
-6210271,Griet,8|J,f,Larus argentatus,DELTATRACK,adult,863,harness,2020-09-12T00:00:00Z,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201137,Ornitela,20,201137
+6210271,Griet,8|J,f,Larus argentatus,DELTATRACK,adult,863,harness,,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201137,Ornitela,20,201137
 6210309,Dirk,9Z,m,Larus argentatus,DELTATRACK,adult,977,harness,,,2020-06-02T18:00:00Z,,,none,"Neeltje Jans, Oosterduinen",phone network,GPS,201138,Ornitela,20,201138
 6210276,Mingtje,8|P,f,Larus argentatus,DELTATRACK,adult,776,harness,2021-06-20T00:00:00Z,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201139,Ornitela,20,201139
 5559398,Dovakhiin,N-R AX,m,Larus fuscus,DELTATRACK,adult,837,harness,2021-09-04T00:00:00Z,,2021-05-25T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211275,Ornitela,15,211275
