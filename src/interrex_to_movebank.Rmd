@@ -95,8 +95,8 @@ movebank_ref_data <-
     # deployment-id: NOT AVAILABLE
     # location-accuracy-comments: NOT AVAILABLE, there is no location-error-numerical/vertical-error-numerical in the gps data
     `manipulation-type` = dplyr::case_when(
-      project == "HG_JUVENILE" ~ "manipulated other",
-      # Birds from HG_JUVENILE were hatched from egg or raised as chicks
+      stringr::str_detect(release_location, "Nieuwpoort") ~ "manipulated other",
+      # Birds from HG_JUVENILE that were released at Nieuwpoort were hatched from egg or raised as chicks
       # e.g. placed in controlled environment and subjected to behavioural studies
       TRUE ~ "none"
     ),
