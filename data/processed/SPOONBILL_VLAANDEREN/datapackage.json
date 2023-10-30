@@ -47,7 +47,7 @@
             "name": "deploy-off-date",
             "title": "deploy off timestamp",
             "description": "The timestamp when the tag deployment ended. Data records recorded after this day and time are not associated with the animal related to the deployment. Values are typically defined by the data owner, and in some cases are created automatically during data import. Further information can be provided in 'deployment end type' and 'deployment end comments'. Example: '2009-10-01 12:00:00.000'; Format: yyyy-MM-dd HH:mm:ss.SSS; Units: UTC or GPS time; Entity described: deployment",
-            "type": "string",
+            "type": "datetime",
             "format": "%Y-%m-%d %H:%M:%S.%f",
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000077/4/"
           },
