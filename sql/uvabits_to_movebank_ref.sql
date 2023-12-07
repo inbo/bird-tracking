@@ -107,10 +107,10 @@ SELECT
 -- deploy-on-longitude:                 Set to catch/session start_longitude
   ses.start_longitude::text AS "deploy-on-longitude",
 -- deploy-on-measurements:              Set to "key: value"" pairs in ses.remarks.
---                                     "[a-z_]: *" = "key: "
---                                     "[^\|]+" = value (anything but |)
---                                     " *\| *" = " | " zero or 1 times
---                                     The closing " | " is removed by regexp_replace().
+--                                      "[a-z_]: *" = "key: "
+--                                      "[^\|]+" = value (anything but |)
+--                                      " *\| *" = " | " zero or 1 times
+--                                      The closing " | " is removed by regexp_replace().
   regexp_replace(substring(ses.remarks from '(?:(?:[a-z_]+: *[^\|]+)(?: *\| *)?)+'), ' *\| *$', '') AS "deploy-on-measurements",
 -- deploy-on-person:                    Not available in DB
 -- deploy-on-sampling:                  Not available in DB
