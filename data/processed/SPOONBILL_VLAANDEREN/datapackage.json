@@ -1,6 +1,5 @@
 {
-  "id": "https://doi.org/10.5281/zenodo.10055133",
-  "profile": "tabular-data-package",
+  "id": "https://doi.org/10.5281/zenodo.12623685",
   "resources": [
     {
       "name": "reference-data",
@@ -110,10 +109,10 @@
           {
             "name": "deploy-on-measurements",
             "title": "deploy on measurements",
-            "description": "A list of additional measurements taken during capture of the animal at the start of the deployment. Recommended best practice is to define units and use a key:value encoding schema for a data interchange format such as JSON. Example: \"{tarsusLengthInMillimeters:17.3, wingChordInMillimeters:125}\"; Units: not defined; Entity described: deployment",
+            "description": "A list of additional measurements taken during capture of the animal at the start of the deployment. Recommended best practice is to define units and use a key:value encoding schema for a data interchange format such as JSON. Example: \"{\"tarsusLengthInMillimeters\":17.3, \"wingChordInMillimeters\":125}\"; Units: not defined; Entity described: deployment",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000356/2/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000356/3/"
           },
           {
             "name": "deployment-comments",
@@ -185,7 +184,7 @@
     },
     {
       "name": "gps",
-      "path": "SPOONBILL_VLAANDEREN-gps-2022.csv.gz",
+      "path": ["SPOONBILL_VLAANDEREN-gps-2022.csv.gz", "SPOONBILL_VLAANDEREN-gps-2023.csv.gz"],
       "profile": "tabular-data-resource",
       "format": "csv",
       "mediatype": "text/csv",
@@ -395,10 +394,10 @@
           {
             "name": "sensor-type",
             "title": "sensor type",
-            "description": "The type of sensor with which data were collected. All sensors are associated with a tag id, and tags can contain multiple sensor types. Each event record in Movebank is assigned one sensor type. If values from multiple sensors are reported in a single event, the primary sensor is used. Values are chosen from a controlled list: acceleration = The sensor collects acceleration data; accessory-measurements = The sensor collects accessory measurements, such as battery voltage; acoustic-telemetry = The sensor transmits an acoustic signal that is detected by receivers to determine location; argos-doppler-shift = The sensor location is estimated by Argos using Doppler shift; barometer = The sensor records air or water pressure; bird-ring = The animal is identified by a band or ring that has a unique identifier; gps = The sensor uses GPS to determine location; gyroscope = The sensor records angular velocity; heart-rate = The sensor records or is used to calculate heart rate; magnetometer = The sensor records the magnetic field; natural-mark = The animal is identified by a unique natural marking; orientation = Quaternion components describing the orientation of the tag are derived from accelerometer and gyroscope measurements; proximity = The sensor identifies proximity to other tags; radio-transmitter = The sensor transmits a radio signal that is detected by receivers to determine location; sigfox-geolocation = The sensor location is determined by Sigfox using the received signal strength indicator; solar-geolocator = The sensor collects light levels, which are used to determine position (for processed locations); solar-geolocator-raw = The sensor collects light levels, which are used to determine position (for raw light-level measurements); solar-geolocator-twilight = The sensor collects light levels, which are used to determine position (for twilights calculated from light-level measurements). Format: controlled list; Entity described: event",
+            "description": "The type of sensor with which data were collected. All sensors are associated with a tag id, and tags can contain multiple sensor types. Each event record in Movebank is assigned one sensor type. If values from multiple sensors are reported in a single event, the primary sensor is used. Values are chosen from a controlled list: acceleration = The sensor collects acceleration data; accessory-measurements = The sensor collects accessory measurements, such as battery voltage; acoustic-telemetry = The sensor transmits an acoustic signal that is detected by receivers to determine location; argos-doppler-shift = The sensor location is estimated by Argos using Doppler shift; barometer = The sensor records air or water pressure; bird-ring = The animal is identified by a band or ring that has a unique identifier; derived = Information is derived from other sensor data; geolocation-api = The location is determined based on detection by nearby cell towers or other wireless network connectors using the World Wide Web Consortium Geolocation API Recommendation; gnss = The sensor uses one or more global navigation satellite systems to determine location; gps = The sensor uses GPS to determine location; gyroscope = The sensor records angular velocity; heart-rate = The sensor records or is used to calculate heart rate; magnetometer = The sensor records the magnetic field; natural-mark = The animal is identified by a unique natural marking; orientation = Quaternion components describing the orientation of the tag are derived from accelerometer and gyroscope measurements; proximity = The sensor identifies proximity to other tags; radio-transmitter = The sensor transmits a radio signal that is detected by receivers to determine location; sigfox-geolocation = The sensor location is determined by Sigfox using the received signal strength indicator; solar-geolocator = The sensor collects light levels, which are used to determine position (for processed locations); solar-geolocator-raw = The sensor collects light levels, which are used to determine position (for raw light-level measurements); solar-geolocator-twilight = The sensor collects light levels, which are used to determine position (for twilights calculated from light-level measurements). Format: controlled list; Entity described: event",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000170/6/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000170/7/"
           },
           {
             "name": "individual-taxon-canonical-name",
