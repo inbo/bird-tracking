@@ -31,7 +31,7 @@ metadata_colnames <- colnames(metadata)
 Set project:
 
 ```{r}
-project_id <- "HG_JUVENILE"
+project_id <- "ARMENIAN_GULL"
 ```
 
 ## Get reference data (metadata)
@@ -49,7 +49,12 @@ movebank_ref_data <-
   dplyr::filter(!is.na(colour_ring)) %>%
   dplyr::mutate(
     # animal-comments: NOT AVAILABLE
-    `animal-id` = metal_ring,
+    `animal-id` = 
+      if_else(
+        is.na(metal_ring),
+        colour_ring,
+        metal_ring
+        ),
     `animal-nickname` = animal_name,
     `animal-ring-id` = colour_ring,
     `animal-sex` = dplyr::recode(sex,
