@@ -49,7 +49,7 @@ movebank_ref_data <-
   dplyr::filter(!is.na(colour_ring)) %>%
   dplyr::mutate(
     # animal-comments: NOT AVAILABLE
-    `animal-id` = metal_ring,
+    `animal-id` = if_else(!is.na(metal_ring), metal_ring, colour_ring),
     `animal-nickname` = animal_name,
     `animal-ring-id` = colour_ring,
     `animal-sex` = dplyr::recode(sex,
@@ -70,14 +70,8 @@ movebank_ref_data <-
       as.POSIXct(track_session_end_date, tz = "UTC", format = "%Y-%m-%d %H:%M:%S"),
       "%Y-%m-%dT%H:%M:%SZ"
     ),
-    `deploy-on-latitude` = dplyr::case_when(
-      stringr::str_detect(release_location, "IJzermonding slikken") ~ 51.15146,
-      TRUE ~ NA_real_
-    ),
-    `deploy-on-longitude` = dplyr::case_when(
-      stringr::str_detect(release_location, "IJzermonding slikken") ~ 2.73127,
-      TRUE ~ NA_real_
-    ),
+    `deploy-on-latitude` = release_latitude,
+    `deploy-on-longitude` = release_longitude,
     `deploy-on-measurements` = animal_measurements,
     `deploy-on-timestamp` = format(
       as.POSIXct(track_session_start_date, tz = "UTC", format = "%Y-%m-%d %H:%M:%S"),
