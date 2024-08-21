@@ -29,7 +29,6 @@ Set user-defined values:
 ```{r}
 project_id <- "O_ASSEN" # O_WESTERSCHELDE
 versioned_doi <- "https://doi.org/10.5281/zenodo.10053903" # https://doi.org/10.5281/zenodo.5879096
-license_url <- "http://creativecommons.org/publicdomain/zero/1.0/"
 contact <- person(
   given = "Peter",
   family = "Desmet",
@@ -89,7 +88,7 @@ Set properties:
 
 ```{r}
 package$title <- eml$dataset$title
-package$licenses[[1]]$path <- license_url
+package$licenses[[1]]$name <- toupper(eml$dataset$intellectualRights$para)
 ```
 
 Write files:
