@@ -29,6 +29,7 @@ Set user-defined values:
 ```{r}
 project_id <- "O_ASSEN" # O_WESTERSCHELDE
 versioned_doi <- "https://doi.org/10.5281/zenodo.10053903" # https://doi.org/10.5281/zenodo.5879096
+rights_holder <- "INBO"
 contact <- person(
   given = "Peter",
   family = "Desmet",
@@ -84,18 +85,15 @@ Read package:
 package <- movepub::read_package(datapackage_url)
 ```
 
-Set properties:
-
-```{r}
-package$title <- eml$dataset$title
-package$licenses[[1]]$name <- toupper(eml$dataset$intellectualRights$para)
-```
-
 Write files:
 
 ```{r}
 movepub::write_dwc(
   package = package,
   directory = dir,
+  dataset_id = package$id,
+  dataset_name = eml$dataset$title,
+  license = toupper(eml$dataset$intellectualRights$para),
+  rights_holder = rights_holder
 )
 ```
