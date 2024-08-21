@@ -21,6 +21,7 @@ library(magrittr)
 library(here)
 library(movepub) # devtools::install_github("inbo/movepub")
 library(EML)
+library(jsonlite)
 ```
 
 Set user-defined values:
@@ -42,7 +43,8 @@ Create file paths:
 ```{r}
 dir <- here::here("data", "processed", project_id, "dwc")
 record_id <- gsub("https://doi.org/10.5281/zenodo.", "", versioned_doi)
-datapackage_url <- paste0("https://zenodo.org/record/", record_id, "/files/datapackage.json")
+zenodo_url <- paste0("https://zenodo.org/records/", record_id, "/export/json")
+datapackage_url <- paste0("https://zenodo.org/records/", record_id, "/files/datapackage.json")
 ```
 
 ## Create and write EML
@@ -58,7 +60,12 @@ eml <- movepub::write_eml(
 
 Process EML (TODO):
 
-1. Get description from Zenodo API, so we have it with HTML (see #65).
+1. Get description from Zenodo API, so we have it with HTML (see https://github.com/inbo/movepub/issues/65).
+
+```{r}
+zenodo <- jsonlite::read_json(zenodo_url)
+```
+
 2. Remove clutter from description: either just the first paragraph or until (but excluding) "files".
 3. Remove the "additional notes" paragraph: "This version adds alt-project-id to the reference-data a ..."
 4. Verify if `![CDATA[<span></span>` needs to be kept for the IPT
