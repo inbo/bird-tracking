@@ -1,0 +1,95 @@
+---
+title: "Prepare Movebank data for GBIF IPT upload (make Darwin Core)"
+author: "Peter Desmet"
+date: "`r Sys.Date()`"
+output:
+  html_document
+---
+
+This script prepares Movebank bird tracking data for upload to a [GBIF IPT](https://gbif.org/ipt). It is designed for datasets deposited on Zenodo.
+
+1. Look up the DOI
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+
+```{r}
+library(magrittr)
+library(here)
+library(movepub) # devtools::install_github("inbo/movepub")
+library(EML)
+```
+
+Set user-defined values:
+
+```{r}
+project_id <- "O_ASSEN" # O_WESTERSCHELDE
+versioned_doi <- "https://doi.org/10.5281/zenodo.10053903" # https://doi.org/10.5281/zenodo.5879096
+license_url <- "http://creativecommons.org/publicdomain/zero/1.0/"
+contact <- person(
+  given = "Peter",
+  family = "Desmet",
+  email = "peter.desmet@inbo.be",
+  comment = c(ORCID = "0000-0002-8442-8025")
+)
+```
+
+Create file paths:
+
+```{r}
+dir <- here::here("data", "processed", project_id, "dwc")
+record_id <- gsub("https://doi.org/10.5281/zenodo.", "", versioned_doi)
+datapackage_url <- paste0("https://zenodo.org/record/", record_id, "/files/datapackage.json")
+```
+
+## Create and write EML
+
+```{r}
+eml <- movepub::write_eml(
+  doi = versioned_doi,
+  directory = dir,
+  contact = contact,
+  derived_paragraph = TRUE
+)
+```
+
+Process EML (TODO):
+
+1. Get description from Zenodo API, so we have it with HTML (see #65).
+2. Remove clutter from description: either just the first paragraph or until (but excluding) "files".
+3. Remove the "additional notes" paragraph: "This version adds alt-project-id to the reference-data a ..."
+4. Verify if `![CDATA[<span></span>` needs to be kept for the IPT
+5. Check if `cc0-1.0` will work as a value on the IPT or if it needs to be extended to "To the extent possible under law ..."
+
+Write EML (again):
+
+```{r}
+EML::write_eml(eml, file = file.path(dir, "eml.xml"))
+```
+
+## Create and write Darwin Core
+
+Read package:
+
+```{r}
+package <- movepub::read_package(datapackage_url)
+```
+
+Set properties:
+
+```{r}
+package$title <- eml$dataset$title
+package$licenses[[1]]$path <- license_url
+```
+
+Write files:
+
+```{r}
+movepub::write_dwc(
+  package = package,
+  directory = dir,
+)
+```
