@@ -64,11 +64,15 @@ Process EML (TODO):
 
 ```{r}
 zenodo <- jsonlite::read_json(zenodo_url)
+
+description_full <- zenodo$metadata$description
+paragraphs <- unlist(strsplit(description_full, "(</p>)", perl = TRUE))
+description <- paste0(paragraphs[1], "</p>", paragraphs[2], "</p>")
 ```
 
-2. Remove clutter from description: either just the first paragraph or until (but excluding) "files".
 3. Remove the "additional notes" paragraph: "This version adds alt-project-id to the reference-data a ..."
-4. Verify if `![CDATA[<span></span>` needs to be kept for the IPT
+# zenodo$metadata$addition_descriptions (see eml$dataset$abstract)
+4. Verify if `![CDATA[<span></span>` needs to be kept for the IPT #eml$dataset$intellectualRights$para
 5. Check if `cc0-1.0` will work as a value on the IPT or if it needs to be extended to "To the extent possible under law ..."
 
 Write EML (again):
