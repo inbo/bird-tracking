@@ -66,14 +66,19 @@ Process EML (TODO):
 zenodo <- jsonlite::read_json(zenodo_url)
 
 description_full <- zenodo$metadata$description
-paragraphs <- unlist(strsplit(description_full, "(</p>)", perl = TRUE))
-description <- paste0(paragraphs[1], "</p>", paragraphs[2], "</p>")
-```
+paragraphs <- unlist(strsplit(description_full, "<p>|</p>|\n", perl = TRUE))
+paragraphs <- paragraphs[paragraphs != ""]
+purrr::map(paragraphs, ~ paste0("<![CDATA[", .x, "]]>"))
 
-3. Remove the "additional notes" paragraph: "This version adds alt-project-id to the reference-data a ..."
-# zenodo$metadata$addition_descriptions (see eml$dataset$abstract)
-4. Verify if `![CDATA[<span></span>` needs to be kept for the IPT #eml$dataset$intellectualRights$para
-5. Check if `cc0-1.0` will work as a value on the IPT or if it needs to be extended to "To the extent possible under law ..."
+index_para1 <- grep(paste(project_id, "-"), paragraphs)[1]
+index_para2 <- grep("for a more detailed description of this dataset", paragraphs)
+index_para3 <- grep("Acknowledgements", paragraphs) + 1
+
+description <- paragraphs[c(index_para1, index_para2, index_para3)]
+
+# update EML
+eml$dataset$abstract$para <- description
+```
 
 Write EML (again):
 
