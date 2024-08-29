@@ -68,9 +68,9 @@ zenodo <- jsonlite::read_json(zenodo_url)
 description_full <- zenodo$metadata$description
 paragraphs <- unlist(strsplit(description_full, "<p>|</p>|\n", perl = TRUE))
 paragraphs <- paragraphs[paragraphs != ""]
-purrr::map(paragraphs, ~ paste0("<![CDATA[", .x, "]]>"))
 
 index_para1 <- grep(paste(project_id, "-"), paragraphs)[1]
+paragraphs[index_para1] <- paste0("<![CDATA[", paragraphs[index_para1], "]]>")
 index_para2 <- grep("for a more detailed description of this dataset", paragraphs)
 index_para3 <- grep("Acknowledgements", paragraphs) + 1
 
