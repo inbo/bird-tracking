@@ -27,8 +27,8 @@ library(jsonlite)
 Set user-defined values:
 
 ```{r}
-project_id <- "O_ASSEN" # O_WESTERSCHELDE
-versioned_doi <- "https://doi.org/10.5281/zenodo.10053903" # https://doi.org/10.5281/zenodo.5879096
+project_id <- "O_WESTERSCHELDE"
+versioned_doi <- "https://doi.org/10.5281/zenodo.5879096"
 rights_holder <- "INBO"
 contact <- person(
   given = "Peter",
@@ -76,7 +76,7 @@ index_para3 <- grep("Acknowledgements", paragraphs) + 1
 
 description <- paragraphs[c(index_para1, index_para2, index_para3)]
 
-# update EML
+# Update EML
 eml$dataset$abstract$para <- description
 ```
 
