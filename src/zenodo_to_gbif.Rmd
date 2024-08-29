@@ -1,6 +1,8 @@
 ---
 title: "Prepare Movebank data for GBIF IPT upload (make Darwin Core)"
-author: "Peter Desmet"
+author:
+- Peter Desmet
+- Sanne Govaert
 date: "`r Sys.Date()`"
 output:
   html_document
