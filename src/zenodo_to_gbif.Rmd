@@ -60,14 +60,14 @@ eml <- movepub::write_eml(
 )
 ```
 
-Process EML (TODO):
-
-1. Get description from Zenodo API, so we have it with HTML (see https://github.com/inbo/movepub/issues/65).
+Process EML:
 
 ```{r}
+# Get description from Zenodo (with HTML, see https://github.com/inbo/movepub/issues/65)
 zenodo <- jsonlite::read_json(zenodo_url)
-
 description_full <- zenodo$metadata$description
+
+# ...
 paragraphs <- unlist(strsplit(description_full, "<p>|</p>|\n", perl = TRUE))
 paragraphs <- paragraphs[paragraphs != ""]
 
