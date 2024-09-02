@@ -84,9 +84,12 @@ index_para2 <- grep("for a more detailed description of this dataset", paragraph
 # 3: Acknowledgements
 index_para3 <- grep("Acknowledgements", paragraphs) + 1
 
+# 4: derived paragraph from write_eml()
+derived_paragraph <- tail(eml$dataset$abstract$para, 1)
+
 # Combine and update EML
 description <- paragraphs[c(index_para1, index_para2, index_para3)]
-eml$dataset$abstract$para <- description
+eml$dataset$abstract$para <- c(description, derived_paragraph)
 ```
 
 Write EML (again):
