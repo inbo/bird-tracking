@@ -66,23 +66,26 @@ Process EML:
 # Get description from Zenodo (with HTML, see https://github.com/inbo/movepub/issues/65)
 zenodo <- jsonlite::read_json(zenodo_url)
 description_full <- zenodo$metadata$description
+```
 
+```{r}
 # Split description in paragraphs
 paragraphs <- unlist(strsplit(description_full, "<p>|</p>|\n", perl = TRUE))
 paragraphs <- paragraphs[paragraphs != ""]
 
 # Keep desired paragraphs
-# 1: overview of the study
-# 2: extra (not in all studies): reference to paper
-# 3: acknowledgements
+# 1: overview of the study (wrapped in CDATA)
 index_para1 <- grep(paste(project_id, "-"), paragraphs)[1]
 paragraphs[index_para1] <- paste0("<![CDATA[", paragraphs[index_para1], "]]>")
+
+# 2: Reference to paper
 index_para2 <- grep("for a more detailed description of this dataset", paragraphs)
+
+# 3: Acknowledgements
 index_para3 <- grep("Acknowledgements", paragraphs) + 1
 
+# Combine and update EML
 description <- paragraphs[c(index_para1, index_para2, index_para3)]
-
-# Update EML
 eml$dataset$abstract$para <- description
 ```
 
