@@ -67,10 +67,14 @@ Process EML:
 zenodo <- jsonlite::read_json(zenodo_url)
 description_full <- zenodo$metadata$description
 
-# ...
+# Split description in paragraphs
 paragraphs <- unlist(strsplit(description_full, "<p>|</p>|\n", perl = TRUE))
 paragraphs <- paragraphs[paragraphs != ""]
 
+# Keep desired paragraphs
+# 1: overview of the study
+# 2: extra (not in all studies): reference to paper
+# 3: acknowledgements
 index_para1 <- grep(paste(project_id, "-"), paragraphs)[1]
 paragraphs[index_para1] <- paste0("<![CDATA[", paragraphs[index_para1], "]]>")
 index_para2 <- grep("for a more detailed description of this dataset", paragraphs)
