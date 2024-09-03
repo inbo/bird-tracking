@@ -43,7 +43,7 @@ con = DBI::dbConnect(
 # con <- DBI::dbConnect(odbc::odbc(), "uvabits")
 ```
 
-## Set project and some values
+## Set user-defined values
 
 Some values cannot be automatically assumed for the Movebank format and have to be defined by the user. See [here](https://www.movebank.org/node/2381#metadata) for information on all reference data terms.
 

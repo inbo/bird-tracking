@@ -26,9 +26,7 @@ metadata <- readr::read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSJ
 metadata_colnames <- colnames(metadata)
 ```
 
-## Set project
-
-Set project:
+Set user-defined values:
 
 ```{r}
 project_id <- "HG_JUVENILE"

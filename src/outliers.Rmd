@@ -27,7 +27,7 @@ library(trip)
 library(geosphere)
 ```
 
-Set values:
+Set user-defined values:
 
 ```{r}
 project_id <- "O_WESTERSCHELDE"

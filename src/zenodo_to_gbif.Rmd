@@ -1,0 +1,120 @@
+---
+title: "Prepare Movebank data for GBIF IPT upload (make Darwin Core)"
+author:
+- Peter Desmet
+- Sanne Govaert
+date: "`r Sys.Date()`"
+output:
+  html_document
+---
+
+This script prepares Movebank bird tracking data for upload to a [GBIF IPT](https://gbif.org/ipt). It is designed for datasets deposited on Zenodo.
+
+1. Look up the DOI
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+
+```{r}
+library(magrittr)
+library(here)
+library(movepub) # devtools::install_github("inbo/movepub")
+library(EML)
+library(jsonlite)
+```
+
+Set user-defined values:
+
+```{r}
+project_id <- "O_WESTERSCHELDE"
+versioned_doi <- "https://doi.org/10.5281/zenodo.5879096"
+rights_holder <- "INBO"
+contact <- person(
+  given = "Peter",
+  family = "Desmet",
+  email = "peter.desmet@inbo.be",
+  comment = c(ORCID = "0000-0002-8442-8025")
+)
+```
+
+Create file paths:
+
+```{r}
+dir <- here::here("data", "processed", project_id, "dwc")
+record_id <- gsub("https://doi.org/10.5281/zenodo.", "", versioned_doi)
+zenodo_url <- paste0("https://zenodo.org/records/", record_id, "/export/json")
+datapackage_url <- paste0("https://zenodo.org/records/", record_id, "/files/datapackage.json")
+```
+
+## Create and write EML
+
+```{r}
+eml <- movepub::write_eml(
+  doi = versioned_doi,
+  directory = dir,
+  contact = contact,
+  derived_paragraph = TRUE
+)
+```
+
+Process EML:
+
+```{r}
+# Get description from Zenodo (with HTML, see https://github.com/inbo/movepub/issues/65)
+zenodo <- jsonlite::read_json(zenodo_url)
+description_full <- zenodo$metadata$description
+```
+
+```{r}
+# Split description in paragraphs
+paragraphs <- unlist(strsplit(description_full, "<p>|</p>|\n", perl = TRUE))
+paragraphs <- paragraphs[paragraphs != ""]
+
+# Keep desired paragraphs
+# 1: overview of the study (wrapped in CDATA)
+index_para1 <- grep(paste(project_id, "-"), paragraphs)[1]
+paragraphs[index_para1] <- paste0("<![CDATA[", paragraphs[index_para1], "]]>")
+
+# 2: Reference to paper
+index_para2 <- grep("for a more detailed description of this dataset", paragraphs)
+
+# 3: Acknowledgements
+index_para3 <- grep("Acknowledgements", paragraphs) + 1
+
+# 4: derived paragraph from write_eml()
+derived_paragraph <- tail(eml$dataset$abstract$para, 1)
+
+# Combine and update EML
+description <- paragraphs[c(index_para1, index_para2, index_para3)]
+eml$dataset$abstract$para <- c(description, derived_paragraph)
+```
+
+Write EML (again):
+
+```{r}
+EML::write_eml(eml, file = file.path(dir, "eml.xml"))
+```
+
+## Create and write Darwin Core
+
+Read package:
+
+```{r}
+package <- movepub::read_package(datapackage_url)
+```
+
+Write files:
+
+```{r}
+movepub::write_dwc(
+  package = package,
+  directory = dir,
+  dataset_id = package$id,
+  dataset_name = eml$dataset$title,
+  license = toupper(eml$dataset$intellectualRights$para),
+  rights_holder = rights_holder
+)
+```

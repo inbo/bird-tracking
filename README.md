@@ -37,6 +37,7 @@ Before we adopted the workflow to publish on Movebank and Zenodo, two datasets w
 - [Prepare Ornitela (meta)data for Movebank upload](src/ornitela_to_movebank.Rmd)
 - [Prepare Interrex (meta)data for Movebank upload](src/interrex_to_movebank.Rmd)
 - [Prepare Movebank data for Zenodo upload (make frictionless)](src/movebank_to_frictionless.Rmd)
+- [Prepare Zenodo data for GBIF upload](src/zenodo_to_gbif.Rmd)
 
 ## Repo structure
 

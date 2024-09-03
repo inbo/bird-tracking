@@ -19,19 +19,17 @@ library(tidyverse)
 library(here)
 ```
 
+Set user-defined values:
+
+```{r}
+project_id <- "LBBG_JUVENILE"
+```
+
 ## Get Ornitela tag and bird information from spreadsheet
 
 ```{r}
 metadata <- readr::read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=0&single=true&output=csv")
 metadata_colnames <- colnames(metadata)
-```
-
-## Set project
-
-Set project:
-
-```{r}
-project_id <- "LBBG_JUVENILE"
 ```
 
 ## Get reference data (metadata)
