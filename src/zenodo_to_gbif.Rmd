@@ -10,8 +10,6 @@ output:
 
 This script prepares Movebank bird tracking data for upload to a [GBIF IPT](https://gbif.org/ipt). It is designed for datasets deposited on Zenodo.
 
-1. Look up the DOI
-
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
@@ -26,7 +24,7 @@ library(EML)
 library(jsonlite)
 ```
 
-Set user-defined values:
+## Set user-defined values
 
 ```{r}
 project_id <- "O_WESTERSCHELDE"
