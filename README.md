@@ -1,6 +1,6 @@
 # Bird tracking
 
-This repository contains the functionality to **standardize bird tracking data** from the LifeWatch [GPS tracking network for large birds](http://lifewatch.be/en/gps-tracking-network-large-birds) so these can be published on [Movebank](https://www.movebank.org/), [Zenodo](https://zenodo.org), [GBIF](https://www.gbif.org) and [OBIS](https://obis.org). For reusable functions, see the [movepub](https://inbo.github.io/movepub) R package.
+This repository contains scripts to **publish bird tracking data** from the LifeWatch [GPS tracking network for large birds](http://lifewatch.be/en/gps-tracking-network-large-birds) on [Movebank](https://www.movebank.org/), [Zenodo](https://zenodo.org), [GBIF](https://www.gbif.org) and [OBIS](https://obis.org). For reusable functions, see the [movepub](https://inbo.github.io/movepub) R package.
 
 ## Datasets
 
