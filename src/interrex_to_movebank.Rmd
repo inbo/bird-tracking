@@ -46,15 +46,7 @@ movebank_ref_data <-
   dplyr::filter(project == project_id) %>%
   dplyr::mutate(
     # animal-comments: NOT AVAILABLE
-    `animal-id` = dplyr::if_else(
-      !is.na(metal_ring), 
-      metal_ring, 
-      dplyr::if_else(
-        !is.na(colour_ring),
-        colour_ring,
-        animal_name
-      )
-    ),
+    `animal-id` = dplyr::first(c(metal_ring, colour_ring, animal_name)),
     `animal-nickname` = animal_name,
     `animal-ring-id` = colour_ring,
     `animal-sex` = dplyr::recode(sex,
