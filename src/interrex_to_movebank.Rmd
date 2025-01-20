@@ -29,7 +29,7 @@ metadata_colnames <- colnames(metadata)
 Set user-defined values:
 
 ```{r}
-project_id <- "HG_JUVENILE"
+project_id <- "ARMENIAN_GULL"
 ```
 
 ## Get reference data (metadata)
@@ -44,10 +44,17 @@ Map data:
 movebank_ref_data <-
   metadata %>%
   dplyr::filter(project == project_id) %>%
-  dplyr::filter(!is.na(colour_ring)) %>%
   dplyr::mutate(
     # animal-comments: NOT AVAILABLE
-    `animal-id` = if_else(!is.na(metal_ring), metal_ring, colour_ring),
+    `animal-id` = dplyr::if_else(
+      !is.na(metal_ring), 
+      metal_ring, 
+      dplyr::if_else(
+        !is.na(colour_ring),
+        colour_ring,
+        animal_name
+      )
+    ),
     `animal-nickname` = animal_name,
     `animal-ring-id` = colour_ring,
     `animal-sex` = dplyr::recode(sex,
@@ -102,6 +109,7 @@ movebank_ref_data <-
     `tag-serial-no` = serial_number,
     .keep = "none"
   ) %>%
+  dplyr::filter(!is.na(`animal-id`)) %>% 
   dplyr::arrange(`tag-id`)
 ```
 
