@@ -29,7 +29,7 @@ metadata_colnames <- colnames(metadata)
 Set user-defined values:
 
 ```{r}
-project_id <- "ARMENIAN_GULL"
+project_id <- "HG_JUVENILE"
 ```
 
 ## Get reference data (metadata)
