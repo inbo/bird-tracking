@@ -101,7 +101,6 @@ movebank_ref_data <-
     `tag-serial-no` = serial_number,
     .keep = "none"
   ) %>%
-  dplyr::filter(!is.na(`animal-id`)) %>% 
   dplyr::arrange(`tag-id`)
 ```
 
