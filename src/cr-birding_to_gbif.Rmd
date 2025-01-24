@@ -1,0 +1,105 @@
+---
+title: "Prepare cr-birding data for GBIF IPT upload (make Darwin Core)"
+author:
+- Sanne Govaert
+date: "`r Sys.Date()`"
+output:
+  html_document
+---
+
+This script prepares colour-ring bird tracking data for upload to a [GBIF IPT](https://gbif.org/ipt). It is designed for projects of [European colour-ring Birding](https://cr-birding.org/).
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+
+```{r}
+library(here)
+library(dplyr)
+library(movepub) # devtools::install_github("inbo/movepub")
+```
+
+## Set user-defined values
+
+```{r}
+project_id <- "36_Aalscholver"
+observations_file_name <- "crbirding_export_project_36_2025-01-23_16-41-20_nl.csv"
+users_file_name <- "export_2025-01-23.csv"
+license <- NA
+rights_holder <- "INBO"
+dataset_id <- NA
+scientific_name <- "Phalacrocorax pelagicus"
+contact <- person(
+  given = "Sanne",
+  family = "Govaert",
+  email = "sanne.govaert@inbo.be",
+  comment = c(ORCID = "0000-0002-8939-1305")
+)
+```
+
+## Create and write Darwin Core
+
+Read files:
+
+```{r}
+observations <- read.csv(here::here("data", "raw", project_id, observations_file_name))
+users <- read.csv(here::here("data", "raw", project_id, users_file_name))
+```
+
+Data transformation:
+
+```{r}
+# Lookup AphiaIDs for taxon
+taxon <- movepub::get_aphia_id(scientific_name)
+
+# Write event_remarks by combining comments
+event_remarks <- ""
+
+# Build occurrences
+occurrence <-
+  observations %>% 
+  dplyr::mutate(
+    type = "Event",
+    license = license,
+    righsHolder = rights_holder,
+    datasetID = dataset_id,
+    collectionCode = "cr-birding",
+    datasetName = project_id,
+    basisOfRecord = "HumanObservation",
+    occurrenceID = .data$observation_id,
+    sex = NA_character_,
+    lifeStage = NA_character_,
+    reproductiveCondition = NA_character_,
+    occurrenceStatus = "present",
+    organismID = .data$bird_id,
+    eventID = .data$observation_id,
+    eventType = NA_character_,
+    eventDate = .data$observation_date,
+    eventRemarks = event_remarks,
+    locationRemarks = .data$observation_location,
+    decimalLatitude = .data$observation_lat,
+    decimalLongitude = .data$observation_lon,
+    geodeticDatum = "EPSG:4326",
+    scientificNameID = taxon$aphia_lsid,
+    scientificName = taxon$name,
+    kingdom = "Animalia",
+    .keep = "none"
+  )
+```
+
+Write file:
+
+```{r}
+directory <- here::here("data", "processed", project_id, "dwc")
+occurrence_path <- file.path(directory, "occurrence.csv")
+cli::cli_h2("Writing file")
+cli::cli_ul("{.file {occurrence_path}}")
+if (!dir.exists(directory)) {
+  dir.create(directory, recursive = TRUE)
+}
+readr::write_csv(occurrence, occurrence_path, na = "")
+```
+
+
