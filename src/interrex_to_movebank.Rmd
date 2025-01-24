@@ -46,7 +46,7 @@ movebank_ref_data <-
   dplyr::filter(project == project_id) %>%
   dplyr::mutate(
     # animal-comments: NOT AVAILABLE
-    `animal-id` = dplyr::coalesce(metal_ring, colour_ring, animal_name),
+    `animal-id` = dplyr::coalesce(metal_ring, colour_ring),
     `animal-nickname` = animal_name,
     `animal-ring-id` = colour_ring,
     `animal-sex` = dplyr::recode(sex,
