@@ -102,7 +102,7 @@ movebank_ref_data <-
     .keep = "none"
   ) %>%
   dplyr::filter(!is.na(`animal-id`)) %>% 
-  dplyr::arrange(`tag-id`)
+  dplyr::arrange(`tag-id`, `animal-id`)
 ```
 
 Save to CSV:
