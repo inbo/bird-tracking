@@ -74,7 +74,6 @@ paragraphs <- paragraphs[paragraphs != ""]
 # Keep desired paragraphs
 # 1: overview of the study (wrapped in CDATA)
 index_para1 <- grep(paste(project_id, "-"), paragraphs)[1]
-paragraphs[index_para1] <- paste0("<![CDATA[", paragraphs[index_para1], "]]>")
 
 # 2: Reference to paper
 index_para2 <- grep("for a more detailed description of this dataset", paragraphs)
@@ -86,8 +85,13 @@ index_para3 <- grep("Acknowledgements", paragraphs) + 1
 derived_paragraph <- tail(eml$dataset$abstract$para, 1)
 
 # Combine and update EML
-description <- paragraphs[c(index_para1, index_para2, index_para3)]
-eml$dataset$abstract$para <- c(description, derived_paragraph)
+description <- paragraphs[c(index_para1, index_para2, index_para3)] %>% 
+ # Add <p></p> tags to each paragraph 
+  purrr::map_chr(~ paste0("<p>", ., "</p>"))
+
+# Add collapsed paragraphs + derived_paragraph to EML
+eml$dataset$abstract$para <- 
+  paste0(c(description, derived_paragraph), collapse = "")
 ```
 
 Write EML (again):
