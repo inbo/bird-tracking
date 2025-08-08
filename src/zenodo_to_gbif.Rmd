@@ -85,12 +85,29 @@ index_para3 <- grep("Acknowledgements", paragraphs) + 1
 derived_paragraph <- tail(eml$dataset$abstract$para, 1)
 
 # Combine and update EML
-eml$dataset$abstract$para <- paragraphs[c(index_para1, index_para2, index_para3)] %>% 
+desired_paragraphs <- paragraphs[c(index_para1, index_para2, index_para3)] %>% 
   purrr::map_chr(movepub::html_to_docbook) %>% 
   # Add derived_paragrapg (in DocBook format)
-  append(derived_paragraph) %>% 
-  purrr::map_chr(~ paste0("<para>", .x, "</para>")) %>%
-  paste(collapse = "")
+  append(derived_paragraph)
+  #purrr::map_chr(~ paste0("<para>", .x, "</para>")) %>%
+  #paste(collapse = "")
+
+eml$dataset$abstract <- NULL
+eml$dataset$abstract <- 
+  list(
+    para = c(
+      desired_paragraphs[[1]],
+      desired_paragraphs[[2]],
+      desired_paragraphs[[3]],
+      desired_paragraphs[[4]]
+    )
+  )
+```
+
+Test if EML is valid:
+
+```{r}
+EML::eml_validate(eml)
 ```
 
 Write EML (again):
