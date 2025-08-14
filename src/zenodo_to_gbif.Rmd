@@ -61,7 +61,9 @@ eml <- movepub::write_eml(
 Process EML:
 
 ```{r}
-# Get description from Zenodo (with HTML, see https://github.com/inbo/movepub/issues/65)
+# Get description from Zenodo
+# - Has HTML, see https://github.com/inbo/movepub/issues/65)
+# - Doesn't include NOTES/CHANGELOG to description
 zenodo <- jsonlite::read_json(zenodo_url)
 description_full <- zenodo$metadata$description
 ```
@@ -72,9 +74,8 @@ paragraphs <- unlist(strsplit(description_full, "<p>|</p>|\n", perl = TRUE))
 paragraphs <- paragraphs[paragraphs != ""]
 
 # Keep desired paragraphs
-# 1: overview of the study (wrapped in CDATA)
+# 1: overview of the study
 index_para1 <- grep(paste(project_id, "-"), paragraphs)[1]
-paragraphs[index_para1] <- paste0("<![CDATA[", paragraphs[index_para1], "]]>")
 
 # 2: Reference to paper
 index_para2 <- grep("for a more detailed description of this dataset", paragraphs)
@@ -86,8 +87,28 @@ index_para3 <- grep("Acknowledgements", paragraphs) + 1
 derived_paragraph <- tail(eml$dataset$abstract$para, 1)
 
 # Combine and update EML
-description <- paragraphs[c(index_para1, index_para2, index_para3)]
-eml$dataset$abstract$para <- c(description, derived_paragraph)
+desired_paragraphs <-
+  paragraphs[c(index_para1, index_para2, index_para3)] %>% 
+  # Convert to Docbook
+  purrr::map_chr(movepub::html_to_docbook) %>% 
+  # Add derived paragraph (already in DocBook)
+  append(derived_paragraph)
+
+eml$dataset$abstract <- 
+  list(
+    para = c(
+      desired_paragraphs[[1]],
+      desired_paragraphs[[2]],
+      desired_paragraphs[[3]],
+      desired_paragraphs[[4]]
+    )
+  )
+```
+
+Test if EML is valid:
+
+```{r}
+EML::eml_validate(eml)
 ```
 
 Write EML (again):
