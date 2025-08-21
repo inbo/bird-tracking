@@ -94,15 +94,7 @@ desired_paragraphs <-
   # Add derived paragraph (already in DocBook)
   append(derived_paragraph)
 
-eml$dataset$abstract <- 
-  list(
-    para = c(
-      desired_paragraphs[[1]],
-      desired_paragraphs[[2]],
-      desired_paragraphs[[3]],
-      desired_paragraphs[[4]]
-    )
-  )
+eml$dataset$abstract$para <- desired_paragraphs
 ```
 
 Test if EML is valid:
