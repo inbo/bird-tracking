@@ -1,5 +1,5 @@
 {
-  "id": "https://doi.org/10.5281/zenodo.12621787",
+  "id": "https://doi.org/10.5281/zenodo.15696782",
   "resources": [
     {
       "name": "reference-data",
@@ -184,7 +184,7 @@
     },
     {
       "name": "gps",
-      "path": ["DELTATRACK-gps-2020.csv.gz", "DELTATRACK-gps-2021.csv.gz", "DELTATRACK-gps-2022.csv.gz", "DELTATRACK-gps-2023.csv.gz"],
+      "path": ["DELTATRACK-gps-2020.csv.gz", "DELTATRACK-gps-2021.csv.gz", "DELTATRACK-gps-2022.csv.gz", "DELTATRACK-gps-2023.csv.gz", "DELTATRACK-gps-2024.csv.gz"],
       "profile": "tabular-data-resource",
       "format": "csv",
       "mediatype": "text/csv",
@@ -394,34 +394,34 @@
           {
             "name": "sensor-type",
             "title": "sensor type",
-            "description": "The type of sensor with which data were collected. All sensors are associated with a tag id, and tags can contain multiple sensor types. Each event record in Movebank is assigned one sensor type. If values from multiple sensors are reported in a single event, the primary sensor is used. Values are chosen from a controlled list: acceleration = The sensor collects acceleration data; accessory-measurements = The sensor collects accessory measurements, such as battery voltage; acoustic-telemetry = The sensor transmits an acoustic signal that is detected by receivers to determine location; argos-doppler-shift = The sensor location is estimated by Argos using Doppler shift; barometer = The sensor records air or water pressure; bird-ring = The animal is identified by a band or ring that has a unique identifier; derived = Information is derived from other sensor data; geolocation-api = The location is determined based on detection by nearby cell towers or other wireless network connectors using the World Wide Web Consortium Geolocation API Recommendation; gnss = The sensor uses one or more global navigation satellite systems to determine location; gps = The sensor uses GPS to determine location; gyroscope = The sensor records angular velocity; heart-rate = The sensor records or is used to calculate heart rate; magnetometer = The sensor records the magnetic field; natural-mark = The animal is identified by a unique natural marking; orientation = Quaternion components describing the orientation of the tag are derived from accelerometer and gyroscope measurements; proximity = The sensor identifies proximity to other tags; radio-transmitter = The sensor transmits a radio signal that is detected by receivers to determine location; sigfox-geolocation = The sensor location is determined by Sigfox using the received signal strength indicator; solar-geolocator = The sensor collects light levels, which are used to determine position (for processed locations); solar-geolocator-raw = The sensor collects light levels, which are used to determine position (for raw light-level measurements); solar-geolocator-twilight = The sensor collects light levels, which are used to determine position (for twilights calculated from light-level measurements). Format: controlled list; Entity described: event",
+            "description": "The type of sensor with which data were collected. All sensors are associated with a tag id, and tags can contain multiple sensor types. Each event record in Movebank is assigned one sensor type. If values from multiple sensors are reported in a single event, the primary sensor is used. Values are chosen from a controlled list: acceleration = The sensor collects acceleration data; accessory-measurements = The sensor collects accessory measurements, such as battery voltage; acoustic-telemetry = The sensor transmits an acoustic signal that is detected by receivers to determine location; argos-doppler-shift = The sensor location is estimated by Argos using Doppler shift; atlas-geolocation = The sensor location is estimated by an ATLAS system; barometer = The sensor records air or water pressure; bird-ring = The animal is identified by a band or ring that has a unique identifier; derived = Information is derived from other sensor data; geolocation-api = The location is determined based on detection by nearby cell towers or other wireless network connectors using the World Wide Web Consortium Geolocation API Recommendation; gnss = The sensor uses one or more global navigation satellite systems to determine location; gps = The sensor uses GPS to determine location; gyroscope = The sensor records angular velocity; heart-rate = The sensor records or is used to calculate heart rate; magnetometer = The sensor records the magnetic field; natural-mark = The animal is identified by a unique natural marking; orientation = Quaternion components describing the orientation of the tag are derived from accelerometer and gyroscope measurements; proximity = The sensor identifies proximity to other tags; radio-transmitter = The sensor transmits a radio signal that is detected by receivers to determine location; sigfox-geolocation = The sensor location is determined by Sigfox using the received signal strength indicator; solar-geolocator = The sensor collects light levels, which are used to determine position (for processed locations); solar-geolocator-raw = The sensor collects light levels, which are used to determine position (for raw light-level measurements); solar-geolocator-twilight = The sensor collects light levels, which are used to determine position (for twilights calculated from light-level measurements); tdr = The sensor is a time-depth recorder. Format: controlled list; Entity described: event",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000170/7/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000170/8/"
           },
           {
             "name": "individual-taxon-canonical-name",
-            "title": "individual taxon canonical name",
-            "description": "This attribute has been merged with 'animal taxon'. The scientific name of the species on which the tag was deployed, as defined by the Integrated Taxonomic Information System (ITIS, www.itis.gov). If the species name can not be provided, this should be the lowest level taxonomic rank that can be determined and that is used in the ITIS taxonomy. Additional information can be provided using the term 'taxon detail'. Format: controlled list; Entity described: individual",
+            "title": "animal taxon",
+            "description": "The scientific name of the taxon on which the tag was deployed, as defined by the Integrated Taxonomic Information System www.itis.gov. If the species name can not be provided, this should be the lowest level taxonomic rank that can be determined and that is used in the ITIS taxonomy. Additional information can be provided using the term 'taxon detail'. The values 'test' and 'calibration' identify events relevant to animal tracking studies that should not be associated with a taxon. Format: controlled list; Entity described: individual",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000135/5/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000024/4/"
           },
           {
             "name": "tag-local-identifier",
-            "title": "tag local identifier",
-            "description": "This attribute has been merged with 'tag ID'. An identifier for the tag, provided by the data owner. Values are unique within the study. If the data owner does not provide a tag ID, an internal Movebank tag identifier may sometimes be shown. Example: '2342'; Units: none; Entity described: tag",
+            "title": "tag ID",
+            "description": "A unique identifier for the tag, provided by the data owner. If the data owner does not provide a tag ID, an internal Movebank tag identifier may sometimes be shown. Example: '2342'; Units: none; Entity described: tag",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000182/5/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000181/2/"
           },
           {
             "name": "individual-local-identifier",
-            "title": "individual local identifier",
-            "description": "This attribute has been merged with 'animal ID'. An individual identifier for the animal, provided by the data owner. Values are unique within the study. If the data owner does not provide an Animal ID, an internal Movebank animal identifier is sometimes shown. Example: '91876A, Gary'; Units: none; Entity described: individual",
+            "title": "animal ID",
+            "description": "An individual identifier for the animal, provided by the data owner. Values are unique within the study. If the data owner does not provide an Animal ID, an internal Movebank animal identifier is sometimes shown. Example: 'TUSC_CV5'; Units: none; Entity described: individual",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000134/4/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000016/3/"
           },
           {
             "name": "study-name",
