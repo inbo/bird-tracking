@@ -22,6 +22,7 @@ library(here)
 library(movepub) # devtools::install_github("inbo/movepub")
 library(EML)
 library(jsonlite)
+library(stringr)
 ```
 
 ## Set user-defined values
@@ -69,40 +70,25 @@ description_full <- zenodo$metadata$description
 ```
 
 ```{r}
-# Split description in paragraphs
-paragraphs <- unlist(strsplit(description_full, "<p>|</p>|\n", perl = TRUE))
-paragraphs <- paragraphs[paragraphs != ""]
+# Split description in paragraphs + convert to docbook
+paragraphs <- html_to_docbook(description_full)
 
 # Keep desired paragraphs
 # 1: overview of the study
-index_para1 <- grep(paste(project_id, "-"), paragraphs)[1]
+paragraph_1 <- str_subset(paragraphs, paste(project_id, "-"))[1]
 
 # 2: Reference to paper
-index_para2 <- grep("for a more detailed description of this dataset", paragraphs)
+paragraph_2 <- str_subset(paragraphs, "for a more detailed description of this dataset")[1]
 
 # 3: Acknowledgements
-index_para3 <- grep("Acknowledgements", paragraphs) + 1
+paragraph_3 <- str_subset(paragraphs, "This dataset was collected|These data were collected")[1]
 
 # 4: derived paragraph from write_eml()
 derived_paragraph <- tail(eml$dataset$abstract$para, 1)
 
 # Combine and update EML
-desired_paragraphs <-
-  paragraphs[c(index_para1, index_para2, index_para3)] %>% 
-  # Convert to Docbook
-  purrr::map_chr(movepub::html_to_docbook) %>% 
-  # Add derived paragraph (already in DocBook)
-  append(derived_paragraph)
-
-eml$dataset$abstract <- 
-  list(
-    para = c(
-      desired_paragraphs[[1]],
-      desired_paragraphs[[2]],
-      desired_paragraphs[[3]],
-      desired_paragraphs[[4]]
-    )
-  )
+eml$dataset$abstract$para <-
+  c(paragraph_1, paragraph_2, paragraph_3, derived_paragraph)
 ```
 
 Test if EML is valid:
