@@ -6,7 +6,7 @@ output:
   html_document
 ---
 
-This script prepares [Interrex](http://interrex-tracking.com/) bird tracking data for upload to [Movebank](https://www.movebank.org/) For a project, it downloads **reference data** from a Google spreadsheet where these data are maintained and transforms these to the [Movebank data format](https://www.movebank.org/node/2381) using `dplyr::mutate()` (see below). **GPS data** are automatically synced with Movebank (see `Live Feeds` in a Movebank study).
+This script prepares [Interrex](http://interrex-tracking.com/) bird tracking data for upload to [Movebank](https://www.movebank.org/). For a project, it downloads **reference data** from a Google spreadsheet where these data are maintained and transforms these to the [Movebank data format](https://www.movebank.org/node/2381) using `dplyr::mutate()` (see below). **GPS data** are automatically synced with Movebank (see `Live Feeds` in a Movebank study).
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
