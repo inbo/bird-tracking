@@ -23,25 +23,24 @@ Set user-defined values:
 
 ```{r}
 project_id <- "LARGE_GULLS"
-start_date <- "1900-01-01"
-end_date <- "1999-12-31"
+start_date <- "1980-01-01"
+end_date <- "2024-12-31"
 ```
 
 ## Get CR-Birding observation data
 
-Assign project number:
+Load custom function to create download URLs:
 
 ```{r}
-project_number <- dplyr::case_match(
-  project_id,
-  "LARGE_GULLS" ~ 38,
-  "CORMORANT" ~ 36,
-  "PIED_AVOCET" ~ 37
-)
+source(here::here("src", "functions", "download_urls.R"))
 ```
 
+Create URLs by year:
 
 ```{r}
+urls <- download_urls(start_date, end_date, project_id)
+```
+
 
 ```
 
