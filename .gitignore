@@ -37,6 +37,7 @@ vignettes/*.pdf
 .DS_Store
 
 # Data
+data/raw/*/*
 data/processed/*/*
 !data/processed/*/movebank_ref_data.csv
 !data/processed/*/datapackage.json
