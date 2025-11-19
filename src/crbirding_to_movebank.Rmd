@@ -41,7 +41,22 @@ Create URLs by year:
 urls <- download_urls(start_date, end_date, project_id)
 ```
 
+Unfortunately, these URLs require a browser login and cannot be queried via R. I wrote them to file:
 
+```{r eval = FALSE}
+readr::write_lines(urls, here::here("cr-birding-urls.csv"))
+```
+
+Then downloaded each manually and concatenated all files in the command line with `awk` (cf. UvA-BiTS):
+
+```
+awk 'FNR > 1' files/crbirding_export_*.csv > crbirding_export_nh.csv
+```
+
+After which the header needs to be added with:
+
+```
+cat crbirding_export_headers.csv crbirding_export_nh.csv > crbirding_export.csv
 ```
 
 
