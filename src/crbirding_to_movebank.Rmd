@@ -1,0 +1,79 @@
+---
+title: "Prepare CR-Birding (meta)data for Movebank upload"
+author: "Sanne Govaert, Peter Desmet"
+date: "`r Sys.Date()`"
+output:
+  html_document
+---
+
+This script prepares [CR-Birding](https://submit.cr-birding.org/) bird ringing data for upload to [Movebank](https://www.movebank.org/). For a project, it downloads **reference and observation data** from a the CR-Birding Submit website and transforms these to the [Movebank data format](https://www.movebank.org/node/2381) using `dplyr::mutate()` (see below).
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+
+```{r}
+library(tidyverse)
+library(here)
+```
+
+Set user-defined values:
+
+```{r}
+project_id <- "LARGE_GULLS"
+start_date <- "1900-01-01"
+end_date <- "1999-12-31"
+```
+
+## Get CR-Birding observation data
+
+Assign project number:
+
+```{r}
+project_number <- dplyr::case_match(
+  project_id,
+  "LARGE_GULLS" ~ 38,
+  "CORMORANT" ~ 36,
+  "PIED_AVOCET" ~ 37
+)
+```
+
+
+```{r}
+
+```
+
+
+## Create reference data (metadata)
+
+For a project, get data on animals, rings and deployments in the [Movebank reference data format](https://www.movebank.org/node/27).
+
+Map data:
+
+```{r get_ref_data}
+movebank_ref_data <-
+  data
+```
+
+Save to CSV:
+
+```{r}
+readr::write_csv(movebank_ref_data, file = here::here("data", "processed", project_id, "movebank_ref_data.csv"), na = "")
+```
+
+## Get location data (observations)
+
+Map data:
+
+```{r get_ref_data}
+movebank_location_data <-
+  data
+```
+
+Save to CSV:
+
+```{r}
+readr::write_csv(movebank_location_data, file = here::here("data", "processed", project_id, "movebank_location_data.csv"), na = "")
+```
