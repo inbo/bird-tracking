@@ -22,7 +22,7 @@ download_urls <- function(start_date, end_date, project_id) {
     start_dates,
     end_dates,
     ~ paste0(
-      "https://submit.cr-birding.org/projects/", project_number, "/export/csv/",
+      "https://submit.cr-birding.org/projects/", project_integer, "/export/csv/",
       "?date_min=", .x,
       "&date_max=", .y
     )
