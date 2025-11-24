@@ -27,7 +27,7 @@ start_date <- "1980-01-01"
 end_date <- "2024-12-31"
 ```
 
-## Get CR-Birding observation data
+## Get observation data from CR-Birding
 
 Load custom function to create download URLs:
 
@@ -59,13 +59,100 @@ After which the header needs to be added with:
 cat crbirding_export_headers.csv crbirding_export_nh.csv > crbirding_export.csv
 ```
 
-Read the data:
+## Process data
 
-```{r}
-data <- readr::read_csv(here::here("data", "raw", project_id, "crbirding_export.csv.gz"))
+Read the raw data:
+
+```{r eval = FALSE}
+raw_data <- readr::read_csv(
+  here::here("data", "raw", project_id, "crbirding_export.csv.gz"),
+  col_types = cols(.default = col_character())
+)
 ```
 
+Process data:
 
+```{r}
+data <-
+  raw_data |>
+  # Convert types
+  dplyr::mutate(
+    observation_lat = as.numeric(observation_lat),
+    observation_lon = as.numeric(observation_lon),
+    observation_date = lubridate::ymd(observation_date),
+    observation_time = dplyr::if_else(is.na(observation_time), "00:00:00", observation_time),
+    observation_is_capture = dplyr::if_else(observation_is_capture == "Y", TRUE, FALSE),
+    observation_is_certain = dplyr::if_else(observation_is_certain == "Y", TRUE, FALSE)
+  ) |>
+  # Add columns datetime + dead
+  dplyr::mutate(
+    observation_datetime = as.POSIXct(paste(observation_date, observation_time), tz = "UTC"),
+    dead = stringr::str_detect(observation_condition, "dead"),
+  ) |>
+  # Exclude unwanted data
+  dplyr::filter(!is.na(bird_id) & status != "impossible") |>
+  # Sort by bird_id, datetime and capture (important for mutate(.by) later)
+  dplyr::arrange(bird_id, observation_datetime, dplyr::desc(observation_is_capture)) |>
+  # Add row number per group
+  dplyr::mutate(row_number = dplyr::row_number(), .by = bird_id) |>
+  # Add (first) date of capture per group (to captures only)
+  dplyr::mutate(
+    capture_datetime = dplyr::if_else(observation_is_capture, min(observation_datetime), NA),
+    .by = c(bird_id, observation_is_capture)
+  ) |>
+  # Add (first) date of reported dead per group (to deaths only)
+  dplyr::mutate(
+    dead_datetime = dplyr::if_else(dead, min(observation_datetime), NA),
+    .by = c(bird_id, dead)
+  ) |>
+  # Remove columns that should not be used for mapping
+  dplyr::select(
+    -observation_reference,
+    -observation_date,
+    -observation_time,
+    -observation_region_euring,
+    -animal_project,
+    -bird_species_euring,
+    -bird_ring_description,
+    -observation_is_certain,
+    -observation_notes,
+    -user_id,
+    -user_name,
+    -`sex (appearance)`,
+    -`reading direction`
+  ) |>
+  # Order columns
+  dplyr::select(
+    bird_id,
+    bird_code,
+    bird_reference,
+    bird_species,
+    bird_sex,
+    bird_age_ringing,
+    observation_is_capture,
+    capture_datetime,
+    dead,
+    dead_datetime,
+    observation_id,
+    row_number,
+    observation_datetime,
+    observation_lat,
+    observation_lon,
+    observation_location,
+    observation_condition,
+    `status full-grown bird`,
+    `sex (copulation/courtship)`,
+    inserted,
+    status,
+    status_reason
+  )
+```
+
+Save to CSV:
+
+```{r}
+readr::write_csv(data, file = here::here("data", "interim", project_id, "observation_data.csv"), na = "")
+```
 
 ## Create reference data (metadata)
 
