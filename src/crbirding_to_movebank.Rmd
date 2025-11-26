@@ -81,8 +81,7 @@ data <-
     observation_lon = as.numeric(observation_lon),
     observation_date = lubridate::ymd(observation_date),
     observation_time = dplyr::if_else(is.na(observation_time), "00:00:00", observation_time),
-    observation_is_capture = dplyr::if_else(observation_is_capture == "Y", TRUE, FALSE),
-    observation_is_certain = dplyr::if_else(observation_is_certain == "Y", TRUE, FALSE)
+    observation_is_capture = dplyr::if_else(observation_is_capture == "Y", TRUE, FALSE)
   ) |>
   # Add columns datetime + dead
   dplyr::mutate(
@@ -110,7 +109,7 @@ data <-
     -observation_reference,
     -observation_date,
     -observation_time,
-    -observation_region_euring,
+    -observation_location,
     -animal_project,
     -bird_species_euring,
     -bird_ring_description,
@@ -119,7 +118,8 @@ data <-
     -user_id,
     -user_name,
     -`sex (appearance)`,
-    -`reading direction`
+    -`reading direction`,
+    -`sex (copulation/courtship)`
   ) |>
   # Order columns
   dplyr::select(
@@ -138,10 +138,9 @@ data <-
     observation_datetime,
     observation_lat,
     observation_lon,
-    observation_location,
+    observation_region_euring,
     observation_condition,
     `status full-grown bird`,
-    `sex (copulation/courtship)`,
     inserted,
     status,
     status_reason
