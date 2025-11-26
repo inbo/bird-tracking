@@ -83,13 +83,21 @@ data <-
     observation_time = dplyr::if_else(is.na(observation_time), "00:00:00", observation_time),
     observation_is_capture = dplyr::if_else(observation_is_capture == "Y", TRUE, FALSE)
   ) |>
-  # Add columns datetime + dead
+  # Add columns
   dplyr::mutate(
     observation_datetime = as.POSIXct(paste(observation_date, observation_time), tz = "UTC"),
     dead = stringr::str_detect(observation_condition, "dead"),
+    revalidation_release = dplyr::if_else(observation_condition == "release after revalidation", TRUE, FALSE),
+    bird_code_clean = stringr::str_remove(
+      stringr::str_remove(bird_code, stringr::fixed("B-")), stringr::fixed(".")
+    )
   ) |>
   # Exclude unwanted data
-  dplyr::filter(!is.na(bird_id) & status != "impossible") |>
+  dplyr::filter(
+    !is.na(bird_id) &
+    status != "impossible" &
+    stringr::str_sub(bird_code_clean, 3, 3) != "B" # Dummy rings
+  ) |>
   # Sort by bird_id, datetime and capture (important for mutate(.by) later)
   dplyr::arrange(bird_id, observation_datetime, dplyr::desc(observation_is_capture)) |>
   # Add row number per group
