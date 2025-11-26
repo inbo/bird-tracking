@@ -75,6 +75,7 @@ Process data:
 ```{r}
 data <-
   raw_data |>
+  
   # Convert types
   dplyr::mutate(
     observation_lat = as.numeric(observation_lat),
@@ -83,6 +84,7 @@ data <-
     observation_time = dplyr::if_else(is.na(observation_time), "00:00:00", observation_time),
     observation_is_capture = dplyr::if_else(observation_is_capture == "Y", TRUE, FALSE)
   ) |>
+  
   # Add columns
   dplyr::mutate(
     observation_datetime = as.POSIXct(paste(observation_date, observation_time), tz = "UTC"),
@@ -92,26 +94,43 @@ data <-
       stringr::str_remove(bird_code, stringr::fixed("B-")), stringr::fixed(".")
     )
   ) |>
+  
   # Exclude unwanted data
   dplyr::filter(
     !is.na(bird_id) &
     status != "impossible" &
     stringr::str_sub(bird_code_clean, 3, 3) != "B" # Dummy rings
   ) |>
+  
   # Sort by bird_id, datetime and capture (important for mutate(.by) later)
   dplyr::arrange(bird_id, observation_datetime, dplyr::desc(observation_is_capture)) |>
+  
   # Add row number per group
   dplyr::mutate(row_number = dplyr::row_number(), .by = bird_id) |>
-  # Add (first) date of capture per group (to captures only)
+  
+  # Add observation type
   dplyr::mutate(
-    capture_datetime = dplyr::if_else(observation_is_capture, min(observation_datetime), NA),
-    .by = c(bird_id, observation_is_capture)
+    observation_type = case_when(
+      # Capture before release
+      observation_is_capture & lead(revalidation_release)
+        ~ "capture",
+      # Release after capture
+      revalidation_release & lag(observation_is_capture)
+        ~ "release",
+      # Single release (and therefore capture)
+      revalidation_release
+        ~ "capture+release",
+      # Single capture (and therefore release)
+      observation_is_capture & !lead(revalidation_release) &
+      (!lag(observation_is_capture) | is.na(lag(observation_is_capture)))
+        ~ "capture+release",
+      # Dead
+      dead & (!lag(dead) | is.na(lag(dead)))
+        ~ "dead"
+    ),
+    .by = bird_id
   ) |>
-  # Add (first) date of reported dead per group (to deaths only)
-  dplyr::mutate(
-    dead_datetime = dplyr::if_else(dead, min(observation_datetime), NA),
-    .by = c(bird_id, dead)
-  ) |>
+  
   # Remove columns that should not be used for mapping
   dplyr::select(
     -observation_reference,
@@ -129,6 +148,7 @@ data <-
     -`reading direction`,
     -`sex (copulation/courtship)`
   ) |>
+  
   # Order columns
   dplyr::select(
     bird_id,
@@ -137,10 +157,10 @@ data <-
     bird_species,
     bird_sex,
     bird_age_ringing,
+    observation_type,
     observation_is_capture,
-    capture_datetime,
+    revalidation_release,
     dead,
-    dead_datetime,
     observation_id,
     row_number,
     observation_datetime,
