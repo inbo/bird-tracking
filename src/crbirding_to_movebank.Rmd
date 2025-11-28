@@ -154,6 +154,7 @@ data <-
   dplyr::select(
     bird_id,
     bird_code,
+    bird_code_clean,
     bird_reference,
     bird_species,
     bird_sex,
