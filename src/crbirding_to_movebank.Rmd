@@ -89,7 +89,7 @@ data <-
   dplyr::mutate(
     observation_datetime = as.POSIXct(paste(observation_date, observation_time), tz = "UTC"),
     dead = stringr::str_detect(observation_condition, "dead"),
-    revalidation_release = dplyr::if_else(observation_condition == "release after revalidation", TRUE, FALSE),
+    revalidation_release = dplyr::if_else(observation_condition == "released after revalidation", TRUE, FALSE),
     bird_code_clean = stringr::str_remove(
       stringr::str_remove(bird_code, stringr::fixed("B-")), stringr::fixed(".")
     )
