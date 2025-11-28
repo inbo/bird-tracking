@@ -90,6 +90,14 @@ data <-
     observation_datetime = as.POSIXct(paste(observation_date, observation_time), tz = "UTC"),
     dead = stringr::str_detect(observation_condition, "dead"),
     revalidation_release = dplyr::if_else(observation_condition == "released after revalidation", TRUE, FALSE),
+    bird_scientific_name = dplyr::case_match(
+      bird_species,
+      "Lesser Black-backed Gull" ~ "Larus fuscus", # 5910
+      "European Herring Gull" ~ "Larus argentatus", # 5920
+      "Yellow-legged Gull" ~ "Larus michahellis", # 5926
+      "Gull" ~ "Larus", # 6009
+      "large gull (hybrid)" ~ "Larus" # 6008
+    ),
     bird_code_clean = stringr::str_remove(
       stringr::str_remove(bird_code, stringr::fixed("B-")), stringr::fixed(".")
     )
@@ -139,6 +147,7 @@ data <-
     -observation_time,
     -observation_location,
     -animal_project,
+    -bird_species,
     -bird_species_euring,
     -bird_ring_description,
     -observation_is_certain,
@@ -156,7 +165,7 @@ data <-
     bird_code,
     bird_code_clean,
     bird_reference,
-    bird_species,
+    bird_scientific_name,
     bird_sex,
     bird_age_ringing,
     observation_type,
