@@ -121,7 +121,8 @@ data <-
       revalidation_release
         ~ "capture+release",
       # Single capture (and therefore release)
-      observation_is_capture & !lead(revalidation_release) &
+      observation_is_capture &
+      (!lead(revalidation_release) | is.na(lead(revalidation_release))) &
       (!lag(observation_is_capture) | is.na(lag(observation_is_capture)))
         ~ "capture+release",
       # Dead
