@@ -71,6 +71,8 @@ movebank_ref_data <-
         ),
       NA_character_
       ),
+    `animal-death-comments` =
+      dplyr::if_else(!is.na(mortality_type), track_session_remarks, NA_character_),
     `attachment-type` = "harness",
     `deploy-off-timestamp` = format(
       as.POSIXct(track_session_end_date, tz = "UTC", format = "%Y-%m-%d %H:%M:%S"),
