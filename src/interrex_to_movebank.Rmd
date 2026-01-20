@@ -1,6 +1,8 @@
 ---
 title: "Prepare Interrex (meta)data for Movebank upload"
-author: "Peter Desmet"
+author:
+- "Peter Desmet"
+- "Sanne Govaert"
 date: "`r Sys.Date()`"
 output:
   html_document
@@ -62,6 +64,17 @@ movebank_ref_data <-
       "J" = "juvenile"
     ),
     `animal-mass` = animal_weight,
+    `animal-mortality-type` = mortality_type,
+    `animal-mortality-date` = dplyr::if_else(
+      !is.na(mortality_type),
+      format(
+        as.POSIXct(track_session_end_date, tz = "UTC", format = "%Y-%m-%d %H:%M:%S"),
+        "%Y-%m-%dT%H:%M:%SZ"
+        ),
+      NA_character_
+      ),
+    `animal-death-comments` =
+      dplyr::if_else(!is.na(mortality_type), track_session_remarks, NA_character_),
     `attachment-type` = "harness",
     `deploy-off-timestamp` = format(
       as.POSIXct(track_session_end_date, tz = "UTC", format = "%Y-%m-%d %H:%M:%S"),
@@ -76,10 +89,7 @@ movebank_ref_data <-
     ),
     `deployment-comments` = track_session_remarks,
     `deployment-end-type` = dplyr::case_when(
-      stringr::str_detect(tolower(track_session_remarks), "dead") ~ "dead",
-      stringr::str_detect(tolower(track_session_remarks), "died") ~ "dead",
-      stringr::str_detect(tolower(track_session_remarks), "predated") ~ "dead",
-      stringr::str_detect(tolower(track_session_remarks), "victim") ~ "dead",
+      !is.na(mortality_type) ~ "dead",
       stringr::str_detect(tolower(track_session_remarks), "defect") ~ "equipment failure",
       stringr::str_detect(tolower(track_session_remarks), "malfunction") ~ "equipment failure",
       TRUE ~ NA_character_
