@@ -89,10 +89,7 @@ movebank_ref_data <-
     ),
     `deployment-comments` = track_session_remarks,
     `deployment-end-type` = dplyr::case_when(
-      stringr::str_detect(tolower(track_session_remarks), "dead") ~ "dead",
-      stringr::str_detect(tolower(track_session_remarks), "died") ~ "dead",
-      stringr::str_detect(tolower(track_session_remarks), "predated") ~ "dead",
-      stringr::str_detect(tolower(track_session_remarks), "victim") ~ "dead",
+      !is.na(mortality_type) ~ "dead",
       stringr::str_detect(tolower(track_session_remarks), "defect") ~ "equipment failure",
       stringr::str_detect(tolower(track_session_remarks), "malfunction") ~ "equipment failure",
       TRUE ~ NA_character_
