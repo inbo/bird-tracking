@@ -62,6 +62,7 @@ movebank_ref_data <-
       "J" = "juvenile"
     ),
     `animal-mass` = animal_weight,
+    `animal-mortality-type` = mortality_type,
     `attachment-type` = "harness",
     `deploy-off-timestamp` = format(
       as.POSIXct(track_session_end_date, tz = "UTC", format = "%Y-%m-%d %H:%M:%S"),
