@@ -153,7 +153,10 @@ SELECT
 -- study-site:                          Set to start of ses.remarks (starting with capital letter)
 --                                      until a space is encountered. This is expected to be the
 --                                      release location.
-  substring(ses.remarks from '^[A-Z][^ ]+') AS "study-site",
+  CASE
+    WHEN {ses_remarks_starts_with_study_site} THEN substring(ses.remarks from '^[A-Z][^ ]+')
+    ELSE NULL
+   END AS "study-site",
 -- tag-firmware:
   tag.firmware_version AS "tag-firmware",
 -- tag-readout-method:                  Set to "other wireless" as it is zigbee two-way radio
