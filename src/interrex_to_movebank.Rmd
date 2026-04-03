@@ -72,7 +72,7 @@ movebank_ref_data <-
         "%Y-%m-%dT%H:%M:%SZ"
         ),
       NA_character_
-      ),
+    ),
     `animal-death-comments` =
       dplyr::if_else(!is.na(mortality_type), track_session_remarks, NA_character_),
     `attachment-type` = "harness",
