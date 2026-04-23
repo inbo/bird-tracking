@@ -21,7 +21,7 @@ library(dplyr)
 ## Set project ID
 
 ```{r}
-project_id <- "LBBG_TEXEL"
+project_id <- "HG_TEXEL"
 ```
 
 ## Read reference data
@@ -43,9 +43,9 @@ ref_data <-
       "juvenile",
       `animal-life-stage`
     )
-  ) # |>
-  # dplyr::filter(`animal-life-stage` == "adult") |>
-  # dplyr::select(-`deployment-comments`, -`animal-comments`)
+  ) |>
+  dplyr::filter(`animal-life-stage` == "adult") |>
+  dplyr::select(-`deployment-comments`, -`animal-comments`)
 ```
 
 ## Write reference data
