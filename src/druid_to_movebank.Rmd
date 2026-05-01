@@ -84,15 +84,12 @@ movebank_ref_data <-
       stringr::str_detect(tolower(track_session_remarks), "malfunction") ~ "equipment failure",
       TRUE ~ NA_character_
     ),
-    # deployment-id: NOT AVAILABLE
-    # location-accuracy-comments: NOT AVAILABLE, there is no location-error-numerical/vertical-error-numerical in the gps data
-    # `manipulation-type`: NOT RELEVANT
     `study-site` = release_location,
     # tag-firmware: NOT AVAILABLE
     `tag-readout-method` = "phone network",
     `sensor-type` = "GPS",
     `tag-id` = serial_number,
-    `tag-manufacturer-name` = "Interrex",
+    `tag-manufacturer-name` = "Druid",
     `tag-mass` = tag_weight,
     `tag-serial-no` = serial_number,
     .keep = "none"
