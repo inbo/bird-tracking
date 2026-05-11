@@ -94,6 +94,7 @@ movebank_ref_data <-
       TRUE ~ "none"
     ),
     `study-site` = release_location,
+    # tag-firmware: NOT AVAILABLE
     `tag-readout-method` = "phone network",
     `sensor-type` = "GPS",
     `tag-id` = serial_number,

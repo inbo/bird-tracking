@@ -82,6 +82,8 @@ movebank_ref_data <-
       stringr::str_detect(tolower(track_session_remarks), "malfunction") ~ "equipment failure",
       TRUE ~ NA_character_
     ),
+    # deployment-id: NOT AVAILABLE
+    # location-accuracy-comments: NOT AVAILABLE, there is no location-error-numerical/vertical-error-numerical in the GPS data
     `study-site` = release_location,
     # tag-firmware: NOT AVAILABLE
     `tag-readout-method` = "phone network",
