@@ -84,6 +84,7 @@ movebank_ref_data <-
     ),
     # deployment-id: NOT AVAILABLE
     # location-accuracy-comments: NOT AVAILABLE, there is no location-error-numerical/vertical-error-numerical in the GPS data
+    `manipulation-type` = "none",
     `study-site` = release_location,
     # tag-firmware: NOT AVAILABLE
     `tag-readout-method` = "phone network",
