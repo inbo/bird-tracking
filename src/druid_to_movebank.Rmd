@@ -1,6 +1,6 @@
 ---
 title: "Prepare Druid (meta)data for Movebank upload"
-author: "Sanne Govarty"
+author: "Sanne Govaert"
 date: "`r Sys.Date()`"
 output:
   html_document
@@ -19,7 +19,7 @@ library(tidyverse)
 library(here)
 ```
 
-## Get Interrex tag and bird information from spreadsheet
+## Get Druid tag and bird information from spreadsheet
 
 ```{r}
 metadata <- readr::read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vTZNe4TpZfJ8KeY3Pe3N-GV5WwtvSqK9n7grFKXZqxmAEa5-PfbgZj_cXImDr7Centho65rvLmfEQrx/pub?gid=0&single=true&output=csv")
