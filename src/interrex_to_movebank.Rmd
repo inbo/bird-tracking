@@ -42,8 +42,8 @@ Map data:
 
 ```{r get_ref_data}
 movebank_ref_data <-
-  metadata %>%
-  dplyr::filter(project == project_id) %>%
+  metadata |>
+  dplyr::filter(project == project_id) |>
   dplyr::mutate(
     # animal-comments: NOT AVAILABLE
     `animal-id` = dplyr::coalesce(metal_ring, colour_ring),
@@ -109,8 +109,8 @@ movebank_ref_data <-
     `tag-mass` = tag_weight,
     `tag-serial-no` = serial_number,
     .keep = "none"
-  ) %>%
-  dplyr::filter(!is.na(`animal-id`)) %>% 
+  ) |>
+  dplyr::filter(!is.na(`animal-id`)) |> 
   dplyr::arrange(`tag-id`, `animal-id`)
 ```
 

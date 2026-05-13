@@ -104,11 +104,11 @@ wing_length: 385 | tarsus_length: 71
 Get individuals with track sessions starting before the `end_date` (avoids unnecessary downloads for individuals with later tracking sessions) by ring number (stored as `animal-id`). Note that ring number is a better identifier than `tag-id` as it is unique to an individual (and cannot be reused).
 
 ```{r}
-ring_numbers <- movebank_ref_data %>%
-  dplyr::filter(`alt-project-id` == project_id) %>%
-  dplyr::filter(`deploy-on-timestamp` <= end_date) %>%
-  dplyr::distinct(`animal-id`, .keep_all = TRUE) %>%
-  dplyr::arrange(`animal-id`) %>%
+ring_numbers <- movebank_ref_data |>
+  dplyr::filter(`alt-project-id` == project_id) |>
+  dplyr::filter(`deploy-on-timestamp` <= end_date) |>
+  dplyr::distinct(`animal-id`, .keep_all = TRUE) |>
+  dplyr::arrange(`animal-id`) |>
   dplyr::pull(`animal-id`)
 ```
 

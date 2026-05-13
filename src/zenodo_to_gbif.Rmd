@@ -17,7 +17,6 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 Load libraries:
 
 ```{r}
-library(magrittr)
 library(here)
 library(movepub) # devtools::install_github("inbo/movepub")
 library(EML)

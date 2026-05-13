@@ -19,7 +19,6 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 Load libraries:
 
 ```{r}
-library(magrittr)
 library(here)
 library(frictionless)
 library(movepub) # devtools::install_github("inbo/movepub")
@@ -49,11 +48,11 @@ Create Data Package, add resources and write to disk
 
 ```{r}
 dataset <-
-  frictionless::create_package() %>%
-  append(c(id = versioned_doi), after = 0) %>%
-  frictionless::create_package() %>%
-  movepub::add_resource("reference-data", ref_data, keys = TRUE) %>%
-  movepub::add_resource("gps", gps_data, keys = TRUE) %>%
+  frictionless::create_package() |>
+  append(c(id = versioned_doi), after = 0) |>
+  frictionless::create_package() |>
+  movepub::add_resource("reference-data", ref_data, keys = TRUE) |>
+  movepub::add_resource("gps", gps_data, keys = TRUE) |>
   movepub::add_resource("acceleration", acc_data, keys = TRUE)
 frictionless::write_package(dataset, dir)
 ```
