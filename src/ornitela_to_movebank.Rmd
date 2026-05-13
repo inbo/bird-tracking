@@ -36,8 +36,6 @@ metadata_colnames <- colnames(metadata)
 
 For a project, get data on animals, tags and deployments in the [Movebank reference data format](https://www.movebank.org/node/27).
 
-Note: [UvA-BiTS reference data](../sql/movebank_ref.sql) has some fields that are not available in the Ornitela metadata. These are indicated with `NOT AVAILABLE` below and are not included in `movebank_ref_data.csv`, as their empty values would lead to import errors in Movebank. Since UvA-BiTS has more fields, use `bind_rows(uvabits_project_metadata, ornitela_project_metadata)` (UvA-BiTS first) to have all columns in the right order when you want to combine metadata.
-
 Map data:
 
 ```{r get_ref_data}
@@ -96,6 +94,7 @@ movebank_ref_data <-
       TRUE ~ "none"
     ),
     `study-site` = release_location,
+    # tag-firmware: NOT AVAILABLE
     `tag-readout-method` = "phone network",
     `sensor-type` = "GPS",
     `tag-id` = serial_number,
