@@ -51,6 +51,7 @@ Create Data Package, add resources and write to disk
 dataset <-
   frictionless::create_package() %>%
   append(c(id = versioned_doi), after = 0) %>%
+  frictionless::create_package() %>%
   movepub::add_resource("reference-data", ref_data, keys = TRUE) %>%
   movepub::add_resource("gps", gps_data, keys = TRUE) %>%
   movepub::add_resource("acceleration", acc_data, keys = TRUE)
