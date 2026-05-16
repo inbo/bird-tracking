@@ -1,0 +1,59 @@
+---
+title: "Clean Movebank reference data within the GULLIVER project"
+author: "Sanne Govaert"
+date: "`r Sys.Date()`"
+output:
+  html_document
+---
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+## Set project ID
+
+```{r}
+project_id <- "HG_TEXEL"
+```
+
+## Read reference data
+
+```{r}
+path <- here::here("data", "processed", project_id, "movebank_ref_data.csv")
+ref_data <- readr::read_csv(path)
+```
+
+## Clean reference data
+
+```{r}
+ref_data <-
+  ref_data |>
+  dplyr::mutate(
+    `animal-life-stage` = ifelse(
+      grepl("chick|juvenile", `animal-comments`, ignore.case = TRUE) |
+        grepl("chick|juvenile", `deployment-comments`, ignore.case = TRUE),
+      "juvenile",
+      `animal-life-stage`
+    )
+  ) |>
+  dplyr::filter(`animal-life-stage` == "adult") |>
+  dplyr::select(-`deployment-comments`, -`animal-comments`)
+```
+
+## Write reference data
+
+```{r}
+readr::write_csv(
+  ref_data,
+  here::here("data", "processed", project_id, "movebank_ref_data.csv"),
+  na = ""
+)
+```
