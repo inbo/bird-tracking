@@ -17,7 +17,7 @@ animal-id,animal-nickname,animal-ring-id,animal-sex,animal-taxon,alt-project-id,
 5460488,,MANJ,m,Larus argentatus,HG_TEXEL,adult,945,harness,2014-07-15T00:00:00Z,53.00917,4.71949,,2014-05-20T11:45:00Z,,1350,provided by the GPS unit,none,,v1.0.4.5,other wireless,GPS,6075,UvA-BiTS,18.4,6075
 5471525,,FAUF,f,Larus argentatus,HG_TEXEL,adult,915,harness,2015-01-01T00:00:00Z,53.00917,4.71949,,2014-05-25T12:48:00Z,,1380,provided by the GPS unit,none,,v1.0.4.5,other wireless,GPS,6076,UvA-BiTS,18.5,6076
 5471528,,MAUF,m,Larus argentatus,HG_TEXEL,adult,1085,harness,2016-05-09T00:00:00Z,53.00917,4.71949,,2014-05-25T14:27:00Z,,1381,provided by the GPS unit,none,,v1.0.4.5,other wireless,GPS,6077,UvA-BiTS,18.5,6077
-5471529,,FAUJ,f,Larus argentatus,HG_TEXEL,adult,910,harness,2015-05-14T00:00:00Z,53.00917,4.71949,,2014-05-30T12:20:00Z,dead,1398,provided by the GPS unit,none,,v1.0.4.5,other wireless,GPS,6079,UvA-BiTS,18.6,6079
+5471529,,FAUJ,f,Larus argentatus,HG_TEXEL,adult,910,harness,2015-05-14T00:00:00Z,53.00917,4.71949,,2014-05-30T12:20:00Z,,1398,provided by the GPS unit,none,,v1.0.4.5,other wireless,GPS,6079,UvA-BiTS,18.6,6079
 5460492,,MANM,m,Larus argentatus,HG_TEXEL,adult,1090,harness,2016-03-24T00:00:00Z,53.00917,4.71949,,2014-05-30T12:55:00Z,,1399,provided by the GPS unit,none,,v1.0.4.5,other wireless,GPS,6080,UvA-BiTS,19,6080
 5471562,,FAVD,f,Larus argentatus,HG_TEXEL,adult,860,harness,2015-01-01T00:00:00Z,53.00917,4.71949,,2014-06-03T09:36:00Z,,1426,provided by the GPS unit,none,,v1.0.4.5,other wireless,GPS,6082,UvA-BiTS,18.6,6082
 5506818,,JUDY,f,Larus argentatus,HG_TEXEL,adult,965,harness,2016-01-01T00:00:00Z,53.0091,4.7195,,2015-05-23T10:00:00Z,,15028,provided by the GPS unit,none,,v1.0.5.0,other wireless,GPS,6205,UvA-BiTS,18.5,6205
@@ -26,7 +26,7 @@ animal-id,animal-nickname,animal-ring-id,animal-sex,animal-taxon,alt-project-id,
 5506824,,MAWA,m,Larus argentatus,HG_TEXEL,adult,1015,harness,2017-01-01T00:00:00Z,53.0091,4.7195,,2015-05-25T10:00:00Z,,15031,provided by the GPS unit,none,,v1.0.5.0,other wireless,GPS,6212,UvA-BiTS,19.4,6212
 5506819,,MAVX,m,Larus argentatus,HG_TEXEL,adult,990,harness,2016-01-01T00:00:00Z,53.0091,4.7195,,2015-05-23T10:00:00Z,,15032,provided by the GPS unit,none,,v1.0.5.0,other wireless,GPS,6208,UvA-BiTS,19.2,6208
 5506820,,MAVZ,m,Larus argentatus,HG_TEXEL,adult,990,harness,2023-05-22T00:00:00Z,53.0091,4.7195,,2015-05-23T10:00:00Z,,15033,provided by the GPS unit,none,,v1.0.5.0,other wireless,GPS,6210,UvA-BiTS,19.4,6210
-5506822,,FAWR,f,Larus argentatus,HG_TEXEL,adult,985,harness,2016-03-23T00:00:00Z,53.0091,4.7195,,2015-05-25T10:00:00Z,dead,15034,provided by the GPS unit,none,,v1.0.5.0,other wireless,GPS,6216,UvA-BiTS,19.4,6216
+5506822,,FAWR,f,Larus argentatus,HG_TEXEL,adult,985,harness,2016-03-23T00:00:00Z,53.0091,4.7195,,2015-05-25T10:00:00Z,,15034,provided by the GPS unit,none,,v1.0.5.0,other wireless,GPS,6216,UvA-BiTS,19.4,6216
 5506826,,MAWB,m,Larus argentatus,HG_TEXEL,adult,995,harness,2018-01-01T00:00:00Z,53.0091,4.7195,,2015-05-25T10:00:00Z,,15035,provided by the GPS unit,none,,v1.0.5.0,other wireless,GPS,6214,UvA-BiTS,18.7,6214
 5506849,,FAWW,f,Larus argentatus,HG_TEXEL,adult,875,harness,2017-01-01T00:00:00Z,53.0091,4.7195,,2015-06-01T00:00:00Z,,15052,provided by the GPS unit,none,,v1.0.5.0,other wireless,GPS,6217,UvA-BiTS,19.7,6217
 5506852,,MAWJ,m,Larus argentatus,HG_TEXEL,adult,1035,harness,2015-10-22T00:00:00Z,53.0091,4.7195,,2015-06-01T00:00:00Z,,15053,provided by the GPS unit,none,,v1.0.5.0,other wireless,GPS,6219,UvA-BiTS,19,6219

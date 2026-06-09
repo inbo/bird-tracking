@@ -47,7 +47,8 @@ ref_data <-
       grepl("heart rate implant", `animal-comments`, ignore.case = TRUE),
       "manipulated-other",
       `manipulation-type`
-    )
+    ),
+    `deployment-end-type` = NA_character_
   ) |>
   dplyr::filter(`animal-life-stage` == "adult") |>
   dplyr::select(-`deployment-comments`, -`animal-comments`)
