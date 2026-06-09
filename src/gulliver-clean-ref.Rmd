@@ -42,6 +42,11 @@ ref_data <-
         grepl("chick|juvenile", `deployment-comments`, ignore.case = TRUE),
       "juvenile",
       `animal-life-stage`
+    ),
+    `manipulation-type` = ifelse(
+      grepl("heart rate implant", `animal-comments`, ignore.case = TRUE),
+      "manipulated-other",
+      `manipulation-type`
     )
   ) |>
   dplyr::filter(`animal-life-stage` == "adult") |>
