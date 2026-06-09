@@ -36,14 +36,12 @@ metadata_colnames <- colnames(metadata)
 
 For a project, get data on animals, tags and deployments in the [Movebank reference data format](https://www.movebank.org/node/27).
 
-Note: [UvA-BiTS reference data](../sql/movebank_ref.sql) has some fields that are not available in the Ornitela metadata. These are indicated with `NOT AVAILABLE` below and are not included in `movebank_ref_data.csv`, as their empty values would lead to import errors in Movebank. Since UvA-BiTS has more fields, use `bind_rows(uvabits_project_metadata, ornitela_project_metadata)` (UvA-BiTS first) to have all columns in the right order when you want to combine metadata.
-
 Map data:
 
 ```{r get_ref_data}
 movebank_ref_data <-
-  metadata %>%
-  dplyr::filter(project == project_id) %>%
+  metadata |>
+  dplyr::filter(project == project_id) |>
   dplyr::mutate(
     # animal-comments: NOT AVAILABLE
     `animal-id` = metal_ring,
@@ -96,6 +94,7 @@ movebank_ref_data <-
       TRUE ~ "none"
     ),
     `study-site` = release_location,
+    # tag-firmware: NOT AVAILABLE
     `tag-readout-method` = "phone network",
     `sensor-type` = "GPS",
     `tag-id` = serial_number,
@@ -103,7 +102,7 @@ movebank_ref_data <-
     `tag-mass` = tag_weight,
     `tag-serial-no` = serial_number,
     .keep = "none"
-  ) %>%
+  ) |>
   dplyr::arrange(`tag-id`)
 ```
 
@@ -118,18 +117,18 @@ readr::write_csv(movebank_ref_data, file = here::here("data", "processed", proje
 Done via live feed. Important notes when comparing number of records:
 
 ```R
-ornitela_export %>%
+ornitela_export |>
   # Exclude records with lat/long = 0: these are not fed to Movebank
-  dplyr::filter(satcount != 0) %>%
+  dplyr::filter(satcount != 0) |>
   # Exclude duplicated timestamps: these are not fed to Movebank
-  dplyr::distinct(device_id, UTC_datetime, .keep_all = TRUE) %>%
+  dplyr::distinct(device_id, UTC_datetime, .keep_all = TRUE) |>
   # Use the same cutoff date
   dplyr::filter(UTC_datetime <= as.POSIXct("YYYY-MM-DD 23:59:59")
   
 EQUALS
 
 # Select "Include undeployed locations" when exporting
-movebank_export %>%
+movebank_export |>
   # Exclude SMS records
   dplyr::filter(`orn:transmission-protocol` == "GPRS")
   # Use the same cutoff date

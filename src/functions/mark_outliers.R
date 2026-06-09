@@ -22,13 +22,13 @@ mark_outliers <- function(x,
       gps_speed <- calc_speed_angle(gps_speed)
 
       # Record timestamps that are outliers
-      new_outliers <- gps_speed %>% dplyr::filter(
+      new_outliers <- gps_speed |> dplyr::filter(
         # Very high speed
         speed > max_speed
         # Or high speed at sharp angle
         # (high speed can happen during migration, but should be straight line)
         | (angle < min_angle_above_speed[1] & speed > min_angle_above_speed[2])
-      ) %>% dplyr::pull(timestamp)
+      ) |> dplyr::pull(timestamp)
 
       # Prepare next run if outliers have been found
       if (length(new_outliers) == 0) {
@@ -36,14 +36,14 @@ mark_outliers <- function(x,
       } else {
         outliers <- append(outliers, new_outliers)
         # Remove outliers from dataframe for next run
-        gps_speed <- gps_speed %>% dplyr::filter(!timestamp %in% outliers)
+        gps_speed <- gps_speed |> dplyr::filter(!timestamp %in% outliers)
       }
     }
     message(paste(length(outliers), "outliers found using", run, "runs."))
   }
 
   # Add import-marked-outlier column
-  x <- x %>% dplyr::mutate(`import-marked-outlier` = dplyr::case_when(
+  x <- x |> dplyr::mutate(`import-marked-outlier` = dplyr::case_when(
     timestamp %in% outliers ~ TRUE,
     TRUE ~ FALSE
   ))
