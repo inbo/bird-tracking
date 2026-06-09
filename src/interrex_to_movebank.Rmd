@@ -103,7 +103,7 @@ movebank_ref_data <-
     `study-site` = release_location,
     # tag-firmware: NOT AVAILABLE
     `tag-readout-method` = "Wi-Fi/Bluetooth",
-    `sensor-type` = "GPS",
+    `sensor-type` = "gnss",
     `tag-id` = serial_number,
     `tag-manufacturer-name` = "Interrex",
     `tag-mass` = tag_weight,
