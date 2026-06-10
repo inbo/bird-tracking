@@ -38,15 +38,15 @@ ref_data <-
   ref_data |>
   dplyr::mutate(
     `animal-comments` = NA_character_,
-    `animal-life-stage` = ifelse(
+    `animal-life-stage` = dplyr::if_else(
       grepl("chick|juvenile", `animal-comments`, ignore.case = TRUE) |
-        grepl("chick|juvenile", `deployment-comments`, ignore.case = TRUE),
+      grepl("chick|juvenile", `deployment-comments`, ignore.case = TRUE),
       "juvenile",
       `animal-life-stage`
     ),
     `deployment-comments` = NA_character_,
     `deployment-end-type` = NA_character_,
-    `manipulation-type` = ifelse(
+    `manipulation-type` = dplyr::if_else(
       grepl("heart rate implant", `animal-comments`, ignore.case = TRUE),
       "manipulated-other",
       `manipulation-type`
