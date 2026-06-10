@@ -37,21 +37,23 @@ ref_data <- readr::read_csv(path)
 ref_data <-
   ref_data |>
   dplyr::mutate(
+    `animal-comments` = NA_character_,
     `animal-life-stage` = ifelse(
       grepl("chick|juvenile", `animal-comments`, ignore.case = TRUE) |
         grepl("chick|juvenile", `deployment-comments`, ignore.case = TRUE),
       "juvenile",
       `animal-life-stage`
     ),
+    `deployment-comments` = NA_character_,
+    `deployment-end-type` = NA_character_,
     `manipulation-type` = ifelse(
       grepl("heart rate implant", `animal-comments`, ignore.case = TRUE),
       "manipulated-other",
       `manipulation-type`
-    ),
-    `deployment-end-type` = NA_character_
+    )
   ) |>
   dplyr::filter(`animal-life-stage` == "adult") |>
-  dplyr::select(-`deployment-comments`, -`animal-comments`)
+  dplyr::filter(`deploy-on-timestamp` <= as.POSIXct("2020-12-31 23:59:59", tz = "UTC"))
 ```
 
 ## Write reference data
