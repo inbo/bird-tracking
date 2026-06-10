@@ -14,8 +14,8 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 Load libraries:
 
 ```{r}
-library(readr)
-library(dplyr)
+library(tidyverse)
+library(here)
 ```
 
 ## Set project ID
@@ -31,7 +31,7 @@ path <- here::here("data", "processed", project_id, "movebank_ref_data.csv")
 ref_data <- readr::read_csv(path)
 ```
 
-## Clean reference data
+## Process/filter reference data
 
 ```{r}
 ref_data <-
