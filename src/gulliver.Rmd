@@ -21,7 +21,7 @@ library(dplyr)
 ## Set project ID
 
 ```{r}
-project_id <- "HG_TEXEL"
+project_id <- "LBBG_SCHIERMONNIKOOG"
 ```
 
 ## Read reference data
