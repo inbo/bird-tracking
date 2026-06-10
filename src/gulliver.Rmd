@@ -18,10 +18,11 @@ library(tidyverse)
 library(here)
 ```
 
-## Set project ID
+Set user-defined values:
 
 ```{r}
 project_id <- "LBBG_SCHIERMONNIKOOG"
+end_date <- "2020-12-31 24:00:00"
 ```
 
 ## Read reference data
@@ -53,7 +54,7 @@ ref_data <-
     )
   ) |>
   dplyr::filter(`animal-life-stage` == "adult") |>
-  dplyr::filter(`deploy-on-timestamp` <= as.POSIXct("2020-12-31 23:59:59", tz = "UTC"))
+  dplyr::filter(`deploy-on-timestamp` <= as.POSIXct(end_date, tz = "UTC"))
 ```
 
 ## Write reference data
