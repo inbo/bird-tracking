@@ -21,6 +21,7 @@ library(RPostgres)
 library(config)
 library(here)
 library(glue)
+library(beepr)
 # For RPostgres, see https://github.com/r-dbi/RPostgres/issues/181#issuecomment-438700465
 ```
 
@@ -133,6 +134,7 @@ download_data(
   con = con,
   overwrite = overwrite_files
 )
+beepr::beep(sound = "ready")
 ```
 
 ## Get acceleration data
@@ -149,6 +151,7 @@ download_data(
   con = con,
   overwrite = overwrite_files
 )
+beepr::beep(sound = "complete")
 ```
 
 ## Outlier detection
