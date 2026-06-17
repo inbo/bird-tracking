@@ -112,7 +112,8 @@ ring_numbers <- movebank_ref_data |>
   dplyr::filter(`deploy-on-timestamp` <= end_date) |>
   dplyr::distinct(`animal-id`, .keep_all = TRUE) |>
   dplyr::arrange(`animal-id`) |>
-  dplyr::pull(`animal-id`)
+  dplyr::pull(`animal-id`) |>
+  as.character()
 ```
 
 Load custom function to download data (will iterate over ring numbers):
