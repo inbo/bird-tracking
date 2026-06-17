@@ -430,7 +430,7 @@
     },
     {
       "name": "acceleration",
-      "path": ["LBBG_TEXEL-acceleration-2008.csv.gz", "LBBG_TEXEL-acceleration-2009.csv.gz", "LBBG_TEXEL-acceleration-2010.csv.gz", "LBBG_TEXEL-acceleration-2011.csv.gz", "LBBG_TEXEL-acceleration-2012.csv.gz", "LBBG_TEXEL-acceleration-2013.csv.gz", "LBBG_TEXEL-acceleration-2014.csv.gz", "LBBG_TEXEL-acceleration-2015.csv.gz", "LBBG_TEXEL-acceleration-2016.csv.gz", "LBBG_TEXEL-acceleration-2017.csv.gz", "LBBG_TEXEL-acceleration-2018.csv.gz", "LBBG_TEXEL-acceleration-2019.csv.gz", "LBBG_TEXEL-acceleration-2020.csv.gz"],
+      "path": ["LBBG_TEXEL-acceleration-2009.csv.gz", "LBBG_TEXEL-acceleration-2010.csv.gz", "LBBG_TEXEL-acceleration-2011.csv.gz", "LBBG_TEXEL-acceleration-2012.csv.gz", "LBBG_TEXEL-acceleration-2013.csv.gz", "LBBG_TEXEL-acceleration-2014.csv.gz", "LBBG_TEXEL-acceleration-2015.csv.gz", "LBBG_TEXEL-acceleration-2016.csv.gz", "LBBG_TEXEL-acceleration-2017.csv.gz", "LBBG_TEXEL-acceleration-2018.csv.gz", "LBBG_TEXEL-acceleration-2019.csv.gz", "LBBG_TEXEL-acceleration-2020.csv.gz"],
       "profile": "tabular-data-resource",
       "format": "csv",
       "mediatype": "text/csv",
