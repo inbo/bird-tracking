@@ -60,6 +60,7 @@ bird_remarks_is_nickname <- TRUE
 ses_remarks_starts_with_study_site <- TRUE
 start_date <- "2019-01-01 00:00:00"
 end_date <- "2019-12-31 24:00:00"
+beep <- TRUE
 ```
 
 ## Get reference data
@@ -135,7 +136,9 @@ download_data(
   overwrite = overwrite_files,
   beep = FALSE # Would be annoying
 )
-beepr::beep(sound = "ready")
+if (beep) {
+  beepr::beep(sound = "ready")
+}
 ```
 
 ## Get acceleration data
@@ -153,7 +156,9 @@ download_data(
   overwrite = overwrite_files,
   beep = beep
 )
-beepr::beep(sound = "complete")
+if (beep) {
+  beepr::beep(sound = "complete")
+}
 ```
 
 ## Outlier detection
