@@ -1,6 +1,7 @@
 download_data <- function(sql_file, download_directory,
                           download_filename = "movebank", ring_numbers,
-                          shared = FALSE, connection, overwrite = FALSE) {
+                          shared = FALSE, connection, overwrite = FALSE,
+                          beep = FALSE) {
   # Check input arguments
   if (!file.exists(sql_file)) {
     stop("No such sql_file: ", sql_file)
@@ -49,6 +50,9 @@ download_data <- function(sql_file, download_directory,
       }, error = function(e) {
         stop(e)
       })
+    }
+    if (beep) {
+      beepr::beep("facebook")
     }
   }
 }

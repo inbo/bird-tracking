@@ -132,7 +132,8 @@ download_data(
   ring_numbers = ring_numbers,
   shared = shared,
   con = con,
-  overwrite = overwrite_files
+  overwrite = overwrite_files,
+  beep = FALSE # Would be annoying
 )
 beepr::beep(sound = "ready")
 ```
@@ -149,7 +150,8 @@ download_data(
   ring_numbers = ring_numbers,
   shared = shared,
   con = con,
-  overwrite = overwrite_files
+  overwrite = overwrite_files,
+  beep = beep
 )
 beepr::beep(sound = "complete")
 ```
