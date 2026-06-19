@@ -31,6 +31,7 @@ Set user-defined values:
 
 ```{r}
 project_id <- "O_WESTERSCHELDE"
+year <- 2019
 beep <- TRUE
 ```
 
@@ -43,7 +44,7 @@ source(here::here("src", "functions", "mark_outliers.R"))
 Process files:
 
 ```{r}
-files <- list.files(here::here("data", "processed", project_id, "gps"), full.names = TRUE)
+files <- list.files(here::here("data", "processed", project_id, "gps", year), full.names = TRUE)
 for (file in files) {
   data <- readr::read_csv(file, col_types = readr::cols(
     timestamp = readr::col_datetime(),

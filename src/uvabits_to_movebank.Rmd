@@ -58,6 +58,7 @@ animal_life_stage <- "adult"
 manipulation_type <- "none"
 bird_remarks_is_nickname <- TRUE
 ses_remarks_starts_with_study_site <- TRUE
+year <- 2019
 start_date <- "2019-01-01 00:00:00"
 end_date <- "2019-12-31 24:00:00"
 beep <- TRUE
@@ -129,7 +130,7 @@ Query and save data (one csv file per ringnumber):
 ```{r}
 download_data(
   sql_file = here::here("sql", "uvabits_to_movebank_gps.sql"),
-  download_directory = here::here("data", "processed", project_id, "gps"),
+  download_directory = here::here("data", "processed", project_id, "gps", year),
   download_filename = "movebank_gps",
   ring_numbers = ring_numbers,
   shared = shared,
@@ -149,7 +150,7 @@ Query and save data (one csv file per ringnumber):
 ```{r}
 download_data(
   sql_file = here::here("sql", "uvabits_to_movebank_acc.sql"),
-  download_directory = here::here("data", "processed", project_id, "acc"),
+  download_directory = here::here("data", "processed", project_id, "acc", year),
   download_filename = "movebank_acc",
   ring_numbers = ring_numbers,
   shared = shared,
@@ -175,7 +176,7 @@ For larger projects (e.g. HG_OOSTENDE), it is better to upload per year, as data
 To concatenate files, use:
 
 ```
-awk 'FNR > 1' gps_outliers/movebank_gps_*.csv > movebank_gps_yyyy_nh.csv
+awk 'FNR > 1' gps_outliers/yyyy/movebank_gps_*.csv > movebank_gps_yyyy_nh.csv
 ```
 
 After which the header needs to be added with:
