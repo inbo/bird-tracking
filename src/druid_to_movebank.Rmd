@@ -89,7 +89,7 @@ movebank_ref_data <-
     `tag-model` = "NANO",
     `tag-firmware`= "v1007",
     `tag-readout-method` = "Wi-Fi/Bluetooth",
-    `sensor-type` = "gnss",
+    `sensor-type` = "GNSS",
     `tag-id` = serial_number,
     `tag-manufacturer-name` = "Druid",
     `tag-mass` = tag_weight,
