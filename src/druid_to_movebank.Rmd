@@ -86,6 +86,7 @@ movebank_ref_data <-
     # location-accuracy-comments: NOT AVAILABLE, there is no location-error-numerical/vertical-error-numerical in the GPS data
     `manipulation-type` = "none",
     `study-site` = release_location,
+    `tag-model` = "NANO",
     `tag-firmware`: "v1007",
     `tag-readout-method` = "Wi-Fi/Bluetooth",
     `sensor-type` = "gnss",
