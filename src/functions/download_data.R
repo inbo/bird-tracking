@@ -7,9 +7,8 @@ download_data <- function(sql_file, download_directory,
     stop("No such sql_file: ", sql_file)
   }
 
-  if (!file.exists(download_directory)) {
-    stop("No such directory: ", download_directory)
-  }
+  # Create download directory if it doesn't exist
+  dir.create(download_directory, recursive = TRUE, showWarnings = FALSE)
 
   # Set tables names (shared vs non-shared)
   track_session_table <- if (shared) {

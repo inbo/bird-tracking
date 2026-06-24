@@ -64,6 +64,10 @@ for (file in files) {
 
   # Change output dir
   file <- stringr::str_replace(file, "/gps", "/gps_outliers")
+  
+  # Create download directory if it doesn't exist
+  dir.create(dirname(file), recursive = TRUE, showWarnings = FALSE)
+  
   readr::write_csv(processed_data, file, na = "")
 
   if (beep) {
