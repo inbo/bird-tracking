@@ -98,16 +98,16 @@ data <-
       "Gull" ~ "Larus", # 6009
       "large gull (hybrid)" ~ "Larus" # 6008
     ),
-    bird_code_clean = stringr::str_remove(
-      stringr::str_remove(bird_code, stringr::fixed("B-")), stringr::fixed(".")
+    bird_shorthand_clean = stringr::str_remove(
+      stringr::str_remove(bird_shorthand, stringr::fixed("B-")), stringr::fixed(".")
     )
   ) |>
   
   # Exclude unwanted data
   dplyr::filter(
     !is.na(bird_id) &
-    status != "impossible" &
-    stringr::str_sub(bird_code_clean, 3, 3) != "B" # Dummy rings
+    observation_status != "onmogelijk" &
+    stringr::str_sub(bird_shorthand_clean, 3, 3) != "B" # Dummy rings
   ) |>
   
   # Sort by bird_id, datetime and capture (important for mutate(.by) later)
@@ -154,16 +154,16 @@ data <-
     -observation_notes,
     -user_id,
     -user_name,
-    -`sex (appearance)`,
-    -`reading direction`,
-    -`sex (copulation/courtship)`
+    -`custom:sex (appearance)`,
+    -`custom:reading direction`,
+    -`custom:sex (copulation/courtship)`
   ) |>
   
   # Order columns
   dplyr::select(
     bird_id,
-    bird_code,
-    bird_code_clean,
+    bird_shorthand,
+    bird_shorthand_clean,
     bird_reference,
     bird_scientific_name,
     bird_sex,
@@ -179,10 +179,10 @@ data <-
     observation_lon,
     observation_region_euring,
     observation_condition,
-    `status full-grown bird`,
+    `custom:status full-grown bird`,
     inserted,
-    status,
-    status_reason
+    observation_status,
+    observation_status_reason
   )
 ```
 
