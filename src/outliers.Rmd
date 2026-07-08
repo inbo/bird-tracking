@@ -31,6 +31,8 @@ Set user-defined values:
 
 ```{r}
 project_id <- "O_WESTERSCHELDE"
+year <- 2019
+beep <- TRUE
 ```
 
 Load custom function to mark outliers:
@@ -42,7 +44,7 @@ source(here::here("src", "functions", "mark_outliers.R"))
 Process files:
 
 ```{r}
-files <- list.files(here::here("data", "processed", project_id, "gps"), full.names = TRUE)
+files <- list.files(here::here("data", "processed", project_id, "gps", year), full.names = TRUE)
 for (file in files) {
   data <- readr::read_csv(file, col_types = readr::cols(
     timestamp = readr::col_datetime(),
@@ -51,7 +53,7 @@ for (file in files) {
     .default = readr::col_character() # Don't interpret/alter the other columns
   ))
   print(file)
-  
+
   # Mark outliers when speed is above 45 m/s or at a sharp angle (30°) at 15 m/s
   processed_data <- mark_outliers(
     data,
@@ -59,9 +61,21 @@ for (file in files) {
     min_angle_above_speed = c(30, 15),
     max_runs = 10
   )
-  
+
   # Change output dir
   file <- stringr::str_replace(file, "/gps", "/gps_outliers")
+  
+  # Create download directory if it doesn't exist
+  dir.create(dirname(file), recursive = TRUE, showWarnings = FALSE)
+  
   readr::write_csv(processed_data, file, na = "")
+
+  if (beep) {
+    beepr::beep("facebook")
+  }
+}
+
+if (beep) {
+  beepr::beep(sound = "complete")
 }
 ```
