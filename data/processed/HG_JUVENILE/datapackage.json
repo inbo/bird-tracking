@@ -1,5 +1,5 @@
 {
-  "id": "https://doi.org/10.5281/zenodo.16960867",
+  "id": "https://doi.org/10.5281/zenodo.21279427",
   "resources": [
     {
       "name": "reference-data",
@@ -59,12 +59,20 @@
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000244/2/"
           },
           {
-            "name": "animal-life-stage",
-            "title": "animal life stage",
-            "description": "The age class or life stage of the animal at the beginning of the deployment. Can be years or months of age or terms such as 'adult', 'subadult' and 'juvenile'. Best practice is to define units in the values if needed (e.g. '2 years'). Example: 'juvenile, adult'; Units: none; Entity described: deployment",
+            "name": "animal-death-comments",
+            "title": "animal death comments",
+            "description": "Comments about the death of the animal. Summary information can be reported in 'animal mortality date', 'animal mortality latitude', 'animal mortality longitude', and 'animal mortality type'. Example: 'hit by a car'; Units: none; Entity described: individual",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000018/3/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000013/4/"
+          },
+          {
+            "name": "animal-life-stage",
+            "title": "animal life stage",
+            "description": "The age class or life stage of the animal at the beginning of the deployment. Can be years or months of age or terms such as 'adult', 'subadult' and 'juvenile'. Example: 'juvenile, adult'; Units: not specified; Entity described: deployment",
+            "type": "string",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000018/4/"
           },
           {
             "name": "animal-mass",
@@ -73,6 +81,22 @@
             "type": "number",
             "format": "default",
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000019/2/"
+          },
+          {
+            "name": "animal-mortality-date",
+            "title": "animal mortality date",
+            "description": "The known or estimated date on which the animal died. This may differ from the time of the end of the deployment, which is defined by 'deploy-off timestamp'. Example: '2022-04-26'; Format: yyyy-MM-dd; Units: date (time and time zone not specified); Entity described: individual",
+            "type": "date",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000394/1/"
+          },
+          {
+            "name": "animal-mortality-type",
+            "title": "animal mortality type",
+            "description": "The likely immediate cause of death. Additional information can be provided using 'animal death comments'. Values are chosen from a controlled list: bycatch = unintentional death of a non-target animal during fishing activities; capture = related to the capture and handling of the animal for the study; electrocution = electric shock; harvest = intentional killing by humans, for example through hunting, fishing or poaching; disease = related to a specific illness or terminal disease; natural-death = natural causes, not further specified; other = other; parasites = parasitic infection or disease, including parasitoidism; poison = accidental or deliberate exposure to a chemical substance; predation = killed by a predator or micropredator; starvation = lack of caloric energy intake; unknown = could not be determined; vehicle-collision = collision with a motor vehicle, watercraft, aircraft or other vehicle. Format: controlled list; Entity described: animal",
+            "type": "string",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000345/1/"
           },
           {
             "name": "animal-nickname",
@@ -200,7 +224,12 @@
     },
     {
       "name": "gps",
-      "path": ["HG_JUVENILE-gps-2022.csv.gz", "HG_JUVENILE-gps-2023.csv.gz", "HG_JUVENILE-gps-2024.csv.gz"],
+      "path": [
+        "HG_JUVENILE-gps-2022.csv.gz",
+        "HG_JUVENILE-gps-2023.csv.gz",
+        "HG_JUVENILE-gps-2024.csv.gz",
+        "HG_JUVENILE-gps-2025.csv.gz"
+      ],
       "profile": "tabular-data-resource",
       "format": "csv",
       "mediatype": "text/csv",
@@ -306,10 +335,10 @@
           {
             "name": "sensor-type",
             "title": "sensor type",
-            "description": "The type of sensor with which data were collected. All sensors are associated with a tag id, and tags can contain multiple sensor types. Each event record in Movebank is assigned one sensor type. If values from multiple sensors are reported in a single event, the primary sensor is used. Values are chosen from a controlled list: acceleration = The sensor collects acceleration data; accessory-measurements = The sensor collects accessory measurements, such as battery voltage; acoustic-telemetry = The sensor transmits an acoustic signal that is detected by receivers to determine location; argos-doppler-shift = The sensor location is estimated by Argos using Doppler shift; atlas-geolocation = The sensor location is estimated by an ATLAS system; barometer = The sensor records air or water pressure; bird-ring = The animal is identified by a band or ring that has a unique identifier; derived = Information is derived from other sensor data; geolocation-api = The location is determined based on detection by nearby cell towers or other wireless network connectors using the World Wide Web Consortium Geolocation API Recommendation; gnss = The sensor uses one or more global navigation satellite systems to determine location; gps = The sensor uses GPS to determine location; gyroscope = The sensor records angular velocity; heart-rate = The sensor records or is used to calculate heart rate; magnetometer = The sensor records the magnetic field; natural-mark = The animal is identified by a unique natural marking; orientation = Quaternion components describing the orientation of the tag are derived from accelerometer and gyroscope measurements; proximity = The sensor identifies proximity to other tags; radio-transmitter = The sensor transmits a radio signal that is detected by receivers to determine location; sigfox-geolocation = The sensor location is determined by Sigfox using the received signal strength indicator; solar-geolocator = The sensor collects light levels, which are used to determine position (for processed locations); solar-geolocator-raw = The sensor collects light levels, which are used to determine position (for raw light-level measurements); solar-geolocator-twilight = The sensor collects light levels, which are used to determine position (for twilights calculated from light-level measurements); tdr = The sensor is a time-depth recorder. Format: controlled list; Entity described: event",
+            "description": "The type of sensor with which data were collected. All sensors are associated with a tag id, and tags can contain multiple sensor types. Each event record in Movebank is assigned one sensor type. If values from multiple sensors are reported in a single event, the primary sensor is used. Values are chosen from a controlled list: acceleration = The sensor collects acceleration data; accessory-measurements = The sensor collects accessory measurements, such as battery voltage; acoustic-telemetry = The sensor transmits an acoustic signal that is detected by receivers to determine location; argos-doppler-shift = The sensor location is estimated by Argos using Doppler shift; atlas-geolocation = The sensor location is estimated by an ATLAS system; barometer = The sensor records air or water pressure; bird-ring = The animal is identified by a band or ring that has a unique identifier; derived = Information is derived from other sensor data; geolocation-api = The location is determined based on detection by nearby cell towers or other wireless network connectors using the World Wide Web Consortium Geolocation API Recommendation; gnss = The sensor uses one or more global navigation satellite systems to determine location; gps = The sensor uses GPS to determine location; gyroscope = The sensor records angular velocity; heart-rate = The sensor records or is used to calculate heart rate; magnetometer = The sensor records the magnetic field; natural-mark = The animal is identified by a unique natural marking; orientation = Quaternion components describing the orientation of the tag are derived from accelerometer and gyroscope measurements; proximity = The sensor identifies proximity to other tags; radio-transmitter = The sensor transmits a radio signal that is detected by receivers to determine location; sigfox-geolocation = The sensor location is determined by Sigfox using the received signal strength indicator; solar-geolocator = The sensor collects light levels, which are used to determine position (for processed locations); solar-geolocator-raw = The sensor collects light levels, which are used to determine position (for raw light-level measurements); solar-geolocator-twilight = The sensor collects light levels, which are used to determine position (for twilights calculated from light-level measurements); tdr = The sensor is a time-depth recorder; thermometer = The sensor records temperature. Format: controlled list; Entity described: event",
             "type": "string",
             "format": "default",
-            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000170/8/"
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000170/9/"
           },
           {
             "name": "individual-taxon-canonical-name",
