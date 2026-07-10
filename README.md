@@ -6,7 +6,7 @@ This repository contains scripts to **publish bird tracking data** from the Life
 
 Title | System | Started | Ended | Movebank | Zenodo | GBIF | OBIS
 --- | --- | --- | --- | --- | --- | --- | ---
-ARMENIAN_GULL - Armenian gulls (Larus armenicus, Laridae) breeding in Sevan National Park and Lake Arpi National Park (Armenia) | Interrex | 2024 | active | [4194049025](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study4194049025)
+ARMENIAN_GULL - Armenian gulls (Larus armenicus, Laridae) breeding in Sevan National Park and Lake Arpi National Park (Armenia) | Interrex | 2024 | active | [4194049025](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study4194049025) | [DOI](https://doi.org/10.5281/zenodo.21276580)
 BOP_RODENT - Rodent specialized birds of prey (Circus, Asio, Buteo) in Flanders (Belgium) | Ornitela | 2020 | active | [1278021460](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1278021460) | [DOI](https://doi.org/10.5281/zenodo.5735405) | [GBIF](https://www.gbif.org/dataset/e2fb42ca-e408-4aa2-a7bd-a9bb4ddcc83a) | NA
 CREX_VLAANDEREN - Corn crakes (Crex crex, Rallidae) breeding in Flanders (Belgium) | Global Messenger | 2024 | active | [9058311756](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study9058311756)
 CURLEW_VLAANDEREN - Eurasian curlews (Numenius arquata, Scolopacidae) breeding in Flanders (Belgium) | Ornitela | 2020 | active | [1841091905](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1841091905) | [DOI](https://doi.org/10.5281/zenodo.5779130) |  [GBIF](https://www.gbif.org/dataset/88216808-1942-44ed-b059-b576bf79a28e) | [OBIS](https://obis.org/dataset/7ee5747e-f7c5-44ad-9012-925dd60967aa)
