@@ -1,5 +1,5 @@
 {
-  "id": "https://doi.org/10.5281/zenodo.21276581",
+  "id": "https://doi.org/10.5281/zenodo.21391781",
   "resources": [
     {
       "name": "reference-data",
@@ -224,10 +224,7 @@
     },
     {
       "name": "gps",
-      "path": [
-        "ARMENIAN_GULL-gps-2024.csv.gz",
-        "ARMENIAN_GULL-gps-2025.csv.gz"
-      ],
+      "path": ["ARMENIAN_GULL-gps-2024.csv.gz", "ARMENIAN_GULL-gps-2025.csv.gz"],
       "profile": "tabular-data-resource",
       "format": "csv",
       "mediatype": "text/csv",
@@ -321,6 +318,14 @@
             "type": "number",
             "format": "default",
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000139/3/"
+          },
+          {
+            "name": "manually-marked-outlier",
+            "title": "manually marked outlier",
+            "description": "Identifies events flagged manually as outliers, typically using the Event Editor in Movebank, and may also include outliers identified using other methods. Outliers have the value TRUE. Information about how outliers were defined can be provided in 'outlier comments'. Units: none; Entity described: event",
+            "type": "string",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000156/3/"
           },
           {
             "name": "sensor-type",
