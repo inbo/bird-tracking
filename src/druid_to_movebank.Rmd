@@ -98,7 +98,6 @@ movebank_ref_data <-
     `manipulation-type` = "none",
     `study-site` = release_location,
     `tag-model` = tag_model,
-    `tag-firmware`= "v1007",
     `tag-readout-method` = "Wi-Fi/Bluetooth",
     `sensor-type` = "GNSS",
     `tag-id` = serial_number,
