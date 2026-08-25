@@ -5,7 +5,7 @@ animal-id,animal-nickname,animal-ring-id,animal-sex,animal-taxon,alt-project-id,
 5559835,Wouter FEM,P.DY,u,Larus fuscus,DELTATRACK,adult,892,harness,2020-10-06T00:00:00Z,,2020-05-20T18:00:00Z,"Bird sexed as male, later as female. Tracker defect, bird recaptured and tagged with new tracker 211283.",equipment failure,none,"Neeltje Jans, Westerduinen",phone network,GPS,201092,Ornitela,15,201092
 5552956,Willie,G=,m,Larus fuscus,DELTATRACK,adult,973,harness,2022-08-22T00:00:00Z,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201093,Ornitela,15,201093
 5552896,Naomi,P.D5,f,Larus fuscus,DELTATRACK,adult,626,harness,2020-11-01T00:00:00Z,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201094,Ornitela,15,201094
-5552954,Marloes,G9,f,Larus fuscus,DELTATRACK,adult,730,harness,,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201095,Ornitela,15,201095
+5552954,Marloes,G9,f,Larus fuscus,DELTATRACK,adult,730,harness,2025-09-06T00:00:00Z,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201095,Ornitela,15,201095
 5552890,Jelena,DZ,f,Larus fuscus,DELTATRACK,adult,737,harness,,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201096,Ornitela,15,201096
 5552958,Jarno,HA,m,Larus fuscus,DELTATRACK,adult,924,harness,2022-09-26T00:00:00Z,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201097,Ornitela,15,201097
 5552951,Miranda,G6,f,Larus fuscus,DELTATRACK,adult,758,harness,2023-05-23T00:00:00Z,,2020-05-28T18:00:00Z,Accelerometer failure since 2020-06-08.,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201098,Ornitela,15,201098
@@ -15,21 +15,21 @@ animal-id,animal-nickname,animal-ring-id,animal-sex,animal-taxon,alt-project-id,
 5552980,Nora,H6,f,Larus fuscus,DELTATRACK,adult,688,harness,2020-11-24T00:00:00Z,,2020-06-02T18:00:00Z,,,none,"Neeltje Jans, Oosterduinen",phone network,GPS,201102,Ornitela,15,201102
 5552893,Sjoerd,P.D2,m,Larus fuscus,DELTATRACK,adult,940,harness,2022-05-28T00:00:00Z,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201103,Ornitela,15,201103
 5552977,Anke,H3,f,Larus fuscus,DELTATRACK,adult,771,harness,2020-08-18T00:00:00Z,,2020-06-02T18:00:00Z,Accelerometer failure since 2020-07-10.,,none,"Neeltje Jans, Oosterduinen",phone network,GPS,201104,Ornitela,15,201104
-5552895,Jolanda,P.D4,f,Larus fuscus,DELTATRACK,adult,819,harness,,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201105,Ornitela,15,201105
+5552895,Jolanda,P.D4,f,Larus fuscus,DELTATRACK,adult,819,harness,2025-11-18T00:00:00Z,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201105,Ornitela,15,201105
 5552952,Jacintha,G7,f,Larus fuscus,DELTATRACK,adult,671,harness,2020-07-15T00:00:00Z,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201106,Ornitela,15,201106
 5552892,Eric,P.D1,m,Larus fuscus,DELTATRACK,adult,977,harness,2022-01-22T00:00:00Z,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201107,Ornitela,15,201107
 5552897,Roland-Jan,P.D6,m,Larus fuscus,DELTATRACK,adult,884,harness,2020-07-24T00:00:00Z,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201108,Ornitela,15,201108
 5552891,Wilma,P.D0,f,Larus fuscus,DELTATRACK,adult,736,harness,2022-04-05T12:00:00Z,,2020-05-20T18:00:00Z,"Tracker found in Callantsoog (NL) on 2022-05-29, but device probably already lost on 2022-04-05.",,none,"Neeltje Jans, Westerduinen",phone network,GPS,201109,Ornitela,15,201109
 5552955,Maureen,G+,f,Larus fuscus,DELTATRACK,adult,653,harness,2022-06-24T00:00:00Z,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201110,Ornitela,15,201110
 5552957,Kees,HC,m,Larus fuscus,DELTATRACK,adult,838,harness,2020-09-29T00:00:00Z,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201111,Ornitela,15,201111
-5552950,Matias,G5,m,Larus fuscus,DELTATRACK,adult,901,harness,,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201112,Ornitela,15,201112
-5552898,Abel,P.D8,m,Larus fuscus,DELTATRACK,adult,821,harness,,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201113,Ornitela,15,201113
+5552950,Matias,G5,m,Larus fuscus,DELTATRACK,adult,901,harness,2026-05-21T00:00:00Z,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201112,Ornitela,15,201112
+5552898,Abel,P.D8,m,Larus fuscus,DELTATRACK,adult,821,harness,2023-07-09T00:00:00Z,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201113,Ornitela,15,201113
 6210252,Torkild,N.6|1,m,Larus argentatus,DELTATRACK,adult,1100,harness,,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201115,Ornitela,20,201115
 6210304,Renaud,9E,m,Larus argentatus,DELTATRACK,adult,1013,harness,,,2020-06-02T18:00:00Z,,,none,"Neeltje Jans, Oosterduinen",phone network,GPS,201116,Ornitela,20,201116
 6210281,Arie,8|W,m,Larus argentatus,DELTATRACK,adult,919,harness,2020-11-13T00:00:00Z,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201117,Ornitela,20,201117
 6210275,Hubert,8|N,m,Larus argentatus,DELTATRACK,adult,1025,harness,2020-07-17T00:00:00Z,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201118,Ornitela,20,201118
 6210277,Martin,8|R,m,Larus argentatus,DELTATRACK,adult,1002,harness,2020-10-03T00:00:00Z,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201119,Ornitela,20,201119
-6210199,Ann,N.6|X,f,Larus argentatus,DELTATRACK,adult,861,harness,,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201120,Ornitela,20,201120
+6210199,Ann,N.6|X,f,Larus argentatus,DELTATRACK,adult,861,harness,2025-07-28T00:00:00Z,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201120,Ornitela,20,201120
 6210255,Meta,N.6|3,f,Larus argentatus,DELTATRACK,adult,819,harness,2020-06-15T00:00:00Z,,2020-05-20T18:00:00Z,Tracker lost on 2020-06-15 and found on beach near Neeltje Jans (NL) on 2020-06-20. Tracker reused for H911438.,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201121,Ornitela,20,201121
 6210272,Maarten,8|K,m,Larus argentatus,DELTATRACK,adult,1012,harness,2022-07-31T00:00:00Z,,2020-05-28T18:00:00Z,Accelerometer failure since 2022-07-11.,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201122,Ornitela,20,201122
 6210251,Hadewych,N.6|Z,f,Larus argentatus,DELTATRACK,adult,778,harness,2020-08-18T00:00:00Z,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201123,Ornitela,20,201123
@@ -38,8 +38,8 @@ animal-id,animal-nickname,animal-ring-id,animal-sex,animal-taxon,alt-project-id,
 6210200,Marijke,N.6|Y,f,Larus argentatus,DELTATRACK,adult,850,harness,2022-03-03T00:00:00Z,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201126,Ornitela,20,201126
 6210274,Jos,8|M,m,Larus argentatus,DELTATRACK,adult,978,harness,2022-07-13T00:00:00Z,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201127,Ornitela,20,201127
 6210303,Mark,N 9|L,m,Larus argentatus,DELTATRACK,adult,1067,harness,2022-10-02T00:00:00Z,,2020-06-02T18:00:00Z,Caught on camping Julianahoeve Renesse (NL) and tracker removed.,,none,"Neeltje Jans, Oosterduinen",phone network,GPS,201128,Ornitela,20,201128
-6210305,Sander,9J,m,Larus argentatus,DELTATRACK,adult,1013,harness,2024-01-29T00:00:00Z,,2020-06-02T18:00:00Z,Accelerometer failure since 2021-06-15.,,none,"Neeltje Jans, Oosterduinen",phone network,GPS,201129,Ornitela,20,201129
-6210256,Mimi,N.6|4,f,Larus argentatus,DELTATRACK,adult,871,harness,,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201130,Ornitela,20,201130
+6210305,Sander,9J,m,Larus argentatus,DELTATRACK,adult,1013,harness,2026-04-12T00:00:00Z,,2020-06-02T18:00:00Z,Accelerometer failure since 2021-06-15.,,none,"Neeltje Jans, Oosterduinen",phone network,GPS,201129,Ornitela,20,201129
+6210256,Mimi,N.6|4,f,Larus argentatus,DELTATRACK,adult,871,harness,2024-01-29T00:00:00Z,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201130,Ornitela,20,201130
 6210280,Brechtje,8|U,f,Larus argentatus,DELTATRACK,adult,741,harness,2023-08-09T00:00:00Z,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201131,Ornitela,20,201131
 6210306,Luis,9P,m,Larus argentatus,DELTATRACK,adult,1109,harness,2020-09-28T00:00:00Z,,2020-06-02T18:00:00Z,,,none,"Neeltje Jans, Oosterduinen",phone network,GPS,201132,Ornitela,20,201132
 6210253,Marc,N.6|0,m,Larus argentatus,DELTATRACK,adult,1028,harness,2020-07-27T00:00:00Z,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201133,Ornitela,20,201133
@@ -47,10 +47,10 @@ animal-id,animal-nickname,animal-ring-id,animal-sex,animal-taxon,alt-project-id,
 6210254,Floor,N.6|2,m,Larus argentatus,DELTATRACK,adult,975,harness,2021-01-12T00:00:00Z,,2020-05-20T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201135,Ornitela,20,201135
 6210197,Pim,N.6|V,m,Larus argentatus,DELTATRACK,adult,1030,harness,2020-10-05T00:00:00Z,,2020-05-20T18:00:00Z,Accelerometer failure since 2020-09-12.,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201136,Ornitela,20,201136
 6210271,Griet,8|J,f,Larus argentatus,DELTATRACK,adult,863,harness,2022-12-18T00:00:00Z,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201137,Ornitela,20,201137
-6210309,Dirk,9Z,m,Larus argentatus,DELTATRACK,adult,977,harness,2024-10-28T00:00:00Z,,2020-06-02T18:00:00Z,found dead,dead,none,"Neeltje Jans, Oosterduinen",phone network,GPS,201138,Ornitela,20,201138
+6210309,Dirk,9Z,m,Larus argentatus,DELTATRACK,adult,977,harness,2024-10-28T00:00:00Z,,2020-06-02T18:00:00Z,Found dead.,dead,none,"Neeltje Jans, Oosterduinen",phone network,GPS,201138,Ornitela,20,201138
 6210276,Mingtje,8|P,f,Larus argentatus,DELTATRACK,adult,776,harness,2021-06-20T00:00:00Z,,2020-05-28T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,201139,Ornitela,20,201139
 5559398,Dovakhiin,N-R AX,m,Larus fuscus,DELTATRACK,adult,837,harness,2021-09-04T00:00:00Z,,2021-05-25T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211275,Ornitela,15,211275
-5559460,Fréderik,Neg/R.B-0,m,Larus fuscus,DELTATRACK,adult,907,harness,,,2021-06-02T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211276,Ornitela,15,211276
+5559460,Fréderik,Neg/R.B-0,m,Larus fuscus,DELTATRACK,adult,907,harness,2024-09-05T00:00:00Z,,2021-06-02T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211276,Ornitela,15,211276
 5559388,Maarten,B-NI4,m,Larus fuscus,DELTATRACK,adult,943,harness,,,2021-05-25T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211277,Ornitela,15,211277
 5559458,Djailey,Neg/R.B-Y,f,Larus fuscus,DELTATRACK,adult,835,harness,,,2021-06-02T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211278,Ornitela,15,211278
 5559199,Emmanuel,B-NIV,m,Larus fuscus,DELTATRACK,adult,914,harness,2022-06-29T00:00:00Z,,2021-05-25T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211279,Ornitela,15,211279
@@ -74,27 +74,31 @@ animal-id,animal-nickname,animal-ring-id,animal-sex,animal-taxon,alt-project-id,
 5559273,Véronique,B-NIT,f,Larus fuscus,DELTATRACK,adult,836,harness,2024-11-26T00:00:00Z,,2021-05-25T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211297,Ornitela,15,211297
 5559452,Vincent,Neg/R.B-S,m,Larus fuscus,DELTATRACK,adult,967,harness,2025-04-28T00:00:00Z,,2021-06-02T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211298,Ornitela,15,211298
 5559462,Annabelle,Neg/R.B-2,f,Larus fuscus,DELTATRACK,adult,707,harness,,,2021-06-02T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211299,Ornitela,15,211299
-5559374,Alec,N-R AW,m,Larus fuscus,DELTATRACK,adult,868,harness,,,2021-05-25T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211300,Ornitela,15,211300
-5559454,Elly,Neg/R.B-U,f,Larus fuscus,DELTATRACK,adult,723,harness,,,2021-06-02T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211301,Ornitela,15,211301
+5559374,Alec,N-R AW,m,Larus fuscus,DELTATRACK,adult,868,harness,2026-02-24T00:00:00Z,,2021-05-25T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211300,Ornitela,15,211300
+5559454,Elly,Neg/R.B-U,f,Larus fuscus,DELTATRACK,adult,723,harness,2024-08-03T00:00:00Z,,2021-06-02T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211301,Ornitela,15,211301
 5559397,Carlin,B-N=,m,Larus fuscus,DELTATRACK,adult,866,harness,2021-09-11T09:00:00Z,,2021-05-25T18:00:00Z,"Found by fishermen, tracker thrown away.",,none,"Neeltje Jans, Westerduinen",phone network,GPS,211302,Ornitela,15,211302
 5559439,Luc,B-N1,m,Larus fuscus,DELTATRACK,adult,823,harness,2022-07-15T12:00:00Z,,2021-06-02T18:00:00Z,Found dead.,dead,none,"Neeltje Jans, Westerduinen",phone network,GPS,211303,Ornitela,15,211303
 5417006,Arvin,B-NI3,m,Larus fuscus,DELTATRACK,adult,675,harness,,,2021-05-25T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211304,Ornitela,15,211304
 5559468,Monique,Neg/R.B-8,f,Larus fuscus,DELTATRACK,adult,775,harness,,,2021-06-02T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211305,Ornitela,15,211305
 5559221,Marleny,B-NIK,f,Larus fuscus,DELTATRACK,adult,,harness,,,2021-05-25T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211306,Ornitela,15,211306
-5559457,Zoë,Neg/R.B-X,f,Larus fuscus,DELTATRACK,adult,735,harness,,,2021-06-02T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211307,Ornitela,15,211307
+5559457,Zoë,Neg/R.B-X,f,Larus fuscus,DELTATRACK,adult,735,harness,,,2021-06-02T18:00:00Z,"De Kleine Mantelmeeuw Zoë was in de nacht van 08/08 op 09/08 niet teruggekeerd naar haar gebruikelijke slaapplaats. Het GPS-punt bevindt zich op 5 minuten van mijn woning. Ik ben er vanmorgen naartoe gegaan en heb vastgesteld dat Zoë dood is, waarschijnlijk aangereden door een auto.
+
+De GPS-zender is bij mij thuis, dus het laatst geregistreerde GPS-punt is niet de plaats waar de vogel is gestorven.
+
+GPS-locatie van de vindplaats van de dode vogel: 50.212 / 2.845",,none,"Neeltje Jans, Westerduinen",phone network,GPS,211307,Ornitela,15,211307
 5559393,Lars,B-NI7,m,Larus fuscus,DELTATRACK,adult,976,harness,2021-11-16T09:00:00Z,,2021-05-25T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211308,Ornitela,15,211308
 5553594,Joey,B-NIW,m,Larus fuscus,DELTATRACK,adult,895,harness,2021-06-21T09:00:00Z,,2021-05-25T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211309,Ornitela,15,211309
 5559444,Tristan,Neg/R.B-E,m,Larus fuscus,DELTATRACK,adult,860,harness,2022-03-21T09:00:00Z,,2021-06-01T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211310,Ornitela,15,211310
 5559463,Virgile,Neg/R.B-3,m,Larus fuscus,DELTATRACK,adult,885,harness,2023-08-28T09:00:00Z,,2021-06-02T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211311,Ornitela,15,211311
 5559440,Carine,Neg/R.B-A,f,Larus fuscus,DELTATRACK,adult,715,harness,2021-07-16T00:00:00Z,,2021-06-01T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211312,Ornitela,15,211312
-5559451,Atlas,Neg/R.B-P,m,Larus fuscus,DELTATRACK,adult,709,harness,,,2021-06-02T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211313,Ornitela,15,211313
+5559451,Atlas,Neg/R.B-P,m,Larus fuscus,DELTATRACK,adult,709,harness,2026-07-28T00:00:00Z,,2021-06-02T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211313,Ornitela,15,211313
 5559455,Gipsy,Neg/R.B-V,m,Larus fuscus,DELTATRACK,adult,883,harness,,,2021-06-02T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211314,Ornitela,15,211314
-5559466,Rutger,Neg/R.B-6,m,Larus fuscus,DELTATRACK,adult,819,harness,2025-01-09T00:00:00Z,,2021-06-02T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211315,Ornitela,15,211315
+5559466,Rutger,Neg/R.B-6,m,Larus fuscus,DELTATRACK,adult,819,harness,2025-01-09T00:00:00Z,,2021-06-02T18:00:00Z,Found dead.,dead,none,"Neeltje Jans, Westerduinen",phone network,GPS,211315,Ornitela,15,211315
 5559443,Joseph,Neg/R.B-D,m,Larus fuscus,DELTATRACK,adult,883,harness,2022-05-24T00:00:00Z,,2021-06-01T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211316,Ornitela,15,211316
 5559464,Francisca,Neg/R.B-4,f,Larus fuscus,DELTATRACK,adult,835,harness,,,2021-06-02T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211317,Ornitela,15,211317
-5552960,Job,P.H-E,u,Larus fuscus,DELTATRACK,adult,743,harness,,,2021-06-01T18:00:00Z,Accelerometer failure after 2023-12-11.,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211318,Ornitela,15,211318
+5552960,Job,P.H-E,u,Larus fuscus,DELTATRACK,adult,743,harness,2025-09-08T00:00:00Z,,2021-06-01T18:00:00Z,Accelerometer failure after 2023-12-11.,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211318,Ornitela,15,211318
 5559350,Dimi,B-NIX,m,Larus fuscus,DELTATRACK,adult,862,harness,2022-06-24T00:00:00Z,,2021-05-25T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211319,Ornitela,15,211319
-5559447,Mare,Neg/R.B-H,f,Larus fuscus,DELTATRACK,adult,775,harness,,,2021-06-01T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211320,Ornitela,15,211320
+5559447,Mare,Neg/R.B-H,f,Larus fuscus,DELTATRACK,adult,775,harness,2023-10-22T00:00:00Z,,2021-06-01T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211320,Ornitela,15,211320
 5559448,Eline,Neg/R.B-J,f,Larus fuscus,DELTATRACK,adult,747,harness,,,2021-06-01T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211321,Ornitela,15,211321
 5559459,Garfield,Neg/R.B-Z,m,Larus fuscus,DELTATRACK,adult,907,harness,,,2021-06-02T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211322,Ornitela,15,211322
 5559394,Yoram,B-NI2,m,Larus fuscus,DELTATRACK,adult,780,harness,2021-07-01T09:00:00Z,,2021-05-25T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211323,Ornitela,15,211323
