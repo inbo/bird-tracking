@@ -81,11 +81,7 @@ animal-id,animal-nickname,animal-ring-id,animal-sex,animal-taxon,alt-project-id,
 5417006,Arvin,B-NI3,m,Larus fuscus,DELTATRACK,adult,675,harness,,,2021-05-25T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211304,Ornitela,15,211304
 5559468,Monique,Neg/R.B-8,f,Larus fuscus,DELTATRACK,adult,775,harness,,,2021-06-02T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211305,Ornitela,15,211305
 5559221,Marleny,B-NIK,f,Larus fuscus,DELTATRACK,adult,,harness,,,2021-05-25T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211306,Ornitela,15,211306
-5559457,Zoë,Neg/R.B-X,f,Larus fuscus,DELTATRACK,adult,735,harness,,,2021-06-02T18:00:00Z,"De Kleine Mantelmeeuw Zoë was in de nacht van 08/08 op 09/08 niet teruggekeerd naar haar gebruikelijke slaapplaats. Het GPS-punt bevindt zich op 5 minuten van mijn woning. Ik ben er vanmorgen naartoe gegaan en heb vastgesteld dat Zoë dood is, waarschijnlijk aangereden door een auto.
-
-De GPS-zender is bij mij thuis, dus het laatst geregistreerde GPS-punt is niet de plaats waar de vogel is gestorven.
-
-GPS-locatie van de vindplaats van de dode vogel: 50.212 / 2.845",,none,"Neeltje Jans, Westerduinen",phone network,GPS,211307,Ornitela,15,211307
+5559457,Zoë,Neg/R.B-X,f,Larus fuscus,DELTATRACK,adult,735,harness,2026-08-08T23:00:00Z,,2021-06-02T18:00:00Z,"Found dead at 50.212, 2.845, likely hit by car.",dead,none,"Neeltje Jans, Westerduinen",phone network,GPS,211307,Ornitela,15,211307
 5559393,Lars,B-NI7,m,Larus fuscus,DELTATRACK,adult,976,harness,2021-11-16T09:00:00Z,,2021-05-25T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211308,Ornitela,15,211308
 5553594,Joey,B-NIW,m,Larus fuscus,DELTATRACK,adult,895,harness,2021-06-21T09:00:00Z,,2021-05-25T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211309,Ornitela,15,211309
 5559444,Tristan,Neg/R.B-E,m,Larus fuscus,DELTATRACK,adult,860,harness,2022-03-21T09:00:00Z,,2021-06-01T18:00:00Z,,,none,"Neeltje Jans, Westerduinen",phone network,GPS,211310,Ornitela,15,211310
