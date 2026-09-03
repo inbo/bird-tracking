@@ -445,7 +445,6 @@
     {
       "name": "acceleration",
       "path": [
-        "LBBG_TEXEL-acceleration-2008.csv.gz",
         "LBBG_TEXEL-acceleration-2009.csv.gz",
         "LBBG_TEXEL-acceleration-2010.csv.gz",
         "LBBG_TEXEL-acceleration-2011.csv.gz",
