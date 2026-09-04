@@ -25,7 +25,7 @@ H200707,G,,m,Buteo buteo,BOP_RODENT,adult,880,harness,2022-10-29T12:00:00Z,wing_
 H200724,Doel,,f,Buteo buteo,BOP_RODENT,adult,1100,harness,,,2022-03-22T22:00:00Z,,,none,Doel,phone network,GPS,211050,Ornitela,25,211050
 H200704,Roger,,m,Buteo buteo,BOP_RODENT,adult,899,harness,,wing_length: 407 | wing_span: 899 | moult_score: 0,2021-06-02T18:00:00Z,,,none,"Gent, Kloosterbos",phone network,GPS,211051,Ornitela,15,211051
 H200723,Beer,,m,Buteo buteo,BOP_RODENT,adult,850,harness,,,2022-03-22T22:00:00Z,,,none,Kallo,phone network,GPS,211052,Ornitela,25,211052
-E464107,Karel,,m,Circus cyaneus,BOP_RODENT,juvenile,400,harness,,,2021-12-21T22:00:00Z,,,none,"Landsdijk, Bloksheule",phone network,GPS,212925,Ornitela,10,212925
+E464107,Karel,,m,Circus cyaneus,BOP_RODENT,juvenile,400,harness,2022-10-22T18:00:00Z,,2021-12-21T22:00:00Z,Found dead in Denmark. Likely wind turbine collision according to autopsy.,dead,none,"Landsdijk, Bloksheule",phone network,GPS,212925,Ornitela,10,212925
 E464108,Arne,,m,Circus cyaneus,BOP_RODENT,adult,350,harness,,wing_length: 311 | age: 2cy,2022-01-10T22:00:00Z,,,none,"Landsdijk, Bloksheule",phone network,GPS,212928,Ornitela,10,212928
 E491304,Sandrine,Y-V.Z,f,Circus pygargus,BOP_RODENT,adult,333,harness,2023-05-23T11:00:00Z,,2022-07-27T22:00:00Z,,,none,Moeren,phone network,GPS,213911,Ornitela,10,213911
 E464112,Charlie,,m,Circus cyaneus,BOP_RODENT,adult,404.5,harness,,wing_length: 331 | age: 3cy,2022-12-17T22:00:00Z,,,none,"Jabbeke, Legeweg",phone network,GPS,213913,Ornitela,10,213913
@@ -34,9 +34,9 @@ E464110,Mia,Y-V.U,f,Circus pygargus,BOP_RODENT,adult,296,harness,2024-04-22T00:0
 E491305,Arry,,m,Circus pygargus,BOP_RODENT,adult,315,harness,2025-08-29T00:00:00Z,,2022-07-27T22:00:00Z,,,none,Moeren,phone network,GPS,224081,Ornitela,10,224081
 E404978,Madeleine,Y-V.T,f,Circus pygargus,BOP_RODENT,adult,335,harness,,,2022-07-10T22:00:00Z,,,none,Bulskamp,phone network,GPS,224082,Ornitela,10,224082
 H215028,Jan,,m,Buteo buteo,BOP_RODENT,adult,830,harness,,wing_length: 392 | age: > 2cy,2026-06-11T00:00:00Z,,,none,"Sint-Gillis-Waas, Panneweel",phone network,GPS,230616,Ornitela,15,230616
-H209700,Trees,,f,Circus aeruginosus,BOP_RODENT,adult,804,harness,2023-07-14T12:00:00Z,wing_length: 406 | age: 2cy,2023-03-21T22:00:00Z,Dead in Denmark.,dead,none,"Woumen, Blankaart",phone network,GPS,230618,Ornitela,15,230618
+H209700,Trees,,f,Circus aeruginosus,BOP_RODENT,adult,804,harness,2023-07-14T12:00:00Z,wing_length: 406 | age: 2cy,2023-03-21T22:00:00Z,"Found dead in Blankaart, Belgium. Likely avian flu.",dead,none,"Woumen, Blankaart",phone network,GPS,230618,Ornitela,15,230618
 L177807,Wesley,,m,Circus aeruginosus,BOP_RODENT,adult,521,harness,,wing_length: 402 | age: > 3cy,2024-04-26T22:00:00Z,,,none,"Lillo, Galgenschoor",phone network,GPS,230619,Ornitela,16,230619
-E464119,Justine,,f,Circus pygargus,BOP_RODENT,adult,292,harness,2025-05-01T17:00:00Z,wing_length: 380 | age: > 2cy,2024-07-19T22:00:00Z,,,none,"Houtem, Sashoekstraat",phone network,GPS,234187,Ornitela,10,234187
+E464119,Justine,,f,Circus pygargus,BOP_RODENT,adult,292,harness,2025-05-01T17:00:00Z,wing_length: 380 | age: > 2cy,2024-07-19T22:00:00Z,"Dead, likely hit by car.",dead,none,"Houtem, Sashoekstraat",phone network,GPS,234187,Ornitela,10,234187
 L184877,Koen,,m,Circus aeruginosus,BOP_RODENT,adult,501,harness,2025-09-10T00:00:00Z,wing_length: 387 | age: > 2cy,2024-07-25T06:00:00Z,,,none,"Alveringem, Lindestraat",phone network,GPS,234597,Ornitela,15,234597
 L184879,Haasop,,m,Circus aeruginosus,BOP_RODENT,adult,486,harness,,wing_length: 391 | age: > 2cy,2025-06-14T06:00:00Z,,,none,"Verrebroek, Haasop",phone network,GPS,234599,Ornitela,15,234599
 H215024,Gal,,f,Circus aeruginosus,BOP_RODENT,adult,889,harness,,wing_length: 421 | age: > 2cy,2025-04-19T06:00:00Z,Female defending territory. Tracker reused from L184878.,,none,"Lillo, Galgenschoor",phone network,GPS,234600,Ornitela,15,234600
