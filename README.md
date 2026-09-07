@@ -41,9 +41,7 @@ Before we adopted the workflow to publish on Movebank and Zenodo, two datasets w
 ## Workflow
 
 - [Prepare Uva-BiTS (meta)data for Movebank upload](src/uvabits_to_movebank.Rmd)
-- [Prepare Ornitela (meta)data for Movebank upload](src/ornitela_to_movebank.Rmd)
-- [Prepare Interrex (meta)data for Movebank upload](src/interrex_to_movebank.Rmd)
-- [Prepare Druid (meta)data for Movebank upload](src/druid_to_movebank.Rmd)
+- [Prepare Ornitela, Interrex, Druid and Global Messenger (meta)data for Movebank upload](src/spreadsheet_to_movebank.Rmd)
 - [Prepare Movebank data for Zenodo upload (make frictionless)](src/movebank_to_frictionless.Rmd)
 - [Prepare Zenodo data for GBIF upload](src/zenodo_to_gbif.Rmd)
 
