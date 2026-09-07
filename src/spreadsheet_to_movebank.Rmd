@@ -6,7 +6,7 @@ output:
   html_document
 ---
 
-This script prepares [Ornitela](https://www.ornitela.com/), [Interrex](http://interrex-tracking.com/) and [Druid](https://druid.tech/) bird tracking data for upload to [Movebank](https://www.movebank.org/). For a project, it downloads **reference data** from a Google spreadsheet where these data are maintained and transforms these to the [Movebank data format](https://www.movebank.org/node/2381) using `dplyr::mutate()` (see below). **GPS data** are automatically synced with Movebank (see `Live Feeds` in a Movebank study). This is not yet implemented for **acceleration data** which are currently not uploaded.
+This script prepares [Ornitela](https://www.ornitela.com/), [Interrex](http://interrex-tracking.com/), [Druid](https://druid.tech/) and [Global Messenger](https://www.gm-tracking.com/) bird tracking data for upload to [Movebank](https://www.movebank.org/). For a project, it downloads **reference data** from a Google spreadsheet where these data are maintained and transforms these to the [Movebank data format](https://www.movebank.org/node/2381) using `dplyr::mutate()` (see below). **GPS data** are automatically synced with Movebank (see `Live Feeds` in a Movebank study). This is not yet implemented for **acceleration data** which are currently not uploaded.
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
@@ -17,6 +17,8 @@ Load libraries:
 ```{r}
 library(tidyverse)
 library(here)
+library(readr)
+library(purrr)
 ```
 
 Set user-defined values:
@@ -25,7 +27,7 @@ Set user-defined values:
 project_id <- "CREX_VLAANDEREN"
 ```
 
-Load custom function to map the spreadsheet to Movebank reference data:
+Load custom functions to read and map the spreadsheet to Movebank reference data:
 
 ```{r}
 source(here::here("src", "functions", "get_reference_data.R"))
@@ -33,8 +35,26 @@ source(here::here("src", "functions", "get_reference_data.R"))
 
 ## Get reference data
 
+Download spreadsheet:
+
+```{r, eval = TRUE}
+urls <- list(
+  ornitela = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=0&single=true&output=csv",
+  interrex = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=668940&single=true&output=csv",
+  druid = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=2022063817&single=true&output=csv",
+  gm = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=1432656981&single=true&output=csv"
+)
+
+metadata <-
+  urls |>
+  purrr::map(read_tab) |>
+  dplyr::bind_rows()
+```
+
+Map to Movebank format:
+
 ```{r}
-movebank_ref_data <- get_reference_data(project_id)
+movebank_ref_data <- get_reference_data(project_id, metadata)
 ```
 
 Save to CSV:
