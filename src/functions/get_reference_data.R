@@ -79,6 +79,37 @@ get_reference_data <- function(project_id, spreadsheet) {
    dplyr::filter(!is.na(`animal-id`)) |>
    dplyr::arrange(`tag-id`, `animal-id`)
 
+  # Select columns
+  manufacturer <- unique(movebank_ref_data$`tag-manufacturer-name`)
+  if (manufacturer == "Ornitela") {
+    movebank_ref_data <-
+      movebank_ref_data |>
+      dplyr::select(
+        - `animal-mortality-type`,
+        - `animal-mortality-date`,
+        - `animal-death-comments`,
+        - `deploy-on-latitude`,
+        - `deploy-on-longitude`,
+        - `tag-model`
+      )
+  }
+  if (manufacturer == "Interrex") {
+    movebank_ref_data <-
+      movebank_ref_data |>
+      dplyr::select(
+        - `tag-model`
+      )
+  }
+  if (manufacturer == "Druid") {
+    movebank_ref_data <-
+      movebank_ref_data |>
+      dplyr::select(
+        - `animal-mortality-type`,
+        - `animal-mortality-date`,
+        - `animal-death-comments`,
+      )
+  }
+
   return(movebank_ref_data)
 }
 
