@@ -1,30 +1,8 @@
-get_reference_data <- function(project_id) {
-  # Get tag and bird information from spreadsheet
-  metadata_ornitela <- readr::read_csv(
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=0&single=true&output=csv",
-    col_types = cols(.default = col_character())
-  )
-  metadata_interrex <- readr::read_csv(
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=668940&single=true&output=csv",
-    col_types = cols(.default = col_character())
-  )
-  metadata_druid <- readr::read_csv(
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=2022063817&single=true&output=csv",
-    col_types = cols(
-      .default = col_character()
-    )
-  )
-  metadata_gm <- readr::read_csv(
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=1432656981&single=true&output=csv",
-    col_types = cols(.default = col_character())
-  )
+read_tab <- function(url) {
+  readr::read_csv(url, col_types = readr::cols(.default = readr::col_character()))
+}
 
-  metadata <-
-    metadata_ornitela |>
-    dplyr::bind_rows(metadata_interrex) |>
-    dplyr::bind_rows(metadata_druid) |>
-    dplyr::bind_rows(metadata_gm)
-
+get_reference_data <- function(project_id, spreadsheet) {
   # Map data
   movebank_ref_data <-
    metadata |>
