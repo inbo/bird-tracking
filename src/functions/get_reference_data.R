@@ -24,20 +24,21 @@ get_reference_data <- function(project_id) {
      `animal-id` = dplyr::coalesce(metal_ring, colour_ring),
      `animal-nickname` = dplyr::case_when(
        str_detect(animal_name, "OT-") ~ NA_character_, # Exclude names that are the default tag name
-       TRUE ~ animal_name
+       .default = animal_name
      ),
      `animal-ring-id` = colour_ring,
-     `animal-sex` = dplyr::recode(sex,
-       "F" = "f",
-       "M" = "m",
-       "X" = "u",
-       .missing = "u"
+     `animal-sex` = dplyr::recode_values(sex,
+       "F" ~ "f",
+       "M" ~ "m",
+       "X" ~ "u",
+       default = "u"
      ),
      `animal-taxon` = scientific_name,
      `alt-project-id` = project_id,
-     `animal-life-stage` = dplyr::recode(age,
-       "A" = "adult",
-       "J" = "juvenile"
+     `animal-life-stage` = dplyr::recode_values(age,
+       "A" ~ "adult",
+       "J" ~ "juvenile",
+       default = NA_character_
      ),
      `animal-mass` = animal_weight,
      `animal-mortality-type` = mortality_type,
@@ -71,13 +72,13 @@ get_reference_data <- function(project_id) {
        stringr::str_detect(tolower(track_session_remarks), "victim") ~ "dead",
        stringr::str_detect(tolower(track_session_remarks), "defect") ~ "equipment failure",
        stringr::str_detect(tolower(track_session_remarks), "malfunction") ~ "equipment failure",
-       TRUE ~ NA_character_
+       .default = NA_character_
      ),
      `manipulation-type` = dplyr::case_when(
        stringr::str_detect(manipulation_type, "manipulated other") ~ "manipulated other",
        # Birds that were hatched from egg or raised as chicks
        # e.g. placed in controlled environment and subjected to behavioural studies
-       TRUE ~ "none"
+       .default = "none"
      ),
      `study-site` = release_location,
      `tag-readout-method` = ifelse(tag_manufacturer == "Druid", "Wi-Fi/Bluetooth", "phone network"),
@@ -116,4 +117,3 @@ get_reference_data <- function(project_id) {
 
   return(movebank_ref_data)
 }
-
