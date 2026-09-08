@@ -67,7 +67,6 @@ get_reference_data <- function(project_id, spreadsheet) {
        TRUE ~ "none"
      ),
      `study-site` = release_location,
-     `tag-model` = ifelse(tag_manufacturer == "Druid", tag_model, NA_character_),
      `tag-readout-method` = ifelse(tag_manufacturer == "Druid", "Wi-Fi/Bluetooth", "phone network"),
      `sensor-type` = ifelse(tag_manufacturer == "Druid", "GNSS", "GPS"),
      `tag-id` = serial_number,
@@ -89,15 +88,7 @@ get_reference_data <- function(project_id, spreadsheet) {
         - `animal-mortality-date`,
         - `animal-death-comments`,
         - `deploy-on-latitude`,
-        - `deploy-on-longitude`,
-        - `tag-model`
-      )
-  }
-  if (manufacturer == "Interrex") {
-    movebank_ref_data <-
-      movebank_ref_data |>
-      dplyr::select(
-        - `tag-model`
+        - `deploy-on-longitude`
       )
   }
   if (manufacturer == "Druid") {
