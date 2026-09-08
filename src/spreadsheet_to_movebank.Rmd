@@ -1,12 +1,19 @@
 ---
-title: "Prepare (meta)data for Movebank upload"
+title: "Prepare reference data for Movebank upload"
 author: "Sanne Govaert"
 date: "`r Sys.Date()`"
 output:
   html_document
 ---
 
-This script prepares [Ornitela](https://www.ornitela.com/), [Interrex](http://interrex-tracking.com/), [Druid](https://druid.tech/) and [Global Messenger](https://www.gm-tracking.com/) bird tracking data for upload to [Movebank](https://www.movebank.org/). For a project, it downloads **reference data** from a Google spreadsheet where these data are maintained and transforms these to the [Movebank data format](https://www.movebank.org/node/2381) using `dplyr::mutate()` (see below). **GPS data** are automatically synced with Movebank (see `Live Feeds` in a Movebank study). This is not yet implemented for **acceleration data** which are currently not uploaded.
+This script prepares reference data maintained in a **Google Spreadsheet** for upload to [Movebank](https://www.movebank.org/). It supports the manufacturers:
+
+- [Ornitela](https://www.ornitela.com/)
+- [Interrex](http://interrex-tracking.com/)
+- [Druid](https://druid.tech/)
+- [Global Messenger](https://www.gm-tracking.com/)
+
+The GPS data are expected to be automatically synced with Movebank.
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
@@ -62,11 +69,3 @@ Save to CSV:
 ```{r}
 readr::write_csv(movebank_ref_data, file = here::here("data", "processed", project_id, "movebank_ref_data.csv"), na = "")
 ```
-
-## Get gps data (detections)
-
-Done via live feed.
-
-## Get acceleration data
-
-Not applicable.
