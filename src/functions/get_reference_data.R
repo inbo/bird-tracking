@@ -68,7 +68,7 @@ get_reference_data <- function(project_id, spreadsheet) {
      ),
      `study-site` = release_location,
      `tag-readout-method` = ifelse(tag_manufacturer == "Druid", "Wi-Fi/Bluetooth", "phone network"),
-     `sensor-type` = ifelse(tag_manufacturer == "Druid", "GNSS", "GPS"),
+     `sensor-type` = "GPS",
      `tag-id` = serial_number,
      `tag-manufacturer-name` = tag_manufacturer,
      `tag-mass` = tag_weight,
