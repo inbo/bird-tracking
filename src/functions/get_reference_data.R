@@ -26,7 +26,7 @@ get_reference_data <- function(project_id) {
        str_detect(animal_name, "OT-") ~ NA_character_, # Exclude names that are the default tag name
        TRUE ~ animal_name
      ),
-     `animal-ring-id` = ifelse(tag_manufacturer %in% c("Druid", "Global Messenger"), metal_ring, colour_ring),
+     `animal-ring-id` = colour_ring,
      `animal-sex` = dplyr::recode(sex,
        "F" = "f",
        "M" = "m",
