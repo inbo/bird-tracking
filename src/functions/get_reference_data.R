@@ -1,8 +1,21 @@
-read_tab <- function(url) {
-  readr::read_csv(url, col_types = readr::cols(.default = readr::col_character()))
-}
+get_reference_data <- function(project_id) {
+  # Define spreadsheet URLs
+  urls <- list(
+    ornitela = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=0&single=true&output=csv",
+    interrex = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=668940&single=true&output=csv",
+    druid = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=2022063817&single=true&output=csv",
+    gm = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=1432656981&single=true&output=csv"
+  )
 
-get_reference_data <- function(project_id, spreadsheet) {
+  # Combine spreadsheets
+  read_tab <- function(url) {
+    readr::read_csv(url, col_types = readr::cols(.default = readr::col_character()))
+  }
+  metadata <-
+    urls |>
+    purrr::map(read_tab) |>
+    dplyr::bind_rows()
+
   # Map data
   movebank_ref_data <-
    metadata |>

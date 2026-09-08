@@ -42,26 +42,10 @@ source(here::here("src", "functions", "get_reference_data.R"))
 
 ## Get reference data
 
-Download spreadsheet:
-
-```{r, eval = TRUE}
-urls <- list(
-  ornitela = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=0&single=true&output=csv",
-  interrex = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=668940&single=true&output=csv",
-  druid = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=2022063817&single=true&output=csv",
-  gm = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSU838D5jOOcPSyL21iheYdC1hEwYaR88x9qhJNLOZtmaTuK6hv23Vpz-o1b5erXur4Vw2g9Z2mQchh/pub?gid=1432656981&single=true&output=csv"
-)
-
-metadata <-
-  urls |>
-  purrr::map(read_tab) |>
-  dplyr::bind_rows()
-```
-
-Map to Movebank format:
+Get reference data and map to Movebank format:
 
 ```{r}
-movebank_ref_data <- get_reference_data(project_id, metadata)
+movebank_ref_data <- get_reference_data(project_id)
 ```
 
 Save to CSV:
