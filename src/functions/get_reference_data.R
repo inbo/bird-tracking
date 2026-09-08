@@ -94,7 +94,7 @@ get_reference_data <- function(project_id) {
 
   # Select columns
   manufacturer <- unique(movebank_ref_data$`tag-manufacturer-name`)
-  if (manufacturer == "Ornitela") {
+  if (all(manufacturer == "Ornitela")) {
     movebank_ref_data <-
       movebank_ref_data |>
       dplyr::select(
@@ -105,7 +105,7 @@ get_reference_data <- function(project_id) {
         - `deploy-on-longitude`
       )
   }
-  if (manufacturer == "Druid") {
+  if (all(manufacturer == "Druid")) {
     movebank_ref_data <-
       movebank_ref_data |>
       dplyr::select(
