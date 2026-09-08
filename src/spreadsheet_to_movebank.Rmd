@@ -31,7 +31,7 @@ library(purrr)
 Set user-defined values:
 
 ```{r}
-project_id <- "CREX_VLAANDEREN"
+project_id <- "BOP_RODENT"
 ```
 
 Load custom functions to read and map the spreadsheet to Movebank reference data:
