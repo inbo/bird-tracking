@@ -1,0 +1,55 @@
+---
+title: "Prepare reference data for Movebank upload"
+author: "Sanne Govaert"
+date: "`r Sys.Date()`"
+output:
+  html_document
+---
+
+This script prepares reference data maintained in a **Google Spreadsheet** for upload to [Movebank](https://www.movebank.org/). It supports the manufacturers:
+
+- [Ornitela](https://www.ornitela.com/)
+- [Interrex](http://interrex-tracking.com/)
+- [Druid](https://druid.tech/)
+- [Global Messenger](https://www.gm-tracking.com/)
+
+The GPS data are expected to be automatically synced with Movebank.
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+
+```{r}
+library(tidyverse)
+library(here)
+library(readr)
+library(purrr)
+```
+
+Set user-defined values:
+
+```{r}
+project_id <- "BOP_RODENT"
+```
+
+Load custom functions to read and map the spreadsheet to Movebank reference data:
+
+```{r}
+source(here::here("src", "functions", "get_reference_data.R"))
+```
+
+## Get reference data
+
+Get reference data and map to Movebank format:
+
+```{r}
+movebank_ref_data <- get_reference_data(project_id)
+```
+
+Save to CSV:
+
+```{r}
+readr::write_csv(movebank_ref_data, file = here::here("data", "processed", project_id, "movebank_ref_data.csv"), na = "")
+```
