@@ -100,9 +100,7 @@ get_reference_data <- function(project_id) {
       dplyr::select(
         - `animal-mortality-type`,
         - `animal-mortality-date`,
-        - `animal-death-comments`,
-        - `deploy-on-latitude`,
-        - `deploy-on-longitude`
+        - `animal-death-comments`
       )
   }
   if (all(manufacturer == "Druid")) {
