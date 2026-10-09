@@ -13,8 +13,11 @@ L177819,M,,m,Circus aeruginosus,BOP_RODENT,adult,510,harness,2021-08-08T12:00:00
 H197221,Oudevrouw,,f,Asio flammeus,BOP_RODENT,adult,420,harness,2020-12-06T08:00:00Z,wing_length: 325,2020-11-03T23:00:00Z,Found dead on Dutch island Simonszand near avian flu victims.,dead,none,Waterland-Oudeman,phone network,GPS,203242,Ornitela,10,203242
 E464102,Ebe,,m,Circus cyaneus,BOP_RODENT,juvenile,380,harness,,wing_length: 346 | wing_span: 1036,2021-03-22T21:00:00Z,,,none,"Meldert, plateau",phone network,GPS,210196,Ornitela,10,210196
 E464103,Raven,,m,Circus cyaneus,BOP_RODENT,juvenile,337,harness,,wing_length: 337 | wing_span: 1014,2021-03-24T21:00:00Z,,,none,"Boutersem, plateau",phone network,GPS,210198,Ornitela,10,210198
+H200751,Buizerd Doel 2,,m,Buteo buteo,BOP_RODENT,adult,874,harness,2025-05-13T20:04:19Z,wing_lenght: 402 | age: +2cy,2023-04-14T23:00:00Z,,,none,Doel,phone network,GPS,210199,Ornitela,10,210199
 L177811,Alina,,f,Circus cyaneus,BOP_RODENT,juvenile,500,harness,,wing_length: 371,2021-03-02T19:00:00Z,,,none,"Laar, Brakouter",phone network,GPS,210200,Ornitela,10,210200
+H200752,Buizerd Putten,,m,Buteo buteo,BOP_RODENT,adult,823,harness,2023-09-14T03:01:52Z,wing_lenght: 376 | age: +2cy,2023-04-17T23:00:00Z,Tracker defective.,equipment failure,none,Putten weide,phone network,GPS,210201,Ornitela,10,210201
 L177822,Dora,,f,Circus cyaneus,BOP_RODENT,juvenile,550,harness,,wing_length: 380,2021-12-16T22:00:00Z,,,none,"Landsdijk, Bloksheule",phone network,GPS,210202,Ornitela,10,210202
+H197175,Buizerd Prosper,,m,Buteo buteo,BOP_RODENT,adult,790,harness,2023-04-29T14:55:15Z,wing_lenght: 384 | age: +3cy,2023-04-14T23:00:00Z,,,none,Prosperpolder Zuid,phone network,GPS,210203,Ornitela,15,210203
 H200726,Anny,,f,Circus aeruginosus,BOP_RODENT,adult,750,harness,2023-09-25T12:00:00Z,,2022-05-30T22:00:00Z,,,none,Lillo,phone network,GPS,210204,Ornitela,15,210204
 L177824,Frank,,m,Circus aeruginosus,BOP_RODENT,adult,570,harness,,,2022-05-30T22:00:00Z,,,none,Lillo,phone network,GPS,210205,Ornitela,15,210205
 H183710,Rozie,,f,Circus aeruginosus,BOP_RODENT,adult,733,harness,,age: 2cy,2022-08-11T22:00:00Z,,,none,Koekelare,phone network,GPS,210206,Ornitela,15,210206
@@ -26,9 +29,13 @@ H200724,Doel,,f,Buteo buteo,BOP_RODENT,adult,1100,harness,,,2022-03-22T22:00:00Z
 H200704,Roger,,m,Buteo buteo,BOP_RODENT,adult,899,harness,,wing_length: 407 | wing_span: 899 | moult_score: 0,2021-06-02T18:00:00Z,,,none,"Gent, Kloosterbos",phone network,GPS,211051,Ornitela,15,211051
 H200723,Beer,,m,Buteo buteo,BOP_RODENT,adult,850,harness,,,2022-03-22T22:00:00Z,,,none,Kallo,phone network,GPS,211052,Ornitela,25,211052
 E464107,Karel,,m,Circus cyaneus,BOP_RODENT,juvenile,400,harness,2022-10-22T18:00:00Z,,2021-12-21T22:00:00Z,Found dead in Denmark. Likely wind turbine collision according to autopsy.,dead,none,"Landsdijk, Bloksheule",phone network,GPS,212925,Ornitela,10,212925
+H215004,Buizerd Midas,,u,Buteo buteo,BOP_RODENT,adult,1040,harness,,wing_lenght: 410 | age +2cy,2023-05-18T23:00:00Z,,,none,Midas,phone network,GPS,212925,Ornitela,10,212925
+H215003,Buizerd Prosper Z (ad),,m,Buteo buteo,BOP_RODENT,adult,813,harness,,wing_lenght: 391 | age +2cy,2023-05-11T23:00:00Z,,,none,Prosperpolder Zuid,phone network,GPS,212927,Ornitela,10,212927
 E464108,Arne,,m,Circus cyaneus,BOP_RODENT,adult,350,harness,,wing_length: 311 | age: 2cy,2022-01-10T22:00:00Z,,,none,"Landsdijk, Bloksheule",phone network,GPS,212928,Ornitela,10,212928
 E491304,Sandrine,Y-V.Z,f,Circus pygargus,BOP_RODENT,adult,333,harness,2023-05-23T11:00:00Z,,2022-07-27T22:00:00Z,,,none,Moeren,phone network,GPS,213911,Ornitela,10,213911
+H215002,Buizerd Prosper Z (2kj),,f,Buteo buteo,BOP_RODENT,adult,845,harness,2026-07-26T23:00:00Z,wing_lenght: 386 | age: 2cy,2023-05-11T23:00:00Z,Found dead on highway. Car collision?,dead,none,Prosperpolder Zuid,phone network,GPS,213912,Ornitela,10,213912
 E464112,Charlie,,m,Circus cyaneus,BOP_RODENT,adult,404.5,harness,,wing_length: 331 | age: 3cy,2022-12-17T22:00:00Z,,,none,"Jabbeke, Legeweg",phone network,GPS,213913,Ornitela,10,213913
+H215001,Buizerd Kerncentrale,,m,Buteo buteo,BOP_RODENT,adult,841,harness,,wing_lenght: 386 | age: +2cy,2023-05-11T23:00:00Z,,,none,Kerncentrale,phone network,GPS,213914,Ornitela,10,213914
 E459160,Jelle,Y-V.A,m,Circus pygargus,BOP_RODENT,adult,252,harness,2024-09-04T16:00:00Z,age: 3cy,2022-07-12T22:00:00Z,,,none,Bulskamp,phone network,GPS,224079,Ornitela,10,224079
 E464110,Mia,Y-V.U,f,Circus pygargus,BOP_RODENT,adult,296,harness,2024-04-22T00:00:00Z,,2022-07-15T22:00:00Z,,,none,Krombeke,phone network,GPS,224080,Ornitela,10,224080
 E491305,Arry,,m,Circus pygargus,BOP_RODENT,adult,315,harness,2025-08-29T00:00:00Z,,2022-07-27T22:00:00Z,,,none,Moeren,phone network,GPS,224081,Ornitela,10,224081
