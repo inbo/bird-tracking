@@ -94,15 +94,6 @@ get_reference_data <- function(project_id) {
 
   # Select columns
   manufacturer <- unique(movebank_ref_data$`tag-manufacturer-name`)
-  if (all(manufacturer == "Ornitela")) {
-    movebank_ref_data <-
-      movebank_ref_data |>
-      dplyr::select(
-        - `animal-mortality-type`,
-        - `animal-mortality-date`,
-        - `animal-death-comments`
-      )
-  }
   if (all(manufacturer == "Druid")) {
     movebank_ref_data <-
       movebank_ref_data |>
