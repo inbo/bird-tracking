@@ -1,5 +1,5 @@
 {
-  "id": "https://doi.org/10.5281/zenodo.17310324",
+  "id": "https://doi.org/10.5281/zenodo.23340023",
   "resources": [
     {
       "name": "reference-data",
@@ -59,6 +59,14 @@
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000244/2/"
           },
           {
+            "name": "animal-death-comments",
+            "title": "animal death comments",
+            "description": "Comments about the death of the animal. Summary information can be reported in 'animal mortality date', 'animal mortality latitude', 'animal mortality longitude', and 'animal mortality type'. Example: 'hit by a car'; Units: none; Entity described: individual",
+            "type": "string",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000013/4/"
+          },
+          {
             "name": "animal-life-stage",
             "title": "animal life stage",
             "description": "The age class or life stage of the animal at the beginning of the deployment. Can be years or months of age or terms such as 'adult', 'subadult' and 'juvenile'. Example: 'juvenile, adult'; Units: not specified; Entity described: deployment",
@@ -73,6 +81,22 @@
             "type": "number",
             "format": "default",
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000019/2/"
+          },
+          {
+            "name": "animal-mortality-date",
+            "title": "animal mortality date",
+            "description": "The known or estimated date on which the animal died. This may differ from the time of the end of the deployment, which is defined by 'deploy-off timestamp'. Example: '2022-04-26'; Format: yyyy-MM-dd; Units: date (time and time zone not specified); Entity described: individual",
+            "type": "date",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000394/1/"
+          },
+          {
+            "name": "animal-mortality-type",
+            "title": "animal mortality type",
+            "description": "The likely immediate cause of death. Additional information can be provided using 'animal death comments'. Values are chosen from a controlled list: bycatch = unintentional death of a non-target animal during fishing activities; capture = related to the capture and handling of the animal for the study; electrocution = electric shock; harvest = intentional killing by humans, for example through hunting, fishing or poaching; disease = related to a specific illness or terminal disease; natural-death = natural causes, not further specified; other = other; parasites = parasitic infection or disease, including parasitoidism; poison = accidental or deliberate exposure to a chemical substance; predation = killed by a predator or micropredator; starvation = lack of caloric energy intake; unknown = could not be determined; vehicle-collision = collision with a motor vehicle, watercraft, aircraft or other vehicle. Format: controlled list; Entity described: animal",
+            "type": "string",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000345/1/"
           },
           {
             "name": "animal-nickname",
@@ -105,6 +129,22 @@
             "type": "string",
             "format": "default",
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000052/5/"
+          },
+          {
+            "name": "deploy-on-latitude",
+            "title": "deploy on latitude",
+            "description": "The geographic latitude of the location where the animal was released. Intended primarily for cases in which the animal release location has higher accuracy than that derived from sensor data. Example: '27.3516'; Units: decimal degrees, WGS84 reference system; Entity described: deployment",
+            "type": "number",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000078/3/"
+          },
+          {
+            "name": "deploy-on-longitude",
+            "title": "deploy on longitude",
+            "description": "The geographic longitude of the location where the animal was released. Intended primarily for cases in which the animal release location has higher accuracy than that derived from sensor data. Example: '-97.3321'; Units: decimal degrees, WGS84 reference system; Entity described: deployment",
+            "type": "number",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000079/3/"
           },
           {
             "name": "deploy-on-measurements",
@@ -263,6 +303,14 @@
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000004/2/"
           },
           {
+            "name": "gps:activity-count",
+            "title": "activity count",
+            "description": "Activity values provided by the tag or calculated using tag data. In general, higher values indicate more activity. Range and method of calculation may vary by the tag provider, model, settings and placement on the animal. Example: '209'; Units: count; Entity described: event",
+            "type": "string",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000114/5/"
+          },
+          {
             "name": "bar:barometric-height",
             "title": "barometric height",
             "description": "Altitude estimated by a barometric pressure sensor on the tag. Example: '179'; Units: meters; Entity described: event",
@@ -319,6 +367,14 @@
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000121/3/"
           },
           {
+            "name": "gps:vdop",
+            "title": "GPS VDOP",
+            "description": "Vertical dilution of precision provided by the GPS. Example: '1.9'; Units: unitless; Entity described: event",
+            "type": "number",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000122/2/"
+          },
+          {
             "name": "ground-speed",
             "title": "ground speed",
             "description": "The estimated ground speed provided by the sensor or calculated between consecutive locations. Example: '7.22'; Units: m/s; Entity described: event",
@@ -357,6 +413,14 @@
             "type": "number",
             "format": "default",
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000139/3/"
+          },
+          {
+            "name": "location-error-text",
+            "title": "location error text",
+            "description": "An estimate of the horizontal error of the location estimate, typically provided in the original data file, described using more than numbers. Units should be provided in the values. (If the values are purely numeric, use 'location error numerical'.) Best practice is to define values and units using 'location error percentile' and/or 'location accuracy comments'. Example: '> 25 ft'; Units: not defined; Entity described: event",
+            "type": "string",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000144/2/"
           },
           {
             "name": "mag:magnetic-field-raw-x",
