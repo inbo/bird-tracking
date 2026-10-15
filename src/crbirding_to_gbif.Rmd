@@ -1,0 +1,60 @@
+---
+title: "Prepare CR-Birding data for GBIF IPT upload (make Darwin Core)"
+author:
+- Sanne Govaert
+date: "`r Sys.Date()`"
+output:
+  html_document
+---
+
+This script prepares CR-birding data for upload to a [GBIF IPT](https://gbif.org/ipt).
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Install developmental branch of crbirding package:
+
+```{r}
+# devtools::install_github("inbo/crbirding@write_dwc")
+```
+
+Load libraries:
+
+```{r}
+library(here)
+library(crbirding)
+```
+
+## Set user-defined values
+
+```{r}
+project_id <- "LARGE_GULLS"
+dataset_id <- NULL # Republish with GBIF DOI
+dataset_name <- "Large gulls colour-ringed in Belgium"
+license <- "CC0-1.0"
+rights_holder <- "INBO"
+```
+
+## Create and write Darwin Core
+
+Read data and set directory:
+
+```{r}
+data <- read.csv(here::here("data", "raw", project_id, "crbirding_export.csv"))
+dir <- here::here("data", "processed", project_id, "dwc")
+```
+
+Data transformation:
+
+```{r}
+dwc <- crbirding::write_dwc(
+  data = data,
+  directory = dir,
+  dataset_id = dataset_id,
+  dataset_name = dataset_name,
+  license = license,
+  rights_holder = rights_holder
+)
+```
+
