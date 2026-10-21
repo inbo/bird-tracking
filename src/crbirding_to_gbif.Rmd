@@ -31,7 +31,7 @@ library(crbirding)
 ```{r}
 project_id <- "LARGE_GULLS"
 dataset_id <- NULL # Republish with GBIF DOI
-dataset_name <- "Large gulls colour-ringed in Belgium"
+dataset_name <- "Large gulls colour-ringed by INBO"
 license <- "CC0-1.0"
 rights_holder <- "INBO"
 ```
