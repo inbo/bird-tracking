@@ -41,7 +41,7 @@ rights_holder <- "INBO"
 Read data and set directory:
 
 ```{r}
-data <- read.csv(here::here("data", "raw", project_id, "crbirding_export.csv"))
+data <- read.csv(here::here("data", "raw", project_id, "crbirding_export.csv"), check.names = FALSE)
 dir <- here::here("data", "processed", project_id, "dwc")
 ```
 
