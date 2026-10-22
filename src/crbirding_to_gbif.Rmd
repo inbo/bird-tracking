@@ -60,17 +60,19 @@ dwc <- crbirding::write_dwc(
 
 ## Post-processing for INBO-datasets
 
-The colour-ring data was previously managed in a different database. On xx/xx/xxxx all the data was migrated to the CR-Birding database. The old data is less precise. Therefore, coordinates and coordinateUncertaintyInMeters before this date are set to a lower precision.
+The colour-ring data was previously managed in a different database. On 15/11/2020 all the data was migrated to the CR-Birding database. The old data is less precise. Therefore, coordinates and coordinateUncertaintyInMeters before this date are set to a lower precision.
 
 ```{r}
-migration_date <- "2020-01-01" # Dummy date to test script
+migration_date <- "2020-11-15"
 dwc$occurrence <-
-  dwc$occurrence %>%
+  dwc$occurrence |>
   dplyr::mutate(
     decimalLatitude = dplyr::if_else(eventDate < migration_date, round(decimalLatitude, 2), decimalLatitude),
     decimalLongitude = dplyr::if_else(eventDate < migration_date, round(decimalLongitude, 2), decimalLongitude),
     coordinateUncertaintyInMeters = dplyr::if_else(eventDate < migration_date, 1500, coordinateUncertaintyInMeters)
   )
+
+dwc$occurrence |> View()
 
 readr::write_csv(occurrence, file.path(directory, "occurrence.csv"), na = "")
 ```
