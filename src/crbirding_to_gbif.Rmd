@@ -1,0 +1,79 @@
+---
+title: "Prepare CR-Birding data for GBIF IPT upload (make Darwin Core)"
+author:
+- Sanne Govaert
+date: "`r Sys.Date()`"
+output:
+  html_document
+---
+
+This script prepares CR-birding data for upload to a [GBIF IPT](https://gbif.org/ipt).
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Install crbirding package:
+
+```{r}
+# devtools::install_github("inbo/crbirding")
+```
+
+Load libraries:
+
+```{r}
+library(here)
+library(crbirding)
+```
+
+## Set user-defined values
+
+```{r}
+project_id <- "LARGE_GULLS"
+dataset_id <- NULL # Republish with GBIF DOI
+dataset_name <- "CR-Birding - Large gulls, blue ring with 4 letters (third=A E or O)"
+license <- "CC0-1.0"
+rights_holder <- "INBO"
+```
+
+## Create and write Darwin Core
+
+Read data and set directory:
+
+```{r}
+data <- read.csv(here::here("data", "raw", project_id, "crbirding_export.csv"), check.names = FALSE)
+dir <- here::here("data", "processed", project_id, "dwc")
+```
+
+Data transformation:
+
+```{r}
+dwc <- crbirding::write_dwc(
+  data = data,
+  directory = dir,
+  dataset_id = dataset_id,
+  dataset_name = dataset_name,
+  license = license,
+  rights_holder = rights_holder
+)
+```
+
+## Post-processing for INBO-datasets
+
+The colour-ring data was previously managed in a different database. On 15/11/2020 all the data was migrated to the CR-Birding database. The old data is less precise. Therefore, coordinates and coordinateUncertaintyInMeters before this date are set to a lower precision.
+
+```{r}
+migration_date <- "2020-11-15"
+dwc$occurrence <-
+  dwc$occurrence |>
+  dplyr::mutate(
+    decimalLatitude = dplyr::if_else(eventDate < migration_date, round(decimalLatitude, 2), decimalLatitude),
+    decimalLongitude = dplyr::if_else(eventDate < migration_date, round(decimalLongitude, 2), decimalLongitude),
+    coordinateUncertaintyInMeters = dplyr::if_else(eventDate < migration_date, 1500, coordinateUncertaintyInMeters)
+  )
+
+dwc$occurrence |> View()
+
+readr::write_csv(occurrence, file.path(directory, "occurrence.csv"), na = "")
+```
+
