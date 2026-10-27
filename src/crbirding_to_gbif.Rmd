@@ -27,7 +27,6 @@ library(crbirding) # Install with pak::pak("inbo/crbirding")
 ```{r}
 project_id <- "LARGE_GULLS"
 dataset_id <- NULL # Republish with GBIF DOI
-dataset_name <- "CR-Birding - Large gulls, blue ring with 4 letters (third=A E or O)"
 license <- "CC0-1.0"
 rights_holder <- "INBO"
 ```
@@ -48,7 +47,6 @@ dwc <- crbirding::write_dwc(
   data = data,
   directory = dir,
   dataset_id = dataset_id,
-  dataset_name = dataset_name,
   license = license,
   rights_holder = rights_holder
 )
@@ -63,6 +61,7 @@ migration_date <- "2020-10-01"
 dwc$occurrence <-
   dwc$occurrence |>
   dplyr::mutate(
+    datasetName = paste0("CR-Birding - ", datasetName),
     decimalLatitude = dplyr::if_else(eventDate < migration_date, round(decimalLatitude, 2), decimalLatitude),
     decimalLongitude = dplyr::if_else(eventDate < migration_date, round(decimalLongitude, 2), decimalLongitude),
     coordinateUncertaintyInMeters = dplyr::if_else(eventDate < migration_date, 1500, coordinateUncertaintyInMeters)
