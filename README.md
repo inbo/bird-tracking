@@ -44,8 +44,9 @@ Title | Started | Ended | DOI | GBIF | OBIS
 --- | --- | --- | --- | --- | ---
 CR-Birding - Large gulls, blue ring with 4 letters (third=A E or O) | 1999 | active | [DOI]() |  | 
 
+## Scripts
 
-## Workflow
+Data processsing scripts:
 
 - [Prepare Uva-BiTS (meta)data for Movebank upload](src/uvabits_to_movebank.Rmd)
 - [Prepare Ornitela, Interrex, Druid and Global Messenger reference data for Movebank upload](src/spreadsheet_to_movebank.Rmd)
@@ -54,6 +55,7 @@ CR-Birding - Large gulls, blue ring with 4 letters (third=A E or O) | 1999 | act
 - [Prepare CR-Birding data for GBIF upload (make Darwin Core)](src/crbirding_to_gbif.Rmd)
 
 ## Repo structure
+For reusable functionality, see our R packages:
 
 The repository structure is based on [Cookiecutter Data Science](http://drivendata.github.io/cookiecutter-data-science/). Files and directories indicated with `GENERATED` should not be edited manually, those with `IGNORED` are ignored by git and will not appear on GitHub.
 
@@ -71,6 +73,8 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 └── data
     └── processed       : Data that can be uploaded to Movebank GENERATED, large files IGNORED
 ```
+- [movepub](https://inbo.github.io/movepub): Prepare Movebank Data for Publication
+- [crbirding](https://inbo.github.io/movepub): Prepare CR-Birding Data For Publication
 
 The repository used to include SQL and CSS for [CartoDB maps](https://oscibio.inbo.be/blog/?category=cartodb) and the source code for a [bird tracking explorer](https://oscibio.inbo.be/blog/bird-tracking-explorer/). These are accessible in the [version history](https://github.com/inbo/bird-tracking/tree/carto) of this repository.
 
