@@ -4,9 +4,11 @@ This repository contains scripts to **publish bird tracking data** to [Movebank]
 
 ## Datasets
 
+### GPS tracking
+
 Title | System | Started | Ended | Movebank | Zenodo | GBIF | OBIS
 --- | --- | --- | --- | --- | --- | --- | ---
-ARMENIAN_GULL - Armenian gulls (Larus armenicus, Laridae) breeding in Sevan National Park and Lake Arpi National Park (Armenia) | Interrex | 2024 | active | [4194049025](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study4194049025) | [DOI](https://doi.org/10.5281/zenodo.21276580) | [GBIF](https://www.gbif.org/dataset/3a3c40ec-fb9b-4de3-aa32-4c8a2e101d16)
+ARMENIAN_GULL - Armenian gulls (Larus armenicus, Laridae) breeding in Sevan National Park and Lake Arpi National Park (Armenia) | Interrex | 2024 | active | [4194049025](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study4194049025) | [DOI](https://doi.org/10.5281/zenodo.21276580) | [GBIF](https://www.gbif.org/dataset/3a3c40ec-fb9b-4de3-aa32-4c8a2e101d16) | [OBIS](https://obis.org/dataset/1c6775af-323c-4e23-b7b7-b8ae42fc734d)
 BOP_RODENT - Rodent specialized birds of prey (Circus, Asio, Buteo) in Flanders (Belgium) | Ornitela | 2020 | active | [1278021460](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1278021460) | [DOI](https://doi.org/10.5281/zenodo.5735405) | [GBIF](https://www.gbif.org/dataset/e2fb42ca-e408-4aa2-a7bd-a9bb4ddcc83a) | NA
 CREX_VLAANDEREN - Corn crakes (Crex crex, Rallidae) in Flanders (Belgium) | Global Messenger | 2024 | active | [9058311756](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study9058311756) | | | NA
 CURLEW_VLAANDEREN - Eurasian curlews (Numenius arquata, Scolopacidae) breeding in Flanders (Belgium) | Ornitela | 2020 | active | [1841091905](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study1841091905) | [DOI](https://doi.org/10.5281/zenodo.5779130) |  [GBIF](https://www.gbif.org/dataset/88216808-1942-44ed-b059-b576bf79a28e) | [OBIS](https://obis.org/dataset/7ee5747e-f7c5-44ad-9012-925dd60967aa)
@@ -34,9 +36,14 @@ RRP_VLAANDEREN - Rose-ringed parakeets (Psittacula krameri) breeding in Ghent (B
 SPOONBILL_VLAANDEREN - Eurasian spoonbills (Platalea leucorodia, Threskiornithidae) in Flanders (Belgium) | Ornitela | 2022 | active | [2313947453](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study2313947453) | [DOI](https://doi.org/10.5281/zenodo.10055132) | [GBIF](https://www.gbif.org/dataset/6850e626-46fd-4843-a391-2c06b069a940) | [OBIS](https://obis.org/dataset/6c77ad5e-e635-4c2a-b389-e11676f20137)
 TURTUR_VLAANDEREN - European turtle doves (Streptopelia turtur, Columbidae) breeding in Flanders (Belgium) | Global Messenger | 2025 | active | [7675204759](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study7675204759) | | | NA
 
-Steps to upload data to Zenodo are described [here](https://github.com/inbo/bird-tracking/issues/131).
+Note: before we adopted the workflow to publish on Movebank and Zenodo, two datasets were published on GBIF as source datasets (<https://doi.org/10.15468/02omly> and <https://doi.org/10.15468/rbguhj>). Those have since been deleted, since they are better represented by the datasets listed above (`HG_OOSTENDE`, `LBBG_ZEEBRUGGE` and `MH_WATERLAND`).
 
-Before we adopted the workflow to publish on Movebank and Zenodo, two datasets were published on GBIF as source datasets (https://doi.org/10.15468/02omly and https://doi.org/10.15468/rbguhj). Those have since been deleted, since these are better represented by the datasets listed above (`HG_OOSTENDE`, `LBBG_ZEEBRUGGE` and `MH_WATERLAND`).
+### Colour-ringing
+
+Title | Started | Ended | DOI | GBIF | OBIS
+--- | --- | --- | --- | --- | ---
+CR-Birding - Large gulls, blue ring with 4 letters (third=A E or O) | 1999 | active | [DOI]() |  | 
+
 
 ## Workflow
 
