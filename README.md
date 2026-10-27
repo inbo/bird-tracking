@@ -40,9 +40,9 @@ Note: before we adopted the workflow to publish on Movebank and Zenodo, two data
 
 ### Colour-ringing
 
-Title | Started | Ended | DOI | GBIF | OBIS
+Title | Started | Ended | GBIF | OBIS
 --- | --- | --- | --- | --- | ---
-CR-Birding - Large gulls, blue ring with 4 letters (third=A E or O) | 1999 | active | [DOI]() |  | 
+CR-Birding - Large gulls, blue ring with 4 letters (third=A E or O) | 1999 | active | [DOI](https://doi.org/10.15468/6zdvsv) |  
 
 ## Scripts
 
