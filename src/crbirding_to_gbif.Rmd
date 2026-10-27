@@ -18,6 +18,7 @@ Load libraries:
 ```{r}
 library(here)
 library(readr)
+library(dplyr)
 library(crbirding) # Install with pak::pak("inbo/crbirding")
 ```
 
