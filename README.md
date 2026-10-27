@@ -1,8 +1,10 @@
 # Bird tracking
 
-This repository contains scripts to **publish bird tracking data** from the LifeWatch [GPS tracking network for large birds](http://lifewatch.be/en/gps-tracking-network-large-birds) on [Movebank](https://www.movebank.org/), [Zenodo](https://zenodo.org), [GBIF](https://www.gbif.org) and [OBIS](https://obis.org). For reusable functions, see the [movepub](https://inbo.github.io/movepub) R package.
+This repository contains scripts to **publish bird tracking data** to [Movebank](https://www.movebank.org/), [Zenodo](https://zenodo.org), [GBIF](https://www.gbif.org) and [OBIS](https://obis.org). We do this for datasets with GPS tracking data (mainly collected by INBO using the [LifeWatch GPS tracking network for large birds](http://lifewatch.be/birds)) and colour-ringing data.
 
 ## Datasets
+
+### GPS tracking
 
 Title | System | Started | Ended | Movebank | Zenodo | GBIF | OBIS
 --- | --- | --- | --- | --- | --- | --- | ---
@@ -34,41 +36,30 @@ RRP_VLAANDEREN - Rose-ringed parakeets (Psittacula krameri) breeding in Ghent (B
 SPOONBILL_VLAANDEREN - Eurasian spoonbills (Platalea leucorodia, Threskiornithidae) in Flanders (Belgium) | Ornitela | 2022 | active | [2313947453](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study2313947453) | [DOI](https://doi.org/10.5281/zenodo.10055132) | [GBIF](https://www.gbif.org/dataset/6850e626-46fd-4843-a391-2c06b069a940) | [OBIS](https://obis.org/dataset/6c77ad5e-e635-4c2a-b389-e11676f20137)
 TURTUR_VLAANDEREN - European turtle doves (Streptopelia turtur, Columbidae) breeding in Flanders (Belgium) | Global Messenger | 2025 | active | [7675204759](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study7675204759) | [DOI](https://doi.org/10.5281/zenodo.23097870) | [GBIF](https://www.gbif.org/dataset/256134b5-93d9-4928-8a4f-aea0cb5b4182) | NA
 
-Steps to upload data to Zenodo are described [here](https://github.com/inbo/bird-tracking/issues/131).
+Note: before we adopted the workflow to publish on Movebank and Zenodo, two datasets were published on GBIF as source datasets (<https://doi.org/10.15468/02omly> and <https://doi.org/10.15468/rbguhj>). Those have since been deleted, since they are better represented by the datasets listed above (`HG_OOSTENDE`, `LBBG_ZEEBRUGGE` and `MH_WATERLAND`).
 
-Before we adopted the workflow to publish on Movebank and Zenodo, two datasets were published on GBIF as source datasets (https://doi.org/10.15468/02omly and https://doi.org/10.15468/rbguhj). Those have since been deleted, since these are better represented by the datasets listed above (`HG_OOSTENDE`, `LBBG_ZEEBRUGGE` and `MH_WATERLAND`).
+### Colour-ringing
 
-## Workflow
+Title | Started | Ended | DOI | GBIF | OBIS
+--- | --- | --- | --- | --- | ---
+CR-Birding - Large gulls, blue ring with 4 letters (third=A E or O) | 1999 | active | [DOI]() |  | 
+
+## Scripts
+
+Data processsing scripts:
 
 - [Prepare Uva-BiTS (meta)data for Movebank upload](src/uvabits_to_movebank.Rmd)
 - [Prepare Ornitela, Interrex, Druid and Global Messenger reference data for Movebank upload](src/spreadsheet_to_movebank.Rmd)
 - [Prepare Movebank data for Zenodo upload (make frictionless)](src/movebank_to_frictionless.Rmd)
-- [Prepare Zenodo data for GBIF upload](src/zenodo_to_gbif.Rmd)
+- [Prepare Zenodo data for GBIF upload (make Darwin Core)](src/zenodo_to_gbif.Rmd)
+- [Prepare CR-Birding data for GBIF upload (make Darwin Core)](src/crbirding_to_gbif.Rmd)
 
-## Repo structure
+For reusable functionality, see our R packages:
 
-The repository structure is based on [Cookiecutter Data Science](http://drivendata.github.io/cookiecutter-data-science/). Files and directories indicated with `GENERATED` should not be edited manually, those with `IGNORED` are ignored by git and will not appear on GitHub.
-
-```
-├── README.md           : Description of this repository
-├── LICENSE             : Repository license
-├── bird-tracking.Rproj : RStudio project file
-├── .gitignore          : Files and directories to be ignored by git
-│
-├── src                 : Scripts to process tracking data for Movebank
-│   └── functions       : Custom functions used in scripts
-|
-├── sql                 : Queries to transform tracking data to Movebank format
-│
-└── data
-    └── processed       : Data that can be uploaded to Movebank GENERATED, large files IGNORED
-```
+- [movepub](https://inbo.github.io/movepub): Prepare Movebank Data for Publication
+- [crbirding](https://inbo.github.io/movepub): Prepare CR-Birding Data For Publication
 
 The repository used to include SQL and CSS for [CartoDB maps](https://oscibio.inbo.be/blog/?category=cartodb) and the source code for a [bird tracking explorer](https://oscibio.inbo.be/blog/bird-tracking-explorer/). These are accessible in the [version history](https://github.com/inbo/bird-tracking/tree/carto) of this repository.
-
-## Contributors
-
-[List of contributors](https://github.com/inbo/bird-tracking/contributors)
 
 ## License
 

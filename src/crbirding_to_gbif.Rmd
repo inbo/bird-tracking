@@ -1,0 +1,71 @@
+---
+title: "Prepare CR-Birding data for GBIF IPT upload (make Darwin Core)"
+author:
+- Sanne Govaert
+date: "`r Sys.Date()`"
+output:
+  html_document
+---
+
+This script prepares CR-birding data for upload to a [GBIF IPT](https://gbif.org/ipt).
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+
+```{r}
+library(here)
+library(readr)
+library(dplyr)
+library(crbirding) # Install with pak::pak("inbo/crbirding")
+```
+
+## Set user-defined values
+
+```{r}
+project_id <- "LARGE_GULLS"
+dataset_id <- NULL # Republish with GBIF DOI
+license <- "CC0-1.0"
+rights_holder <- "INBO"
+```
+
+## Create and write Darwin Core
+
+Read data and set directory:
+
+```{r}
+data <- readr::read_csv(here::here("data", "raw", project_id, "crbirding_export.csv"))
+dir <- here::here("data", "processed", project_id, "dwc")
+```
+
+Data transformation:
+
+```{r}
+dwc <- crbirding::write_dwc(
+  data = data,
+  directory = dir,
+  dataset_id = dataset_id,
+  license = license,
+  rights_holder = rights_holder
+)
+```
+
+## Post-processing for INBO datasets
+
+The colour-ringing data was previously managed in a different database. The old data is less precise. An analysis of the full data export shows that all entries from October 1st, 2020, onward have exact coordinates in decimal degrees. Older data had lower precision (like 53°12'N - 03°10'E) and were later transformed. This should be reflected in a higher `coordinateUncertaintyInMeters` than the default `250 m`:
+
+```{r, eval = TRUE}
+migration_date <- "2020-10-01"
+dwc$occurrence <-
+  dwc$occurrence |>
+  dplyr::mutate(
+    datasetName = paste0("CR-Birding - ", datasetName),
+    decimalLatitude = dplyr::if_else(eventDate < migration_date, round(decimalLatitude, 2), decimalLatitude),
+    decimalLongitude = dplyr::if_else(eventDate < migration_date, round(decimalLongitude, 2), decimalLongitude),
+    coordinateUncertaintyInMeters = dplyr::if_else(eventDate < migration_date, 1500, coordinateUncertaintyInMeters)
+  )
+
+readr::write_csv(dwc$occurrence, file.path(dir, "occurrence.csv"), na = "")
+```
