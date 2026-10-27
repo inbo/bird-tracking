@@ -13,18 +13,12 @@ This script prepares CR-birding data for upload to a [GBIF IPT](https://gbif.org
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-Install crbirding package:
-
-```{r}
-# devtools::install_github("inbo/crbirding")
-```
-
 Load libraries:
 
 ```{r}
 library(here)
-library(crbirding)
 library(readr)
+library(crbirding) # Install with pak::pak("inbo/crbirding")
 ```
 
 ## Set user-defined values
