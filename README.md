@@ -54,33 +54,12 @@ Data processsing scripts:
 - [Prepare Zenodo data for GBIF upload (make Darwin Core)](src/zenodo_to_gbif.Rmd)
 - [Prepare CR-Birding data for GBIF upload (make Darwin Core)](src/crbirding_to_gbif.Rmd)
 
-## Repo structure
 For reusable functionality, see our R packages:
 
-The repository structure is based on [Cookiecutter Data Science](http://drivendata.github.io/cookiecutter-data-science/). Files and directories indicated with `GENERATED` should not be edited manually, those with `IGNORED` are ignored by git and will not appear on GitHub.
-
-```
-├── README.md           : Description of this repository
-├── LICENSE             : Repository license
-├── bird-tracking.Rproj : RStudio project file
-├── .gitignore          : Files and directories to be ignored by git
-│
-├── src                 : Scripts to process tracking data for Movebank
-│   └── functions       : Custom functions used in scripts
-|
-├── sql                 : Queries to transform tracking data to Movebank format
-│
-└── data
-    └── processed       : Data that can be uploaded to Movebank GENERATED, large files IGNORED
-```
 - [movepub](https://inbo.github.io/movepub): Prepare Movebank Data for Publication
 - [crbirding](https://inbo.github.io/movepub): Prepare CR-Birding Data For Publication
 
 The repository used to include SQL and CSS for [CartoDB maps](https://oscibio.inbo.be/blog/?category=cartodb) and the source code for a [bird tracking explorer](https://oscibio.inbo.be/blog/bird-tracking-explorer/). These are accessible in the [version history](https://github.com/inbo/bird-tracking/tree/carto) of this repository.
-
-## Contributors
-
-[List of contributors](https://github.com/inbo/bird-tracking/contributors)
 
 ## License
 
