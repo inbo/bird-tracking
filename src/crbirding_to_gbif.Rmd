@@ -24,6 +24,7 @@ Load libraries:
 ```{r}
 library(here)
 library(crbirding)
+library(readr)
 ```
 
 ## Set user-defined values
@@ -41,7 +42,7 @@ rights_holder <- "INBO"
 Read data and set directory:
 
 ```{r}
-data <- read.csv(here::here("data", "raw", project_id, "crbirding_export.csv"), check.names = FALSE)
+data <- readr::read_csv(here::here("data", "raw", project_id, "crbirding_export.csv"))
 dir <- here::here("data", "processed", project_id, "dwc")
 ```
 
