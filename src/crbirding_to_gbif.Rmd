@@ -68,6 +68,5 @@ dwc$occurrence <-
     coordinateUncertaintyInMeters = dplyr::if_else(eventDate < migration_date, 1500, coordinateUncertaintyInMeters)
   )
 
-readr::write_csv(occurrence, file.path(dir, "occurrence.csv"), na = "")
+readr::write_csv(dwc$occurrence, file.path(dir, "occurrence.csv"), na = "")
 ```
-
