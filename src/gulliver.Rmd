@@ -96,14 +96,19 @@ nrow(raw_annotations) == nrow(interim_annotations)
 
 ## Transform data
 
+Transform columns, only retain first of every 20 records:
+
 ```{r}
 processed_annotations <-
   interim_annotations |>
+  dplyr::arrange(`tag-local-identifier`, `timestamp`, `index`) |> # Sort
+  dplyr::group_by(`alt-project-id`, `timestamp`) |>
+  dplyr::slice(seq(1, n(), by = 20)) |> # Take first of very 20 records
   dplyr::mutate(
+    .keep = "none",
     `tag-id` = as.character(`tag-local-identifier`),
     `animal-id` = as.character(`animal-id`),
-    `burst` = index %/% 20, # 0 -> 0, 19 -> 0, 20 -> 1, 40 -> 2
-    `timestamp` = format(timestamp + seconds(burst), "%Y-%m-%dT%H:%M:%SZ"),
+    `timestamp` = format(timestamp + milliseconds(index * 50), "%Y-%m-%dT%H:%M:%OS3Z"),
     `behavioural-classification` = dplyr::recode_values(
       label,
       0 ~ "flap",
@@ -121,51 +126,30 @@ processed_annotations <-
     `alt-project-id`,
     `tag-id`,
     `animal-id`,
-    `burst`,
     `timestamp`,
     `behavioural-classification`,
     `study-specific-measurement`
-  )
-```
-
-Expect same number of records:
-
-```{r}
-nrow(processed_annotations) == nrow(raw_annotations)
-```
-
-Group by burst (reduces number of rows):
-
-```{r}
-grouped_annotations <-
-  processed_annotations |> distinct(
-    `alt-project-id`,
-    `tag-id`,
-    `animal-id`,
-    `burst`,
-    `timestamp`,
-    `behavioural-classification`,
-    `study-specific-measurement`
-  )
+  ) |>
+  dplyr::ungroup()
 ```
 
 Split into two files:
 
 ```{r}
 hg_texel_annotations <-
-  grouped_annotations |>
+  processed_annotations |>
   dplyr::filter(`alt-project-id` == "HG_TEXEL") |>
-  dplyr::select(-`alt-project-id`, -burst)
+  dplyr::select(-`alt-project-id`)
 lbbg_texel_annotations <-
-  grouped_annotations |>
+  processed_annotations |>
   dplyr::filter(`alt-project-id` == "LBBG_TEXEL") |>
-  dplyr::select(-`alt-project-id`, -burst)
+  dplyr::select(-`alt-project-id`)
 ```
 
 Expect same number of records:
 
 ```{r}
-nrow(dplyr::bind_rows(hg_texel_annotations, lbbg_texel_annotations)) == nrow(grouped_annotations)
+nrow(dplyr::bind_rows(hg_texel_annotations, lbbg_texel_annotations)) == nrow(processed_annotations)
 ```
 
 ## Write annotations data
