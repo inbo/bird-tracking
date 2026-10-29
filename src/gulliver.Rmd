@@ -102,12 +102,8 @@ processed_annotations <-
   dplyr::mutate(
     `tag-id` = as.character(`tag-local-identifier`),
     `animal-id` = as.character(`animal-id`),
-    `start-timestamp` = format(`timestamp`, "%Y-%m-%dT%H:%M:%SZ"),
-    `timestamp` = paste0(
-      format(`timestamp`, "%Y-%m-%dT%H:%M:%S."),
-      sprintf("%03d", index * 50),
-      "Z"
-    ),
+    `burst` = index %/% 20, # 0 -> 0, 19 -> 0, 20 -> 1, 40 -> 2
+    `timestamp` = format(timestamp + seconds(burst), "%Y-%m-%dT%H:%M:%SZ"),
     `behavioural-classification` = dplyr::recode_values(
       label,
       0 ~ "flap",
@@ -125,12 +121,29 @@ processed_annotations <-
     `alt-project-id`,
     `tag-id`,
     `animal-id`,
-    `start-timestamp`,
+    `burst`,
     `timestamp`,
-    `tilt-x`,
-    `tilt-y`,
-    `tilt-z`,
-    `ground-speed`,
+    `behavioural-classification`,
+    `study-specific-measurement`
+  )
+```
+
+Expect same number of records:
+
+```{r}
+nrow(processed_annotations) == nrow(raw_annotations)
+```
+
+Group by burst (reduces number of rows):
+
+```{r}
+grouped_annotations <-
+  processed_annotations |> distinct(
+    `alt-project-id`,
+    `tag-id`,
+    `animal-id`,
+    `burst`,
+    `timestamp`,
     `behavioural-classification`,
     `study-specific-measurement`
   )
@@ -140,19 +153,19 @@ Split into two files:
 
 ```{r}
 hg_texel_annotations <-
-  processed_annotations |>
+  grouped_annotations |>
   dplyr::filter(`alt-project-id` == "HG_TEXEL") |>
-  dplyr::select(-`alt-project-id`)
+  dplyr::select(-`alt-project-id`, -burst)
 lbbg_texel_annotations <-
-  processed_annotations |>
+  grouped_annotations |>
   dplyr::filter(`alt-project-id` == "LBBG_TEXEL") |>
-  dplyr::select(-`alt-project-id`)
+  dplyr::select(-`alt-project-id`, -burst)
 ```
 
 Expect same number of records:
 
 ```{r}
-nrow(dplyr::bind_rows(hg_texel_annotations, lbbg_texel_annotations)) == nrow(raw_annotations)
+nrow(dplyr::bind_rows(hg_texel_annotations, lbbg_texel_annotations)) == nrow(grouped_annotations)
 ```
 
 ## Write annotations data
@@ -160,12 +173,12 @@ nrow(dplyr::bind_rows(hg_texel_annotations, lbbg_texel_annotations)) == nrow(raw
 ```{r}
 readr::write_csv(
   hg_texel_annotations,
-  here("data", "processed", "HG_TEXEL", "movebank_annotations.csv"),
+  here("data", "processed", "HG_TEXEL", "movebank_beh_annotations.csv"),
   na = ""
 )
 readr::write_csv(
   lbbg_texel_annotations,
-  here("data", "processed", "LBBG_TEXEL", "movebank_annotations.csv"),
+  here("data", "processed", "LBBG_TEXEL", "movebank_beh_annotations.csv"),
   na = ""
 )
 ```
