@@ -108,7 +108,7 @@ processed_annotations <-
     .keep = "none",
     `tag-id` = as.character(`tag-local-identifier`),
     `animal-id` = as.character(`animal-id`),
-    `timestamp` = format(timestamp + milliseconds(index * 50), "%Y-%m-%dT%H:%M:%OS3Z"),
+    `timestamp` = format(timestamp + milliseconds(index * 50), "%Y-%m-%d %H:%M:%OS3"), # Mimics format of gulliver-classify
     `behavioural-classification` = dplyr::recode_values(
       label,
       0 ~ "flap",
