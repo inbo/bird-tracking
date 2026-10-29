@@ -51,7 +51,8 @@ ref_data <-
       grepl("heart rate implant", `animal-comments`, ignore.case = TRUE),
       "manipulated-other",
       `manipulation-type`
-    )
+    ),
+    `behavior-according-to` = "https://doi.org/10.5281/zenodo.23666749"
   ) |>
   dplyr::filter(`animal-life-stage` == "adult") |>
   dplyr::filter(`deploy-on-timestamp` <= as.POSIXct(end_date, tz = "UTC"))
