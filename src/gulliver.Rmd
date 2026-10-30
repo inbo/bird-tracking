@@ -76,7 +76,7 @@ readr::write_csv(
 ## Read annotation data
 
 ```{r}
-raw_annotations <- read_csv(here::here("data", "raw", "GULLIVER", "labelled_data.csv"))
+raw_annotations <- read_csv(here::here("data", "raw", "GULLIVER", "labeled_data.csv"))
 ref_hg_texel <- read_csv(here::here("data", "processed", "HG_TEXEL", "movebank_ref_data.csv"))
 ref_lbbg_texel <- read_csv(here::here("data", "processed", "LBBG_TEXEL", "movebank_ref_data.csv"))
 ```
