@@ -75,9 +75,10 @@ get_reference_data <- function(project_id) {
        .default = NA_character_
      ),
      `manipulation-type` = dplyr::case_when(
-       stringr::str_detect(manipulation_type, "manipulated other") ~ "manipulated other",
-       # Birds that were hatched from egg or raised as chicks
-       # e.g. placed in controlled environment and subjected to behavioural studies
+       !is.na(manipulation_type) ~ manipulation_type,
+       # Released after rehabilitation in wildlife rescue centre (VOC). = relocated
+       # Released after egg hatching and/or chick rearing in wildlife rescue centre (VOC). = manipulated other
+       # Placed in controlled environment and subjected to behavioural studies (HG_JUVENILE). = manipulated other
        .default = "none"
      ),
      `study-site` = release_location,
