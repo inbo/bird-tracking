@@ -1,6 +1,8 @@
 ---
 title: "Data processing for the GULLIVER project"
-author: "Sanne Govaert"
+author: 
+- Sanne Govaert
+- Peter Desmet
 date: "`r Sys.Date()`"
 output:
   html_document

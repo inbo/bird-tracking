@@ -2,6 +2,7 @@
 title: "Prepare CR-Birding data for GBIF IPT upload (make Darwin Core)"
 author:
 - Sanne Govaert
+- Peter Desmet
 date: "`r Sys.Date()`"
 output:
   html_document
