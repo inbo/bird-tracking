@@ -1,6 +1,8 @@
 ---
-title: "Clean Movebank reference data within the GULLIVER project"
-author: "Sanne Govaert"
+title: "Data processing for the GULLIVER project"
+author: 
+- Sanne Govaert
+- Peter Desmet
 date: "`r Sys.Date()`"
 output:
   html_document
@@ -17,6 +19,8 @@ Load libraries:
 library(tidyverse)
 library(here)
 ```
+
+# Process reference data
 
 Set user-defined values:
 
@@ -64,6 +68,104 @@ ref_data <-
 readr::write_csv(
   ref_data,
   here::here("data", "processed", project_id, "movebank_ref_data.csv"),
+  na = ""
+)
+```
+
+# Process annotation data
+
+## Read annotation data
+
+```{r}
+raw_annotations <- read_csv(here::here("data", "raw", "GULLIVER", "labeled_data.csv"))
+ref_hg_texel <- read_csv(here::here("data", "processed", "HG_TEXEL", "movebank_ref_data.csv"))
+ref_lbbg_texel <- read_csv(here::here("data", "processed", "LBBG_TEXEL", "movebank_ref_data.csv"))
+```
+
+Join annotations data with reference data:
+
+```{r}
+ref <-
+  dplyr::bind_rows(ref_hg_texel, ref_lbbg_texel) |>
+  dplyr::select(`tag-id`, `animal-id`, `alt-project-id`)
+interim_annotations <- dplyr::left_join(raw_annotations, ref, by = dplyr::join_by(`tag-local-identifier` == `tag-id`))
+```
+
+Expect same number of records:
+
+```{r}
+nrow(raw_annotations) == nrow(interim_annotations)
+```
+
+## Transform data
+
+Transform columns, only retain first of every 20 records:
+
+```{r}
+processed_annotations <-
+  interim_annotations |>
+  dplyr::arrange(`tag-local-identifier`, `timestamp`, `index`) |> # Sort
+  dplyr::group_by(`alt-project-id`, `timestamp`) |>
+  dplyr::slice(seq(1, n(), by = 20)) |> # Take first of very 20 records
+  dplyr::mutate(
+    .keep = "none",
+    `tag-id` = as.character(`tag-local-identifier`),
+    `animal-id` = as.character(`animal-id`),
+    `timestamp` = format(timestamp + milliseconds(index * 50), "%Y-%m-%d %H:%M:%OS3"), # Mimics format of gulliver-classify
+    `behavioural-classification` = dplyr::recode_values(
+      label,
+      0 ~ "flap",
+      1 ~ "exflap",
+      2 ~ "soar",
+      3 ~ "boat",
+      4 ~ "float",
+      5 ~ "stationary",
+      6 ~ "walk",
+      8 ~ "mixed",
+      9 ~ "peck"
+    ),
+    `study-specific-measurement` = "human"
+  ) |> dplyr::select(
+    `alt-project-id`,
+    `tag-id`,
+    `animal-id`,
+    `timestamp`,
+    `behavioural-classification`,
+    `study-specific-measurement`
+  ) |>
+  dplyr::ungroup()
+```
+
+Split into two files:
+
+```{r}
+hg_texel_annotations <-
+  processed_annotations |>
+  dplyr::filter(`alt-project-id` == "HG_TEXEL") |>
+  dplyr::select(-`alt-project-id`)
+lbbg_texel_annotations <-
+  processed_annotations |>
+  dplyr::filter(`alt-project-id` == "LBBG_TEXEL") |>
+  dplyr::select(-`alt-project-id`)
+```
+
+Expect same number of records:
+
+```{r}
+nrow(dplyr::bind_rows(hg_texel_annotations, lbbg_texel_annotations)) == nrow(processed_annotations)
+```
+
+## Write annotations data
+
+```{r}
+readr::write_csv(
+  hg_texel_annotations,
+  here("data", "processed", "HG_TEXEL", "movebank_beh_annotations.csv"),
+  na = ""
+)
+readr::write_csv(
+  lbbg_texel_annotations,
+  here("data", "processed", "LBBG_TEXEL", "movebank_beh_annotations.csv"),
   na = ""
 )
 ```
