@@ -115,6 +115,14 @@
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000052/5/"
           },
           {
+            "name": "behavior-according-to",
+            "title": "behavior according to",
+            "description": "A description of behavioral categories contained in 'behavioural classification'. This can include how they were derived and/or a reference to the method or classification system used. Example: 'Derived using acceleration data and an algorithm calibrated using field observations (see Doe et al., 2013).'; Units: none; Entity described: deployment",
+            "type": "string",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000066/4/"
+          },
+          {
             "name": "deploy-on-latitude",
             "title": "deploy on latitude",
             "description": "The geographic latitude of the location where the animal was released. Intended primarily for cases in which the animal release location has higher accuracy than that derived from sensor data. Example: '27.3516'; Units: decimal degrees, WGS84 reference system; Entity described: deployment",
@@ -153,6 +161,14 @@
             "type": "string",
             "format": "default",
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000084/5/"
+          },
+          {
+            "name": "deployment-id",
+            "title": "deployment ID",
+            "description": "A unique identifier for the deployment of a tag on animal, provided by the data owner. If the data owner does not provide a Deployment ID, an internal Movebank deployment identifier may sometimes be shown. Example: 'Jane_42818'; Units: none; Entity described: deployment",
+            "type": "string",
+            "format": "default",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000085/4/"
           },
           {
             "name": "location-accuracy-comments",
