@@ -1,14 +1,17 @@
 {
-  "id": "https://doi.org/10.5281/zenodo.22297895",
+  "id": "https://doi.org/10.5281/zenodo.23923176",
+  "$schema": "https://datapackage.org/profiles/2.0/datapackage.json",
   "resources": [
     {
+      "$schema": "https://datapackage.org/profiles/2.0/dataresource.json",
       "name": "reference-data",
       "path": "HG_TEXEL-reference-data.csv",
-      "profile": "tabular-data-resource",
+      "type": "table",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "UTF-8",
       "schema": {
+        "$schema": "https://datapackage.org/profiles/2.0/tableschema.json",
         "fields": [
           {
             "name": "tag-id",
@@ -235,10 +238,14 @@
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000189/3/"
           }
         ],
-        "primaryKey": ["animal-id", "tag-id"]
+        "primaryKey": [
+          "animal-id",
+          "tag-id"
+        ]
       }
     },
     {
+      "$schema": "https://datapackage.org/profiles/2.0/dataresource.json",
       "name": "gps",
       "path": [
         "HG_TEXEL-gps-2013.csv.gz",
@@ -252,11 +259,12 @@
         "HG_TEXEL-gps-2021.csv.gz",
         "HG_TEXEL-gps-2022.csv.gz"
       ],
-      "profile": "tabular-data-resource",
+      "type": "table",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "UTF-8",
       "schema": {
+        "$schema": "https://datapackage.org/profiles/2.0/tableschema.json",
         "fields": [
           {
             "name": "event-id",
@@ -435,7 +443,9 @@
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000173/3/"
           }
         ],
-        "primaryKey": "event-id",
+        "primaryKey": [
+          "event-id"
+        ],
         "foreignKeys": [
           {
             "fields": ["individual-local-identifier", "tag-local-identifier"],
@@ -448,6 +458,7 @@
       }
     },
     {
+      "$schema": "https://datapackage.org/profiles/2.0/dataresource.json",
       "name": "acceleration",
       "path": [
         "HG_TEXEL-acceleration-2013.csv.gz",
@@ -461,11 +472,12 @@
         "HG_TEXEL-acceleration-2021.csv.gz",
         "HG_TEXEL-acceleration-2022.csv.gz"
       ],
-      "profile": "tabular-data-resource",
+      "type": "table",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "UTF-8",
       "schema": {
+        "$schema": "https://datapackage.org/profiles/2.0/tableschema.json",
         "fields": [
           {
             "name": "event-id",
@@ -588,7 +600,9 @@
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000173/3/"
           }
         ],
-        "primaryKey": "event-id",
+        "primaryKey": [
+          "event-id"
+        ],
         "foreignKeys": [
           {
             "fields": ["individual-local-identifier", "tag-local-identifier"],
