@@ -733,6 +733,13 @@
               "resource": "reference-data",
               "fields": ["animal-id", "tag-id"]
             }
+          },
+          {
+            "fields": ["individual-local-identifier", "tag-local-identifier", "timestamp"],
+            "reference": {
+              "resource": "acceleration",
+              "fields": ["individual-local-identifier", "tag-local-identifier", "timestamp"]
+            }
           }
         ]
       }
