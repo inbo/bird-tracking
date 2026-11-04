@@ -1,5 +1,5 @@
 {
-  "id": "https://doi.org/10.5281/zenodo.15696532",
+  "id": "https://doi.org/10.5281/zenodo.23943441",
   "$schema": "https://datapackage.org/profiles/2.0/datapackage.json",
   "resources": [
     {
@@ -237,6 +237,7 @@
         "CURLEW_VLAANDEREN-gps-2022.csv.gz",
         "CURLEW_VLAANDEREN-gps-2023.csv.gz",
         "CURLEW_VLAANDEREN-gps-2024.csv.gz",
+        "CURLEW_VLAANDEREN-gps-2025.csv.gz"
       ],
       "type": "table",
       "format": "csv",
