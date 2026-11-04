@@ -1,14 +1,17 @@
 {
   "id": "https://doi.org/10.5281/zenodo.20706373",
+  "$schema": "https://datapackage.org/profiles/2.0/datapackage.json",
   "resources": [
     {
+      "$schema": "https://datapackage.org/profiles/2.0/dataresource.json",
       "name": "reference-data",
       "path": "LBBG_TEXEL-reference-data.csv",
-      "profile": "tabular-data-resource",
+      "type": "table",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "UTF-8",
       "schema": {
+        "$schema": "https://datapackage.org/profiles/2.0/tableschema.json",
         "fields": [
           {
             "name": "tag-id",
@@ -227,10 +230,14 @@
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000189/3/"
           }
         ],
-        "primaryKey": ["animal-id", "tag-id"]
+        "primaryKey": [
+          "animal-id",
+          "tag-id"
+        ]
       }
     },
     {
+      "$schema": "https://datapackage.org/profiles/2.0/dataresource.json",
       "name": "gps",
       "path": [
         "LBBG_TEXEL-gps-2008.csv.gz",
@@ -247,11 +254,12 @@
         "LBBG_TEXEL-gps-2019.csv.gz",
         "LBBG_TEXEL-gps-2020.csv.gz"
       ],
-      "profile": "tabular-data-resource",
+      "type": "table",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "UTF-8",
       "schema": {
+        "$schema": "https://datapackage.org/profiles/2.0/tableschema.json",
         "fields": [
           {
             "name": "event-id",
@@ -430,7 +438,9 @@
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000173/3/"
           }
         ],
-        "primaryKey": "event-id",
+        "primaryKey": [
+          "event-id"
+        ],
         "foreignKeys": [
           {
             "fields": ["individual-local-identifier", "tag-local-identifier"],
@@ -443,6 +453,7 @@
       }
     },
     {
+      "$schema": "https://datapackage.org/profiles/2.0/dataresource.json",
       "name": "acceleration",
       "path": [
         "LBBG_TEXEL-acceleration-2009.csv.gz",
@@ -458,11 +469,12 @@
         "LBBG_TEXEL-acceleration-2019.csv.gz",
         "LBBG_TEXEL-acceleration-2020.csv.gz"
       ],
-      "profile": "tabular-data-resource",
+      "type": "table",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "UTF-8",
       "schema": {
+        "$schema": "https://datapackage.org/profiles/2.0/tableschema.json",
         "fields": [
           {
             "name": "event-id",
@@ -585,7 +597,9 @@
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000173/3/"
           }
         ],
-        "primaryKey": "event-id",
+        "primaryKey": [
+          "event-id"
+        ],
         "foreignKeys": [
           {
             "fields": ["individual-local-identifier", "tag-local-identifier"],
