@@ -1,5 +1,5 @@
 {
-  "id": "https://doi.org/10.5281/zenodo.20706437",
+  "id": "https://doi.org/10.5281/zenodo.23926039",
   "$schema": "https://datapackage.org/profiles/2.0/datapackage.json",
   "resources": [
     {
@@ -518,6 +518,14 @@
             "type": "datetime",
             "format": "%Y-%m-%d %H:%M:%S.%f",
             "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000097/2/"
+          },
+          {
+            "name": "start-timestamp",
+            "title": "start timestamp",
+            "description": "The date and time when the sampling interval or burst began. Example: '2011-01-03 13:45:00.000'; Format: yyyy-MM-dd HH:mm:ss.SSS; Units: UTC or GPS time; Entity described: event",
+            "type": "datetime",
+            "format": "%Y-%m-%d %H:%M:%S.%f",
+            "skos:exactMatch": "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000171/2/"
           },
           {
             "name": "tilt-x",
