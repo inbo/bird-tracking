@@ -77,7 +77,7 @@ readr::write_csv(
 ## Read annotation data
 
 ```{r}
-raw_annotations <- read_csv(here::here("data", "raw", "GULLIVER", "labeled_data.csv"))
+raw_annotations <- read_csv(here::here("data", "raw", "GULLIVER", "labelled_data.csv"))
 ref_hg_texel <- read_csv(here::here("data", "processed", "HG_TEXEL", "movebank_ref_data.csv"))
 ref_lbbg_texel <- read_csv(here::here("data", "processed", "LBBG_TEXEL", "movebank_ref_data.csv"))
 ```
@@ -111,7 +111,11 @@ processed_annotations <-
     .keep = "none",
     `tag-id` = as.character(`tag-local-identifier`),
     `animal-id` = as.character(`animal-id`),
-    `timestamp` = format(timestamp + milliseconds(index * 50), "%Y-%m-%d %H:%M:%OS3"), # Mimics format of gulliver-classify
+    `timestamp` = format(
+      # timestamp + milliseconds + 1e-6 to avoid binary floating-point errors (e.g. 049 rather than 0.50)
+      (timestamp + lubridate::milliseconds(index * 50)) + 1e-6,
+      "%Y-%m-%d %H:%M:%OS3"
+    ), # Mimics format of gulliver-classify
     `behavioural-classification` = dplyr::recode_values(
       label,
       0 ~ "flap",
